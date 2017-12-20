@@ -349,6 +349,17 @@
 
     <!-- Qrcode -->
     
+        <button id="article-functions-qrcode-button" class="mdl-button mdl-js-button mdl-js-ripple-effect mdl-button--icon">
+    <i class="material-icons" role="presentation">devices other</i>
+    <span class="visuallyhidden">devices other</span>
+</button>
+<ul class="mdl-menu mdl-menu--bottom-right mdl-js-menu mdl-js-ripple-effect" for="article-functions-qrcode-button">
+    <li class="mdl-menu__item">Read this article on other devices</li>
+    
+        <img src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAN4AAADeCAAAAAB3DOFrAAACX0lEQVR42u3aQY7jMAwEwPz/0zPXPawzTVGiDaN8CpLAdukgEk19fl59ffDw8PDw8PDw8B7G+8TXf2709dd//3P1rKt/dt4NDw8Pb4b3x1Ybv0r+zdUrXn0uvBseHh7eIC9/ZF4w8qLSXw48PDy85/O+N9a7igceHh7em3jfv39V3cPDw8NrhBF5GUia7DwCHspa8PDw8GJePmSa/zw638PDw8MLeOUjTW123nZvOHSFh4eHd4C39vi1kDcPMjrLgYeHh3cXL48Gkii2umTVxcLDw8Ob5yVbcz7E6se1+TAsKgx4eHh4x3h5g7tWVPKBVl5g8PDw8O7l5bfOjxdUm+x+scHDw8M7zds11K/Gu2tHu6Llw8PDwxvhJUFtstFXi00+hEsiYzw8PLxJXhKk5oFsdcRVDS8KRwfw8PDwDvDyoKEzHksC3F0HGvDw8PBO8/Jgol9I8nY5adbx8PDw7uVVh09r4UV+h1ZBwsPDwzvMW2teq+P/TsNdvjMeHh7eCK861O+0yGvte14e8PDw8CZ5/cLQOTqwNjDDw8PDu4vXaWGrBSanVgsPHh4e3jxv73afL1+/fcfDw8N7Dq8a9eahQz8ULoQReHh4eFt51asTNFQjj7xg4OHh4U3yOptyB7NWkKIjDnh4eHgjvKQY5IP85PtqEFxYODw8PLxBXnWDrsaynbC4MIrDw8PDeySv02ovRgxxeIGHh4f3TF510FUdiSWjsuN1Dw8PD29TGLF2XKAaQLRCDTw8PLwRXh4B5KP9wsgqCCYKhwzw8PDwDvPed+Hh4eHh4eHh4T3g+gUF1PcT811ymAAAAABJRU5ErkJggg==">
+    
+</ul>
+    
 
     <!-- Tags (bookmark) -->
     
@@ -412,6 +423,12 @@
     
 
     <!-- Share QQ -->
+    
+        <a class="post_share-link" href="http://connect.qq.com/widget/shareqq/index.html?site=IConnectable&lt;World&gt;&title=Articles&summary=Nomyfan&#39;s person blog&pics=https://nomyfan.github.io/img/favicon.png&url=https://nomyfan.github.io/articles/index.html" target="_blank">
+            <li class="mdl-menu__item">
+                Share to QQ
+            </li>
+        </a>
     
 
     <!-- Share Telegram -->
@@ -483,7 +500,7 @@
 
     <!-- Sidebar Email -->
     <a data-toggle="dropdown" class="sidebar-brand" href="#settings-dropdown">
-        Contact Me
+        Nomyfan@msn.com
         <b class="caret"></b>
     </a>
 </div>
@@ -496,11 +513,11 @@
         <ul id="settings-dropdown" class="dropdown-menu">
             
                 <li>
-                    <a href="mailto:Nomyfan@msn.com?subject=Contact%20From%20Github" target="_blank" title="Email">
+                    <a href="mailto:Nomyfan@msn.com?subject=Contact%20From%20Github" target="_blank" title="Email Me">
                         
                             <i class="material-icons sidebar-material-icons sidebar-indent-left1pc-element">email</i>
                         
-                        Email
+                        Email Me
                     </a>
                 </li>
             
@@ -540,36 +557,39 @@
 
     <!-- Categories  -->
     
-        <li class="dropdown">
-            <a href="#" class="ripple-effect dropdown-toggle" data-toggle="dropdown">
-                
-                    <i class="material-icons sidebar-material-icons">chrome_reader_mode</i>
-                
-                Categories
-                <b class="caret"></b>
-            </a>
-            <ul class="dropdown-menu">
-                <li>
-                <a class="sidebar_archives-link" href="/categories/Arduino/">Arduino<span class="sidebar_archives-count">1</span></a></li><li><a class="sidebar_archives-link" href="/categories/C/">C#<span class="sidebar_archives-count">1</span></a></li><li><a class="sidebar_archives-link" href="/categories/Linux/">Linux<span class="sidebar_archives-count">2</span></a></li><li><a class="sidebar_archives-link" href="/categories/Linux/VPS/">VPS<span class="sidebar_archives-count">2</span></a></li><li><a class="sidebar_archives-link" href="/categories/Programming/">Programming<span class="sidebar_archives-count">2</span></a></li><li><a class="sidebar_archives-link" href="/categories/Talking/">Talking<span class="sidebar_archives-count">1</span></a></li><li><a class="sidebar_archives-link" href="/categories/WPF/">WPF<span class="sidebar_archives-count">4</span></a></li><li><a class="sidebar_archives-link" href="/categories/Windows/">Windows<span class="sidebar_archives-count">3</span></a>
-            </ul>
-        </li>
-        
-    
 
     <!-- Pages  -->
     
         <li>
-            <a href="http://nokky.net" title="Personal Blog">
+            <a href="about-me" title="About">
                 
                     <i class="material-icons sidebar-material-icons">person</i>
                 
-                Personal Blog
+                About
+            </a>
+        </li>
+        
+    
+        <li>
+            <a href="friends" title="Friends">
+                
+                    <i class="material-icons sidebar-material-icons">person</i>
+                
+                Friends
             </a>
         </li>
         
     
 
     <!-- Article Number  -->
+    
+        <li>
+            <a href="/archives">
+                Number of articles
+                <span class="sidebar-badge">14</span>
+            </a>
+        </li>
+        
     
 </ul>
 
@@ -591,13 +611,6 @@ It will not impact the appearance and can give developers a lot of support :)
 
 
 <!-- Theme Material -->
-
-    <a href="https://github.com/viosey/hexo-theme-material"  class="sidebar-footer-text-a" target="_blank">
-        <div class="sidebar-text mdl-button mdl-js-button mdl-js-ripple-effect sidebar-footer-text-div" data-upgraded=",MaterialButton,MaterialRipple">
-            Theme - Material
-            <span class="sidebar-badge badge-circle">i</span>
-        </div>
-    </a>
 
 
 <!-- Help & Support -->
@@ -704,7 +717,7 @@ It will not impact the appearance and can give developers a lot of support :)
 
         <!--Copyright-->
         <div id="copyright">
-            Copyright&nbsp;©<script type="text/javascript">var fd = new Date();document.write("&nbsp;" + fd.getFullYear() + "&nbsp;");</script>IConnectable<World>
+            Copyright&nbsp;©&nbsp;2016&nbsp;-<script type="text/javascript">var fd = new Date();document.write("&nbsp;" + fd.getFullYear() + "&nbsp;");</script>IConnectable<World>
         </div>
 
         <!-- Paradox Footer Right Section -->

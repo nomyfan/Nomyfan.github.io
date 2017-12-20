@@ -71,8 +71,8 @@
     
 
     
-        <meta property="article:published_time" content="Thu Dec 29 2016 12:59:25 GMT+0800" />
-        <meta property="article:modified_time" content="Wed Dec 20 2017 22:03:51 GMT+0800" />
+        <meta property="article:published_time" content="Dec 29, 2016" />
+        <meta property="article:modified_time" content="Dec 21, 2017" />
     
 
     <!-- The Twitter Card protocol -->
@@ -108,12 +108,12 @@
             "@type": "ImageObject",
             "url": "/img/favicon.png"
         },
-        "description": "Hi, nice to meet you"
+        "description": "NOMYFAN's BLOG,Nice to meet you"
     },
     "headline": "提高Arduino编程体验",
     "url": "https://nomyfan.github.io/2016/12/29/arduino-ide-for-visualstudio/index.html",
-    "datePublished": "Thu Dec 29 2016 12:59:25 GMT+0800",
-    "dateModified": "Wed Dec 20 2017 22:03:51 GMT+0800",
+    "datePublished": "Dec 29, 2016",
+    "dateModified": "Dec 21, 2017",
     "description": "Nomyfan&#39;s person blog",
     "mainEntityOfPage": {
         "@type": "WebPage",
@@ -419,6 +419,17 @@
 
     <!-- Qrcode -->
     
+        <button id="article-functions-qrcode-button" class="mdl-button mdl-js-button mdl-js-ripple-effect mdl-button--icon">
+    <i class="material-icons" role="presentation">devices other</i>
+    <span class="visuallyhidden">devices other</span>
+</button>
+<ul class="mdl-menu mdl-menu--bottom-right mdl-js-menu mdl-js-ripple-effect" for="article-functions-qrcode-button">
+    <li class="mdl-menu__item">Read this article on other devices</li>
+    
+        <img src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAPYAAAD2CAAAAADAeSUUAAAC10lEQVR42u3a0W7CMAwFUP7/p7cPmOjudSpUktMnNEqaY6SZ2H79HHm9sLGxsbGxsbGxsR/JfsXX2+WCO/N1/r5+9267Z2xsbOy92f/867/ErITjGvluhdmesbGxsU9gJ4/Jt5intDx1zfaMjY2NjZ0kj7cHgIVAXK+JjY2Njb3CTg4ns8DlhxxsbGxs7FmBJk8qbfmpTYofraVhY2NjP56dF4ae8/qj/W1sbGzsB7PbKy/ot0FcaSpHO8fGxsbelJ0nhjwE+bDO+nOLwSBsbGzsA9jXBff8U7OV84ZuvgdsbGzs09izgcv2QNKuf71CjsfGxsY+gX2dZto726HJWcIrUiw2Njb2puz8GLCyoRkyCehSoxcbGxt7a/Zdbdc2jc3WGfa3sbGxsbdgt82AtlSUD1AmKapNh9jY2NgnsNuU0IYgT0uzslGe2LCxsbHPYecFprrVOhqmzJvExcgONjY29kbs/Af9bIhn5e/JE4sDFTY2NvbW7JWhnGSLs4J++8X8kz6xsbGxN2WvN1yTACXHnpyUBBEbGxv7HHZegm+HJttw3DV8WY/sYGNjY385O99cPtCzEpT26UWLGhsbG/sAdpvA8kZvW65K1ql3hY2Njb0pO08nK0Fpr3asJ2ozYGNjY2/Nbos47RhNnt7a0CRPxMbGxj6THZVpFor4eeMhP97ckMCwsbGxv5a9/tN/dqRZP+oUiRMbGxv7YHZ7Z9F8DT51V0CxsbGxT2AnBaD2sNGO/tzVbKi7ItjY2Nhfy26vOm2MGgZ3vYuNjY19AnulcN8y2uNKXkKKdoWNjY29NTsv/eQbbdvDs+cmbWZsbGzsc9izlmp75GiDMhvErGtp2NjY2Iex7zqorLQQkjuxsbGxsVeawW3zIFm/TYHY2NjYp7HbUtFwCDIesknuL1oR2NjY2FuzVwo3bdO3pa4UobCxsbFPYJ9zYWNjY2NjY2NjYz/m+gVvBsOmCrxfeAAAAABJRU5ErkJggg==">
+    
+</ul>
+    
 
     <!-- Tags (bookmark) -->
     
@@ -483,6 +494,12 @@
 
     <!-- Share QQ -->
     
+        <a class="post_share-link" href="http://connect.qq.com/widget/shareqq/index.html?site=IConnectable&lt;World&gt;&title=提高Arduino编程体验&summary=Nomyfan&#39;s person blog&pics=https://nomyfan.github.io/img/favicon.png&url=https://nomyfan.github.io/2016/12/29/arduino-ide-for-visualstudio/index.html" target="_blank">
+            <li class="mdl-menu__item">
+                Share to QQ
+            </li>
+        </a>
+    
 
     <!-- Share Telegram -->
     
@@ -498,7 +515,7 @@
         <p>前阵子学校有个单片机比赛，受其影响突然很想玩板子。于是就买个一块Arduino UNO的国产版ZHONGBEST，就使用上来说和官方原版没有什么区别，最大的区别就是便宜！便宜！便宜！（重说三）</p>
 <hr>
 <p>拿到手后，当然迫不及待地上手一个Hello World程序，开始我用的是官方的IDE，试了没问题之后我尝试着去修改代码，然后我发现了什么？没有智能提示！没有智能提示！没有智能提示！或许我是被VS惯坏了，我实在受不了。搜索一波后发现有个扩展叫做 Arduino IDE For Visual Studio（传送门：<a href="https://marketplace.visualstudio.com/items?itemName=VisualMicro.ArduinoIDEforVisualStudio" target="_blank" rel="external">https://marketplace.visualstudio.com/items?itemName=VisualMicro.ArduinoIDEforVisualStudio</a>），安装好了之后打开VS后可以看到界面已经发生了少许的变化，再次尝试着去写代码的时候找回了那种愉悦感 balabala~</p>
-<p><a href="http://104.224.163.126/wp-content/uploads/2016/12/sp161229_125410.png" target="_blank" rel="external"><img src="http://104.224.163.126/wp-content/uploads/2016/12/sp161229_125410-1024x576.png" alt=""></a></p>
+<p><a href="http://nokky.net/wp-content/uploads/2016/12/sp161229_125410.png" target="_blank" rel="external"><img src="http://nokky.net/wp-content/uploads/2016/12/sp161229_125410-1024x576.png" alt=""></a></p>
 <p>&nbsp;</p>
 
     
@@ -576,7 +593,7 @@
 
     <!-- Sidebar Email -->
     <a data-toggle="dropdown" class="sidebar-brand" href="#settings-dropdown">
-        Contact Me
+        Nomyfan@msn.com
         <b class="caret"></b>
     </a>
 </div>
@@ -589,11 +606,11 @@
         <ul id="settings-dropdown" class="dropdown-menu">
             
                 <li>
-                    <a href="mailto:Nomyfan@msn.com?subject=Contact%20From%20Github" target="_blank" title="Email">
+                    <a href="mailto:Nomyfan@msn.com?subject=Contact%20From%20Github" target="_blank" title="Email Me">
                         
                             <i class="material-icons sidebar-material-icons sidebar-indent-left1pc-element">email</i>
                         
-                        Email
+                        Email Me
                     </a>
                 </li>
             
@@ -633,36 +650,39 @@
 
     <!-- Categories  -->
     
-        <li class="dropdown">
-            <a href="#" class="ripple-effect dropdown-toggle" data-toggle="dropdown">
-                
-                    <i class="material-icons sidebar-material-icons">chrome_reader_mode</i>
-                
-                Categories
-                <b class="caret"></b>
-            </a>
-            <ul class="dropdown-menu">
-                <li>
-                <a class="sidebar_archives-link" href="/categories/Arduino/">Arduino<span class="sidebar_archives-count">1</span></a></li><li><a class="sidebar_archives-link" href="/categories/C/">C#<span class="sidebar_archives-count">1</span></a></li><li><a class="sidebar_archives-link" href="/categories/Linux/">Linux<span class="sidebar_archives-count">2</span></a></li><li><a class="sidebar_archives-link" href="/categories/Linux/VPS/">VPS<span class="sidebar_archives-count">2</span></a></li><li><a class="sidebar_archives-link" href="/categories/Programming/">Programming<span class="sidebar_archives-count">2</span></a></li><li><a class="sidebar_archives-link" href="/categories/Talking/">Talking<span class="sidebar_archives-count">1</span></a></li><li><a class="sidebar_archives-link" href="/categories/WPF/">WPF<span class="sidebar_archives-count">4</span></a></li><li><a class="sidebar_archives-link" href="/categories/Windows/">Windows<span class="sidebar_archives-count">3</span></a>
-            </ul>
-        </li>
-        
-    
 
     <!-- Pages  -->
     
         <li>
-            <a href="http://nokky.net" title="Personal Blog">
+            <a href="about-me" title="About">
                 
                     <i class="material-icons sidebar-material-icons">person</i>
                 
-                Personal Blog
+                About
+            </a>
+        </li>
+        
+    
+        <li>
+            <a href="friends" title="Friends">
+                
+                    <i class="material-icons sidebar-material-icons">person</i>
+                
+                Friends
             </a>
         </li>
         
     
 
     <!-- Article Number  -->
+    
+        <li>
+            <a href="/archives">
+                Number of articles
+                <span class="sidebar-badge">14</span>
+            </a>
+        </li>
+        
     
 </ul>
 
@@ -684,13 +704,6 @@ It will not impact the appearance and can give developers a lot of support :)
 
 
 <!-- Theme Material -->
-
-    <a href="https://github.com/viosey/hexo-theme-material"  class="sidebar-footer-text-a" target="_blank">
-        <div class="sidebar-text mdl-button mdl-js-button mdl-js-ripple-effect sidebar-footer-text-div" data-upgraded=",MaterialButton,MaterialRipple">
-            Theme - Material
-            <span class="sidebar-badge badge-circle">i</span>
-        </div>
-    </a>
 
 
 <!-- Help & Support -->
@@ -805,7 +818,7 @@ It will not impact the appearance and can give developers a lot of support :)
 
         <!--Copyright-->
         <div id="copyright">
-            Copyright&nbsp;©<script type="text/javascript">var fd = new Date();document.write("&nbsp;" + fd.getFullYear() + "&nbsp;");</script>IConnectable<World>
+            Copyright&nbsp;©&nbsp;2016&nbsp;-<script type="text/javascript">var fd = new Date();document.write("&nbsp;" + fd.getFullYear() + "&nbsp;");</script>IConnectable<World>
         </div>
 
         <!-- Paradox Footer Right Section -->

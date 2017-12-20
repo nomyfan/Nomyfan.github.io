@@ -349,6 +349,17 @@
 
     <!-- Qrcode -->
     
+        <button id="article-functions-qrcode-button" class="mdl-button mdl-js-button mdl-js-ripple-effect mdl-button--icon">
+    <i class="material-icons" role="presentation">devices other</i>
+    <span class="visuallyhidden">devices other</span>
+</button>
+<ul class="mdl-menu mdl-menu--bottom-right mdl-js-menu mdl-js-ripple-effect" for="article-functions-qrcode-button">
+    <li class="mdl-menu__item">Read this article on other devices</li>
+    
+        <img src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAMYAAADGCAAAAACs8KCBAAAB7UlEQVR42u3aS5LDIAwFQN//0jMHSIU88ZkJ0F654jios1AhpOfniOvBwMDAwMDAwPgaxhNfr2+93reftu/LMWBgYFzG+JDa3izZDiJfpRoDBgbGzYx3oeTJ8cPCcfpux4CBgYGRM9ohjmwfMTAwMCYku+YGMS+SMTAwMFYUseMFcJKOl9fiGBgYGzLyQ/l193/a38DAwNiKUR5xKCbNkWS9cGYEAwNjK8bI9i5J3EkZXH2KgYFxGyMfqhhpYUZhxUd4GBgYGH0L5E/bq+dbRgwMjHsY1eGt6ohq56F/8hYGBsZljJGgq2l6eQsTAwPjUEYOy9+qtkXz0VgMDIzbGNW2ZXQQFhexCXtaJxYDA2NbRr5Fm1XWztqAYmBgYPSNf+Wk5C+bkHAxMDCOY1Q3f/lWr1ruRn8NBgbGZYzqIX4e3LQ2AAYGxvWMvvZkX8natxEsbw0xMDAOZTzxVS44V7Q2MTAwrmH0tTPz0Yq+VF4eYMXAwDia0Zdkq79QLZg7GwMYGBhHM0aKz+S4f6Tl8PabGBgYVzKShNj+pPrNPE1jYGBgVBl5wk0K4KSUHTo1xMDAuJ6RH/rPakVgYGDczKgWsdXmwcj4RXksDAMD4zjGyOF+EkpfG2BhfwMDA2Mrxr4XBgYGBgYGBsa/Xr9w8G679mGLGgAAAABJRU5ErkJggg==">
+    
+</ul>
+    
 
     <!-- Tags (bookmark) -->
     
@@ -412,6 +423,12 @@
     
 
     <!-- Share QQ -->
+    
+        <a class="post_share-link" href="http://connect.qq.com/widget/shareqq/index.html?site=IConnectable&lt;World&gt;&title=Tags&summary=Nomyfan&#39;s person blog&pics=https://nomyfan.github.io/img/favicon.png&url=https://nomyfan.github.io/tags/index.html" target="_blank">
+            <li class="mdl-menu__item">
+                Share to QQ
+            </li>
+        </a>
     
 
     <!-- Share Telegram -->
@@ -483,7 +500,7 @@
 
     <!-- Sidebar Email -->
     <a data-toggle="dropdown" class="sidebar-brand" href="#settings-dropdown">
-        Contact Me
+        Nomyfan@msn.com
         <b class="caret"></b>
     </a>
 </div>
@@ -496,11 +513,11 @@
         <ul id="settings-dropdown" class="dropdown-menu">
             
                 <li>
-                    <a href="mailto:Nomyfan@msn.com?subject=Contact%20From%20Github" target="_blank" title="Email">
+                    <a href="mailto:Nomyfan@msn.com?subject=Contact%20From%20Github" target="_blank" title="Email Me">
                         
                             <i class="material-icons sidebar-material-icons sidebar-indent-left1pc-element">email</i>
                         
-                        Email
+                        Email Me
                     </a>
                 </li>
             
@@ -540,36 +557,39 @@
 
     <!-- Categories  -->
     
-        <li class="dropdown">
-            <a href="#" class="ripple-effect dropdown-toggle" data-toggle="dropdown">
-                
-                    <i class="material-icons sidebar-material-icons">chrome_reader_mode</i>
-                
-                Categories
-                <b class="caret"></b>
-            </a>
-            <ul class="dropdown-menu">
-                <li>
-                <a class="sidebar_archives-link" href="/categories/Arduino/">Arduino<span class="sidebar_archives-count">1</span></a></li><li><a class="sidebar_archives-link" href="/categories/C/">C#<span class="sidebar_archives-count">1</span></a></li><li><a class="sidebar_archives-link" href="/categories/Linux/">Linux<span class="sidebar_archives-count">2</span></a></li><li><a class="sidebar_archives-link" href="/categories/Linux/VPS/">VPS<span class="sidebar_archives-count">2</span></a></li><li><a class="sidebar_archives-link" href="/categories/Programming/">Programming<span class="sidebar_archives-count">2</span></a></li><li><a class="sidebar_archives-link" href="/categories/Talking/">Talking<span class="sidebar_archives-count">1</span></a></li><li><a class="sidebar_archives-link" href="/categories/WPF/">WPF<span class="sidebar_archives-count">4</span></a></li><li><a class="sidebar_archives-link" href="/categories/Windows/">Windows<span class="sidebar_archives-count">3</span></a>
-            </ul>
-        </li>
-        
-    
 
     <!-- Pages  -->
     
         <li>
-            <a href="http://nokky.net" title="Personal Blog">
+            <a href="about-me" title="About">
                 
                     <i class="material-icons sidebar-material-icons">person</i>
                 
-                Personal Blog
+                About
+            </a>
+        </li>
+        
+    
+        <li>
+            <a href="friends" title="Friends">
+                
+                    <i class="material-icons sidebar-material-icons">person</i>
+                
+                Friends
             </a>
         </li>
         
     
 
     <!-- Article Number  -->
+    
+        <li>
+            <a href="/archives">
+                Number of articles
+                <span class="sidebar-badge">14</span>
+            </a>
+        </li>
+        
     
 </ul>
 
@@ -591,13 +611,6 @@ It will not impact the appearance and can give developers a lot of support :)
 
 
 <!-- Theme Material -->
-
-    <a href="https://github.com/viosey/hexo-theme-material"  class="sidebar-footer-text-a" target="_blank">
-        <div class="sidebar-text mdl-button mdl-js-button mdl-js-ripple-effect sidebar-footer-text-div" data-upgraded=",MaterialButton,MaterialRipple">
-            Theme - Material
-            <span class="sidebar-badge badge-circle">i</span>
-        </div>
-    </a>
 
 
 <!-- Help & Support -->
@@ -704,7 +717,7 @@ It will not impact the appearance and can give developers a lot of support :)
 
         <!--Copyright-->
         <div id="copyright">
-            Copyright&nbsp;©<script type="text/javascript">var fd = new Date();document.write("&nbsp;" + fd.getFullYear() + "&nbsp;");</script>IConnectable<World>
+            Copyright&nbsp;©&nbsp;2016&nbsp;-<script type="text/javascript">var fd = new Date();document.write("&nbsp;" + fd.getFullYear() + "&nbsp;");</script>IConnectable<World>
         </div>
 
         <!-- Paradox Footer Right Section -->

@@ -71,8 +71,8 @@
     
 
     
-        <meta property="article:published_time" content="Mon May 29 2017 17:43:41 GMT+0800" />
-        <meta property="article:modified_time" content="Wed Dec 20 2017 22:03:51 GMT+0800" />
+        <meta property="article:published_time" content="May 29, 2017" />
+        <meta property="article:modified_time" content="Dec 21, 2017" />
     
 
     <!-- The Twitter Card protocol -->
@@ -108,12 +108,12 @@
             "@type": "ImageObject",
             "url": "/img/favicon.png"
         },
-        "description": "Hi, nice to meet you"
+        "description": "NOMYFAN's BLOG,Nice to meet you"
     },
     "headline": "自定义C/C++头文件",
     "url": "https://nomyfan.github.io/2017/05/29/customize-headerfiles/index.html",
-    "datePublished": "Mon May 29 2017 17:43:41 GMT+0800",
-    "dateModified": "Wed Dec 20 2017 22:03:51 GMT+0800",
+    "datePublished": "May 29, 2017",
+    "dateModified": "Dec 21, 2017",
     "description": "Nomyfan&#39;s person blog",
     "mainEntityOfPage": {
         "@type": "WebPage",
@@ -419,6 +419,17 @@
 
     <!-- Qrcode -->
     
+        <button id="article-functions-qrcode-button" class="mdl-button mdl-js-button mdl-js-ripple-effect mdl-button--icon">
+    <i class="material-icons" role="presentation">devices other</i>
+    <span class="visuallyhidden">devices other</span>
+</button>
+<ul class="mdl-menu mdl-menu--bottom-right mdl-js-menu mdl-js-ripple-effect" for="article-functions-qrcode-button">
+    <li class="mdl-menu__item">Read this article on other devices</li>
+    
+        <img src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAPYAAAD2CAAAAADAeSUUAAAC4klEQVR42u3a0U7rMBAE0P7/T19er4RSZtZBDfbJE2pR4uNILDvr178jrxc2NjY2NjY2Njb2I9mv+Pr++1f3eX/n/7/9foerb1fWjI2NjX0C+4c//RcLyrcgX+76plzeARsbG/sAdruI94tLtux9cXr/Sb1mbGxsbOyggLUNSd5m3PCqsLGxsbGTCH7UhGBjY2Nj38XOA5qkRcmbjbZ1+UCWho2Njf149iy4/+zPH5hvY2NjYz+S3V7JUZ58KXlJy9uhy5VjY2Njb8puw/18TJvHRvmwIR8nD7M0bGxs7D/IzqOZnD0rPMkAuB0SYGNjY5/DbpuK2RC3bWzuHRtgY2Nj78rOBwB5qWjHwyvD4LxYYmNjY+/NXnn8jDErhO1YAhsbG/sc9uygTDseaGHt9UORw8bGxt6UPVv6OnU2KpiNeLGxsbHPYeeHY1bKTxL6t41H0iBhY2Nj78peaQPyZiYphO0IIX8Z2NjY2Cew2wMxRdkYRfxts4GNjY2Nnf+7n8dDCXgWGyXBEzY2NvY57PUQfzZCWBkMJM+KxgPY2NjY27HbSKgYss6ahzLMqo/sYGNjY2/EziP79UYi5907TsDGxsbeld0ef0lKXb5ZLTLfCGxsbOxz2CuhT05KmpxZbJTHYdjY2Ni7svNBbz6CbYOk2Zi5fg3Y2NjYm7KTJbafzAa0+fg5v7CxsbFPY+eFId+OWfTfRlQ3dGDY2NjYf5bd8lZCqHYwPHtuVMCwsbGxN2LPYvc2+p+NFvJyGG0xNjY29gHs6ODLaEA7i5CSQliMh7GxsbE3Za8EQHkwlMdDLSlvVLCxsbH3ZielJQ+J1o/ytBFSFFdhY2NjH8BuB7GzgjQ71tOWWGxsbGzs9vF5c9LeJymQ0avCxsbGxg4enB/KST6/a/CAjY2NfQ47CZXWD9+0JWpWArGxsbFPY68Memd3mMVP+RGiX59vY2NjYz+Gfc6FjY2NjY2NjY2N/ZjrCww3FUdeZVf0AAAAAElFTkSuQmCC">
+    
+</ul>
+    
 
     <!-- Tags (bookmark) -->
     
@@ -483,6 +494,12 @@
 
     <!-- Share QQ -->
     
+        <a class="post_share-link" href="http://connect.qq.com/widget/shareqq/index.html?site=IConnectable&lt;World&gt;&title=自定义C/C++头文件&summary=Nomyfan&#39;s person blog&pics=https://nomyfan.github.io/img/favicon.png&url=https://nomyfan.github.io/2017/05/29/customize-headerfiles/index.html" target="_blank">
+            <li class="mdl-menu__item">
+                Share to QQ
+            </li>
+        </a>
+    
 
     <!-- Share Telegram -->
     
@@ -498,30 +515,30 @@
         <p>随着C/C++项目的增大，在管理难度上也随之增加。因此，合理利用头文件可以方便管理维护代码。这里会演示在IDE和vscode里如何自定义头文件，为什么要特殊地讲两个呢？因为vscode有点特殊。。。</p>
 <hr>
 <h2 id="Visual-Studio"><a href="#Visual-Studio" class="headerlink" title="Visual Studio"></a>Visual Studio</h2><p>IDE我选用VS作为演示。首先，新建一个空的项目，项目组成如图</p>
-<p><a href="http://ycyzone.tk/wp-content/uploads/2017/05/snipaste_20170530_005339.png" target="_blank" rel="external"><img src="http://ycyzone.tk/wp-content/uploads/2017/05/snipaste_20170530_005339.png" alt=""></a></p>
+<p><a href="http://nokky.net/wp-content/uploads/2017/05/snipaste_20170530_005339.png" target="_blank" rel="external"><img src="http://nokky.net/wp-content/uploads/2017/05/snipaste_20170530_005339.png" alt=""></a></p>
 <p>然后添加一些文件</p>
-<p><a href="http://ycyzone.tk/wp-content/uploads/2017/05/snipaste_20170530_005900.png" target="_blank" rel="external"><img src="http://ycyzone.tk/wp-content/uploads/2017/05/snipaste_20170530_005900.png" alt=""></a></p>
+<p><a href="http://nokky.net/wp-content/uploads/2017/05/snipaste_20170530_005900.png" target="_blank" rel="external"><img src="http://nokky.net/wp-content/uploads/2017/05/snipaste_20170530_005900.png" alt=""></a></p>
 <p>Calc.h是声明文件，Calc.cpp是Calc.h声明的实现文件，这样实现了声明和定义的分离。main.cpp是main函数本体文件。</p>
 <p>在Calc.h文件中，我希望有一个Add函数计算加法，于是做了如下声明</p>
-<p><a href="http://ycyzone.tk/wp-content/uploads/2017/05/snipaste_20170530_005922.png" target="_blank" rel="external"><img src="http://ycyzone.tk/wp-content/uploads/2017/05/snipaste_20170530_005922.png" alt=""></a></p>
+<p><a href="http://nokky.net/wp-content/uploads/2017/05/snipaste_20170530_005922.png" target="_blank" rel="external"><img src="http://nokky.net/wp-content/uploads/2017/05/snipaste_20170530_005922.png" alt=""></a></p>
 <p>接下来就要定义这个函数，先引用Calc.h文件，相当于Calc.cpp知道了有哪些声明但未实现的函数，然后定义Add方法。</p>
-<p><a href="http://ycyzone.tk/wp-content/uploads/2017/05/snipaste_20170530_005954.png" target="_blank" rel="external"><img src="http://ycyzone.tk/wp-content/uploads/2017/05/snipaste_20170530_005954.png" alt=""></a></p>
+<p><a href="http://nokky.net/wp-content/uploads/2017/05/snipaste_20170530_005954.png" target="_blank" rel="external"><img src="http://nokky.net/wp-content/uploads/2017/05/snipaste_20170530_005954.png" alt=""></a></p>
 <p>最后在main.cpp文件中把Calc.h引用进来，在main方法里调用这个函数即可</p>
-<p><a href="http://ycyzone.tk/wp-content/uploads/2017/05/snipaste_20170530_010033.png" target="_blank" rel="external"><img src="http://ycyzone.tk/wp-content/uploads/2017/05/snipaste_20170530_010033.png" alt=""></a></p>
+<p><a href="http://nokky.net/wp-content/uploads/2017/05/snipaste_20170530_010033.png" target="_blank" rel="external"><img src="http://nokky.net/wp-content/uploads/2017/05/snipaste_20170530_010033.png" alt=""></a></p>
 <hr>
 <h2 id="Visual-Studio-Code"><a href="#Visual-Studio-Code" class="headerlink" title="Visual Studio Code"></a>Visual Studio Code</h2><p>同样的，新建一个项目，结构和在VS里类似。</p>
-<p><a href="http://ycyzone.tk/wp-content/uploads/2017/05/snipaste_20170530_011628-1.png" target="_blank" rel="external"><img src="http://ycyzone.tk/wp-content/uploads/2017/05/snipaste_20170530_011628-1.png" alt=""></a></p>
+<p><a href="http://nokky.net/wp-content/uploads/2017/05/snipaste_20170530_011628-1.png" target="_blank" rel="external"><img src="http://nokky.net/wp-content/uploads/2017/05/snipaste_20170530_011628-1.png" alt=""></a></p>
 <p>Calc.h代码一毛一样</p>
-<p><a href="http://ycyzone.tk/wp-content/uploads/2017/05/snipaste_20170530_011646.png" target="_blank" rel="external"><img src="http://ycyzone.tk/wp-content/uploads/2017/05/snipaste_20170530_011646.png" alt=""></a></p>
+<p><a href="http://nokky.net/wp-content/uploads/2017/05/snipaste_20170530_011646.png" target="_blank" rel="external"><img src="http://nokky.net/wp-content/uploads/2017/05/snipaste_20170530_011646.png" alt=""></a></p>
 <p>Calc.cpp也一毛一样，<strong>只需要注意一下引用路径</strong></p>
-<p><a href="http://ycyzone.tk/wp-content/uploads/2017/05/snipaste_20170530_011702.png" target="_blank" rel="external"><img src="http://ycyzone.tk/wp-content/uploads/2017/05/snipaste_20170530_011702.png" alt=""></a></p>
+<p><a href="http://nokky.net/wp-content/uploads/2017/05/snipaste_20170530_011702.png" target="_blank" rel="external"><img src="http://nokky.net/wp-content/uploads/2017/05/snipaste_20170530_011702.png" alt=""></a></p>
 <p>最大差异是在main.cpp文件中</p>
-<p><a href="http://ycyzone.tk/wp-content/uploads/2017/05/snipaste_20170530_011749.png" target="_blank" rel="external"><img src="http://ycyzone.tk/wp-content/uploads/2017/05/snipaste_20170530_011749.png" alt=""></a></p>
+<p><a href="http://nokky.net/wp-content/uploads/2017/05/snipaste_20170530_011749.png" target="_blank" rel="external"><img src="http://nokky.net/wp-content/uploads/2017/05/snipaste_20170530_011749.png" alt=""></a></p>
 <p>这里不是把Calc.h引用进来而是把Calc.cpp引用进来。</p>
 <p>为什么？IDE帮我们做了一些处理。在vscode里不引用Calc.cpp而是引用Calc.h编译的时候会提示Add函数没有定义。简单做了一个图，好像并没有什么不对。</p>
-<p><a href="http://ycyzone.tk/wp-content/uploads/2017/05/snipaste_20170530_014200.png" target="_blank" rel="external"><img src="http://ycyzone.tk/wp-content/uploads/2017/05/snipaste_20170530_014200-1024x562.png" alt=""></a></p>
+<p><a href="http://nokky.net/wp-content/uploads/2017/05/snipaste_20170530_014200.png" target="_blank" rel="external"><img src="http://nokky.net/wp-content/uploads/2017/05/snipaste_20170530_014200-1024x562.png" alt=""></a></p>
 <p>如果我希望像IDE里一样引用.h文件而不是.cpp/.c文件保持头文件一致性，有没有办法呢？有！即是在.h文件中把所有声明都写完之后再引用定义部分的文件。</p>
-<p><a href="http://ycyzone.tk/wp-content/uploads/2017/05/snipaste_20170530_015415.png" target="_blank" rel="external"><img src="http://ycyzone.tk/wp-content/uploads/2017/05/snipaste_20170530_015415.png" alt=""></a></p>
+<p><a href="http://nokky.net/wp-content/uploads/2017/05/snipaste_20170530_015415.png" target="_blank" rel="external"><img src="http://nokky.net/wp-content/uploads/2017/05/snipaste_20170530_015415.png" alt=""></a></p>
 <p>最后要注意的一点是，VS里的文件夹在真实路径下是不存在的，所有文件都是在同一个目录下的，这就是为什么vscode的引用路径要曲折一下的原因。</p>
 
     
@@ -599,7 +616,7 @@
 
     <!-- Sidebar Email -->
     <a data-toggle="dropdown" class="sidebar-brand" href="#settings-dropdown">
-        Contact Me
+        Nomyfan@msn.com
         <b class="caret"></b>
     </a>
 </div>
@@ -612,11 +629,11 @@
         <ul id="settings-dropdown" class="dropdown-menu">
             
                 <li>
-                    <a href="mailto:Nomyfan@msn.com?subject=Contact%20From%20Github" target="_blank" title="Email">
+                    <a href="mailto:Nomyfan@msn.com?subject=Contact%20From%20Github" target="_blank" title="Email Me">
                         
                             <i class="material-icons sidebar-material-icons sidebar-indent-left1pc-element">email</i>
                         
-                        Email
+                        Email Me
                     </a>
                 </li>
             
@@ -656,36 +673,39 @@
 
     <!-- Categories  -->
     
-        <li class="dropdown">
-            <a href="#" class="ripple-effect dropdown-toggle" data-toggle="dropdown">
-                
-                    <i class="material-icons sidebar-material-icons">chrome_reader_mode</i>
-                
-                Categories
-                <b class="caret"></b>
-            </a>
-            <ul class="dropdown-menu">
-                <li>
-                <a class="sidebar_archives-link" href="/categories/Arduino/">Arduino<span class="sidebar_archives-count">1</span></a></li><li><a class="sidebar_archives-link" href="/categories/C/">C#<span class="sidebar_archives-count">1</span></a></li><li><a class="sidebar_archives-link" href="/categories/Linux/">Linux<span class="sidebar_archives-count">2</span></a></li><li><a class="sidebar_archives-link" href="/categories/Linux/VPS/">VPS<span class="sidebar_archives-count">2</span></a></li><li><a class="sidebar_archives-link" href="/categories/Programming/">Programming<span class="sidebar_archives-count">2</span></a></li><li><a class="sidebar_archives-link" href="/categories/Talking/">Talking<span class="sidebar_archives-count">1</span></a></li><li><a class="sidebar_archives-link" href="/categories/WPF/">WPF<span class="sidebar_archives-count">4</span></a></li><li><a class="sidebar_archives-link" href="/categories/Windows/">Windows<span class="sidebar_archives-count">3</span></a>
-            </ul>
-        </li>
-        
-    
 
     <!-- Pages  -->
     
         <li>
-            <a href="http://nokky.net" title="Personal Blog">
+            <a href="about-me" title="About">
                 
                     <i class="material-icons sidebar-material-icons">person</i>
                 
-                Personal Blog
+                About
+            </a>
+        </li>
+        
+    
+        <li>
+            <a href="friends" title="Friends">
+                
+                    <i class="material-icons sidebar-material-icons">person</i>
+                
+                Friends
             </a>
         </li>
         
     
 
     <!-- Article Number  -->
+    
+        <li>
+            <a href="/archives">
+                Number of articles
+                <span class="sidebar-badge">14</span>
+            </a>
+        </li>
+        
     
 </ul>
 
@@ -707,13 +727,6 @@ It will not impact the appearance and can give developers a lot of support :)
 
 
 <!-- Theme Material -->
-
-    <a href="https://github.com/viosey/hexo-theme-material"  class="sidebar-footer-text-a" target="_blank">
-        <div class="sidebar-text mdl-button mdl-js-button mdl-js-ripple-effect sidebar-footer-text-div" data-upgraded=",MaterialButton,MaterialRipple">
-            Theme - Material
-            <span class="sidebar-badge badge-circle">i</span>
-        </div>
-    </a>
 
 
 <!-- Help & Support -->
@@ -828,7 +841,7 @@ It will not impact the appearance and can give developers a lot of support :)
 
         <!--Copyright-->
         <div id="copyright">
-            Copyright&nbsp;©<script type="text/javascript">var fd = new Date();document.write("&nbsp;" + fd.getFullYear() + "&nbsp;");</script>IConnectable<World>
+            Copyright&nbsp;©&nbsp;2016&nbsp;-<script type="text/javascript">var fd = new Date();document.write("&nbsp;" + fd.getFullYear() + "&nbsp;");</script>IConnectable<World>
         </div>
 
         <!-- Paradox Footer Right Section -->
