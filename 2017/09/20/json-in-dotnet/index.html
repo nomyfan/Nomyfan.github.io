@@ -12,7 +12,7 @@
     
     <title>
         
-            Talking | 
+            JSON in .NET(C#) | 
         
         IConnectable&lt;World&gt;
     </title>
@@ -36,7 +36,7 @@
     <meta name="theme-color" content="#0097A7">
     <meta name="author" content="Myers Chan">
     <meta name="description" itemprop="description" content="Nomyfan&#39;s person blog">
-    <meta name="keywords" content="">
+    <meta name="keywords" content=",.NET,C#,JSON">
 
     <!-- Site Verification -->
     
@@ -65,15 +65,18 @@
     <!-- The Open Graph protocol -->
     <meta property="og:url" content="https://nomyfan.github.io">
     <meta property="og:type" content="blog">
-    <meta property="og:title" content="Talking | IConnectable&lt;World&gt;">
+    <meta property="og:title" content="JSON in .NET(C#) | IConnectable&lt;World&gt;">
     <meta property="og:image" content="/img/favicon.png" />
     <meta property="og:description" content="Nomyfan&#39;s person blog">
-    
+    <meta property="og:article:tag" content=".NET"> <meta property="og:article:tag" content="C#"> <meta property="og:article:tag" content="JSON"> 
 
+    
+        <meta property="article:published_time" content="Wed Sep 20 2017 17:32:40 GMT+0800" />
+        <meta property="article:modified_time" content="Wed Dec 20 2017 22:03:51 GMT+0800" />
     
 
     <!-- The Twitter Card protocol -->
-    <meta name="twitter:title" content="Talking | IConnectable&lt;World&gt;">
+    <meta name="twitter:title" content="JSON in .NET(C#) | IConnectable&lt;World&gt;">
     <meta name="twitter:description" content="Nomyfan&#39;s person blog">
     <meta name="twitter:image" content="/img/favicon.png">
     <meta name="twitter:card" content="summary_large_image" />
@@ -81,13 +84,43 @@
 
     <!-- Add canonical link for SEO -->
     
-        <link rel="canonical" href="https://nomyfan.github.io/Talking/index.html" />
+        <link rel="canonical" href="https://nomyfan.github.io/2017/09/20/json-in-dotnet/index.html" />
     
 
     <!-- Structured-data for SEO -->
     
         
 
+
+<script type="application/ld+json">
+{
+    "@context": "https://schema.org",
+    "@type": "Article",
+    "publisher": {
+        "@type": "Organization",
+        "name": "IConnectable&lt;World&gt;",
+        "logo": "/img/favicon.png"
+    },
+    "author": {
+        "@type": "Person",
+        "name": "Myers Chan",
+        "image": {
+            "@type": "ImageObject",
+            "url": "/img/favicon.png"
+        },
+        "description": "Hi, nice to meet you"
+    },
+    "headline": "JSON in .NET(C#)",
+    "url": "https://nomyfan.github.io/2017/09/20/json-in-dotnet/index.html",
+    "datePublished": "Wed Sep 20 2017 17:32:40 GMT+0800",
+    "dateModified": "Wed Dec 20 2017 22:03:51 GMT+0800",
+    "description": "Nomyfan&#39;s person blog",
+    "mainEntityOfPage": {
+        "@type": "WebPage",
+        "@id": "https://nomyfan.github.io"
+    }
+}
+</script>
 
 
     
@@ -289,6 +322,43 @@
 
                     <!-- Post TOC -->
 
+    
+    <!-- Back Button -->
+    <!--
+    <div class="material-back" id="backhome-div" tabindex="0">
+        <a class="mdl-button mdl-js-button mdl-js-ripple-effect mdl-button--icon"
+           href="#" onclick="window.history.back();return false;"
+           target="_self"
+           role="button"
+           data-upgraded=",MaterialButton,MaterialRipple">
+            <i class="material-icons" role="presentation">arrow_back</i>
+            <span class="mdl-button__ripple-container">
+                <span class="mdl-ripple"></span>
+            </span>
+        </a>
+    </div>
+    -->
+
+    <!-- Left aligned menu below button -->
+    <button id="post-toc-trigger-btn"
+        class="mdl-button mdl-js-button mdl-button--icon">
+        <i class="material-icons">format_list_numbered</i>
+    </button>
+
+    
+    <ul class="post-toc-wrap mdl-menu mdl-menu--bottom-left mdl-js-menu mdl-js-ripple-effect" for="post-toc-trigger-btn" style="max-height:80vh; overflow-y:scroll;">
+        <ol class="post-toc"><li class="post-toc-item post-toc-level-1"><a class="post-toc-link" href="#Preparation"><span class="post-toc-number">1.</span> <span class="post-toc-text">Preparation</span></a></li><li class="post-toc-item post-toc-level-1"><a class="post-toc-link" href="#Serialization-and-Deserialization"><span class="post-toc-number">2.</span> <span class="post-toc-text">Serialization and Deserialization</span></a></li><li class="post-toc-item post-toc-level-1"><a class="post-toc-link" href="#Pick-Properties-from-JSON"><span class="post-toc-number">3.</span> <span class="post-toc-text">Pick Properties from JSON</span></a></li><li class="post-toc-item post-toc-level-1"><a class="post-toc-link" href="#End"><span class="post-toc-number">4.</span> <span class="post-toc-text">End</span></a></li></ol>
+        <!--
+        <li class="mdl-menu__item">
+            Some Action
+        </li>
+        -->
+    </ul>
+    
+
+
+
+
 
 <!-- Layouts -->
 
@@ -315,7 +385,7 @@
         
     
             <p class="article-headline-p">
-                Talking
+                JSON in .NET(C#)
             </p>
         </div>
 
@@ -334,7 +404,7 @@
     <!-- Author Name & Date -->
     <div>
         <strong>Myers Chan</strong>
-        <span>Jul 30, 2017</span>
+        <span>Sep 20, 2017</span>
     </div>
 
     <div class="section-spacer"></div>
@@ -358,7 +428,7 @@
     </button>
     <ul class="mdl-menu mdl-menu--bottom-right mdl-js-menu mdl-js-ripple-effect" for="article-functions-viewtags-button">
         <li class="mdl-menu__item">
-        
+        <a class="post_tag-link" href="/tags/NET/">.NET</a></li><li class="mdl-menu__item"><a class="post_tag-link" href="/tags/C/">C#</a></li><li class="mdl-menu__item"><a class="post_tag-link" href="/tags/JSON/">JSON</a>
     </ul>
     
 
@@ -374,7 +444,7 @@
 
     <!-- Share Weibo -->
     
-        <a class="post_share-link" href="http://service.weibo.com/share/share.php?appkey=&title=Talking&url=https://nomyfan.github.io/Talking/index.html&pic=&searchPic=false&style=simple" target="_blank">
+        <a class="post_share-link" href="http://service.weibo.com/share/share.php?appkey=&title=JSON in .NET(C#)&url=https://nomyfan.github.io/2017/09/20/json-in-dotnet/index.html&pic=&searchPic=false&style=simple" target="_blank">
             <li class="mdl-menu__item">
                 Share to Weibo
             </li>
@@ -383,7 +453,7 @@
 
     <!-- Share Twitter -->
     
-        <a class="post_share-link" href="https://twitter.com/intent/tweet?text=Talking&url=https://nomyfan.github.io/Talking/index.html&via=Myers Chan" target="_blank">
+        <a class="post_share-link" href="https://twitter.com/intent/tweet?text=JSON in .NET(C#)&url=https://nomyfan.github.io/2017/09/20/json-in-dotnet/index.html&via=Myers Chan" target="_blank">
             <li class="mdl-menu__item">
                 Share to Twitter
             </li>
@@ -392,7 +462,7 @@
 
     <!-- Share Facebook -->
     
-        <a class="post_share-link" href="https://www.facebook.com/sharer/sharer.php?u=https://nomyfan.github.io/Talking/index.html" target="_blank">
+        <a class="post_share-link" href="https://www.facebook.com/sharer/sharer.php?u=https://nomyfan.github.io/2017/09/20/json-in-dotnet/index.html" target="_blank">
             <li class="mdl-menu__item">
                 Share to Facebook
             </li>
@@ -401,7 +471,7 @@
 
     <!-- Share Google+ -->
     
-        <a class="post_share-link" href="https://plus.google.com/share?url=https://nomyfan.github.io/Talking/index.html" target="_blank">
+        <a class="post_share-link" href="https://plus.google.com/share?url=https://nomyfan.github.io/2017/09/20/json-in-dotnet/index.html" target="_blank">
             <li class="mdl-menu__item">
                 Share to Google+
             </li>
@@ -425,7 +495,71 @@
                 <!-- Post Content -->
                 <div id="post-content" class="mdl-color-text--grey-700 mdl-card__supporting-text fade out">
     
-        
+        <p>JSON(JavaScript Object Notation) is popularly used nowadays. For JavaScript, it’s easy to convert a object to json. How about C#? How do we get some properties we need from a json typed object? And how do we convert our object into json formatted text? This article aims to solve the problems. You will see it can be convenient to solve the problems<strong><em>.(●’◡’●)</em></strong></p>
+<hr>
+<h1 id="Preparation"><a href="#Preparation" class="headerlink" title="Preparation"></a>Preparation</h1><p>There is one thing we need to do before start. That is installing the a NuGet package named <em><strong>JSON.NET</strong></em>. In Visual Studio, we can search any package and install it easily. Search <em><strong>JSON.NET</strong></em>, then install it to you project.</p>
+<p><img src="http://www.nokky.net/wp-content/uploads/2017/09/snipaste_20170920_201049.png" alt="snipaste_20170920_201049"></p>
+<hr>
+<h1 id="Serialization-and-Deserialization"><a href="#Serialization-and-Deserialization" class="headerlink" title="Serialization and Deserialization"></a>Serialization and Deserialization</h1><p>These operations are suitable for the definitive type we know or define. For example, we now have a class named <strong>Rectangle.</strong></p>
+<pre class="lang:c# decode:true" title="class Rectangle">class Rectangle
+{
+    public int Height { get; set; }
+    public int Width { get; set; }
+    private Rectangle() { }
+    public Rectangle(int height,int width)
+    {
+        Height = height;
+        Width = width;
+    }
+}</pre>
+
+<p>Then we need to refer one namespace.</p>
+<pre class="lang:c# decode:true" title="refer namespace">using Newtonsoft.Json;</pre>
+
+<p>After that, we can use class <strong>JsonConvert</strong> to serialize a Rectangle typed object or a list of Rectangle typed objects. Code as follow.</p>
+<pre class="lang:c# decode:true" title="Serialize">List list = new List();
+list.Add(new Rectangle(1, 2));
+list.Add(new Rectangle(45, 23));
+string json = JsonConvert.SerializeObject(list);</pre>
+
+<p>If we print variable <strong>json </strong>to the console window, we can see the result as this.</p>
+<p><img src="http://www.nokky.net/wp-content/uploads/2017/09/snipaste_20170920_204618.png" alt="snipaste_20170920_204618"></p>
+<p>How about deserialize object(s) from a json formatted text? Much easy! Only one line code!</p>
+<pre class="lang:c# decode:true" title="Deserialize">var objs = JsonConvert.DeserializeObject&lt;List&lt;Rectangle&gt;&gt;(json);</pre>
+
+<p>You may doubt whether it’s correct. Well, let’s verify that. Write some code as follow.</p>
+<pre class="lang:c# decode:true" title="verify result">for (int i = 0; i &lt; objs.Count; i++)
+{
+    Console.WriteLine($"{i + 1}th object info:"
+        + $"Height:{objs[i].Height} Width:{objs[i].Width}");
+}</pre>
+
+<p>We will get the result.</p>
+<p><img src="http://www.nokky.net/wp-content/uploads/2017/09/snipaste_20170920_205856.png" alt="snipaste_20170920_205856"></p>
+<p><strong>Correct! Congratulation!</strong></p>
+<hr>
+<h1 id="Pick-Properties-from-JSON"><a href="#Pick-Properties-from-JSON" class="headerlink" title="Pick Properties from JSON"></a>Pick Properties from JSON</h1><p>Consider one situation, we get some JSON typed text from any way like API. One problem we will face is that we don’t have a exact type for that. Thus, we can’t deserialize it to a exact typed object. Thanks to JSON.NET this powerful library, we can continue to work in such situation without too much code. Let’s figure out!</p>
+<p>Firstly, get json formatted text via API.</p>
+<pre class="lang:c# decode:true" title="get json formatted text">HttpWebRequest request = (HttpWebRequest)WebRequest.Create(@"http://samples.openweathermap.org/data/2.5/weather?q=London,uk&amp;appid=b1b15e88fa797225412429c1c50c122a1");
+request.Method = "GET";
+request.ContentType = "text/json";
+var response = request.GetResponse();
+string json = string.Empty;
+using (StreamReader sr = new StreamReader(response.GetResponseStream()))
+{
+    json = sr.ReadToEnd();
+}</pre>
+
+<p>If we print variable <strong>json</strong> out, we will see this.</p>
+<p><img src="http://www.nokky.net/wp-content/uploads/2017/09/snipaste_20170920_210725.png" alt="snipaste_20170920_210725"></p>
+<p>If we want to get wind speed, we can write this code.</p>
+<pre class="lang:c# decode:true crayon-selected" title="pick properties">JToken token = JObject.Parse(json);
+string speed = (string)token.SelectToken("wind").SelectToken("speed");</pre>
+
+<p>The variable speed is the result we want. Not complicated.</p>
+<hr>
+<h1 id="End"><a href="#End" class="headerlink" title="End"></a>End</h1><p>(￣y▽￣)╭ Ohohoho…..</p>
+
     
 
     
@@ -444,11 +578,27 @@
             <nav class="material-nav mdl-color-text--grey-50 mdl-cell mdl-cell--12-col">
     <!-- Prev Nav -->
     
+        <a href="/2017/12/11/delegate-event/" id="post_nav-newer" class="prev-content">
+            <button class="mdl-button mdl-js-button mdl-js-ripple-effect mdl-button--icon mdl-color--white mdl-color-text--grey-900" role="presentation">
+                <i class="material-icons">arrow_back</i>
+            </button>
+            &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+            Newer
+        </a>
+    
 
     <!-- Section Spacer -->
     <div class="section-spacer"></div>
 
     <!-- Next Nav -->
+    
+        <a href="/2017/07/17/add-right-click-menu/" id="post_nav-older" class="next-content">
+            Older
+            &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+            <button class="mdl-button mdl-js-button mdl-js-ripple-effect mdl-button--icon mdl-color--white mdl-color-text--grey-900" role="presentation">
+                <i class="material-icons">arrow_forward</i>
+            </button>
+        </a>
     
 </nav>
 
@@ -625,6 +775,14 @@ It will not impact the appearance and can give developers a lot of support :)
 </aside>
 
                     
+
+                    
+                        <!-- Footer Top Button -->
+                        <div id="back-to-top" class="toTop-wrap">
+    <a href="#top" class="toTop">
+        <i class="material-icons footer_top-i">expand_less</i>
+    </a>
+</div>
 
                     
 

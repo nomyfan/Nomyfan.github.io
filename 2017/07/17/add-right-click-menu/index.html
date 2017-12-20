@@ -12,7 +12,7 @@
     
     <title>
         
-            Talking | 
+            为Windows新增右键菜单项 | 
         
         IConnectable&lt;World&gt;
     </title>
@@ -65,15 +65,18 @@
     <!-- The Open Graph protocol -->
     <meta property="og:url" content="https://nomyfan.github.io">
     <meta property="og:type" content="blog">
-    <meta property="og:title" content="Talking | IConnectable&lt;World&gt;">
+    <meta property="og:title" content="为Windows新增右键菜单项 | IConnectable&lt;World&gt;">
     <meta property="og:image" content="/img/favicon.png" />
     <meta property="og:description" content="Nomyfan&#39;s person blog">
     
 
     
+        <meta property="article:published_time" content="Mon Jul 17 2017 15:46:36 GMT+0800" />
+        <meta property="article:modified_time" content="Wed Dec 20 2017 22:03:51 GMT+0800" />
+    
 
     <!-- The Twitter Card protocol -->
-    <meta name="twitter:title" content="Talking | IConnectable&lt;World&gt;">
+    <meta name="twitter:title" content="为Windows新增右键菜单项 | IConnectable&lt;World&gt;">
     <meta name="twitter:description" content="Nomyfan&#39;s person blog">
     <meta name="twitter:image" content="/img/favicon.png">
     <meta name="twitter:card" content="summary_large_image" />
@@ -81,13 +84,43 @@
 
     <!-- Add canonical link for SEO -->
     
-        <link rel="canonical" href="https://nomyfan.github.io/Talking/index.html" />
+        <link rel="canonical" href="https://nomyfan.github.io/2017/07/17/add-right-click-menu/index.html" />
     
 
     <!-- Structured-data for SEO -->
     
         
 
+
+<script type="application/ld+json">
+{
+    "@context": "https://schema.org",
+    "@type": "Article",
+    "publisher": {
+        "@type": "Organization",
+        "name": "IConnectable&lt;World&gt;",
+        "logo": "/img/favicon.png"
+    },
+    "author": {
+        "@type": "Person",
+        "name": "Myers Chan",
+        "image": {
+            "@type": "ImageObject",
+            "url": "/img/favicon.png"
+        },
+        "description": "Hi, nice to meet you"
+    },
+    "headline": "为Windows新增右键菜单项",
+    "url": "https://nomyfan.github.io/2017/07/17/add-right-click-menu/index.html",
+    "datePublished": "Mon Jul 17 2017 15:46:36 GMT+0800",
+    "dateModified": "Wed Dec 20 2017 22:03:51 GMT+0800",
+    "description": "Nomyfan&#39;s person blog",
+    "mainEntityOfPage": {
+        "@type": "WebPage",
+        "@id": "https://nomyfan.github.io"
+    }
+}
+</script>
 
 
     
@@ -289,6 +322,43 @@
 
                     <!-- Post TOC -->
 
+    
+    <!-- Back Button -->
+    <!--
+    <div class="material-back" id="backhome-div" tabindex="0">
+        <a class="mdl-button mdl-js-button mdl-js-ripple-effect mdl-button--icon"
+           href="#" onclick="window.history.back();return false;"
+           target="_self"
+           role="button"
+           data-upgraded=",MaterialButton,MaterialRipple">
+            <i class="material-icons" role="presentation">arrow_back</i>
+            <span class="mdl-button__ripple-container">
+                <span class="mdl-ripple"></span>
+            </span>
+        </a>
+    </div>
+    -->
+
+    <!-- Left aligned menu below button -->
+    <button id="post-toc-trigger-btn"
+        class="mdl-button mdl-js-button mdl-button--icon">
+        <i class="material-icons">format_list_numbered</i>
+    </button>
+
+    
+    <ul class="post-toc-wrap mdl-menu mdl-menu--bottom-left mdl-js-menu mdl-js-ripple-effect" for="post-toc-trigger-btn" style="max-height:80vh; overflow-y:scroll;">
+        <ol class="post-toc"><li class="post-toc-item post-toc-level-1"><a class="post-toc-link" href="#–打开注册表"><span class="post-toc-number">1.</span> <span class="post-toc-text">–打开注册表</span></a></li><li class="post-toc-item post-toc-level-1"><a class="post-toc-link" href="#–增添新项"><span class="post-toc-number">2.</span> <span class="post-toc-text">–增添新项</span></a></li><li class="post-toc-item post-toc-level-1"><a class="post-toc-link" href="#–美化"><span class="post-toc-number">3.</span> <span class="post-toc-text">–美化</span></a></li><li class="post-toc-item post-toc-level-1"><a class="post-toc-link" href="#–增加子菜单项"><span class="post-toc-number">4.</span> <span class="post-toc-text">–增加子菜单项</span></a></li><li class="post-toc-item post-toc-level-1"><a class="post-toc-link" href="#–Shift-右键"><span class="post-toc-number">5.</span> <span class="post-toc-text">–Shift+右键</span></a></li></ol>
+        <!--
+        <li class="mdl-menu__item">
+            Some Action
+        </li>
+        -->
+    </ul>
+    
+
+
+
+
 
 <!-- Layouts -->
 
@@ -315,7 +385,7 @@
         
     
             <p class="article-headline-p">
-                Talking
+                为Windows新增右键菜单项
             </p>
         </div>
 
@@ -334,7 +404,7 @@
     <!-- Author Name & Date -->
     <div>
         <strong>Myers Chan</strong>
-        <span>Jul 30, 2017</span>
+        <span>Jul 17, 2017</span>
     </div>
 
     <div class="section-spacer"></div>
@@ -374,7 +444,7 @@
 
     <!-- Share Weibo -->
     
-        <a class="post_share-link" href="http://service.weibo.com/share/share.php?appkey=&title=Talking&url=https://nomyfan.github.io/Talking/index.html&pic=&searchPic=false&style=simple" target="_blank">
+        <a class="post_share-link" href="http://service.weibo.com/share/share.php?appkey=&title=为Windows新增右键菜单项&url=https://nomyfan.github.io/2017/07/17/add-right-click-menu/index.html&pic=&searchPic=false&style=simple" target="_blank">
             <li class="mdl-menu__item">
                 Share to Weibo
             </li>
@@ -383,7 +453,7 @@
 
     <!-- Share Twitter -->
     
-        <a class="post_share-link" href="https://twitter.com/intent/tweet?text=Talking&url=https://nomyfan.github.io/Talking/index.html&via=Myers Chan" target="_blank">
+        <a class="post_share-link" href="https://twitter.com/intent/tweet?text=为Windows新增右键菜单项&url=https://nomyfan.github.io/2017/07/17/add-right-click-menu/index.html&via=Myers Chan" target="_blank">
             <li class="mdl-menu__item">
                 Share to Twitter
             </li>
@@ -392,7 +462,7 @@
 
     <!-- Share Facebook -->
     
-        <a class="post_share-link" href="https://www.facebook.com/sharer/sharer.php?u=https://nomyfan.github.io/Talking/index.html" target="_blank">
+        <a class="post_share-link" href="https://www.facebook.com/sharer/sharer.php?u=https://nomyfan.github.io/2017/07/17/add-right-click-menu/index.html" target="_blank">
             <li class="mdl-menu__item">
                 Share to Facebook
             </li>
@@ -401,7 +471,7 @@
 
     <!-- Share Google+ -->
     
-        <a class="post_share-link" href="https://plus.google.com/share?url=https://nomyfan.github.io/Talking/index.html" target="_blank">
+        <a class="post_share-link" href="https://plus.google.com/share?url=https://nomyfan.github.io/2017/07/17/add-right-click-menu/index.html" target="_blank">
             <li class="mdl-menu__item">
                 Share to Google+
             </li>
@@ -425,7 +495,36 @@
                 <!-- Post Content -->
                 <div id="post-content" class="mdl-color-text--grey-700 mdl-card__supporting-text fade out">
     
-        
+        <p>Windows中，除了系统自带的一些右键菜单项之外，在一些时候我们安装软件后可以发现在右键菜单新增了一些软件的相关右键菜单项，就像这样</p>
+<p><a href="http://ycyzone.tk/wp-content/uploads/2017/07/snipaste_20170717_223144.png" target="_blank" rel="external"><img src="http://ycyzone.tk/wp-content/uploads/2017/07/snipaste_20170717_223144.png" alt=""></a></p>
+<p>Ok，那么我们想自己也弄一个怎么办呢？下面开始正片，<span style="font-weight: bold; color: #d14;">友情提醒：本文会涉及到修改注册表，请备份好原注册表后再修改。</span></p>
+<hr>
+<h1 id="–打开注册表"><a href="#–打开注册表" class="headerlink" title="–打开注册表"></a><strong>–打开注册表</strong></h1><p>Win+R运行regedit</p>
+<p><a href="http://ycyzone.tk/wp-content/uploads/2017/07/snipaste_20170717_224739.png" target="_blank" rel="external"><img src="http://ycyzone.tk/wp-content/uploads/2017/07/snipaste_20170717_224739.png" alt=""></a></p>
+<p>找到该路径：<br><code>HKEY_CLASSES_ROOT\Directory\Background\shell</code></p>
+<h1 id="–增添新项"><a href="#–增添新项" class="headerlink" title="–增添新项"></a>–增添新项</h1><p>选中<code>shell</code>然后右键<code>New</code>-&gt;<code>Key</code>新建一个项，如图</p>
+<p><a href="http://ycyzone.tk/wp-content/uploads/2017/07/snipaste_20170717_225314.png" target="_blank" rel="external"><img src="http://ycyzone.tk/wp-content/uploads/2017/07/snipaste_20170717_225314.png" alt=""></a></p>
+<p>我命名为Cmder，在新建的<code>Cmder</code>项下在新建一个项，命名为<code>command</code>，然后修改其下默认键的值为要运行程序的路径。比如我的</p>
+<p><a href="http://ycyzone.tk/wp-content/uploads/2017/07/snipaste_20170717_230121.png" target="_blank" rel="external"><img src="http://ycyzone.tk/wp-content/uploads/2017/07/snipaste_20170717_230121-1024x346.png" alt=""></a></p>
+<p>然后在资源管理器空白处点击右键时就会发现了这个选项，但是有点丑陋，我们来稍微地美化一下，给添加的右键菜单增加图标和描述信息。</p>
+<h1 id="–美化"><a href="#–美化" class="headerlink" title="–美化"></a>–美化</h1><p>选中<code>Cmder</code>，接着在右侧中新建几个<code>string</code>类型的值。</p>
+<p><a href="http://ycyzone.tk/wp-content/uploads/2017/07/snipaste_20170717_230807.png" target="_blank" rel="external"><img src="http://ycyzone.tk/wp-content/uploads/2017/07/snipaste_20170717_230807.png" alt=""></a></p>
+<p>新增两个值，分别为</p>
+<p><a href="http://ycyzone.tk/wp-content/uploads/2017/07/snipaste_20170717_230940.png" target="_blank" rel="external"><img src="http://ycyzone.tk/wp-content/uploads/2017/07/snipaste_20170717_230940.png" alt=""></a></p>
+<p><code>Icon</code>用来给菜单添加一个小图标，<code>MUIVerb</code>用来给菜单添加描述信息。完成后再查看一下就会是这个效果</p>
+<p><a href="http://ycyzone.tk/wp-content/uploads/2017/07/snipaste_20170717_231530.png" target="_blank" rel="external"><img src="http://ycyzone.tk/wp-content/uploads/2017/07/snipaste_20170717_231530.png" alt=""></a></p>
+<p>测试一下，完美运行。</p>
+<h1 id="–增加子菜单项"><a href="#–增加子菜单项" class="headerlink" title="–增加子菜单项"></a>–增加子菜单项</h1><p>正如第一张图所示，还应该有子菜单项才足够满足一些需求，这都不是事。</p>
+<p>首先，我们回到<strong><code>Cmder</code></strong>项下，再添加一个<strong><code>string</code></strong>类型的值，名字为<code>SubCommands</code>，然后值的内容填写你想要添加的命令的名字（千万避免重复），每个命令之间用半角分号<code>;</code>隔开，就像这样</p>
+<p><a href="http://ycyzone.tk/wp-content/uploads/2017/07/snipaste_20170717_232103.png" target="_blank" rel="external"><img src="http://ycyzone.tk/wp-content/uploads/2017/07/snipaste_20170717_232103-1024x386.png" alt=""></a></p>
+<p>还没完，这时候你可以再查看右键菜单的时候可以看到刚才添加的菜单项已经有个右尖括号了，但是因为具体的子命令还没实现，所以不会显现出来。这个时候我们定位到<code>Computer\HKEY_LOCAL_MACHINE\SOFTWARE\Microsoft\Windows\CurrentVersion\Explorer\CommandStore\shell</code>下，然后再新建新项，名字为刚才加入的子命令名字，比如我的</p>
+<p><a href="http://ycyzone.tk/wp-content/uploads/2017/07/snipaste_20170717_232828.png" target="_blank" rel="external"><img src="http://ycyzone.tk/wp-content/uploads/2017/07/snipaste_20170717_232828-1024x216.png" alt=""></a></p>
+<p>接下来的操作就和上边的一毛一样了。</p>
+<p>最后的效果就是这样</p>
+<p><a href="http://ycyzone.tk/wp-content/uploads/2017/07/snipaste_20170717_222321.png" target="_blank" rel="external"><img src="http://ycyzone.tk/wp-content/uploads/2017/07/snipaste_20170717_222321.png" alt=""></a></p>
+<h1 id="–Shift-右键"><a href="#–Shift-右键" class="headerlink" title="–Shift+右键"></a>–Shift+右键</h1><p>还有一些菜单项是通过Shift+鼠标右组合键才会显现出来的，要实现这个也很简单，只需要添加一个新值<code>Extended</code>即可。</p>
+<p><a href="http://ycyzone.tk/wp-content/uploads/2017/07/snipaste_20170817_115734.png" target="_blank" rel="external"><img src="http://ycyzone.tk/wp-content/uploads/2017/07/snipaste_20170817_115734-1024x197.png" alt=""></a></p>
+
     
 
     
@@ -444,11 +543,27 @@
             <nav class="material-nav mdl-color-text--grey-50 mdl-cell mdl-cell--12-col">
     <!-- Prev Nav -->
     
+        <a href="/2017/09/20/json-in-dotnet/" id="post_nav-newer" class="prev-content">
+            <button class="mdl-button mdl-js-button mdl-js-ripple-effect mdl-button--icon mdl-color--white mdl-color-text--grey-900" role="presentation">
+                <i class="material-icons">arrow_back</i>
+            </button>
+            &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+            Newer
+        </a>
+    
 
     <!-- Section Spacer -->
     <div class="section-spacer"></div>
 
     <!-- Next Nav -->
+    
+        <a href="/2017/06/11/runplus/" id="post_nav-older" class="next-content">
+            Older
+            &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+            <button class="mdl-button mdl-js-button mdl-js-ripple-effect mdl-button--icon mdl-color--white mdl-color-text--grey-900" role="presentation">
+                <i class="material-icons">arrow_forward</i>
+            </button>
+        </a>
     
 </nav>
 
@@ -625,6 +740,14 @@ It will not impact the appearance and can give developers a lot of support :)
 </aside>
 
                     
+
+                    
+                        <!-- Footer Top Button -->
+                        <div id="back-to-top" class="toTop-wrap">
+    <a href="#top" class="toTop">
+        <i class="material-icons footer_top-i">expand_less</i>
+    </a>
+</div>
 
                     
 
