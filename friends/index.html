@@ -292,185 +292,122 @@
 
 <!-- Layouts -->
 
-    <!-- Post Module -->
-    <div class="material-post_container">
+    <!-- Single Links Page -->
+    <style>
+    .md-links {
+        min-height: calc(100% - 120px - 5pc - 6em);
+        text-align: center;
+        overflow: auto;
+        padding: 0;
+        margin: 0 auto;
+        max-width: 320px;
+    }
 
-        <div class="material-post mdl-grid">
-            <div class="mdl-card mdl-shadow--4dp mdl-cell mdl-cell--12-col">
+    @media screen and (min-width: 680px) {
+        .md-links {
+            max-width: 640px;
+        }
+    }
 
-                <!-- Post Header(Thumbnail & Title) -->
-                
-    <!-- Paradox Post Header -->
+    @media screen and (min-width: 1000px) {
+        .md-links {
+            max-width: 960px;
+        }
+    }
+
+    @media screen and (min-width: 1320px) {
+        .md-links {
+            max-width: 1280px;
+        }
+    }
+
+    @media screen and (min-width: 1640px) {
+        .md-links {
+            max-width: 1600px;
+        }
+    }
+
+    @media screen and (max-width: 480px) {
+        .md-links {
+            min-height: calc(100% - 200px - 5pc - 6em);
+            margin-top: 6em;
+        }
+    }
+
+    .md-links-item {
+        background: #fff;
+        box-shadow: 0 2px 2px 0 rgba(0, 0, 0, .14), 0 3px 1px -2px rgba(0, 0, 0, .2), 0 1px 5px 0 rgba(0, 0, 0, .12);
+        height: 72px;
+        line-height: 15px;
+        margin: 20px 10px;
+        padding: 0px 0px;
+        transition: box-shadow 0.25s;
+    }
+
+    .md-links a {
+        color: #333;
+        text-decoration: none;
+    }
+
+    .md-links li {
+        width: 300px;
+        float: left;
+        list-style: none;
+    }
+
+    .md-links-item img {
+        float: left;
+        box-shadow: 0 2px 2px 0 rgba(0, 0, 0, .14), 0 3px 11px -2px rgba(0, 0, 0, .2), 0 1px 5px 0 rgba(0, 0, 0, .12);
+    }
+
+    .md-links-item:hover {
+        box-shadow: 0 4px 10px rgba(0, 0, 0, 0.3);
+    }
+
+    .md-links-item a:hover{
+        cursor: pointer;
+    }
+
+    .md-links-title {
+        font-size: 20px;
+        line-height: 50px;
+    }
+
+    #scheme-Paradox .mdl-mini-footer{
+        clear: left;
+    }
+    #bottom{
+        position: relative;
+    }
+</style>
+
+<ul class="md-links">
     
         
-            <!-- Random Thumbnail -->
-            <div class="post_thumbnail-random mdl-card__media mdl-color-text--grey-50">
-            <script type="text/ls-javascript" id="post-thumbnail-script">
-    var randomNum = Math.floor(Math.random() * 19 + 1);
+            <li class="md-links-item">
+                <a href="https://www.mxvar.com" title="小梦博客" target="_blank">
+                    <img src="" alt="小梦博客" width="72px"/>
+                    <span class="md-links-title">小梦博客</span><br />
+                    <span>1+1=10</span>
+                </a>
+            </li>
+        
+    
+</ul>
 
-    $('.post_thumbnail-random').attr('data-original', '/img/random/material-' + randomNum + '.png');
-    $('.post_thumbnail-random').addClass('lazy');
+<script type="text/ls-javascript" id="page-links-script">
+    var adjustFooter = function() {
+        if( ($('#bottom').offset().top + $('#bottom').outerHeight() )<$(window).height() ) {
+            var footerBottom = $(window).height() - $('#bottom').outerHeight() - $('#bottom').offset().top;
+            $('#bottom').css('bottom', '-' + footerBottom + 'px');
+        }
+    };
+    $(document).ready(function() {
+        adjustFooter();
+    });
 </script>
 
-        
-    
-            <p class="article-headline-p">
-                Friends
-            </p>
-        </div>
 
-
-
-
-
-                
-                    <!-- Paradox Post Info -->
-                    <div class="mdl-color-text--grey-700 mdl-card__supporting-text meta">
-
-    <!-- Author Avatar -->
-    <div id="author-avatar">
-        <img src="/img/avatar.png" width="44px" height="44px" alt="Author Avatar"/>
-    </div>
-    <!-- Author Name & Date -->
-    <div>
-        <strong>Myers Chan</strong>
-        <span>Dec 21, 2017</span>
-    </div>
-
-    <div class="section-spacer"></div>
-
-    <!-- Favorite -->
-    <!--
-        <button id="article-functions-like-button" class="mdl-button mdl-js-button mdl-js-ripple-effect mdl-button--icon btn-like">
-            <i class="material-icons" role="presentation">favorite</i>
-            <span class="visuallyhidden">favorites</span>
-        </button>
-    -->
-
-    <!-- Qrcode -->
-    
-        <button id="article-functions-qrcode-button" class="mdl-button mdl-js-button mdl-js-ripple-effect mdl-button--icon">
-    <i class="material-icons" role="presentation">devices other</i>
-    <span class="visuallyhidden">devices other</span>
-</button>
-<ul class="mdl-menu mdl-menu--bottom-right mdl-js-menu mdl-js-ripple-effect" for="article-functions-qrcode-button">
-    <li class="mdl-menu__item">Read this article on other devices</li>
-    
-        <img src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAN4AAADeCAAAAAB3DOFrAAACZklEQVR42u3awU7DMBAE0P7/T8MVCTXMeB0T0MupgrbZl4Ptzu7r419fLzw8PDw8PDw8vIfxXvH19uu+/Pf7O/PvbD/79nvw8PDwjvB+WGovb5yXkjyU64cV1YaHh4d3kPeuoOvX+aeSLWRSGx4eHt7zee1Cf31cbh8lHh4e3t/iteDJZoCHh4f3ZF4b1OaL/nV4kYfCt2cteHh4eDEvD2HPvz7a38PDw8MLePVIU1lW20jbPHSFh4eHdwMvX4iTsvIDdB401ENgeHh4eEd4+bLe3nJt1CCvrfjFgIeHh3czrz0Kz9td8/gYDw8P73d57d/bptraIMIopcbDw8PbxMsPwUlxk+1kci88PDy887y1pTlZ7vPhqrVh1mhjwMPDw9vKa4erJlvIJOwoqsLDw8M7wksOxGttsLwB1o4m1JMReHh4eJt4a9Qc2Qa1ky0HDw8P7wxv7fZtmNtuIXlzDg8PD+8JvLVAdi3OaDeeqGY8PDy8m3kbYtPyASXgdlPBw8PD+11evgTvCmrzbaBugOHh4eHdwJsUtCuKzUcKRjEuHh4e3lbevGE/iSfyrSV6xHh4eHgHeclXtCFCu6y3LTE8PDy8J/DW4ol20KrdGHIqHh4e3t289sqLXgt512IOPDw8vJO8V3ytjRrkwW4bXowaYHh4eHhjXrsZJGFrHjdM2m+Lvxjw8PDwNvHycufjp3mIXMcieHh4eI/k5aMGa+9ZO8Tj4eHh/RVeFBAMSs+HvfDw8PDO89rRqDkmb4YlgQUeHh7eSd4kAsgHCPLj9ejh4uHh4d3M+38XHh4eHh4eHh7eA65PGrN8uKaw5lAAAAAASUVORK5CYII=">
-    
-</ul>
-    
-
-    <!-- Tags (bookmark) -->
-    
-    <button id="article-functions-viewtags-button" class="mdl-button mdl-js-button mdl-js-ripple-effect mdl-button--icon">
-        <i class="material-icons" role="presentation">bookmark</i>
-        <span class="visuallyhidden">bookmark</span>
-    </button>
-    <ul class="mdl-menu mdl-menu--bottom-right mdl-js-menu mdl-js-ripple-effect" for="article-functions-viewtags-button">
-        <li class="mdl-menu__item">
-        
-    </ul>
-    
-
-    <!-- Share -->
-    <button id="article-fuctions-share-button" class="mdl-button mdl-js-button mdl-js-ripple-effect mdl-button--icon">
-    <i class="material-icons" role="presentation">share</i>
-    <span class="visuallyhidden">share</span>
-</button>
-<ul class="mdl-menu mdl-menu--bottom-right mdl-js-menu mdl-js-ripple-effect" for="article-fuctions-share-button">
-    
-
-    
-
-    <!-- Share Weibo -->
-    
-        <a class="post_share-link" href="http://service.weibo.com/share/share.php?appkey=&title=Friends&url=https://nomyfan.github.io/friends/index.html&pic=&searchPic=false&style=simple" target="_blank">
-            <li class="mdl-menu__item">
-                Share to Weibo
-            </li>
-        </a>
-    
-
-    <!-- Share Twitter -->
-    
-        <a class="post_share-link" href="https://twitter.com/intent/tweet?text=Friends&url=https://nomyfan.github.io/friends/index.html&via=Myers Chan" target="_blank">
-            <li class="mdl-menu__item">
-                Share to Twitter
-            </li>
-        </a>
-    
-
-    <!-- Share Facebook -->
-    
-        <a class="post_share-link" href="https://www.facebook.com/sharer/sharer.php?u=https://nomyfan.github.io/friends/index.html" target="_blank">
-            <li class="mdl-menu__item">
-                Share to Facebook
-            </li>
-        </a>
-    
-
-    <!-- Share Google+ -->
-    
-        <a class="post_share-link" href="https://plus.google.com/share?url=https://nomyfan.github.io/friends/index.html" target="_blank">
-            <li class="mdl-menu__item">
-                Share to Google+
-            </li>
-        </a>
-    
-
-    <!-- Share LinkedIn -->
-    
-
-    <!-- Share QQ -->
-    
-        <a class="post_share-link" href="http://connect.qq.com/widget/shareqq/index.html?site=IConnectable&lt;World&gt;&title=Friends&summary=Nomyfan&#39;s person blog&pics=https://nomyfan.github.io/img/favicon.png&url=https://nomyfan.github.io/friends/index.html" target="_blank">
-            <li class="mdl-menu__item">
-                Share to QQ
-            </li>
-        </a>
-    
-
-    <!-- Share Telegram -->
-    
-</ul>
-
-</div>
-
-                
-
-                <!-- Post Content -->
-                <div id="post-content" class="mdl-color-text--grey-700 mdl-card__supporting-text fade out">
-    
-        
-    
-
-    
-</div>
-
-
-                
-
-                <!-- Post Comments -->
-                
-                    
-                
-            </div>
-
-            <!-- Post Prev & Next Nav -->
-            <nav class="material-nav mdl-color-text--grey-50 mdl-cell mdl-cell--12-col">
-    <!-- Prev Nav -->
-    
-
-    <!-- Section Spacer -->
-    <div class="section-spacer"></div>
-
-    <!-- Next Nav -->
-    
-</nav>
-
-        </div>
-    </div>
 
 
 
@@ -578,11 +515,33 @@
     <!-- Pages  -->
     
         <li>
-            <a href="/about" title="About Me">
+            <a href="/tags" title="Tags">
+                
+                    <i class="material-icons sidebar-material-icons">label</i>
+                
+                Tags
+            </a>
+        </li>
+        
+            <li class="divider"></li>
+        
+    
+        <li>
+            <a href="/timeline" title="Timeline">
+                
+                    <i class="material-icons sidebar-material-icons">schedule</i>
+                
+                Timeline
+            </a>
+        </li>
+        
+    
+        <li>
+            <a href="/about" title="About">
                 
                     <i class="material-icons sidebar-material-icons">person</i>
                 
-                About Me
+                About
             </a>
         </li>
         
@@ -593,6 +552,16 @@
                     <i class="material-icons sidebar-material-icons">group</i>
                 
                 Friends
+            </a>
+        </li>
+        
+    
+        <li>
+            <a href="/gallery" title="Wallpaper Recommand">
+                
+                    <i class="material-icons sidebar-material-icons">wallpaper</i>
+                
+                Wallpaper Recommand
             </a>
         </li>
         
