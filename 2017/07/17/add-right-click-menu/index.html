@@ -347,7 +347,7 @@
 
     
     <ul class="post-toc-wrap mdl-menu mdl-menu--bottom-left mdl-js-menu mdl-js-ripple-effect" for="post-toc-trigger-btn" style="max-height:80vh; overflow-y:scroll;">
-        <ol class="post-toc"><li class="post-toc-item post-toc-level-1"><a class="post-toc-link" href="#–打开注册表"><span class="post-toc-number">1.</span> <span class="post-toc-text">–打开注册表</span></a></li><li class="post-toc-item post-toc-level-1"><a class="post-toc-link" href="#–增添新项"><span class="post-toc-number">2.</span> <span class="post-toc-text">–增添新项</span></a></li><li class="post-toc-item post-toc-level-1"><a class="post-toc-link" href="#–美化"><span class="post-toc-number">3.</span> <span class="post-toc-text">–美化</span></a></li><li class="post-toc-item post-toc-level-1"><a class="post-toc-link" href="#–增加子菜单项"><span class="post-toc-number">4.</span> <span class="post-toc-text">–增加子菜单项</span></a></li><li class="post-toc-item post-toc-level-1"><a class="post-toc-link" href="#–Shift-右键"><span class="post-toc-number">5.</span> <span class="post-toc-text">–Shift+右键</span></a></li></ol>
+        <ol class="post-toc"><li class="post-toc-item post-toc-level-1"><a class="post-toc-link" href="#打开注册表"><span class="post-toc-number">1.</span> <span class="post-toc-text">打开注册表</span></a></li><li class="post-toc-item post-toc-level-1"><a class="post-toc-link" href="#增添新项"><span class="post-toc-number">2.</span> <span class="post-toc-text">增添新项</span></a></li><li class="post-toc-item post-toc-level-1"><a class="post-toc-link" href="#美化"><span class="post-toc-number">3.</span> <span class="post-toc-text">美化</span></a></li><li class="post-toc-item post-toc-level-1"><a class="post-toc-link" href="#增加子菜单项"><span class="post-toc-number">4.</span> <span class="post-toc-text">增加子菜单项</span></a></li><li class="post-toc-item post-toc-level-1"><a class="post-toc-link" href="#Shift-右键"><span class="post-toc-number">5.</span> <span class="post-toc-text">Shift+右键</span></a></li></ol>
         <!--
         <li class="mdl-menu__item">
             Some Action
@@ -513,34 +513,34 @@
                 <div id="post-content" class="mdl-color-text--grey-700 mdl-card__supporting-text fade out">
     
         <p>Windows中，除了系统自带的一些右键菜单项之外，在一些时候我们安装软件后可以发现在右键菜单新增了一些软件的相关右键菜单项，就像这样</p>
-<p><a href="http://nokky.net/wp-content/uploads/2017/07/snipaste_20170717_223144.png" target="_blank" rel="external"><img src="http://nokky.net/wp-content/uploads/2017/07/snipaste_20170717_223144.png" alt=""></a></p>
+<p><a href="/img/2017/07/snipaste_20170717_223144.png"><img src="/img/2017/07/snipaste_20170717_223144.png" alt=""></a></p>
 <p>Ok，那么我们想自己也弄一个怎么办呢？下面开始正片，<span style="font-weight: bold; color: #d14;">友情提醒：本文会涉及到修改注册表，请备份好原注册表后再修改。</span></p>
 <hr>
-<h1 id="–打开注册表"><a href="#–打开注册表" class="headerlink" title="–打开注册表"></a><strong>–打开注册表</strong></h1><p>Win+R运行regedit</p>
-<p><a href="http://nokky.net/wp-content/uploads/2017/07/snipaste_20170717_224739.png" target="_blank" rel="external"><img src="http://nokky.net/wp-content/uploads/2017/07/snipaste_20170717_224739.png" alt=""></a></p>
+<h1 id="打开注册表"><a href="#打开注册表" class="headerlink" title="打开注册表"></a><strong>打开注册表</strong></h1><p>Win+R运行regedit</p>
+<p><a href="/img/2017/07/snipaste_20170717_224739.png"><img src="/img/2017/07/snipaste_20170717_224739.png" alt=""></a></p>
 <p>找到该路径：<br><code>HKEY_CLASSES_ROOT\Directory\Background\shell</code></p>
-<h1 id="–增添新项"><a href="#–增添新项" class="headerlink" title="–增添新项"></a>–增添新项</h1><p>选中<code>shell</code>然后右键<code>New</code>-&gt;<code>Key</code>新建一个项，如图</p>
-<p><a href="http://nokky.net/wp-content/uploads/2017/07/snipaste_20170717_225314.png" target="_blank" rel="external"><img src="http://nokky.net/wp-content/uploads/2017/07/snipaste_20170717_225314.png" alt=""></a></p>
+<h1 id="增添新项"><a href="#增添新项" class="headerlink" title="增添新项"></a>增添新项</h1><p>选中<code>shell</code>然后右键<code>New</code>-&gt;<code>Key</code>新建一个项，如图</p>
+<p><a href="/img/2017/07/snipaste_20170717_225314.png"><img src="/img/2017/07/snipaste_20170717_225314.png" alt=""></a></p>
 <p>我命名为Cmder，在新建的<code>Cmder</code>项下在新建一个项，命名为<code>command</code>，然后修改其下默认键的值为要运行程序的路径。比如我的</p>
-<p><a href="http://nokky.net/wp-content/uploads/2017/07/snipaste_20170717_230121.png" target="_blank" rel="external"><img src="http://nokky.net/wp-content/uploads/2017/07/snipaste_20170717_230121-1024x346.png" alt=""></a></p>
+<p><a href="/img/2017/07/snipaste_20170717_230121.png"><img src="/img/2017/07/snipaste_20170717_230121-1024x346.png" alt=""></a></p>
 <p>然后在资源管理器空白处点击右键时就会发现了这个选项，但是有点丑陋，我们来稍微地美化一下，给添加的右键菜单增加图标和描述信息。</p>
-<h1 id="–美化"><a href="#–美化" class="headerlink" title="–美化"></a>–美化</h1><p>选中<code>Cmder</code>，接着在右侧中新建几个<code>string</code>类型的值。</p>
-<p><a href="http://nokky.net/wp-content/uploads/2017/07/snipaste_20170717_230807.png" target="_blank" rel="external"><img src="http://nokky.net/wp-content/uploads/2017/07/snipaste_20170717_230807.png" alt=""></a></p>
+<h1 id="美化"><a href="#美化" class="headerlink" title="美化"></a>美化</h1><p>选中<code>Cmder</code>，接着在右侧中新建几个<code>string</code>类型的值。</p>
+<p><a href="/img/2017/07/snipaste_20170717_230807.png"><img src="/img/2017/07/snipaste_20170717_230807.png" alt=""></a></p>
 <p>新增两个值，分别为</p>
-<p><a href="http://nokky.net/wp-content/uploads/2017/07/snipaste_20170717_230940.png" target="_blank" rel="external"><img src="http://nokky.net/wp-content/uploads/2017/07/snipaste_20170717_230940.png" alt=""></a></p>
+<p><a href="/img/2017/07/snipaste_20170717_230940.png"><img src="/img/2017/07/snipaste_20170717_230940.png" alt=""></a></p>
 <p><code>Icon</code>用来给菜单添加一个小图标，<code>MUIVerb</code>用来给菜单添加描述信息。完成后再查看一下就会是这个效果</p>
-<p><a href="http://nokky.net/wp-content/uploads/2017/07/snipaste_20170717_231530.png" target="_blank" rel="external"><img src="http://nokky.net/wp-content/uploads/2017/07/snipaste_20170717_231530.png" alt=""></a></p>
+<p><a href="/img/2017/07/snipaste_20170717_231530.png"><img src="/img/2017/07/snipaste_20170717_231530.png" alt=""></a></p>
 <p>测试一下，完美运行。</p>
-<h1 id="–增加子菜单项"><a href="#–增加子菜单项" class="headerlink" title="–增加子菜单项"></a>–增加子菜单项</h1><p>正如第一张图所示，还应该有子菜单项才足够满足一些需求，这都不是事。</p>
+<h1 id="增加子菜单项"><a href="#增加子菜单项" class="headerlink" title="增加子菜单项"></a>增加子菜单项</h1><p>正如第一张图所示，还应该有子菜单项才足够满足一些需求，这都不是事。</p>
 <p>首先，我们回到<strong><code>Cmder</code></strong>项下，再添加一个<strong><code>string</code></strong>类型的值，名字为<code>SubCommands</code>，然后值的内容填写你想要添加的命令的名字（千万避免重复），每个命令之间用半角分号<code>;</code>隔开，就像这样</p>
-<p><a href="http://nokky.net/wp-content/uploads/2017/07/snipaste_20170717_232103.png" target="_blank" rel="external"><img src="http://nokky.net/wp-content/uploads/2017/07/snipaste_20170717_232103-1024x386.png" alt=""></a></p>
+<p><a href="/img/2017/07/snipaste_20170717_232103.png"><img src="/img/2017/07/snipaste_20170717_232103-1024x386.png" alt=""></a></p>
 <p>还没完，这时候你可以再查看右键菜单的时候可以看到刚才添加的菜单项已经有个右尖括号了，但是因为具体的子命令还没实现，所以不会显现出来。这个时候我们定位到<code>Computer\HKEY_LOCAL_MACHINE\SOFTWARE\Microsoft\Windows\CurrentVersion\Explorer\CommandStore\shell</code>下，然后再新建新项，名字为刚才加入的子命令名字，比如我的</p>
-<p><a href="http://nokky.net/wp-content/uploads/2017/07/snipaste_20170717_232828.png" target="_blank" rel="external"><img src="http://nokky.net/wp-content/uploads/2017/07/snipaste_20170717_232828-1024x216.png" alt=""></a></p>
+<p><a href="/img/2017/07/snipaste_20170717_232828.png"><img src="/img/2017/07/snipaste_20170717_232828-1024x216.png" alt=""></a></p>
 <p>接下来的操作就和上边的一毛一样了。</p>
 <p>最后的效果就是这样</p>
-<p><a href="http://nokky.net/wp-content/uploads/2017/07/snipaste_20170717_222321.png" target="_blank" rel="external"><img src="http://nokky.net/wp-content/uploads/2017/07/snipaste_20170717_222321.png" alt=""></a></p>
-<h1 id="–Shift-右键"><a href="#–Shift-右键" class="headerlink" title="–Shift+右键"></a>–Shift+右键</h1><p>还有一些菜单项是通过Shift+鼠标右组合键才会显现出来的，要实现这个也很简单，只需要添加一个新值<code>Extended</code>即可。</p>
-<p><a href="http://nokky.net/wp-content/uploads/2017/07/snipaste_20170817_115734.png" target="_blank" rel="external"><img src="http://nokky.net/wp-content/uploads/2017/07/snipaste_20170817_115734-1024x197.png" alt=""></a></p>
+<p><a href="/img/2017/07/snipaste_20170717_222321.png"><img src="/img/2017/07/snipaste_20170717_222321.png" alt=""></a></p>
+<h1 id="Shift-右键"><a href="#Shift-右键" class="headerlink" title="Shift+右键"></a>Shift+右键</h1><p>还有一些菜单项是通过Shift+鼠标右组合键才会显现出来的，要实现这个也很简单，只需要添加一个新值<code>Extended</code>即可。</p>
+<p><a href="/img/2017/07/snipaste_20170817_115734.png"><img src="/img/2017/07/snipaste_20170817_115734-1024x197.png" alt=""></a></p>
 
     
 
@@ -674,23 +674,38 @@
 
     <!-- Categories  -->
     
+        <li class="dropdown">
+            <a href="#" class="ripple-effect dropdown-toggle" data-toggle="dropdown">
+                
+                    <i class="material-icons sidebar-material-icons">chrome_reader_mode</i>
+                
+                Categories
+                <b class="caret"></b>
+            </a>
+            <ul class="dropdown-menu">
+                <li>
+                <a class="sidebar_archives-link" href="/categories/Arduino/">Arduino<span class="sidebar_archives-count">1</span></a></li><li><a class="sidebar_archives-link" href="/categories/CSharp/">CSharp<span class="sidebar_archives-count">1</span></a></li><li><a class="sidebar_archives-link" href="/categories/Linux/">Linux<span class="sidebar_archives-count">2</span></a></li><li><a class="sidebar_archives-link" href="/categories/Linux/VPS/">VPS<span class="sidebar_archives-count">2</span></a></li><li><a class="sidebar_archives-link" href="/categories/Programming/">Programming<span class="sidebar_archives-count">2</span></a></li><li><a class="sidebar_archives-link" href="/categories/Talking/">Talking<span class="sidebar_archives-count">1</span></a></li><li><a class="sidebar_archives-link" href="/categories/WPF/">WPF<span class="sidebar_archives-count">4</span></a></li><li><a class="sidebar_archives-link" href="/categories/Windows/">Windows<span class="sidebar_archives-count">3</span></a>
+            </ul>
+        </li>
+        
+    
 
     <!-- Pages  -->
     
         <li>
-            <a href="about-me" title="About">
+            <a href="/about" title="About Me">
                 
                     <i class="material-icons sidebar-material-icons">person</i>
                 
-                About
+                About Me
             </a>
         </li>
         
     
         <li>
-            <a href="friends" title="Friends">
+            <a href="/friends" title="Friends">
                 
-                    <i class="material-icons sidebar-material-icons">person</i>
+                    <i class="material-icons sidebar-material-icons">group</i>
                 
                 Friends
             </a>

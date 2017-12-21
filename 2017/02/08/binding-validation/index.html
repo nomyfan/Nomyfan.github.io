@@ -72,7 +72,7 @@
 
     
         <meta property="article:published_time" content="Feb 08, 2017" />
-        <meta property="article:modified_time" content="Dec 20, 2017" />
+        <meta property="article:modified_time" content="Dec 21, 2017" />
     
 
     <!-- The Twitter Card protocol -->
@@ -113,7 +113,7 @@
     "headline": "Binding[1]=数据校验",
     "url": "https://nomyfan.github.io/2017/02/08/binding-validation/index.html",
     "datePublished": "Feb 08, 2017",
-    "dateModified": "Dec 20, 2017",
+    "dateModified": "Dec 21, 2017",
     "description": "Nomyfan&#39;s person blog",
     "mainEntityOfPage": {
         "@type": "WebPage",
@@ -516,19 +516,19 @@
 <hr>
 <h2 id="实现"><a href="#实现" class="headerlink" title="实现"></a><span style="color: #36b2a6;">实现</span></h2><p>现在我们的任务是，将一个TextBox（Target）绑定到一个Slider（Source）上，在TextBox输入非Slider的Value的区间值（0到100）时，会显示错误。</p>
 <p>UI的XAML代码：</p>
-<p><pre class="theme:arduino-ide lang:xhtml decode:true EnlighterJSRAW" title="XAML">&lt;StackPanel&gt;<br>    &lt;TextBox x:Name=”textBox” Margin=”10” Height=”25”/&gt;<br>    &lt;Slider x:Name=”slider” Margin=”10” Minimum=”-10” Maximum=”100”/&gt;<br>&lt;/StackPanel&gt;</pre><br>看到上面的代码，小伙伴们应该很快发现了一个小细节，为什么Slider的最小值设为-10？这个是别有用意的，因为Binding在验证数据的时候，默认是把Source的数据认为是完全正确的，有问题的数据只可能出现在Target上，因此这里模拟了Source数据异常的情况，并且对Source的数据也进行了校验的步骤。</p>
+<p><pre>&lt;StackPanel&gt;<br>    &lt;TextBox x:Name=”textBox” Margin=”10” Height=”25”/&gt;<br>    &lt;Slider x:Name=”slider” Margin=”10” Minimum=”-10” Maximum=”100”/&gt;<br>&lt;/StackPanel&gt;</pre><br>看到上面的代码，小伙伴们应该很快发现了一个小细节，为什么Slider的最小值设为-10？这个是别有用意的，因为Binding在验证数据的时候，默认是把Source的数据认为是完全正确的，有问题的数据只可能出现在Target上，因此这里模拟了Source数据异常的情况，并且对Source的数据也进行了校验的步骤。</p>
 <p>实现数据的校验是在对Binding的ValidationRules属性赋值，看属性的命名便可知道，这是一个ValidationRule类的集合，准确的类型是Collection&lt;ValidationRule&gt;。ValidatinRule是一个抽象类，因此我们需要准备它的派生类，实现Validate方法，该方法的返回值是ValidationResult类型对象，如果检验通过，则设置ValidationResult对象的IsValid属性为True，反之为False并为ErrorContent属性设置一个合适的消息内容。现在我们来准备ValidationRule的派生类。</p>
-<p><pre class="theme:arduino-ide lang:c# decode:true EnlighterJSRAW " title="C#">class RangeValidationRule : ValidationRule<br>{<br>    public override ValidationResult Validate(object value, CultureInfo cultureInfo)<br>    {<br>        double data;<br>        if (double.TryParse(value.ToString(), out data))<br>        {<br>            if (data &gt;= 0 &amp;&amp; data &lt;= 100)<br>            {<br>                return new ValidationResult(true, null);<br>            }<br>        }<br>        return new ValidationResult(false, “Validation Failed”);<br>    }<br>}</pre><br>有了这个派生类，我们就可以着手进行将TextBox绑定到Slider上了。</p>
-<p><pre class="theme:arduino-ide lang:c# decode:true EnlighterJSRAW" title="C#">public MainWindow()<br>{<br>    InitializeComponent();</pre></p>
+<p><pre>class RangeValidationRule : ValidationRule<br>{<br>    public override ValidationResult Validate(object value, CultureInfo cultureInfo)<br>    {<br>        double data;<br>        if (double.TryParse(value.ToString(), out data))<br>        {<br>            if (data &gt;= 0 &amp;&amp; data &lt;= 100)<br>            {<br>                return new ValidationResult(true, null);<br>            }<br>        }<br>        return new ValidationResult(false, “Validation Failed”);<br>    }<br>}</pre><br>有了这个派生类，我们就可以着手进行将TextBox绑定到Slider上了。</p>
+<p><pre>public MainWindow()<br>{<br>    InitializeComponent();</pre></p>
 <pre><code>Binding binding = new Binding(&quot;Value&quot;) { Source = this.slider };
 binding.UpdateSourceTrigger = UpdateSourceTrigger.PropertyChanged;
 binding.ValidationRules.Add(new RangeValidationRule() { ValidatesOnTargetUpdated = true });
 this.textBox.SetBinding(TextBox.TextProperty, binding);
 </code></pre><p>}<br>运行程序后，不论是我们把Slider手动拨到0以下的值还是直接在TextBox里输入小于0的数，TextBox都会显示红色的边框，提示用户数据有问题。运行效果如下：</p>
-<p><a href="http://104.224.163.126/wp-content/uploads/2017/02/sp170208_214114.png" target="_blank" rel="external"><img src="http://ycyzone.tk/wp-content/uploads/2017/02/sp170208_214114.png" alt=""></a></p>
+<p><a href="/img/2017/02/sp170208_214114.png"><img src="/img/2017/02/sp170208_214114.png" alt=""></a></p>
 <hr>
 <h2 id="更进一步"><a href="#更进一步" class="headerlink" title="更进一步"></a><span style="color: #36b2a6;">更进一步</span></h2><p>到此我们就已经完成了对数据的校验工作，接下来更进一步。我们刚才说了，ValidatinResult对象携带了一条错误消息，那么，我们如何让这条消息显示出来呢？这里用到了路由事件，我们来把后台代码写的更进一步。</p>
-<p><pre class="theme:arduino-ide lang:c# decode:true EnlighterJSRAW " title="C#">public partial class MainWindow : Window<br>{<br>    public MainWindow()<br>    {<br>        InitializeComponent();</pre></p>
+<p><pre>public partial class MainWindow : Window<br>{<br>    public MainWindow()<br>    {<br>        InitializeComponent();</pre></p>
 <pre><code>    Binding binding = new Binding(&quot;Value&quot;) { Source = this.slider };
     binding.UpdateSourceTrigger = UpdateSourceTrigger.PropertyChanged;
     binding.ValidationRules.Add(new RangeValidationRule() { ValidatesOnTargetUpdated = true });
@@ -546,7 +546,7 @@ this.textBox.SetBinding(TextBox.TextProperty, binding);
 }
 </code></pre><p>}<br>&nbsp;</p>
 <p>运行效果如下，把鼠标悬停在TextBox上会有小提示出现，这个小提示就是我们在ValidationResult里设置的错误消息。</p>
-<p><a href="http://104.224.163.126/wp-content/uploads/2017/02/sp170208_214644.png" target="_blank" rel="external"><img src="http://ycyzone.tk/wp-content/uploads/2017/02/sp170208_214644.png" alt=""></a></p>
+<p><a href="/img/2017/02/sp170208_214644.png"><img src="/img/2017/02/sp170208_214644.png" alt=""></a></p>
 <hr>
 <h2 id="分析"><a href="#分析" class="headerlink" title="分析"></a><span style="color: #36b2a6;">分析</span></h2><p>又到了分析部分，仍然是问答的形式来进行。</p>
 <p>Q：后台代码的 ValidatesOnTargetUpdated = true 这句代码是什么意思？</p>
@@ -686,23 +686,38 @@ this.textBox.SetBinding(TextBox.TextProperty, binding);
 
     <!-- Categories  -->
     
+        <li class="dropdown">
+            <a href="#" class="ripple-effect dropdown-toggle" data-toggle="dropdown">
+                
+                    <i class="material-icons sidebar-material-icons">chrome_reader_mode</i>
+                
+                Categories
+                <b class="caret"></b>
+            </a>
+            <ul class="dropdown-menu">
+                <li>
+                <a class="sidebar_archives-link" href="/categories/Arduino/">Arduino<span class="sidebar_archives-count">1</span></a></li><li><a class="sidebar_archives-link" href="/categories/CSharp/">CSharp<span class="sidebar_archives-count">1</span></a></li><li><a class="sidebar_archives-link" href="/categories/Linux/">Linux<span class="sidebar_archives-count">2</span></a></li><li><a class="sidebar_archives-link" href="/categories/Linux/VPS/">VPS<span class="sidebar_archives-count">2</span></a></li><li><a class="sidebar_archives-link" href="/categories/Programming/">Programming<span class="sidebar_archives-count">2</span></a></li><li><a class="sidebar_archives-link" href="/categories/Talking/">Talking<span class="sidebar_archives-count">1</span></a></li><li><a class="sidebar_archives-link" href="/categories/WPF/">WPF<span class="sidebar_archives-count">4</span></a></li><li><a class="sidebar_archives-link" href="/categories/Windows/">Windows<span class="sidebar_archives-count">3</span></a>
+            </ul>
+        </li>
+        
+    
 
     <!-- Pages  -->
     
         <li>
-            <a href="about-me" title="About">
+            <a href="/about" title="About Me">
                 
                     <i class="material-icons sidebar-material-icons">person</i>
                 
-                About
+                About Me
             </a>
         </li>
         
     
         <li>
-            <a href="friends" title="Friends">
+            <a href="/friends" title="Friends">
                 
-                    <i class="material-icons sidebar-material-icons">person</i>
+                    <i class="material-icons sidebar-material-icons">group</i>
                 
                 Friends
             </a>

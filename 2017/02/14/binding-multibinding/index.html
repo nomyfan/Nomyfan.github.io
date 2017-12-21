@@ -515,8 +515,8 @@
         <p>有时候，我们会遇到这样的需求，UI的要显示的信息由多个数据源来决定，比如注册界面会验证两次输入的密码是否一致来决定是否可以注册，这时候就要用到MultiBinding了。因为Binding和MultiBinding的基类都是BindingBase，所以，能用Binding的场合都能用MultiBinding。MultiBinding通过一个Bindings的属性（类型为Collection&lt;BindingBase&gt;）把多个Binding对象集合起来，其中每个Binding对象可以有自己的数据校验和数据转换机制。</p>
 <hr>
 <h2 id="实现"><a href="#实现" class="headerlink" title="实现"></a><span style="color: #36b2a6;">实现</span></h2><p>现在我们就以注册界面为例，需求是，用户名和密码都不会为空，且两次输入的密码要一致，这时候确认信息的Button可用。XAML代码如下，加入了一些部分美化的代码，默认的太难看了受不了- -，主要的就是三个TextBox。</p>
-<p><pre class="lang:c# decode:true" title="C#">&lt;StackPanel HorizontalAlignment=”Center” VerticalAlignment=”Center”&gt;<br>    &lt;TextBlock Text=”Sign up” FontSize=”30” Foreground=”#00a2e8” Margin=”3”/&gt;<br>    &lt;TextBlock Text=”User” FontSize=”13” Margin=”3”/&gt;<br>    &lt;TextBox x:Name=”textBox” Height=”23” Width=”150” Margin=”3”/&gt;<br>    &lt;TextBlock Text=”Password” Margin=”5”/&gt;<br>    &lt;TextBox x:Name=”textBox1” Height=”23” Width=”150” Margin=”3”/&gt;<br>    &lt;TextBlock Text=”Verify Password” Margin=”5”/&gt;<br>    &lt;TextBox x:Name=”textBox2” Height=”23” Width=”150” Margin=”3”/&gt;<br>    &lt;Button x:Name=”button” Height=”23” Margin=”3”&gt;<br>        &lt;Button.Style&gt;<br>            &lt;Style TargetType=”Button”&gt;<br>                &lt;Setter Property=”Template”&gt;<br>                    &lt;Setter.Value&gt;<br>                        &lt;ControlTemplate TargetType=”Button”&gt;<br>                            &lt;Border x:Name=”border” Background=”#00a2e8”&gt;<br>                                &lt;TextBlock x:Name=”textBlock” Text=”OK” TextAlignment=”Center” VerticalAlignment=”Center” Foreground=”White”/&gt;<br>                            &lt;/Border&gt;<br>                            &lt;ControlTemplate.Triggers&gt;<br>                                &lt;Trigger Property=”IsEnabled” Value=”False”&gt;<br>                                    &lt;Setter TargetName=”border” Property=”Background” Value=”LightGray”/&gt;<br>                                &lt;/Trigger&gt;<br>                            &lt;/ControlTemplate.Triggers&gt;<br>                        &lt;/ControlTemplate&gt;<br>                    &lt;/Setter.Value&gt;<br>                &lt;/Setter&gt;<br>            &lt;/Style&gt;<br>        &lt;/Button.Style&gt;<br>    &lt;/Button&gt;<br>&lt;/StackPanel&gt;</pre><br>三个TextBox会各自作为三个Binding对象的Source，最终把三个Binding对象加入MultiBinding的Bindings属性中。</p>
-<p><pre class="lang:c# decode:true " title="C#">public partial class MainWindow : Window<br>{<br>    public MainWindow()<br>    {<br>        InitializeComponent();<br>        this.SetMultiBinding();<br>    }</pre></p>
+<p><pre>&lt;StackPanel HorizontalAlignment=”Center” VerticalAlignment=”Center”&gt;<br>    &lt;TextBlock Text=”Sign up” FontSize=”30” Foreground=”#00a2e8” Margin=”3”/&gt;<br>    &lt;TextBlock Text=”User” FontSize=”13” Margin=”3”/&gt;<br>    &lt;TextBox x:Name=”textBox” Height=”23” Width=”150” Margin=”3”/&gt;<br>    &lt;TextBlock Text=”Password” Margin=”5”/&gt;<br>    &lt;TextBox x:Name=”textBox1” Height=”23” Width=”150” Margin=”3”/&gt;<br>    &lt;TextBlock Text=”Verify Password” Margin=”5”/&gt;<br>    &lt;TextBox x:Name=”textBox2” Height=”23” Width=”150” Margin=”3”/&gt;<br>    &lt;Button x:Name=”button” Height=”23” Margin=”3”&gt;<br>        &lt;Button.Style&gt;<br>            &lt;Style TargetType=”Button”&gt;<br>                &lt;Setter Property=”Template”&gt;<br>                    &lt;Setter.Value&gt;<br>                        &lt;ControlTemplate TargetType=”Button”&gt;<br>                            &lt;Border x:Name=”border” Background=”#00a2e8”&gt;<br>                                &lt;TextBlock x:Name=”textBlock” Text=”OK” TextAlignment=”Center” VerticalAlignment=”Center” Foreground=”White”/&gt;<br>                            &lt;/Border&gt;<br>                            &lt;ControlTemplate.Triggers&gt;<br>                                &lt;Trigger Property=”IsEnabled” Value=”False”&gt;<br>                                    &lt;Setter TargetName=”border” Property=”Background” Value=”LightGray”/&gt;<br>                                &lt;/Trigger&gt;<br>                            &lt;/ControlTemplate.Triggers&gt;<br>                        &lt;/ControlTemplate&gt;<br>                    &lt;/Setter.Value&gt;<br>                &lt;/Setter&gt;<br>            &lt;/Style&gt;<br>        &lt;/Button.Style&gt;<br>    &lt;/Button&gt;<br>&lt;/StackPanel&gt;</pre><br>三个TextBox会各自作为三个Binding对象的Source，最终把三个Binding对象加入MultiBinding的Bindings属性中。</p>
+<p><pre>public partial class MainWindow : Window<br>{<br>    public MainWindow()<br>    {<br>        InitializeComponent();<br>        this.SetMultiBinding();<br>    }</pre></p>
 <pre><code>private void SetMultiBinding()
 {
     Binding b0 = new Binding(&quot;Text&quot;) { Source = this.textBox };
@@ -532,13 +532,13 @@
     this.button.SetBinding(Button.IsEnabledProperty, mb);
 }
 </code></pre><p>}<br>因为Text和IsEnabled两个属性类型不同，因此我们要给MutilBinding准备一个转换器，这个类继承于IMultiValueConverter接口。</p>
-<p><pre class="lang:c# decode:true " title="C#">class MultiBindingConverter : IMultiValueConverter<br>{<br>    public object Convert(object[] values, Type targetType, object parameter, CultureInfo culture)<br>    {<br>        if (!values.Cast&lt;string&gt;().Any(text =&gt; string.IsNullOrWhiteSpace(text))<br>            &amp;&amp; values[1].ToString() == values[2].ToString())<br>        {<br>            return true;<br>        }<br>        return false;<br>    }</pre></p>
+<p><pre>class MultiBindingConverter : IMultiValueConverter<br>{<br>    public object Convert(object[] values, Type targetType, object parameter, CultureInfo culture)<br>    {<br>        if (!values.Cast&lt;string&gt;().Any(text =&gt; string.IsNullOrWhiteSpace(text))<br>            &amp;&amp; values[1].ToString() == values[2].ToString())<br>        {<br>            return true;<br>        }<br>        return false;<br>    }</pre></p>
 <pre><code>public object[] ConvertBack(object value, Type[] targetTypes, object parameter, CultureInfo culture)
 {
     throw new NotImplementedException();
 }
 </code></pre><p>}<br>运行的效果</p>
-<p><a href="http://www.nokky.net/wp-content/uploads/2017/02/sp170214_210649.png" target="_blank" rel="external"><img src="http://nokky.net/wp-content/uploads/2017/02/sp170214_210649.png" alt=""></a> <a href="http://www.nokky.net/wp-content/uploads/2017/02/sp170214_210735.png" target="_blank" rel="external"><img src="http://nokky.net/wp-content/uploads/2017/02/sp170214_210735.png" alt=""></a></p>
+<p><a href="/img/2017/02/sp170214_210649.png"><img src="/img/2017/02/sp170214_210649.png" alt=""></a> <a href="/img/2017/02/sp170214_210735.png"><img src="/img/2017/02/sp170214_210735.png" alt=""></a></p>
 <hr>
 <h2 id="分析"><a href="#分析" class="headerlink" title="分析"></a><span style="color: #36b2a6;">分析</span></h2><p>Q：看了下转换器的代码，其中的values参数应该是指多个Binding对象的Path属性值，那么怎样知道哪个value是哪个Binding对象的呢？</p>
 <p>A：我们说过，Bindings属性是个集合，在把Binding对象丢进去的时候是按顺序递增索引的，因此只要记住顺序，就可以通过索引得到对应的value。</p>
@@ -675,23 +675,38 @@
 
     <!-- Categories  -->
     
+        <li class="dropdown">
+            <a href="#" class="ripple-effect dropdown-toggle" data-toggle="dropdown">
+                
+                    <i class="material-icons sidebar-material-icons">chrome_reader_mode</i>
+                
+                Categories
+                <b class="caret"></b>
+            </a>
+            <ul class="dropdown-menu">
+                <li>
+                <a class="sidebar_archives-link" href="/categories/Arduino/">Arduino<span class="sidebar_archives-count">1</span></a></li><li><a class="sidebar_archives-link" href="/categories/CSharp/">CSharp<span class="sidebar_archives-count">1</span></a></li><li><a class="sidebar_archives-link" href="/categories/Linux/">Linux<span class="sidebar_archives-count">2</span></a></li><li><a class="sidebar_archives-link" href="/categories/Linux/VPS/">VPS<span class="sidebar_archives-count">2</span></a></li><li><a class="sidebar_archives-link" href="/categories/Programming/">Programming<span class="sidebar_archives-count">2</span></a></li><li><a class="sidebar_archives-link" href="/categories/Talking/">Talking<span class="sidebar_archives-count">1</span></a></li><li><a class="sidebar_archives-link" href="/categories/WPF/">WPF<span class="sidebar_archives-count">4</span></a></li><li><a class="sidebar_archives-link" href="/categories/Windows/">Windows<span class="sidebar_archives-count">3</span></a>
+            </ul>
+        </li>
+        
+    
 
     <!-- Pages  -->
     
         <li>
-            <a href="about-me" title="About">
+            <a href="/about" title="About Me">
                 
                     <i class="material-icons sidebar-material-icons">person</i>
                 
-                About
+                About Me
             </a>
         </li>
         
     
         <li>
-            <a href="friends" title="Friends">
+            <a href="/friends" title="Friends">
                 
-                    <i class="material-icons sidebar-material-icons">person</i>
+                    <i class="material-icons sidebar-material-icons">group</i>
                 
                 Friends
             </a>

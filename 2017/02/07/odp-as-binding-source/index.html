@@ -515,10 +515,10 @@
         <p>一般情况下，我们通常使用某个类的实例作为Binding的对象，实例中的某个属性作为Path来消费这些类。现在试想一下这样的情形，我们需要绑定的数据是方法的返回值，这时候我们应该怎么办呢？有小伙伴可能会提出，修改这个类，增加属性将需要的数据暴露出来使用。这样是一个解决方法，但是重新设计底层类的风险和成本比较高，而且在黑盒引用类库的时候我们就不可能这样做了。那么是不是就束手无策了？当然不是，我们可以使用ObjectDataProvider包装一个对象然后作为Binding的数据源。怎么来实现呢？</p>
 <hr>
 <h2 id="实现"><a href="#实现" class="headerlink" title="实现"></a><span style="color: #3692b4;">实现</span></h2><p>现在的情形是，我引用一个类库，里面有一个Calculator的类，里面有各种算法，其中一个是加法的算法：</p>
-<p><pre class="EnlighterJSRAW" data-enlighter-language="csharp" data-enlighter-theme="mootwo">class Calculator<br>{<br>    public string Add(string arg1, string arg2)<br>    {<br>        double x;<br>        double y;<br>        if (double.TryParse(arg1, out x) &amp;&amp; double.TryParse(arg2, out y))<br>        {<br>            return (x + y).ToString();<br>        }<br>        return @”N/A”;<br>    }<br>}</pre><br>在界面上，准备了三个TextBox，第一个作为Add方法的第一个参数，第二个作为第二个参数，第三个作为Add方法返回值。XAML代码如下：</p>
-<p><pre class="lang:xhtml decode:true " title="XAML">&lt;StackPanel&gt;<br>    &lt;TextBox x:Name=”tBArg1” Margin=”10” Height=”25”/&gt;<br>    &lt;TextBox x:Name=”tBArg2” Margin=”10” Height=”25”/&gt;<br>    &lt;TextBox x:Name=”tBResult” Margin=”10” Height=”25”/&gt;<br>&lt;/StackPanel&gt;</pre><br>&nbsp;</p>
+<p><pre>class Calculator<br>{<br>    public string Add(string arg1, string arg2)<br>    {<br>        double x;<br>        double y;<br>        if (double.TryParse(arg1, out x) &amp;&amp; double.TryParse(arg2, out y))<br>        {<br>            return (x + y).ToString();<br>        }<br>        return @”N/A”;<br>    }<br>}</pre><br>在界面上，准备了三个TextBox，第一个作为Add方法的第一个参数，第二个作为第二个参数，第三个作为Add方法返回值。XAML代码如下：</p>
+<p><pre>&lt;StackPanel&gt;<br>    &lt;TextBox x:Name=”tBArg1” Margin=”10” Height=”25”/&gt;<br>    &lt;TextBox x:Name=”tBArg2” Margin=”10” Height=”25”/&gt;<br>    &lt;TextBox x:Name=”tBResult” Margin=”10” Height=”25”/&gt;<br>&lt;/StackPanel&gt;</pre><br>&nbsp;</p>
 <p>功能上，我要实现在前两个TextBox上输入实数后，在第三个TextBox实时显示出计算结果。过程代码写在一个SetBinding方法里，然后在窗体的构造函数中那个调用这个方法。</p>
-<p><pre class="EnlighterJSRAW" data-enlighter-language="csharp" data-enlighter-theme="mootwo">public partial class MainWindow : Window<br>{<br>    public MainWindow()<br>    {<br>        InitializeComponent();<br>        this.SetBinding();<br>    }</pre></p>
+<p><pre>public partial class MainWindow : Window<br>{<br>    public MainWindow()<br>    {<br>        InitializeComponent();<br>        this.SetBinding();<br>    }</pre></p>
 <pre><code>private void SetBinding()
 {
     //Create and initial ObjectDataProvider instance
@@ -551,7 +551,7 @@
     this.tBResult.SetBinding(TextBox.TextProperty, bindingToResult);
 }
 </code></pre><p>}<br>最终的实现效果</p>
-<p><a href="http://104.224.163.126/wp-content/uploads/2017/02/sp170207_142045.png" target="_blank" rel="external"><img src="http://nokky.net/wp-content/uploads/2017/02/sp170207_142045.png" alt=""></a></p>
+<p><a href="/img/2017/02/sp170207_142045.png"><img src="/img/2017/02/sp170207_142045.png" alt=""></a></p>
 <hr>
 <h2 id="分析"><a href="#分析" class="headerlink" title="分析"></a><span style="color: #3692b4;">分析</span></h2><p>OK，现在我们的问题解决了。让我们以问答的形式具体分析一下这个实现过程。</p>
 <p>Q：ObjectDataProvider类的作用是什么？</p>
@@ -695,23 +695,38 @@
 
     <!-- Categories  -->
     
+        <li class="dropdown">
+            <a href="#" class="ripple-effect dropdown-toggle" data-toggle="dropdown">
+                
+                    <i class="material-icons sidebar-material-icons">chrome_reader_mode</i>
+                
+                Categories
+                <b class="caret"></b>
+            </a>
+            <ul class="dropdown-menu">
+                <li>
+                <a class="sidebar_archives-link" href="/categories/Arduino/">Arduino<span class="sidebar_archives-count">1</span></a></li><li><a class="sidebar_archives-link" href="/categories/CSharp/">CSharp<span class="sidebar_archives-count">1</span></a></li><li><a class="sidebar_archives-link" href="/categories/Linux/">Linux<span class="sidebar_archives-count">2</span></a></li><li><a class="sidebar_archives-link" href="/categories/Linux/VPS/">VPS<span class="sidebar_archives-count">2</span></a></li><li><a class="sidebar_archives-link" href="/categories/Programming/">Programming<span class="sidebar_archives-count">2</span></a></li><li><a class="sidebar_archives-link" href="/categories/Talking/">Talking<span class="sidebar_archives-count">1</span></a></li><li><a class="sidebar_archives-link" href="/categories/WPF/">WPF<span class="sidebar_archives-count">4</span></a></li><li><a class="sidebar_archives-link" href="/categories/Windows/">Windows<span class="sidebar_archives-count">3</span></a>
+            </ul>
+        </li>
+        
+    
 
     <!-- Pages  -->
     
         <li>
-            <a href="about-me" title="About">
+            <a href="/about" title="About Me">
                 
                     <i class="material-icons sidebar-material-icons">person</i>
                 
-                About
+                About Me
             </a>
         </li>
         
     
         <li>
-            <a href="friends" title="Friends">
+            <a href="/friends" title="Friends">
                 
-                    <i class="material-icons sidebar-material-icons">person</i>
+                    <i class="material-icons sidebar-material-icons">group</i>
                 
                 Friends
             </a>

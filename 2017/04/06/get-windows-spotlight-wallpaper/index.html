@@ -514,14 +514,14 @@
     
         <h1 id="这是一篇无聊的水文！"><a href="#这是一篇无聊的水文！" class="headerlink" title="这是一篇无聊的水文！"></a><span style="color: #ff6600;"><strong>这是一篇无聊的水文！</strong></span></h1><h1 id="这是一篇无聊的水文！-1"><a href="#这是一篇无聊的水文！-1" class="headerlink" title="这是一篇无聊的水文！"></a><span style="color: #ff6600;"><strong>这是一篇无聊的水文！</strong></span></h1><h1 id="这是一篇无聊的水文！-2"><a href="#这是一篇无聊的水文！-2" class="headerlink" title="这是一篇无聊的水文！"></a><span style="color: #ff6600;"><strong>这是一篇无聊的水文！</strong></span></h1><hr>
 <p>Windows 10的Spotlight偶尔会推荐个人比较喜欢的锁屏壁纸，这时候如果我们想得到图片文件该怎么办？比如这张，笔者个人觉得挺魔幻的。</p>
-<p><a href="http://www.nokky.net/wp-content/uploads/2017/04/sp170406_120203.png" target="_blank" rel="external"><img src="http://www.nokky.net/wp-content/uploads/2017/04/sp170406_120203-1024x553.png" alt=""></a></p>
+<p><a href="/img/2017/04/sp170406_120203.png"><img src="/img/2017/04/sp170406_120203-1024x553.png" alt=""></a></p>
 <h2 id="Step1"><a href="#Step1" class="headerlink" title="Step1"></a><span style="color: #36b26a;">Step1</span></h2><p>在Windows Explorer进入该路径<br><span style="color: #d14;">C:\Users&#91;User Name]\AppData\Local\Packages\Microsoft.Windows.ContentDeliveryManager_cw5n1h2txyewy\LocalState\Assets</span><br>在该目录下可以看到一些没有扩展名的文件，这些其实就是图片文件，如图</p>
-<p><a href="http://www.nokky.net/wp-content/uploads/2017/04/sp170406_121024.png" target="_blank" rel="external"><img src="http://www.nokky.net/wp-content/uploads/2017/04/sp170406_121024-1024x751.png" alt=""></a></p>
+<p><a href="/img/2017/04/sp170406_121024.png"><img src="/img/2017/04/sp170406_121024-1024x751.png" alt=""></a></p>
 <h2 id="Step2"><a href="#Step2" class="headerlink" title="Step2"></a><span style="color: #36b26a;">Step2</span></h2><p>将上图目录下的所有文件复制到任意目录下，我在桌面上新建了一个名为New Folder的文件夹然后全部丢进去。</p>
 <h2 id="Step3"><a href="#Step3" class="headerlink" title="Step3"></a><span style="color: #36b26a;">Step3</span></h2><p>然后正片开始，网上很多都是直接用cmd修改文件名添加扩展名，这里装逼地用了PowerShell。我会给每个图片一个位宽为3的序号并添加扩展名。</p>
 <p>先定义一个序号的变量<br><span style="color: #d14;">$index=1</span><br>然后修改图片文件文件名<br><span style="color: #d14;">Get-ChildItem|foreach{Rename-Item -Path $<em>.FullName -NewName (‘pic</em>{0:d3}.jpg’ -f $index);$index++}</span></p>
-<p><a href="http://www.nokky.net/wp-content/uploads/2017/04/sp170406_121955-1.png" target="_blank" rel="external"><img src="http://www.nokky.net/wp-content/uploads/2017/04/sp170406_121955-1-1024x246.png" alt=""></a><br>这时候再看看文件夹，所有文件都已经显示为图片格式文件了。ALL DONE！</p>
-<p><a href="http://www.nokky.net/wp-content/uploads/2017/04/sp170406_182143.png" target="_blank" rel="external"><img src="http://www.nokky.net/wp-content/uploads/2017/04/sp170406_182143-1024x365.png" alt=""></a></p>
+<p><a href="/img/2017/04/sp170406_121955-1.png"><img src="/img/2017/04/sp170406_121955-1-1024x246.png" alt=""></a><br>这时候再看看文件夹，所有文件都已经显示为图片格式文件了。ALL DONE！</p>
+<p><a href="/img/2017/04/sp170406_182143.png"><img src="/img/2017/04/sp170406_182143-1024x365.png" alt=""></a></p>
 <p>这里准备了整个脚本（图片保存在桌面的spotlight文件夹内），保存为ps1直接运行即可（记得修改PowerShell的ExecutionPolicy）：<a href="http://nokky.net/spotlight.ps1" target="_blank" rel="external">点这里</a></p>
 
     
@@ -656,23 +656,38 @@
 
     <!-- Categories  -->
     
+        <li class="dropdown">
+            <a href="#" class="ripple-effect dropdown-toggle" data-toggle="dropdown">
+                
+                    <i class="material-icons sidebar-material-icons">chrome_reader_mode</i>
+                
+                Categories
+                <b class="caret"></b>
+            </a>
+            <ul class="dropdown-menu">
+                <li>
+                <a class="sidebar_archives-link" href="/categories/Arduino/">Arduino<span class="sidebar_archives-count">1</span></a></li><li><a class="sidebar_archives-link" href="/categories/CSharp/">CSharp<span class="sidebar_archives-count">1</span></a></li><li><a class="sidebar_archives-link" href="/categories/Linux/">Linux<span class="sidebar_archives-count">2</span></a></li><li><a class="sidebar_archives-link" href="/categories/Linux/VPS/">VPS<span class="sidebar_archives-count">2</span></a></li><li><a class="sidebar_archives-link" href="/categories/Programming/">Programming<span class="sidebar_archives-count">2</span></a></li><li><a class="sidebar_archives-link" href="/categories/Talking/">Talking<span class="sidebar_archives-count">1</span></a></li><li><a class="sidebar_archives-link" href="/categories/WPF/">WPF<span class="sidebar_archives-count">4</span></a></li><li><a class="sidebar_archives-link" href="/categories/Windows/">Windows<span class="sidebar_archives-count">3</span></a>
+            </ul>
+        </li>
+        
+    
 
     <!-- Pages  -->
     
         <li>
-            <a href="about-me" title="About">
+            <a href="/about" title="About Me">
                 
                     <i class="material-icons sidebar-material-icons">person</i>
                 
-                About
+                About Me
             </a>
         </li>
         
     
         <li>
-            <a href="friends" title="Friends">
+            <a href="/friends" title="Friends">
                 
-                    <i class="material-icons sidebar-material-icons">person</i>
+                    <i class="material-icons sidebar-material-icons">group</i>
                 
                 Friends
             </a>

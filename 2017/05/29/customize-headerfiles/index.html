@@ -515,30 +515,30 @@
         <p>随着C/C++项目的增大，在管理难度上也随之增加。因此，合理利用头文件可以方便管理维护代码。这里会演示在IDE和vscode里如何自定义头文件，为什么要特殊地讲两个呢？因为vscode有点特殊。。。</p>
 <hr>
 <h2 id="Visual-Studio"><a href="#Visual-Studio" class="headerlink" title="Visual Studio"></a>Visual Studio</h2><p>IDE我选用VS作为演示。首先，新建一个空的项目，项目组成如图</p>
-<p><a href="http://nokky.net/wp-content/uploads/2017/05/snipaste_20170530_005339.png" target="_blank" rel="external"><img src="http://nokky.net/wp-content/uploads/2017/05/snipaste_20170530_005339.png" alt=""></a></p>
+<p><a href="/img/2017/05/snipaste_20170530_005339.png"><img src="/img/2017/05/snipaste_20170530_005339.png" alt=""></a></p>
 <p>然后添加一些文件</p>
-<p><a href="http://nokky.net/wp-content/uploads/2017/05/snipaste_20170530_005900.png" target="_blank" rel="external"><img src="http://nokky.net/wp-content/uploads/2017/05/snipaste_20170530_005900.png" alt=""></a></p>
+<p><a href="/img/2017/05/snipaste_20170530_005900.png"><img src="/img/2017/05/snipaste_20170530_005900.png" alt=""></a></p>
 <p>Calc.h是声明文件，Calc.cpp是Calc.h声明的实现文件，这样实现了声明和定义的分离。main.cpp是main函数本体文件。</p>
 <p>在Calc.h文件中，我希望有一个Add函数计算加法，于是做了如下声明</p>
-<p><a href="http://nokky.net/wp-content/uploads/2017/05/snipaste_20170530_005922.png" target="_blank" rel="external"><img src="http://nokky.net/wp-content/uploads/2017/05/snipaste_20170530_005922.png" alt=""></a></p>
+<p><a href="/img/2017/05/snipaste_20170530_005922.png"><img src="/img/2017/05/snipaste_20170530_005922.png" alt=""></a></p>
 <p>接下来就要定义这个函数，先引用Calc.h文件，相当于Calc.cpp知道了有哪些声明但未实现的函数，然后定义Add方法。</p>
-<p><a href="http://nokky.net/wp-content/uploads/2017/05/snipaste_20170530_005954.png" target="_blank" rel="external"><img src="http://nokky.net/wp-content/uploads/2017/05/snipaste_20170530_005954.png" alt=""></a></p>
+<p><a href="/img/2017/05/snipaste_20170530_005954.png"><img src="/img/2017/05/snipaste_20170530_005954.png" alt=""></a></p>
 <p>最后在main.cpp文件中把Calc.h引用进来，在main方法里调用这个函数即可</p>
-<p><a href="http://nokky.net/wp-content/uploads/2017/05/snipaste_20170530_010033.png" target="_blank" rel="external"><img src="http://nokky.net/wp-content/uploads/2017/05/snipaste_20170530_010033.png" alt=""></a></p>
+<p><a href="/img/2017/05/snipaste_20170530_010033.png"><img src="/img/2017/05/snipaste_20170530_010033.png" alt=""></a></p>
 <hr>
 <h2 id="Visual-Studio-Code"><a href="#Visual-Studio-Code" class="headerlink" title="Visual Studio Code"></a>Visual Studio Code</h2><p>同样的，新建一个项目，结构和在VS里类似。</p>
-<p><a href="http://nokky.net/wp-content/uploads/2017/05/snipaste_20170530_011628-1.png" target="_blank" rel="external"><img src="http://nokky.net/wp-content/uploads/2017/05/snipaste_20170530_011628-1.png" alt=""></a></p>
+<p><a href="/img/2017/05/snipaste_20170530_011628-1.png"><img src="/img/2017/05/snipaste_20170530_011628-1.png" alt=""></a></p>
 <p>Calc.h代码一毛一样</p>
-<p><a href="http://nokky.net/wp-content/uploads/2017/05/snipaste_20170530_011646.png" target="_blank" rel="external"><img src="http://nokky.net/wp-content/uploads/2017/05/snipaste_20170530_011646.png" alt=""></a></p>
+<p><a href="/img/2017/05/snipaste_20170530_011646.png"><img src="/img/2017/05/snipaste_20170530_011646.png" alt=""></a></p>
 <p>Calc.cpp也一毛一样，<strong>只需要注意一下引用路径</strong></p>
-<p><a href="http://nokky.net/wp-content/uploads/2017/05/snipaste_20170530_011702.png" target="_blank" rel="external"><img src="http://nokky.net/wp-content/uploads/2017/05/snipaste_20170530_011702.png" alt=""></a></p>
+<p><a href="/img/2017/05/snipaste_20170530_011702.png"><img src="/img/2017/05/snipaste_20170530_011702.png" alt=""></a></p>
 <p>最大差异是在main.cpp文件中</p>
-<p><a href="http://nokky.net/wp-content/uploads/2017/05/snipaste_20170530_011749.png" target="_blank" rel="external"><img src="http://nokky.net/wp-content/uploads/2017/05/snipaste_20170530_011749.png" alt=""></a></p>
+<p><a href="/img/2017/05/snipaste_20170530_011749.png"><img src="/img/2017/05/snipaste_20170530_011749.png" alt=""></a></p>
 <p>这里不是把Calc.h引用进来而是把Calc.cpp引用进来。</p>
 <p>为什么？IDE帮我们做了一些处理。在vscode里不引用Calc.cpp而是引用Calc.h编译的时候会提示Add函数没有定义。简单做了一个图，好像并没有什么不对。</p>
-<p><a href="http://nokky.net/wp-content/uploads/2017/05/snipaste_20170530_014200.png" target="_blank" rel="external"><img src="http://nokky.net/wp-content/uploads/2017/05/snipaste_20170530_014200-1024x562.png" alt=""></a></p>
+<p><a href="/img/2017/05/snipaste_20170530_014200.png"><img src="/img/2017/05/snipaste_20170530_014200-1024x562.png" alt=""></a></p>
 <p>如果我希望像IDE里一样引用.h文件而不是.cpp/.c文件保持头文件一致性，有没有办法呢？有！即是在.h文件中把所有声明都写完之后再引用定义部分的文件。</p>
-<p><a href="http://nokky.net/wp-content/uploads/2017/05/snipaste_20170530_015415.png" target="_blank" rel="external"><img src="http://nokky.net/wp-content/uploads/2017/05/snipaste_20170530_015415.png" alt=""></a></p>
+<p><a href="/img/2017/05/snipaste_20170530_015415.png"><img src="/img/2017/05/snipaste_20170530_015415.png" alt=""></a></p>
 <p>最后要注意的一点是，VS里的文件夹在真实路径下是不存在的，所有文件都是在同一个目录下的，这就是为什么vscode的引用路径要曲折一下的原因。</p>
 
     
@@ -673,23 +673,38 @@
 
     <!-- Categories  -->
     
+        <li class="dropdown">
+            <a href="#" class="ripple-effect dropdown-toggle" data-toggle="dropdown">
+                
+                    <i class="material-icons sidebar-material-icons">chrome_reader_mode</i>
+                
+                Categories
+                <b class="caret"></b>
+            </a>
+            <ul class="dropdown-menu">
+                <li>
+                <a class="sidebar_archives-link" href="/categories/Arduino/">Arduino<span class="sidebar_archives-count">1</span></a></li><li><a class="sidebar_archives-link" href="/categories/CSharp/">CSharp<span class="sidebar_archives-count">1</span></a></li><li><a class="sidebar_archives-link" href="/categories/Linux/">Linux<span class="sidebar_archives-count">2</span></a></li><li><a class="sidebar_archives-link" href="/categories/Linux/VPS/">VPS<span class="sidebar_archives-count">2</span></a></li><li><a class="sidebar_archives-link" href="/categories/Programming/">Programming<span class="sidebar_archives-count">2</span></a></li><li><a class="sidebar_archives-link" href="/categories/Talking/">Talking<span class="sidebar_archives-count">1</span></a></li><li><a class="sidebar_archives-link" href="/categories/WPF/">WPF<span class="sidebar_archives-count">4</span></a></li><li><a class="sidebar_archives-link" href="/categories/Windows/">Windows<span class="sidebar_archives-count">3</span></a>
+            </ul>
+        </li>
+        
+    
 
     <!-- Pages  -->
     
         <li>
-            <a href="about-me" title="About">
+            <a href="/about" title="About Me">
                 
                     <i class="material-icons sidebar-material-icons">person</i>
                 
-                About
+                About Me
             </a>
         </li>
         
     
         <li>
-            <a href="friends" title="Friends">
+            <a href="/friends" title="Friends">
                 
-                    <i class="material-icons sidebar-material-icons">person</i>
+                    <i class="material-icons sidebar-material-icons">group</i>
                 
                 Friends
             </a>

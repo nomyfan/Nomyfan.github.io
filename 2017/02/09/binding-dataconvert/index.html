@@ -515,10 +515,10 @@
         <p>上一篇文章中我们了解了如何在Binding的过程中对数据进行校验，确保数据的有效性，并且提到了数据类型转换。我们都知道C#是强类型语言，在绑定的过程中，Target和Source的属性类型不同的情况经常遇到，这时候我们就需要手动进行数据类型的转换了。或许有的小伙伴会提出这样一个问题，上一篇文章中的Slider的Value属性是double类型的，TextBox的Text属性是string类型的，也不见对它们进行了数据转换啊！这个是因为，string和double之间的转换比较简单，WPF类库已经帮我们解决这个问题了，但是当我们遇到更加复杂的业务逻辑的时候，我们只能自己写代码了。要实现数据转换其实很简单，只要写一个类继承IValueConverter接口实现Convert和ConvertBack方法，然后在Binding对象中消费这个类就可以了。</p>
 <hr>
 <h2 id="实现"><a href="#实现" class="headerlink" title="实现"></a><span style="color: #36b2a6;">实现</span></h2><p>现在我们的业务是，一个CheckBox并带有提示文字，问用户是不是小基佬，如果是就在下面显示一个动漫可爱女孩子的图片(●’◡’●)，如果不是就显示一个真叫人头大的图片。图片显示用一个Image对象，我们要让它显示出图片内容，就要为它的Source属性赋值，这是ImageSource类型，赋值的时候给一段图片的URI字符串就可以了，而CheckBox的IsChecked是bool类型，因此我们要手写一个转换器。</p>
-<p><pre class="lang:c# decode:true " title="C#">class CheckBoxStateToImageSourceConverter : IValueConverter<br>{<br>    public object Convert(object value, Type targetType, object paremeter, CultureInfo culture)<br>    {<br>        if ((bool)value)<br>        {<br>            return @”/Assets/bigHead.jpg”;<br>        }<br>        return @”/Assets/milai.png”;<br>    }<br>    public object ConvertBack(object value, Type targetType, object paremeter, CultureInfo culture)<br>    {<br>        throw new NotImplementedException();<br>    }<br>}</pre><br>&nbsp;</p>
+<p><pre>class CheckBoxStateToImageSourceConverter : IValueConverter<br>{<br>    public object Convert(object value, Type targetType, object paremeter, CultureInfo culture)<br>    {<br>        if ((bool)value)<br>        {<br>            return @”/Assets/bigHead.jpg”;<br>        }<br>        return @”/Assets/milai.png”;<br>    }<br>    public object ConvertBack(object value, Type targetType, object paremeter, CultureInfo culture)<br>    {<br>        throw new NotImplementedException();<br>    }<br>}</pre><br>&nbsp;</p>
 <p>然后我们要消费这个转换器，只需要给Binding对象的Converter属性赋值一个我们刚刚写的转换器的实例就可以了，XAML代码如下：</p>
-<p><pre class="lang:xhtml decode:true" title="XAML">&lt;StackPanel&gt;<br>    &lt;StackPanel.Resources&gt;<br>        &lt;local:CheckBoxStateToImageSourceConverter x:Key=”converter”/&gt;<br>    &lt;/StackPanel.Resources&gt;<br>    &lt;Grid Margin=”10”&gt;<br>        &lt;CheckBox x:Name=”checkBox”<br>                    HorizontalAlignment=”Left”<br>                    VerticalAlignment=”Center”/&gt;<br>        &lt;TextBlock Text=”你是基佬嘛？”<br>                    FontSize=”20”<br>                    HorizontalAlignment=”Left”<br>                    Margin=”20,0,0,0”/&gt;<br>    &lt;/Grid&gt;<br>    &lt;Image Source=”{Binding<br>        ElementName=checkBox<br>        ,Path=IsChecked<br>        ,Converter={StaticResource converter}<br>        ,Mode=OneWay}”/&gt;<br>&lt;/StackPanel&gt;</pre><br>运行效果如下</p>
-<p><a href="http://104.224.163.126/wp-content/uploads/2017/02/sp170209_131407.png" target="_blank" rel="external"><img src="http://nokky.net/wp-content/uploads/2017/02/sp170209_131407.png" alt=""></a> <a href="http://104.224.163.126/wp-content/uploads/2017/02/sp170209_131440.png" target="_blank" rel="external"><img src="http://nokky.net/wp-content/uploads/2017/02/sp170209_131440.png" alt=""></a></p>
+<p><pre>&lt;StackPanel&gt;<br>    &lt;StackPanel.Resources&gt;<br>        &lt;local:CheckBoxStateToImageSourceConverter x:Key=”converter”/&gt;<br>    &lt;/StackPanel.Resources&gt;<br>    &lt;Grid Margin=”10”&gt;<br>        &lt;CheckBox x:Name=”checkBox”<br>                    HorizontalAlignment=”Left”<br>                    VerticalAlignment=”Center”/&gt;<br>        &lt;TextBlock Text=”你是基佬嘛？”<br>                    FontSize=”20”<br>                    HorizontalAlignment=”Left”<br>                    Margin=”20,0,0,0”/&gt;<br>    &lt;/Grid&gt;<br>    &lt;Image Source=”{Binding<br>        ElementName=checkBox<br>        ,Path=IsChecked<br>        ,Converter={StaticResource converter}<br>        ,Mode=OneWay}”/&gt;<br>&lt;/StackPanel&gt;</pre><br>运行效果如下</p>
+<p><a href="/img/2017/02/sp170209_131407.png"><img src="/img/2017/02/sp170209_131407.png" alt=""></a> <a href="/img/2017/02/sp170209_131440.png"><img src="/img/2017/02/sp170209_131440.png" alt=""></a></p>
 <hr>
 <h2 id="分析"><a href="#分析" class="headerlink" title="分析"></a><span style="color: #36b2a6;">分析</span></h2><p>Q：为什么ConvertBack方法没有实际代码？</p>
 <p>A：Convert是指从Source到Target这个途径，ConvertBack显而易知是从Target到Source这个途径。这里我们是单向的，因此我们不需要给ConvertBack方法写具体的转换代码。如果你遇到的Binding是TwoWay的，那么毫无疑问你就要实现这部分的逻辑。</p>
@@ -658,23 +658,38 @@
 
     <!-- Categories  -->
     
+        <li class="dropdown">
+            <a href="#" class="ripple-effect dropdown-toggle" data-toggle="dropdown">
+                
+                    <i class="material-icons sidebar-material-icons">chrome_reader_mode</i>
+                
+                Categories
+                <b class="caret"></b>
+            </a>
+            <ul class="dropdown-menu">
+                <li>
+                <a class="sidebar_archives-link" href="/categories/Arduino/">Arduino<span class="sidebar_archives-count">1</span></a></li><li><a class="sidebar_archives-link" href="/categories/CSharp/">CSharp<span class="sidebar_archives-count">1</span></a></li><li><a class="sidebar_archives-link" href="/categories/Linux/">Linux<span class="sidebar_archives-count">2</span></a></li><li><a class="sidebar_archives-link" href="/categories/Linux/VPS/">VPS<span class="sidebar_archives-count">2</span></a></li><li><a class="sidebar_archives-link" href="/categories/Programming/">Programming<span class="sidebar_archives-count">2</span></a></li><li><a class="sidebar_archives-link" href="/categories/Talking/">Talking<span class="sidebar_archives-count">1</span></a></li><li><a class="sidebar_archives-link" href="/categories/WPF/">WPF<span class="sidebar_archives-count">4</span></a></li><li><a class="sidebar_archives-link" href="/categories/Windows/">Windows<span class="sidebar_archives-count">3</span></a>
+            </ul>
+        </li>
+        
+    
 
     <!-- Pages  -->
     
         <li>
-            <a href="about-me" title="About">
+            <a href="/about" title="About Me">
                 
                     <i class="material-icons sidebar-material-icons">person</i>
                 
-                About
+                About Me
             </a>
         </li>
         
     
         <li>
-            <a href="friends" title="Friends">
+            <a href="/friends" title="Friends">
                 
-                    <i class="material-icons sidebar-material-icons">person</i>
+                    <i class="material-icons sidebar-material-icons">group</i>
                 
                 Friends
             </a>
