@@ -12,7 +12,7 @@
     
     <title>
         
-            VPS-Centos 7搭建配置Shadowsocks科学上网 | 
+            记一次C#爬虫经历 | 
         
         IConnectable&lt;World&gt;
     </title>
@@ -36,7 +36,7 @@
     <meta name="theme-color" content="#0097A7">
     <meta name="author" content="Myers Chan">
     <meta name="description" itemprop="description" content="Nomyfan&#39;s person blog">
-    <meta name="keywords" content="">
+    <meta name="keywords" content=",C#,爬虫">
 
     <!-- Site Verification -->
     
@@ -65,18 +65,18 @@
     <!-- The Open Graph protocol -->
     <meta property="og:url" content="https://nomyfan.github.io">
     <meta property="og:type" content="blog">
-    <meta property="og:title" content="VPS-Centos 7搭建配置Shadowsocks科学上网 | IConnectable&lt;World&gt;">
+    <meta property="og:title" content="记一次C#爬虫经历 | IConnectable&lt;World&gt;">
     <meta property="og:image" content="/img/favicon.png" />
     <meta property="og:description" content="Nomyfan&#39;s person blog">
-    
+    <meta property="og:article:tag" content="C#"> <meta property="og:article:tag" content="爬虫"> 
 
     
-        <meta property="article:published_time" content="Feb 11, 2017" />
-        <meta property="article:modified_time" content="Dec 21, 2017" />
+        <meta property="article:published_time" content="Jan 06, 2018" />
+        <meta property="article:modified_time" content="Jan 06, 2018" />
     
 
     <!-- The Twitter Card protocol -->
-    <meta name="twitter:title" content="VPS-Centos 7搭建配置Shadowsocks科学上网 | IConnectable&lt;World&gt;">
+    <meta name="twitter:title" content="记一次C#爬虫经历 | IConnectable&lt;World&gt;">
     <meta name="twitter:description" content="Nomyfan&#39;s person blog">
     <meta name="twitter:image" content="/img/favicon.png">
     <meta name="twitter:card" content="summary_large_image" />
@@ -84,7 +84,7 @@
 
     <!-- Add canonical link for SEO -->
     
-        <link rel="canonical" href="https://nomyfan.github.io/2017/02/11/vps-centos-7-shadowsocks/index.html" />
+        <link rel="canonical" href="https://nomyfan.github.io/2018/01/06/crawler/index.html" />
     
 
     <!-- Structured-data for SEO -->
@@ -110,10 +110,10 @@
         },
         "description": "NOMYFAN's BLOG,Nice to meet you"
     },
-    "headline": "VPS-Centos 7搭建配置Shadowsocks科学上网",
-    "url": "https://nomyfan.github.io/2017/02/11/vps-centos-7-shadowsocks/index.html",
-    "datePublished": "Feb 11, 2017",
-    "dateModified": "Dec 21, 2017",
+    "headline": "记一次C#爬虫经历",
+    "url": "https://nomyfan.github.io/2018/01/06/crawler/index.html",
+    "datePublished": "Jan 06, 2018",
+    "dateModified": "Jan 06, 2018",
     "description": "Nomyfan&#39;s person blog",
     "mainEntityOfPage": {
         "@type": "WebPage",
@@ -347,7 +347,7 @@
 
     
     <ul class="post-toc-wrap mdl-menu mdl-menu--bottom-left mdl-js-menu mdl-js-ripple-effect" for="post-toc-trigger-btn" style="max-height:80vh; overflow-y:scroll;">
-        <ol class="post-toc"><li class="post-toc-item post-toc-level-2"><a class="post-toc-link" href="#安装"><span class="post-toc-number">1.</span> <span class="post-toc-text">安装</span></a></li><li class="post-toc-item post-toc-level-2"><a class="post-toc-link" href="#配置"><span class="post-toc-number">2.</span> <span class="post-toc-text">配置</span></a></li></ol>
+        <ol class="post-toc"><li class="post-toc-item post-toc-level-1"><a class="post-toc-link" href="#准备工作"><span class="post-toc-number">1.</span> <span class="post-toc-text">准备工作</span></a></li><li class="post-toc-item post-toc-level-1"><a class="post-toc-link" href="#敲代码"><span class="post-toc-number">2.</span> <span class="post-toc-text">敲代码</span></a><ol class="post-toc-child"><li class="post-toc-item post-toc-level-2"><a class="post-toc-link" href="#文件读取"><span class="post-toc-number">2.1.</span> <span class="post-toc-text">文件读取</span></a></li><li class="post-toc-item post-toc-level-2"><a class="post-toc-link" href="#爬图"><span class="post-toc-number">2.2.</span> <span class="post-toc-text">爬图</span></a></li><li class="post-toc-item post-toc-level-2"><a class="post-toc-link" href="#执行"><span class="post-toc-number">2.3.</span> <span class="post-toc-text">执行</span></a></li></ol></li><li class="post-toc-item post-toc-level-1"><a class="post-toc-link" href="#运行结果"><span class="post-toc-number">3.</span> <span class="post-toc-text">运行结果</span></a></li></ol>
         <!--
         <li class="mdl-menu__item">
             Some Action
@@ -385,7 +385,7 @@
         
     
             <p class="article-headline-p">
-                VPS-Centos 7搭建配置Shadowsocks科学上网
+                记一次C#爬虫经历
             </p>
         </div>
 
@@ -404,7 +404,7 @@
     <!-- Author Name & Date -->
     <div>
         <strong>Myers Chan</strong>
-        <span>Feb 11, 2017</span>
+        <span>Jan 06, 2018</span>
     </div>
 
     <div class="section-spacer"></div>
@@ -426,7 +426,7 @@
 <ul class="mdl-menu mdl-menu--bottom-right mdl-js-menu mdl-js-ripple-effect" for="article-functions-qrcode-button">
     <li class="mdl-menu__item">Read this article on other devices</li>
     
-        <img src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAPYAAAD2CAAAAADAeSUUAAAC1klEQVR42u3aQXbCMAwFQO5/6fYAFPMlAQ32ZMWjaeLxRujLt58jrxs2NjY2NjY2Njb2Jdm3+PrjQXff39+/fsJ6JY/e1VszNjY29t7sZEHVv1YZCWmyZmxsbOwT2Mlr1oy8XK0L3ppRXTM2NjY2dvI535S8Fcm3ABsbGxt7UsByTF6i8jYDGxsbG7sa0EQvKI4H8sjp37I0bGxs7Muz86HpdT5/dL6NjY2NfWF29eq9vtAwxAFWeeXY2NjYm7Krx2Umw9dq8JQfBooaHmxsbOwD2L1xby8MqkZF+f0Pv8fGxsbelN0rY+ujOdWylGz9+mnRW7CxsbG3ZucR0rwx6LU6k/ALGxsb+2R29Ud/Xmx6m5I/GRsbG/s0dv4TPwn3q2FQdQD8oVAJGxsb+6vYVXAyPJhg8ijqBaESNjY29peze8cfJzF9dfSbg580VNjY2NibsudR0XzYcBtfUVOEjY2NvSl7HhUlmF7zM29jsLGxsU9j94pK0lT07plEXYVQCRsbG3sLdrXBSOKe5GnVyKnQeGBjY2Mfw64G8dXQv7odvcOX0SZiY2Njb8qelKJ5kzBvbwpFFxsbG3tTdrUw5AdlnkQ848HAC86cYmNjY2/BXi/rfaWu12YkTRE2Njb2aexeWJMD8g1NxgDVrcHGxsY+gd0L+qslsNdyTNYZZWnY2NjYW7Pzse5keJBvVr5xowKGjY2NvR17vaBXHcrJS1R1tIyNjY19MjtpNuYx0CSoSkYF2NjY2Cewq1dvQFuNpfJDQoVmCRsbG3tT9rww5FFUdRicHwZthkrY2NjYG7Hz6H9yNCdpOfIYqxxmYWNjYx/Arh5wrC40/6/qFb0dGxsbGzu4pxzZx4uetCjY2NjY2PmCJqWrF1TlAwNsbGzsE9hJmekNhntbnIRQeaSFjY2NvTe7F9wkG9RbaC+6euN8GxsbG/vC7HMubGxsbGxsbGxs7MtcvzfBaDozebfKAAAAAElFTkSuQmCC">
+        <img src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAN4AAADeCAAAAAB3DOFrAAACXklEQVR42u3aS1LEMAwFwLn/peEA1IT3LMcTqM4qNeTjzsISkl5f//p44eHh4eHh4eHhPYz3io+fd/08f/fLu3dd37W4Njw8PLwjvF+22strrpd7Tc3P87Xh4eHhneS923Cvr3l3fRJO2vBzvTY8PDy8J/PaFDn/a/suPDw8vL/Fy0sGSTBoAxIeHh7eE3jJP/zJ9W3BYvIuPDw8vE/x2s395PnR/h4eHh5ewFvb4teuz9PxbUNXeHh4eDfw2uZWu7h5sGk/AR4eHt7dvLxwkBQR5h/i+pl1GRcPDw/vZt5a4yp5wjxBz8u7eHh4eGd4bYE1/yhtEGrTazw8PLzP8upW09JS8tS5TfTx8PDwPsXLi7xtErxWjEieiYeHh3eelyTN+ShA+zl2FXDx8PDwzvMmRYrJGEFbDh6NDuDh4eFt4s1Hr3LGPB3/5e14eHh4B3ltu2ut0bVr6GpUa8HDw8Mb89qH7hodiFLk8sl4eHh4J3l58z5Pr9v21VrzDA8PD+88b++y2vJrUrzYMHSFh4eHt4m3ljpPWmJtMKgDGB4eHt4DeMlC27bW2hoiPB4eHt5B3vXNa5t1O6iaPzNqgOHh4eF9iDdPu/Nf8nR8W2DAw8PDK3ntsTbY2l65lnbj4eHhneG12/EE34IX03Q8PDy8I7x5MJgg14YSFosReHh4eFt5k+ZTvom3xY6kLYeHh4f3t3htMbdNoD8cGPDw8PBuCwx3JNNtKQQPDw/vPK8djZoUf9s22KEyLh4eHt4NDbB2UGBeok2CEB4eHt5J3v878PDw8PDw8PDwHnB8AzcR7Tle37cxAAAAAElFTkSuQmCC">
     
 </ul>
     
@@ -439,7 +439,7 @@
     </button>
     <ul class="mdl-menu mdl-menu--bottom-right mdl-js-menu mdl-js-ripple-effect" for="article-functions-viewtags-button">
         <li class="mdl-menu__item">
-        
+        <a class="post_tag-link" href="/tags/C/">C#</a></li><li class="mdl-menu__item"><a class="post_tag-link" href="/tags/爬虫/">爬虫</a>
     </ul>
     
 
@@ -455,7 +455,7 @@
 
     <!-- Share Weibo -->
     
-        <a class="post_share-link" href="http://service.weibo.com/share/share.php?appkey=&title=VPS-Centos 7搭建配置Shadowsocks科学上网&url=https://nomyfan.github.io/2017/02/11/vps-centos-7-shadowsocks/index.html&pic=&searchPic=false&style=simple" target="_blank">
+        <a class="post_share-link" href="http://service.weibo.com/share/share.php?appkey=&title=记一次C#爬虫经历&url=https://nomyfan.github.io/2018/01/06/crawler/index.html&pic=&searchPic=false&style=simple" target="_blank">
             <li class="mdl-menu__item">
                 Share to Weibo
             </li>
@@ -464,7 +464,7 @@
 
     <!-- Share Twitter -->
     
-        <a class="post_share-link" href="https://twitter.com/intent/tweet?text=VPS-Centos 7搭建配置Shadowsocks科学上网&url=https://nomyfan.github.io/2017/02/11/vps-centos-7-shadowsocks/index.html&via=Myers Chan" target="_blank">
+        <a class="post_share-link" href="https://twitter.com/intent/tweet?text=记一次C#爬虫经历&url=https://nomyfan.github.io/2018/01/06/crawler/index.html&via=Myers Chan" target="_blank">
             <li class="mdl-menu__item">
                 Share to Twitter
             </li>
@@ -473,7 +473,7 @@
 
     <!-- Share Facebook -->
     
-        <a class="post_share-link" href="https://www.facebook.com/sharer/sharer.php?u=https://nomyfan.github.io/2017/02/11/vps-centos-7-shadowsocks/index.html" target="_blank">
+        <a class="post_share-link" href="https://www.facebook.com/sharer/sharer.php?u=https://nomyfan.github.io/2018/01/06/crawler/index.html" target="_blank">
             <li class="mdl-menu__item">
                 Share to Facebook
             </li>
@@ -482,7 +482,7 @@
 
     <!-- Share Google+ -->
     
-        <a class="post_share-link" href="https://plus.google.com/share?url=https://nomyfan.github.io/2017/02/11/vps-centos-7-shadowsocks/index.html" target="_blank">
+        <a class="post_share-link" href="https://plus.google.com/share?url=https://nomyfan.github.io/2018/01/06/crawler/index.html" target="_blank">
             <li class="mdl-menu__item">
                 Share to Google+
             </li>
@@ -494,7 +494,7 @@
 
     <!-- Share QQ -->
     
-        <a class="post_share-link" href="http://connect.qq.com/widget/shareqq/index.html?site=IConnectable&lt;World&gt;&title=VPS-Centos 7搭建配置Shadowsocks科学上网&summary=Nomyfan&#39;s person blog&pics=https://nomyfan.github.io/img/favicon.png&url=https://nomyfan.github.io/2017/02/11/vps-centos-7-shadowsocks/index.html" target="_blank">
+        <a class="post_share-link" href="http://connect.qq.com/widget/shareqq/index.html?site=IConnectable&lt;World&gt;&title=记一次C#爬虫经历&summary=Nomyfan&#39;s person blog&pics=https://nomyfan.github.io/img/favicon.png&url=https://nomyfan.github.io/2018/01/06/crawler/index.html" target="_blank">
             <li class="mdl-menu__item">
                 Share to QQ
             </li>
@@ -512,20 +512,15 @@
                 <!-- Post Content -->
                 <div id="post-content" class="mdl-color-text--grey-700 mdl-card__supporting-text fade out">
     
-        <p>刚刚入手了一个VPS，拿来练手Linux类系统，最重要的还是顺便自己搭建SS科学上网。我这里的是Centos 7 64位。</p>
-<hr>
-<h2 id="安装"><a href="#安装" class="headerlink" title="安装"></a><span style="color: #36b2a6;">安装</span></h2><p><pre>yum install python-setuptools &amp;&amp; easy_install pip<br>pip install shadowsocks</pre><br>这样SS就安装好啦，然后我们要配置一下。</p>
-<hr>
-<h2 id="配置"><a href="#配置" class="headerlink" title="配置"></a><span style="color: #36b2a6;">配置</span></h2><p>新建一个json文件</p>
-<p><pre>vim /etc/shadowsocks.json</pre><br>然后写入配置，端口和密码自己自定义。</p>
-<p><pre>{<br>    “server”:”0.0.0.0”,<br>    “server_port”:8900,<br>    “local_address”: “127.0.0.1”,<br>    “local_port”:1080,<br>    “password”:”passwd”,<br>    “timeout”:300,<br>    “method”:”aes-256-cfb”,<br>}</pre><br>如果要多用户登陆，那么就把password改成port_password然后加入多个端口和密码，例如：</p>
-<p><pre>{<br>    “server”:”0.0.0.0”,<br>    “local_address”:”127.0.0.1”,<br>    “local_port”:1080,<br>    “port_password”:{<br>         “8900”:”passwd0”,<br>         “8901”:”passwd1”,<br>         “8902”:”passwd2”,<br>         “8903”:”passwd3”,<br>         “8904”:”passwd4”<br>    },<br>    “timeout”:300,<br>    “method”:”aes-256-cfb”,<br>}</pre><br>然后新建一个ss服务</p>
-<p><pre>vim /etc/systemd/system/shadowsocks.service</pre><br>内容写入：<br><figure class="highlight plain"><table><tr><td class="code"><pre><div class="line">[Unit]</div><div class="line">Description=Shadowsocks</div><div class="line"></div><div class="line">[Service]</div><div class="line">TimeoutStartSec=0</div><div class="line">ExecStart=/usr/bin/ssserver -c /etc/shadowsocks.json</div><div class="line"></div><div class="line">[Install]</div><div class="line">WantedBy=multi-user.target</div></pre></td></tr></table></figure><br>然后开启服务，并让服务开机启动</p>
-<p><pre>systemctl enable shadowsocks<br>systemctl start shadowsocks</pre><br>这时候可以检查一下服务是否正确开启</p>
-<p><pre>systemctl status shadowsocks</pre><br>如果Active那里显示的是绿色的active(running)则说明服务正确开启了。如图：<br><a href="/img/2017/02/sp170211_224944.png"><img src="/img/2017/02/sp170211_224944.png" alt=""></a></p>
-<p>最后，千万记得防火墙开启刚才配置里写的端口，我的例子里写的只有一个8900，防火墙没开的请自动忽略。</p>
-<p><pre>firewall-cmd –add-port=8900/tcp</pre><br>查看端口是否正确开启</p>
-<p><pre>firewall-cmd –query-port=8900/tcp</pre><br>返回success则正确开启了，Enjoy it！</p>
+        <p>这几天都在写C++，感觉都要吐了，适当写写C#转换一下心情。既然要转换心情，那么就应该有点乐趣，那就把我们学院的所有人的人头照都爬了吧！😜<br>我校的人头照很好爬，连认证都不用就可以用直链Get到。🐕</p>
+<h1 id="准备工作"><a href="#准备工作" class="headerlink" title="准备工作"></a>准备工作</h1><p>当然要准备一下所有人的花名册，这个不难get到，这学期分专业的时候有excel文件公示，copy，paste，完工。</p>
+<h1 id="敲代码"><a href="#敲代码" class="headerlink" title="敲代码"></a>敲代码</h1><p>这里一共准备两个方法即可，一个用来读取文件，获得所有人的学号和姓名，另一个方法负责把这些照片download下来。</p>
+<h2 id="文件读取"><a href="#文件读取" class="headerlink" title="文件读取"></a>文件读取</h2><figure class="highlight csharp"><table><tr><td class="code"><pre><div class="line"><span class="function"><span class="keyword">static</span> Dictionary&lt;<span class="keyword">string</span>, <span class="keyword">string</span>&gt; <span class="title">GetInfo</span>(<span class="params"></span>)</span></div><div class="line"><span class="function"></span>&#123;</div><div class="line">    Dictionary&lt;<span class="keyword">string</span>, <span class="keyword">string</span>&gt; dictionary = <span class="keyword">new</span> Dictionary&lt;<span class="keyword">string</span>, <span class="keyword">string</span>&gt;();</div><div class="line"></div><div class="line">    <span class="keyword">using</span> (StreamReader sr = <span class="keyword">new</span> StreamReader(<span class="string">"id_names.txt"</span>))</div><div class="line">    &#123;</div><div class="line">        <span class="keyword">string</span> line = <span class="literal">null</span>;</div><div class="line">        <span class="keyword">while</span> ((line = sr.ReadLine()) != <span class="literal">null</span>)</div><div class="line">        &#123;</div><div class="line">            <span class="keyword">var</span> words = line.Split(<span class="string">' '</span>);</div><div class="line">            dictionary.Add(words[<span class="number">0</span>], words[<span class="number">1</span>]);</div><div class="line">        &#125;</div><div class="line">    &#125;</div><div class="line">    <span class="keyword">return</span> dictionary;</div><div class="line">&#125;</div></pre></td></tr></table></figure>
+<p>函数返回一个以学号为Key，姓名为Value的字典，有了这个字典，我们就可以遍历所有的元素然后爬图了。</p>
+<h2 id="爬图"><a href="#爬图" class="headerlink" title="爬图"></a>爬图</h2><figure class="highlight csharp"><table><tr><td class="code"><pre><div class="line"><span class="function"><span class="keyword">static</span> <span class="keyword">void</span> <span class="title">PullImage</span>(<span class="params"><span class="keyword">string</span> url, <span class="keyword">string</span> id, <span class="keyword">string</span> name</span>)</span></div><div class="line"><span class="function"></span>&#123;</div><div class="line">    <span class="keyword">string</span> url_ = url + id + <span class="string">".jpg"</span>;</div><div class="line">    HttpWebRequest webRequest = WebRequest.Create(url_) <span class="keyword">as</span> HttpWebRequest;</div><div class="line"></div><div class="line">    Image img = <span class="literal">null</span>;</div><div class="line">    <span class="keyword">try</span></div><div class="line">    &#123;</div><div class="line">        <span class="keyword">var</span> webResponse = webRequest.GetResponse();</div><div class="line">        <span class="keyword">var</span> stream = webResponse.GetResponseStream();</div><div class="line">        img = Image.FromStream(stream);</div><div class="line">        img.Save(<span class="string">$"pics/<span class="subst">&#123;id&#125;</span> <span class="subst">&#123;name&#125;</span>.jpg"</span>);</div><div class="line">    &#125;</div><div class="line">    <span class="keyword">catch</span> (Exception e)</div><div class="line">    &#123;</div><div class="line">        Console.WriteLine(<span class="string">$"Get <span class="subst">&#123;name&#125;</span>'s pic with error."</span>);</div><div class="line">        Console.WriteLine(e.Message);</div><div class="line">    &#125;</div><div class="line">&#125;</div></pre></td></tr></table></figure>
+<p>添加异常捕获，不然会因为某个图片获取过程出现错误而导致程序奔掉，后续学生的照片获取中断。  </p>
+<h2 id="执行"><a href="#执行" class="headerlink" title="执行"></a>执行</h2><p>两个函数都准备好了，那么就开始实验吧！<br><figure class="highlight csharp"><table><tr><td class="code"><pre><div class="line"><span class="function"><span class="keyword">static</span> <span class="keyword">void</span> <span class="title">Main</span>(<span class="params"><span class="keyword">string</span>[] args</span>)</span></div><div class="line"><span class="function"></span>&#123;</div><div class="line">    <span class="keyword">string</span> url = <span class="string">"http://xxx/xxx/photo/student/"</span>; <span class="comment">//这里把链接抹掉了</span></div><div class="line"></div><div class="line">    <span class="keyword">var</span> ret = GetInfo();</div><div class="line">    <span class="keyword">foreach</span> (<span class="keyword">var</span> r <span class="keyword">in</span> ret)</div><div class="line">    &#123;</div><div class="line">        PullImage(url, r.Key, r.Value);</div><div class="line">        Thread.Sleep(<span class="number">1300</span>); <span class="comment">//暂停1.3秒，不然可能会因为频繁发送请求服务器方面出现问题（毕竟土豆服务器）</span></div><div class="line">    &#125;</div><div class="line"></div><div class="line">    Console.WriteLine(<span class="string">"Done"</span>);</div><div class="line">    Console.ReadLine();</div><div class="line"></div><div class="line">&#125;</div></pre></td></tr></table></figure></p>
+<h1 id="运行结果"><a href="#运行结果" class="headerlink" title="运行结果"></a>运行结果</h1><p>最后的运行结果如下图，一个学生的照片获取超时了，还行。<br><a href="/img/2018/01/snipaste_20180106_203755.png"><img src="/img/2018/01/snipaste_20180106_203755.png" alt=""></a>  </p>
 
     
 
@@ -545,21 +540,13 @@
             <nav class="material-nav mdl-color-text--grey-50 mdl-cell mdl-cell--12-col">
     <!-- Prev Nav -->
     
-        <a href="/2017/02/13/wordpress-migration/" id="post_nav-newer" class="prev-content">
-            <button class="mdl-button mdl-js-button mdl-js-ripple-effect mdl-button--icon mdl-color--white mdl-color-text--grey-900" role="presentation">
-                <i class="material-icons">arrow_back</i>
-            </button>
-            &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-            Newer
-        </a>
-    
 
     <!-- Section Spacer -->
     <div class="section-spacer"></div>
 
     <!-- Next Nav -->
     
-        <a href="/2017/02/09/binding-dataconvert/" id="post_nav-older" class="next-content">
+        <a href="/2017/12/11/delegate-event/" id="post_nav-older" class="next-content">
             Older
             &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
             <button class="mdl-button mdl-js-button mdl-js-ripple-effect mdl-button--icon mdl-color--white mdl-color-text--grey-900" role="presentation">
