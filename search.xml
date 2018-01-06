@@ -1,0 +1,836 @@
+<?xml version="1.0" encoding="utf-8"?>
+<search> 
+  
+    
+    <entry>
+      <title><![CDATA[记一次C#爬虫经历]]></title>
+      <url>/2018/01/06/crawler/</url>
+      <content type="html"><![CDATA[<p>这几天都在写C++，感觉都要吐了（原谅我太渣(/▽＼)），适当写写C#转换一下心情。既然要转换心情，那么就应该有点乐趣，那就把我们学院的所有人的人头照都爬了吧！😜<br>我校的人头照很好爬，连认证都不用就可以用直链Get到。🐕</p>
+<h1 id="准备工作"><a href="#准备工作" class="headerlink" title="准备工作"></a>准备工作</h1><p>当然要准备一下所有人的花名册，这个不难get到，这学期分专业的时候有excel文件公示，copy，paste，完工。</p>
+<h1 id="敲代码"><a href="#敲代码" class="headerlink" title="敲代码"></a>敲代码</h1><p>这里一共准备两个方法即可，一个用来读取文件，获得所有人的学号和姓名，另一个方法负责把这些照片download下来。</p>
+<h2 id="文件读取"><a href="#文件读取" class="headerlink" title="文件读取"></a>文件读取</h2><figure class="highlight csharp"><table><tr><td class="code"><pre><div class="line"><span class="function"><span class="keyword">static</span> Dictionary&lt;<span class="keyword">string</span>, <span class="keyword">string</span>&gt; <span class="title">GetInfo</span>(<span class="params"></span>)</span></div><div class="line"><span class="function"></span>&#123;</div><div class="line">    Dictionary&lt;<span class="keyword">string</span>, <span class="keyword">string</span>&gt; dictionary = <span class="keyword">new</span> Dictionary&lt;<span class="keyword">string</span>, <span class="keyword">string</span>&gt;();</div><div class="line"></div><div class="line">    <span class="keyword">using</span> (StreamReader sr = <span class="keyword">new</span> StreamReader(<span class="string">"id_names.txt"</span>))</div><div class="line">    &#123;</div><div class="line">        <span class="keyword">string</span> line = <span class="literal">null</span>;</div><div class="line">        <span class="keyword">while</span> ((line = sr.ReadLine()) != <span class="literal">null</span>)</div><div class="line">        &#123;</div><div class="line">            <span class="keyword">var</span> words = line.Split(<span class="string">' '</span>);</div><div class="line">            dictionary.Add(words[<span class="number">0</span>], words[<span class="number">1</span>]);</div><div class="line">        &#125;</div><div class="line">    &#125;</div><div class="line">    <span class="keyword">return</span> dictionary;</div><div class="line">&#125;</div></pre></td></tr></table></figure>
+<p>函数返回一个以学号为Key，姓名为Value的字典，有了这个字典，我们就可以遍历所有的元素然后爬图了。</p>
+<h2 id="爬图"><a href="#爬图" class="headerlink" title="爬图"></a>爬图</h2><figure class="highlight csharp"><table><tr><td class="code"><pre><div class="line"><span class="function"><span class="keyword">static</span> <span class="keyword">void</span> <span class="title">PullImage</span>(<span class="params"><span class="keyword">string</span> url, <span class="keyword">string</span> id, <span class="keyword">string</span> name</span>)</span></div><div class="line"><span class="function"></span>&#123;</div><div class="line">    <span class="keyword">string</span> url_ = url + id + <span class="string">".jpg"</span>;</div><div class="line">    HttpWebRequest webRequest = WebRequest.Create(url_) <span class="keyword">as</span> HttpWebRequest;</div><div class="line"></div><div class="line">    Image img = <span class="literal">null</span>;</div><div class="line">    <span class="keyword">try</span></div><div class="line">    &#123;</div><div class="line">        <span class="keyword">var</span> webResponse = webRequest.GetResponse();</div><div class="line">        <span class="keyword">var</span> stream = webResponse.GetResponseStream();</div><div class="line">        img = Image.FromStream(stream);</div><div class="line">        img.Save(<span class="string">$"pics/<span class="subst">&#123;id&#125;</span> <span class="subst">&#123;name&#125;</span>.jpg"</span>);</div><div class="line">    &#125;</div><div class="line">    <span class="keyword">catch</span> (Exception e)</div><div class="line">    &#123;</div><div class="line">        Console.WriteLine(<span class="string">$"Get <span class="subst">&#123;name&#125;</span>'s pic with error."</span>);</div><div class="line">        Console.WriteLine(e.Message);</div><div class="line">    &#125;</div><div class="line">&#125;</div></pre></td></tr></table></figure>
+<p>添加异常捕获，不然会因为某个图片获取过程出现错误而导致程序奔掉，后续学生的照片获取中断。  </p>
+<h2 id="执行"><a href="#执行" class="headerlink" title="执行"></a>执行</h2><p>两个函数都准备好了，那么就开始实验吧！<br><figure class="highlight csharp"><table><tr><td class="code"><pre><div class="line"><span class="function"><span class="keyword">static</span> <span class="keyword">void</span> <span class="title">Main</span>(<span class="params"><span class="keyword">string</span>[] args</span>)</span></div><div class="line"><span class="function"></span>&#123;</div><div class="line">    <span class="keyword">string</span> url = <span class="string">"http://xxx/xxx/photo/student/"</span>; <span class="comment">//这里把链接抹掉了</span></div><div class="line"></div><div class="line">    <span class="keyword">var</span> ret = GetInfo();</div><div class="line">    <span class="keyword">foreach</span> (<span class="keyword">var</span> r <span class="keyword">in</span> ret)</div><div class="line">    &#123;</div><div class="line">        PullImage(url, r.Key, r.Value);</div><div class="line">        Thread.Sleep(<span class="number">1300</span>); <span class="comment">//暂停1.3秒，不然可能会因为频繁发送请求服务器方面出现问题（毕竟土豆服务器）</span></div><div class="line">    &#125;</div><div class="line"></div><div class="line">    Console.WriteLine(<span class="string">"Done"</span>);</div><div class="line">    Console.ReadLine();</div><div class="line"></div><div class="line">&#125;</div></pre></td></tr></table></figure></p>
+<h1 id="运行结果"><a href="#运行结果" class="headerlink" title="运行结果"></a>运行结果</h1><p>最后的运行结果如下图，一个学生的照片获取超时了，还行。<br><a href="/img/2018/01/snipaste_20180106_203755.png"><img src="/img/2018/01/snipaste_20180106_203755.png" alt=""></a><br>这下我可以认识认识本学院所有人了(ಥ _ ಥ)</p>
+]]></content>
+      
+        <categories>
+            
+            <category> 爬虫 </category>
+            
+        </categories>
+        
+        
+        <tags>
+            
+            <tag> C# </tag>
+            
+            <tag> 爬虫 </tag>
+            
+        </tags>
+        
+    </entry>
+    
+    <entry>
+      <title><![CDATA[C#委托和事件]]></title>
+      <url>/2017/12/11/delegate-event/</url>
+      <content type="html"><![CDATA[<p>C#这门语言我是高中开始接触的，当时学得很肤浅，也没有太多的实践，委托的代码从未写过，事件也只有写WPF的时候用到控件自带的事件。几年后的今天我觉得如此优雅的一门语言时候后要重拾了，重新审视一遍委托和事件后觉得豁然开朗。</p>
+<h1 id="委托"><a href="#委托" class="headerlink" title="委托"></a>委托</h1><p>之前我看委托很是不理解它存在的意义，现在学习C++后知道了函数指针这么一个东西并且用过后才理解了委托，现在想想委托这么一个名字取得也是很形象呢！《C#图解教程》[第4版]这本书上也写了：如果你有C++背景，理解委托最快的方法是把它看成一个类型安全的、面向对象的C++函数指针。</p>
+<p>先看启蒙我的C++的函数指针。很常见的一个方法就是algorithm里的sort方法，它需要一个函数指针作为参数。</p>
+<pre>std::sort(_vec.begin(), _vec.end(), compare);</pre>
+
+<p>最后一个函数的定义是这样的</p>
+<pre>bool compare(int x, int y) { return x &lt; y; }</pre>
+
+<p>这样就完成了对_vec这个向量的排序，可以看到这里把函数作为参数传进了另外一函数方法里被使用。C#里的委托就实现了相同的功能，而且被设计得更强大，有了委托，我们甚至可以把一组方法传进另一个方法里。</p>
+<p>那么我们看看C#里是如何实现这样的功能的吧。现在我们需要传进的方法的功能是对两个实数进行某种操作，然后把得到的结果返回。首先我们先定义一个委托类型</p>
+<pre>delegate double MathOperation(double x, double y);</pre>
+
+<p>然后我们定义类型匹配的方法</p>
+<pre>public static double Add(double x, double y) { return x + y; }</pre>
+
+<p>接着我们定义这么一个方法</p>
+<pre>public static void HandleTwoNum(double x, double y, MathOperation operation)
+{
+    double ret = operation(x, y);
+    Console.WriteLine(ret);
+}</pre>
+
+<p>实现了对两个实数进行相加的操作然后把得到的结果显示出来，而这个[操作]正是通过委托来进行传递的。</p>
+<h1 id="事件"><a href="#事件" class="headerlink" title="事件"></a>事件</h1><p>当年学委托和事件总是傻傻分不清楚，总觉得这两货就是一个东西。其实本质上来说它俩真的就是如此相近的东西！想想吧，我们要弄一个事件出来还得先定义一个委托呢。但是事件基于委托而又显著区别与委托的是什么呢？为什么要弄出事件这么一个东西呢？现在想想不过是微软想弄事件驱动这么一套机制罢了，形成发布者-订阅者的关系，订阅者提供事件处理程序，发布者触发事件。事件普遍存在WinForm和WPF中。</p>
+<p>先定义一个委托</p>
+<pre>delegate void MyEventHandler();</pre>
+
+<p>定义事件发布者</p>
+<pre>class Publisher
+{
+    public event MyEventHandler Handler;
+    public void Invoke()
+    {
+        Handler();
+    }
+}</pre>
+
+<p>需要注意的是事件只能在发布者里被触发，即使声明为public可以在类外部添加事件处理函数。</p>
+<p>然后就是订阅者</p>
+<pre>class Subcriber
+{
+    public void MyEventHandler()
+    {
+        Console.WriteLine("Subcriber");
+    }
+    public Subcriber(Publisher publisher)
+    {
+        publisher.Handler += MyEventHandler;
+    }
+}</pre>
+
+<p>最后触发事件</p>
+<pre>Publisher publisher = new Publisher();
+Subcriber subcriber = new Subcriber(publisher);
+publisher.Invoke();</pre>
+
+<p>如果我不用事件仅仅用委托可不可实现这么以上的关系呢？当然可以，看代码</p>
+<pre>delegate void MyEventHandler();
+class FakePublisher
+{
+    public MyEventHandler Handler;
+    public void Invoke()
+    {
+        Handler();
+    }
+}
+class Subcriber
+{
+    public void MyEventHandler()
+    {
+        Console.WriteLine("Subcriber");
+    }
+    public Subcriber(FakePublisher publisher)
+    {
+        publisher.Handler += MyEventHandler;
+    }
+}</pre>
+
+<p>触发[Fake]事件</p>
+<pre>FakePublisher publisher = new FakePublisher();
+Subcriber subcriber = new Subcriber(publisher);
+publisher.Invoke();
+//publisher.Handler();</pre>
+
+<p>这里我们不仅可以通过Invoke方法触发[Fake]事件，更是可以直接通过委托触发。这里体现出来事件发布者来管理事件的触发这个理念。</p>
+<h1 id="结束"><a href="#结束" class="headerlink" title="结束"></a>结束</h1><p>以上就是我对委托和事件的心得，希望对正在学习的你有所帮助（￣︶￣）↗</p>
+]]></content>
+      
+        <categories>
+            
+            <category> CSharp </category>
+            
+        </categories>
+        
+        
+        <tags>
+            
+            <tag> C# </tag>
+            
+        </tags>
+        
+    </entry>
+    
+    <entry>
+      <title><![CDATA[JSON in .NET(C#)]]></title>
+      <url>/2017/09/20/json-in-dotnet/</url>
+      <content type="html"><![CDATA[<p>JSON(JavaScript Object Notation) is popularly used nowadays. For JavaScript, it’s easy to convert a object to json. How about C#? How do we get some properties we need from a json typed object? And how do we convert our object into json formatted text? This article aims to solve the problems. You will see it can be convenient to solve the problems<strong><em>.(●’◡’●)</em></strong></p>
+<hr>
+<h1 id="Preparation"><a href="#Preparation" class="headerlink" title="Preparation"></a>Preparation</h1><p>There is one thing we need to do before start. That is installing the a NuGet package named <em><strong>JSON.NET</strong></em>. In Visual Studio, we can search any package and install it easily. Search <em><strong>JSON.NET</strong></em>, then install it to you project.</p>
+<p><img src="/img/2017/09/snipaste_20170920_201049.png" alt="snipaste_20170920_201049"></p>
+<hr>
+<h1 id="Serialization-and-Deserialization"><a href="#Serialization-and-Deserialization" class="headerlink" title="Serialization and Deserialization"></a>Serialization and Deserialization</h1><p>These operations are suitable for the definitive type we know or define. For example, we now have a class named <strong>Rectangle.</strong></p>
+<pre>class Rectangle
+{
+    public int Height { get; set; }
+    public int Width { get; set; }
+    private Rectangle() { }
+    public Rectangle(int height,int width)
+    {
+        Height = height;
+        Width = width;
+    }
+}</pre>
+
+<p>Then we need to refer one namespace.</p>
+<pre>using Newtonsoft.Json;</pre>
+
+<p>After that, we can use class <strong>JsonConvert</strong> to serialize a Rectangle typed object or a list of Rectangle typed objects. Code as follow.</p>
+<pre>List list = new List();
+list.Add(new Rectangle(1, 2));
+list.Add(new Rectangle(45, 23));
+string json = JsonConvert.SerializeObject(list);</pre>
+
+<p>If we print variable <strong>json </strong>to the console window, we can see the result as this.</p>
+<p><img src="/img/2017/09/snipaste_20170920_204618.png" alt="snipaste_20170920_204618"></p>
+<p>How about deserialize object(s) from a json formatted text? Much easy! Only one line code!</p>
+<pre>var objs = JsonConvert.DeserializeObject&lt;List&lt;Rectangle&gt;&gt;(json);</pre>
+
+<p>You may doubt whether it’s correct. Well, let’s verify that. Write some code as follow.</p>
+<pre>for (int i = 0; i &lt; objs.Count; i++)
+{
+    Console.WriteLine($"{i + 1}th object info:"
+        + $"Height:{objs[i].Height} Width:{objs[i].Width}");
+}</pre>
+
+<p>We will get the result.</p>
+<p><img src="/img/2017/09/snipaste_20170920_205856.png" alt="snipaste_20170920_205856"></p>
+<p><strong>Correct! Congratulation!</strong></p>
+<hr>
+<h1 id="Pick-Properties-from-JSON"><a href="#Pick-Properties-from-JSON" class="headerlink" title="Pick Properties from JSON"></a>Pick Properties from JSON</h1><p>Consider one situation, we get some JSON typed text from any way like API. One problem we will face is that we don’t have a exact type for that. Thus, we can’t deserialize it to a exact typed object. Thanks to JSON.NET this powerful library, we can continue to work in such situation without too much code. Let’s figure out!</p>
+<p>Firstly, get json formatted text via API.</p>
+<pre>HttpWebRequest request = (HttpWebRequest)WebRequest.Create(@"http://samples.openweathermap.org/data/2.5/weather?q=London,uk&amp;appid=b1b15e88fa797225412429c1c50c122a1");
+request.Method = "GET";
+request.ContentType = "text/json";
+var response = request.GetResponse();
+string json = string.Empty;
+using (StreamReader sr = new StreamReader(response.GetResponseStream()))
+{
+    json = sr.ReadToEnd();
+}</pre>
+
+<p>If we print variable <strong>json</strong> out, we will see this.</p>
+<p><img src="/img/2017/09/snipaste_20170920_210725.png" alt="snipaste_20170920_210725"></p>
+<p>If we want to get wind speed, we can write this code.</p>
+<pre>JToken token = JObject.Parse(json);
+string speed = (string)token.SelectToken("wind").SelectToken("speed");</pre>
+
+<p>The variable speed is the result we want. Not complicated.</p>
+<hr>
+<h1 id="End"><a href="#End" class="headerlink" title="End"></a>End</h1><p>(￣y▽￣)╭ Ohohoho…..</p>
+]]></content>
+      
+        <categories>
+            
+            <category> Programming </category>
+            
+        </categories>
+        
+        
+        <tags>
+            
+            <tag> .NET </tag>
+            
+            <tag> CSharp </tag>
+            
+            <tag> JSON </tag>
+            
+        </tags>
+        
+    </entry>
+    
+    <entry>
+      <title><![CDATA[为Windows新增右键菜单项]]></title>
+      <url>/2017/07/17/add-right-click-menu/</url>
+      <content type="html"><![CDATA[<p>Windows中，除了系统自带的一些右键菜单项之外，在一些时候我们安装软件后可以发现在右键菜单新增了一些软件的相关右键菜单项，就像这样</p>
+<p><a href="/img/2017/07/snipaste_20170717_223144.png"><img src="/img/2017/07/snipaste_20170717_223144.png" alt=""></a></p>
+<p>Ok，那么我们想自己也弄一个怎么办呢？下面开始正片，<span style="font-weight: bold; color: #d14;">友情提醒：本文会涉及到修改注册表，请备份好原注册表后再修改。</span></p>
+<hr>
+<h1 id="打开注册表"><a href="#打开注册表" class="headerlink" title="打开注册表"></a><strong>打开注册表</strong></h1><p>Win+R运行regedit</p>
+<p><a href="/img/2017/07/snipaste_20170717_224739.png"><img src="/img/2017/07/snipaste_20170717_224739.png" alt=""></a></p>
+<p>找到该路径：<br><code>HKEY_CLASSES_ROOT\Directory\Background\shell</code></p>
+<h1 id="增添新项"><a href="#增添新项" class="headerlink" title="增添新项"></a>增添新项</h1><p>选中<code>shell</code>然后右键<code>New</code>-&gt;<code>Key</code>新建一个项，如图</p>
+<p><a href="/img/2017/07/snipaste_20170717_225314.png"><img src="/img/2017/07/snipaste_20170717_225314.png" alt=""></a></p>
+<p>我命名为Cmder，在新建的<code>Cmder</code>项下在新建一个项，命名为<code>command</code>，然后修改其下默认键的值为要运行程序的路径。比如我的</p>
+<p><a href="/img/2017/07/snipaste_20170717_230121.png"><img src="/img/2017/07/snipaste_20170717_230121-1024x346.png" alt=""></a></p>
+<p>然后在资源管理器空白处点击右键时就会发现了这个选项，但是有点丑陋，我们来稍微地美化一下，给添加的右键菜单增加图标和描述信息。</p>
+<h1 id="美化"><a href="#美化" class="headerlink" title="美化"></a>美化</h1><p>选中<code>Cmder</code>，接着在右侧中新建几个<code>string</code>类型的值。</p>
+<p><a href="/img/2017/07/snipaste_20170717_230807.png"><img src="/img/2017/07/snipaste_20170717_230807.png" alt=""></a></p>
+<p>新增两个值，分别为</p>
+<p><a href="/img/2017/07/snipaste_20170717_230940.png"><img src="/img/2017/07/snipaste_20170717_230940.png" alt=""></a></p>
+<p><code>Icon</code>用来给菜单添加一个小图标，<code>MUIVerb</code>用来给菜单添加描述信息。完成后再查看一下就会是这个效果</p>
+<p><a href="/img/2017/07/snipaste_20170717_231530.png"><img src="/img/2017/07/snipaste_20170717_231530.png" alt=""></a></p>
+<p>测试一下，完美运行。</p>
+<h1 id="增加子菜单项"><a href="#增加子菜单项" class="headerlink" title="增加子菜单项"></a>增加子菜单项</h1><p>正如第一张图所示，还应该有子菜单项才足够满足一些需求，这都不是事。</p>
+<p>首先，我们回到<strong><code>Cmder</code></strong>项下，再添加一个<strong><code>string</code></strong>类型的值，名字为<code>SubCommands</code>，然后值的内容填写你想要添加的命令的名字（千万避免重复），每个命令之间用半角分号<code>;</code>隔开，就像这样</p>
+<p><a href="/img/2017/07/snipaste_20170717_232103.png"><img src="/img/2017/07/snipaste_20170717_232103-1024x386.png" alt=""></a></p>
+<p>还没完，这时候你可以再查看右键菜单的时候可以看到刚才添加的菜单项已经有个右尖括号了，但是因为具体的子命令还没实现，所以不会显现出来。这个时候我们定位到<code>Computer\HKEY_LOCAL_MACHINE\SOFTWARE\Microsoft\Windows\CurrentVersion\Explorer\CommandStore\shell</code>下，然后再新建新项，名字为刚才加入的子命令名字，比如我的</p>
+<p><a href="/img/2017/07/snipaste_20170717_232828.png"><img src="/img/2017/07/snipaste_20170717_232828-1024x216.png" alt=""></a></p>
+<p>接下来的操作就和上边的一毛一样了。</p>
+<p>最后的效果就是这样</p>
+<p><a href="/img/2017/07/snipaste_20170717_222321.png"><img src="/img/2017/07/snipaste_20170717_222321.png" alt=""></a></p>
+<h1 id="Shift-右键"><a href="#Shift-右键" class="headerlink" title="Shift+右键"></a>Shift+右键</h1><p>还有一些菜单项是通过Shift+鼠标右组合键才会显现出来的，要实现这个也很简单，只需要添加一个新值<code>Extended</code>即可。</p>
+<p><a href="/img/2017/07/snipaste_20170817_115734.png"><img src="/img/2017/07/snipaste_20170817_115734-1024x197.png" alt=""></a></p>
+]]></content>
+      
+        <categories>
+            
+            <category> Windows </category>
+            
+        </categories>
+        
+        
+        <tags>
+            
+            <tag> Windows </tag>
+            
+        </tags>
+        
+    </entry>
+    
+    <entry>
+      <title><![CDATA[自定义run命令]]></title>
+      <url>/2017/06/11/runplus/</url>
+      <content type="html"><![CDATA[<p>相信各位都会有过这样的操作，Win+R-&gt;输入要运行的程序-&gt;确定。 譬如经常会用到的命令行</p>
+<p><a href="/img/2017/06/snipaste_20170611_181819.png"><img src="/img/2017/06/snipaste_20170611_181819.png" alt=""></a></p>
+<p>现在我想自己添加一个，怎么办呢？我们知道，运行这个程序是在环境变量查找符合名称的程序然后运行它的，依照这个思路笔者在这里介绍一种解决方案。</p>
+<hr>
+<p>首先，在随便一个目录下新建一个文件夹，你喜欢就好。</p>
+<p><a href="/img/2017/06/snipaste_20170611_181750.png"><img src="/img/2017/06/snipaste_20170611_181750.png" alt=""></a></p>
+<p>然后在控制面板中设置一下环境变量。</p>
+<p><a href="/img/2017/06/Untitled.png"><img src="/img/2017/06/Untitled-1024x383.png" alt=""></a></p>
+<p>新建一个环境变量，然后把刚才新建的目录路径复制进去。</p>
+<p>我们把需要运行的程序新建一个快捷方式，名称你喜欢，方便你自己就好，丢到目录下。</p>
+<p><a href="/img/2017/06/snipaste_20170611_184550.png"><img src="/img/2017/06/snipaste_20170611_184550-1024x210.png" alt=""></a></p>
+<p>最后你在运行里输入对应的快捷方式的名称，然后就是见证奇迹的时刻。</p>
+<p><a href="/img/2017/06/snipaste_20170611_194951.png"><img src="/img/2017/06/snipaste_20170611_194951.png" alt=""></a></p>
+]]></content>
+      
+        <categories>
+            
+            <category> Windows </category>
+            
+        </categories>
+        
+        
+    </entry>
+    
+    <entry>
+      <title><![CDATA[自定义C/C++头文件]]></title>
+      <url>/2017/05/29/customize-headerfiles/</url>
+      <content type="html"><![CDATA[<p>随着C/C++项目的增大，在管理难度上也随之增加。因此，合理利用头文件可以方便管理维护代码。这里会演示在IDE和vscode里如何自定义头文件，为什么要特殊地讲两个呢？因为vscode有点特殊。。。</p>
+<hr>
+<h2 id="Visual-Studio"><a href="#Visual-Studio" class="headerlink" title="Visual Studio"></a>Visual Studio</h2><p>IDE我选用VS作为演示。首先，新建一个空的项目，项目组成如图</p>
+<p><a href="/img/2017/05/snipaste_20170530_005339.png"><img src="/img/2017/05/snipaste_20170530_005339.png" alt=""></a></p>
+<p>然后添加一些文件</p>
+<p><a href="/img/2017/05/snipaste_20170530_005900.png"><img src="/img/2017/05/snipaste_20170530_005900.png" alt=""></a></p>
+<p>Calc.h是声明文件，Calc.cpp是Calc.h声明的实现文件，这样实现了声明和定义的分离。main.cpp是main函数本体文件。</p>
+<p>在Calc.h文件中，我希望有一个Add函数计算加法，于是做了如下声明</p>
+<p><a href="/img/2017/05/snipaste_20170530_005922.png"><img src="/img/2017/05/snipaste_20170530_005922.png" alt=""></a></p>
+<p>接下来就要定义这个函数，先引用Calc.h文件，相当于Calc.cpp知道了有哪些声明但未实现的函数，然后定义Add方法。</p>
+<p><a href="/img/2017/05/snipaste_20170530_005954.png"><img src="/img/2017/05/snipaste_20170530_005954.png" alt=""></a></p>
+<p>最后在main.cpp文件中把Calc.h引用进来，在main方法里调用这个函数即可</p>
+<p><a href="/img/2017/05/snipaste_20170530_010033.png"><img src="/img/2017/05/snipaste_20170530_010033.png" alt=""></a></p>
+<hr>
+<h2 id="Visual-Studio-Code"><a href="#Visual-Studio-Code" class="headerlink" title="Visual Studio Code"></a>Visual Studio Code</h2><p>同样的，新建一个项目，结构和在VS里类似。</p>
+<p><a href="/img/2017/05/snipaste_20170530_011628-1.png"><img src="/img/2017/05/snipaste_20170530_011628-1.png" alt=""></a></p>
+<p>Calc.h代码一毛一样</p>
+<p><a href="/img/2017/05/snipaste_20170530_011646.png"><img src="/img/2017/05/snipaste_20170530_011646.png" alt=""></a></p>
+<p>Calc.cpp也一毛一样，<strong>只需要注意一下引用路径</strong></p>
+<p><a href="/img/2017/05/snipaste_20170530_011702.png"><img src="/img/2017/05/snipaste_20170530_011702.png" alt=""></a></p>
+<p>最大差异是在main.cpp文件中</p>
+<p><a href="/img/2017/05/snipaste_20170530_011749.png"><img src="/img/2017/05/snipaste_20170530_011749.png" alt=""></a></p>
+<p>这里不是把Calc.h引用进来而是把Calc.cpp引用进来。</p>
+<p>为什么？IDE帮我们做了一些处理。在vscode里不引用Calc.cpp而是引用Calc.h编译的时候会提示Add函数没有定义。简单做了一个图，好像并没有什么不对。</p>
+<p><a href="/img/2017/05/snipaste_20170530_014200.png"><img src="/img/2017/05/snipaste_20170530_014200-1024x562.png" alt=""></a></p>
+<p>如果我希望像IDE里一样引用.h文件而不是.cpp/.c文件保持头文件一致性，有没有办法呢？有！即是在.h文件中把所有声明都写完之后再引用定义部分的文件。</p>
+<p><a href="/img/2017/05/snipaste_20170530_015415.png"><img src="/img/2017/05/snipaste_20170530_015415.png" alt=""></a></p>
+<p>最后要注意的一点是，VS里的文件夹在真实路径下是不存在的，所有文件都是在同一个目录下的，这就是为什么vscode的引用路径要曲折一下的原因。</p>
+]]></content>
+      
+        <categories>
+            
+            <category> Programming </category>
+            
+        </categories>
+        
+        
+        <tags>
+            
+            <tag> C/C++ </tag>
+            
+        </tags>
+        
+    </entry>
+    
+    <entry>
+      <title><![CDATA[揪出Windows Spotlight壁纸]]></title>
+      <url>/2017/04/06/get-windows-spotlight-wallpaper/</url>
+      <content type="html"><![CDATA[<h1 id="这是一篇无聊的水文！"><a href="#这是一篇无聊的水文！" class="headerlink" title="这是一篇无聊的水文！"></a><span style="color: #ff6600;"><strong>这是一篇无聊的水文！</strong></span></h1><h1 id="这是一篇无聊的水文！-1"><a href="#这是一篇无聊的水文！-1" class="headerlink" title="这是一篇无聊的水文！"></a><span style="color: #ff6600;"><strong>这是一篇无聊的水文！</strong></span></h1><h1 id="这是一篇无聊的水文！-2"><a href="#这是一篇无聊的水文！-2" class="headerlink" title="这是一篇无聊的水文！"></a><span style="color: #ff6600;"><strong>这是一篇无聊的水文！</strong></span></h1><hr>
+<p>Windows 10的Spotlight偶尔会推荐个人比较喜欢的锁屏壁纸，这时候如果我们想得到图片文件该怎么办？比如这张，笔者个人觉得挺魔幻的。</p>
+<p><a href="/img/2017/04/sp170406_120203.png"><img src="/img/2017/04/sp170406_120203-1024x553.png" alt=""></a></p>
+<h2 id="Step1"><a href="#Step1" class="headerlink" title="Step1"></a><span style="color: #36b26a;">Step1</span></h2><p>在Windows Explorer进入该路径<br><span style="color: #d14;">C:\Users&#91;User Name]\AppData\Local\Packages\Microsoft.Windows.ContentDeliveryManager_cw5n1h2txyewy\LocalState\Assets</span><br>在该目录下可以看到一些没有扩展名的文件，这些其实就是图片文件，如图</p>
+<p><a href="/img/2017/04/sp170406_121024.png"><img src="/img/2017/04/sp170406_121024-1024x751.png" alt=""></a></p>
+<h2 id="Step2"><a href="#Step2" class="headerlink" title="Step2"></a><span style="color: #36b26a;">Step2</span></h2><p>将上图目录下的所有文件复制到任意目录下，我在桌面上新建了一个名为New Folder的文件夹然后全部丢进去。</p>
+<h2 id="Step3"><a href="#Step3" class="headerlink" title="Step3"></a><span style="color: #36b26a;">Step3</span></h2><p>然后正片开始，网上很多都是直接用cmd修改文件名添加扩展名，这里装逼地用了PowerShell。我会给每个图片一个位宽为3的序号并添加扩展名。</p>
+<p>先定义一个序号的变量<br><span style="color: #d14;">$index=1</span><br>然后修改图片文件文件名<br><span style="color: #d14;">Get-ChildItem|foreach{Rename-Item -Path $<em>.FullName -NewName (‘pic</em>{0:d3}.jpg’ -f $index);$index++}</span></p>
+<p><a href="/img/2017/04/sp170406_121955-1.png"><img src="/img/2017/04/sp170406_121955-1-1024x246.png" alt=""></a><br>这时候再看看文件夹，所有文件都已经显示为图片格式文件了。ALL DONE！</p>
+<p><a href="/img/2017/04/sp170406_182143.png"><img src="/img/2017/04/sp170406_182143-1024x365.png" alt=""></a></p>
+<p>这里准备了整个脚本（图片保存在桌面的spotlight文件夹内），保存为ps1直接运行即可（记得修改PowerShell的ExecutionPolicy）：<a href="http://nokky.net/spotlight.ps1" target="_blank" rel="external">点这里</a></p>
+]]></content>
+      
+        <categories>
+            
+            <category> Windows </category>
+            
+        </categories>
+        
+        
+        <tags>
+            
+            <tag> Windows 10 </tag>
+            
+        </tags>
+        
+    </entry>
+    
+    <entry>
+      <title><![CDATA[Binding[3]=MultiBinding]]></title>
+      <url>/2017/02/14/binding-multibinding/</url>
+      <content type="html"><![CDATA[<p>有时候，我们会遇到这样的需求，UI的要显示的信息由多个数据源来决定，比如注册界面会验证两次输入的密码是否一致来决定是否可以注册，这时候就要用到MultiBinding了。因为Binding和MultiBinding的基类都是BindingBase，所以，能用Binding的场合都能用MultiBinding。MultiBinding通过一个Bindings的属性（类型为Collection&lt;BindingBase&gt;）把多个Binding对象集合起来，其中每个Binding对象可以有自己的数据校验和数据转换机制。</p>
+<hr>
+<h2 id="实现"><a href="#实现" class="headerlink" title="实现"></a><span style="color: #36b2a6;">实现</span></h2><p>现在我们就以注册界面为例，需求是，用户名和密码都不会为空，且两次输入的密码要一致，这时候确认信息的Button可用。XAML代码如下，加入了一些部分美化的代码，默认的太难看了受不了- -，主要的就是三个TextBox。</p>
+<p><pre>&lt;StackPanel HorizontalAlignment=”Center” VerticalAlignment=”Center”&gt;<br>    &lt;TextBlock Text=”Sign up” FontSize=”30” Foreground=”#00a2e8” Margin=”3”/&gt;<br>    &lt;TextBlock Text=”User” FontSize=”13” Margin=”3”/&gt;<br>    &lt;TextBox x:Name=”textBox” Height=”23” Width=”150” Margin=”3”/&gt;<br>    &lt;TextBlock Text=”Password” Margin=”5”/&gt;<br>    &lt;TextBox x:Name=”textBox1” Height=”23” Width=”150” Margin=”3”/&gt;<br>    &lt;TextBlock Text=”Verify Password” Margin=”5”/&gt;<br>    &lt;TextBox x:Name=”textBox2” Height=”23” Width=”150” Margin=”3”/&gt;<br>    &lt;Button x:Name=”button” Height=”23” Margin=”3”&gt;<br>        &lt;Button.Style&gt;<br>            &lt;Style TargetType=”Button”&gt;<br>                &lt;Setter Property=”Template”&gt;<br>                    &lt;Setter.Value&gt;<br>                        &lt;ControlTemplate TargetType=”Button”&gt;<br>                            &lt;Border x:Name=”border” Background=”#00a2e8”&gt;<br>                                &lt;TextBlock x:Name=”textBlock” Text=”OK” TextAlignment=”Center” VerticalAlignment=”Center” Foreground=”White”/&gt;<br>                            &lt;/Border&gt;<br>                            &lt;ControlTemplate.Triggers&gt;<br>                                &lt;Trigger Property=”IsEnabled” Value=”False”&gt;<br>                                    &lt;Setter TargetName=”border” Property=”Background” Value=”LightGray”/&gt;<br>                                &lt;/Trigger&gt;<br>                            &lt;/ControlTemplate.Triggers&gt;<br>                        &lt;/ControlTemplate&gt;<br>                    &lt;/Setter.Value&gt;<br>                &lt;/Setter&gt;<br>            &lt;/Style&gt;<br>        &lt;/Button.Style&gt;<br>    &lt;/Button&gt;<br>&lt;/StackPanel&gt;</pre><br>三个TextBox会各自作为三个Binding对象的Source，最终把三个Binding对象加入MultiBinding的Bindings属性中。</p>
+<p><pre>public partial class MainWindow : Window<br>{<br>    public MainWindow()<br>    {<br>        InitializeComponent();<br>        this.SetMultiBinding();<br>    }</pre></p>
+<pre><code>private void SetMultiBinding()
+{
+    Binding b0 = new Binding(&quot;Text&quot;) { Source = this.textBox };
+    Binding b1 = new Binding(&quot;Text&quot;) { Source = this.textBox1 };
+    Binding b2 = new Binding(&quot;Text&quot;) { Source = this.textBox2 };
+
+    MultiBinding mb = new MultiBinding();
+    mb.Bindings.Add(b0);
+    mb.Bindings.Add(b1);
+    mb.Bindings.Add(b2);
+    mb.Converter = new MultiBindingConverter();
+
+    this.button.SetBinding(Button.IsEnabledProperty, mb);
+}
+</code></pre><p>}<br>因为Text和IsEnabled两个属性类型不同，因此我们要给MutilBinding准备一个转换器，这个类继承于IMultiValueConverter接口。</p>
+<p><pre>class MultiBindingConverter : IMultiValueConverter<br>{<br>    public object Convert(object[] values, Type targetType, object parameter, CultureInfo culture)<br>    {<br>        if (!values.Cast&lt;string&gt;().Any(text =&gt; string.IsNullOrWhiteSpace(text))<br>            &amp;&amp; values[1].ToString() == values[2].ToString())<br>        {<br>            return true;<br>        }<br>        return false;<br>    }</pre></p>
+<pre><code>public object[] ConvertBack(object value, Type[] targetTypes, object parameter, CultureInfo culture)
+{
+    throw new NotImplementedException();
+}
+</code></pre><p>}<br>运行的效果</p>
+<p><a href="/img/2017/02/sp170214_210649.png"><img src="/img/2017/02/sp170214_210649.png" alt=""></a> <a href="/img/2017/02/sp170214_210735.png"><img src="/img/2017/02/sp170214_210735.png" alt=""></a></p>
+<hr>
+<h2 id="分析"><a href="#分析" class="headerlink" title="分析"></a><span style="color: #36b2a6;">分析</span></h2><p>Q：看了下转换器的代码，其中的values参数应该是指多个Binding对象的Path属性值，那么怎样知道哪个value是哪个Binding对象的呢？</p>
+<p>A：我们说过，Bindings属性是个集合，在把Binding对象丢进去的时候是按顺序递增索引的，因此只要记住顺序，就可以通过索引得到对应的value。</p>
+]]></content>
+      
+        <categories>
+            
+            <category> WPF </category>
+            
+        </categories>
+        
+        
+        <tags>
+            
+            <tag> C# </tag>
+            
+            <tag> WPF </tag>
+            
+        </tags>
+        
+    </entry>
+    
+    <entry>
+      <title><![CDATA[WordPress迁移-Windows Server 2012到Centos 7]]></title>
+      <url>/2017/02/13/wordpress-migration/</url>
+      <content type="html"><![CDATA[<p>买了VPS顺便试着把博客迁移到国外去，实际操作了过后自我感觉WordPress的迁移其实不难。</p>
+<hr>
+<h2 id="准备工作-环境搭建"><a href="#准备工作-环境搭建" class="headerlink" title="准备工作-环境搭建"></a><span style="color: #36b2a6;">准备工作-环境搭建</span></h2><p>在Centos服务器端，我们要先把运行环境搭建好。我选择的是LAMP（Linux+Apache+MySQL+PHP）</p>
+<h3 id="安装Apache"><a href="#安装Apache" class="headerlink" title="安装Apache"></a><span style="color: #36b26a;">安装Apache</span></h3><pre>yum install httpd</pre>
+这样我们就算安装好啦，然后我们就可以将其启动
+<pre>systemctl start httpd</pre>
+接下来可以在浏览器中输入服务器的IP来检查Apache是否正常开启和运行
+[![](/img/2017/02/sp170212_132228.png)](/img/2017/02/sp170212_132228.png)
+这是正常运行的结果，然后我们把Apache设置为开机自启
+<pre>systemctl enable httpd</pre>
+
+<hr>
+<h3 id="安装MySQL-MariaDB"><a href="#安装MySQL-MariaDB" class="headerlink" title="安装MySQL(MariaDB)"></a><span style="color: #36b26a;">安装MySQL(MariaDB)</span></h3><pre>yum install mariadb-server mariadb</pre>
+安装完成后启动数据库
+<pre>systemctl start mariadb</pre>
+然后安装一个数据库安全脚本，去掉一些危险的默认设置
+<pre>mysql_secure_installation</pre>
+接下来会提示你是新安装的，直接按下Enter键，然后设置数据库密码。把MariaDB也设置为开机自启
+<pre>systemctl enable mariadb</pre>
+
+<hr>
+<h3 id="安装PHP"><a href="#安装PHP" class="headerlink" title="安装PHP"></a><span style="color: #36b26a;">安装PHP</span></h3><p>运行以下命令安装PHP</p>
+<p><pre>yum install php php-mysql</pre><br>安装完成之后我们再把Apahce重启一下</p>
+<p><pre>systemctl restart httpd</pre><br>接下来我们检查一下PHP是否正常运行，在/var/www/html目录下新建一个info.php文件</p>
+<p><pre>vim /var/www/html/info.php</pre><br>内容写入IP</p>
+<p><pre>&lt;?php phpinfo();?&gt;</pre><br>然后在浏览器中输入</p>
+<p><pre>xxx.xxx.xxx.xxx/info.php</pre><br>xxx代表你的IP地址<br><a href="/img/2017/02/sp170212_133114.png"><img src="/img/2017/02/sp170212_133114.png" alt=""></a></p>
+<hr>
+<h3 id="安装phpMyAdmin（可选）"><a href="#安装phpMyAdmin（可选）" class="headerlink" title="安装phpMyAdmin（可选）"></a><span style="color: #36b26a;">安装phpMyAdmin（可选）</span></h3><p>这是一个数据库管理的Web界面程序，有时候图形化操作还是方便一点的。首先，我们要先安装epel库</p>
+<p><pre>yum install epel-release</pre><br>然后我们就可以安装phpMyAdmin了</p>
+<p><pre>yum install phpmyadmin</pre><br>安装完成后我们要设置一下权限，不然访问会返回403错误</p>
+<p><pre>vim /etc/httpd/conf.d/phpMyAdmin.conf</pre><br>找到这部分并修改为如下</p>
+<p><pre>&lt;Directory /usr/share/phpMyAdmin/&gt;<br>   AddDefaultCharset UTF-8<br>   &lt;IfModule mod_authz_core.c&gt;</pre></p>
+<pre><code># Apache 2.4
+&amp;lt;RequireAny&amp;gt;
+  #Require ip 127.0.0.1
+  #Require ip ::1
+   Require all granted
+&amp;lt;/RequireAny&amp;gt;
+</code></pre><p>   &lt;/IfModule&gt;<br>   &lt;IfModule !mod_authz_core.c&gt;</p>
+<pre><code> # Apache 2.2
+ Order Deny,Allow
+# Deny from All
+# Allow from 127.0.0.1
+# Allow from ::1
+  Allow from All
+</code></pre><p>   &lt;/IfModule&gt;<br>&lt;/Directory&gt;<br>完了之后再一次重启Apache，然后我们可以在浏览器中输入：</p>
+<p><pre>xxx.xxx.xxx.xxx/phpmyadmin</pre><br>来管理数据库<br><a href="/img/2017/02/sp170212_133728.png"><img src="/img/2017/02/sp170212_133728.png" alt=""></a></p>
+<hr>
+<h2 id="迁移"><a href="#迁移" class="headerlink" title="迁移"></a><span style="color: #36b2a6;">迁移</span></h2><h3 id="Windows端"><a href="#Windows端" class="headerlink" title="Windows端"></a><span style="color: #36b26a;">Windows端</span></h3><p>如果还记得数据库的名称就直接导出，如果不记得了可以先查看一下所有的数据库。</p>
+<p><pre>show databases;</pre><br>注意别忘了最后那里有个分号！<br><a href="/img/2017/02/sp170213_110716.png"><img src="/img/2017/02/sp170213_110716.png" alt=""></a><br>找到MySQL的安装目录，找到mysqldump.exe，然后管理员运行cmd，切换到所在目录，执行这个命令</p>
+<p><pre>mysqldump -uroot -p databaseName&gt;outputFileName.sql</pre><br>在所在目录下找到生成的数据库，再把wordpress整个文件夹打包一起运回本地就可以了，Windows端的工作完成！</p>
+<h3 id="Centos端"><a href="#Centos端" class="headerlink" title="Centos端"></a><span style="color: #36b26a;">Centos端</span></h3><p>用SSH客户端连接上服务器，用FTP工具把数据库文件和打包文件上传，我都丢到了/var/www/html目录下</p>
+<p><a href="/img/2017/02/sp170213_111845.png"><img src="/img/2017/02/sp170213_111845.png" alt=""></a></p>
+<p>然后我们就开始着手把数据库导入了，运行</p>
+<p><pre>mysql -uroot -p</pre><br>然后输入密码，新建一个数据库</p>
+<p><pre>create database databaseName</pre><br>选中新建的数据库</p>
+<p><pre>use databaseName</pre><br>导入数据，以我的数据库文件所在目录为例</p>
+<p><pre>source /var/www/html/wordpress_db.sql</pre><br>数据库迁移成功后输入exit退出，接下来我们把wordpress实体迁移，直接把压缩文件的内容解压到default目录下即可<br><a href="/img/2017/02/sp170213_113104.png"><img src="/img/2017/02/sp170213_113104.png" alt=""></a></p>
+<p>如果你的数据库密码不一样了，修改一下wp-config文件。<br>这时候在浏览器中输入IP/域名试着访问博客，如果之前没有域名的小伙伴就会遇到问题了，比如我- -，那是因为之前的IP地址和现在不同了，数据库中的数据还没更新<br><a href="/img/2017/02/sp170213_113354.png"><img src="/img/2017/02/sp170213_113354.png" alt=""></a><br>就是这里的设置的问题！解决方法就是在数据库中修改这两个值，指向新的IP地址或者你的域名，还记得安装的phpMyAdmin嘛，现在排上用场了<br><a href="/img/2017/02/sp170213_113944.png"><img src="/img/2017/02/sp170213_113944.png" alt=""></a><br>修改两个值就可以了，这时候就可以正常登陆了。<br>然后我们在主页点开文章会出现403错误，调整一下Apache配置文件</p>
+<p><pre>vim /etc/httpd/conf/httpd.conf</pre><br>在文件中加入</p>
+<p><pre>LoadModule rewrite_module modules/mod_rewrite.so</pre><br>位置随意，下图作为参考<br><a href="/img/2017/02/sp170213_114433.png"><img src="/img/2017/02/sp170213_114433.png" alt=""></a></p>
+<p>然后我们再修改一点内容<br><figure class="highlight plain"><table><tr><td class="code"><pre><div class="line">&lt;VirtualHost *:80&gt;</div><div class="line"></div><div class="line">ServerName localhost</div><div class="line"></div><div class="line">DocumentRoot /var/www/html/default</div><div class="line"></div><div class="line">&lt;Directory “/var/www/html/default”&gt;</div><div class="line"></div><div class="line">Options FollowSymLinks</div><div class="line"></div><div class="line">AllowOverride ALL</div><div class="line"></div><div class="line">Order allow,deny</div><div class="line"></div><div class="line">Allow from all</div><div class="line"></div><div class="line">&lt;/Directory&gt;</div><div class="line"></div><div class="line">&lt;/VirtualHost&gt;</div></pre></td></tr></table></figure><br>把<em>AllowOverride</em>的值换成了<em>ALL，</em>位置如下<br><a href="/img/2017/02/sp170213_114405.png"><img src="/img/2017/02/sp170213_114405.png" alt=""></a><br>保存文件退出，重启Apache。最后再新建一个.htaccess文件，丢到博客根目录下就行了，由于这个文件的文件名有点特殊，要借助其他编辑工具生成，比如笔者用的Visual Studio Code。文件内容如下<br><figure class="highlight plain"><table><tr><td class="code"><pre><div class="line">&lt;IfModule mod_rewrite.c&gt;</div><div class="line"></div><div class="line">RewriteEngine On</div><div class="line"></div><div class="line">RewriteBase /</div><div class="line"></div><div class="line">RewriteRule ^index.php$ - [L]</div><div class="line"></div><div class="line">RewriteCond %&#123;REQUEST_FILENAME&#125; !-f</div><div class="line"></div><div class="line">RewriteCond %&#123;REQUEST_FILENAME&#125; !-d</div><div class="line"></div><div class="line">RewriteRule . /index.php [L]</div><div class="line"></div><div class="line">&lt;/IfModule&gt;</div></pre></td></tr></table></figure><br>这时候再点击文章就可以正常访问了。</p>
+<hr>
+<h2 id="结束"><a href="#结束" class="headerlink" title="结束"></a><span style="color: #36b2a6;">结束</span></h2><p>自此，迁移工作算是完成了，不过还有些小问题，不如文件的上传，下篇文章再讲啦！</p>
+<p>本文参考了两位dalao的文章，特别感谢！<br><a href="http://blog.gclxry.com/install-wordpress-on-centos7/" target="_blank" rel="external">Centos 7上安装Wordpress</a><br><a href="https://www.yanning.wang/archives/192.html" target="_blank" rel="external">WordPress跨平台迁移实战</a></p>
+]]></content>
+      
+        <categories>
+            
+            <category> Linux </category>
+            
+            <category> VPS </category>
+            
+        </categories>
+        
+        
+    </entry>
+    
+    <entry>
+      <title><![CDATA[VPS-Centos 7搭建配置Shadowsocks科学上网]]></title>
+      <url>/2017/02/11/vps-centos-7-shadowsocks/</url>
+      <content type="html"><![CDATA[<p>刚刚入手了一个VPS，拿来练手Linux类系统，最重要的还是顺便自己搭建SS科学上网。我这里的是Centos 7 64位。</p>
+<hr>
+<h2 id="安装"><a href="#安装" class="headerlink" title="安装"></a><span style="color: #36b2a6;">安装</span></h2><p><pre>yum install python-setuptools &amp;&amp; easy_install pip<br>pip install shadowsocks</pre><br>这样SS就安装好啦，然后我们要配置一下。</p>
+<hr>
+<h2 id="配置"><a href="#配置" class="headerlink" title="配置"></a><span style="color: #36b2a6;">配置</span></h2><p>新建一个json文件</p>
+<p><pre>vim /etc/shadowsocks.json</pre><br>然后写入配置，端口和密码自己自定义。</p>
+<p><pre>{<br>    “server”:”0.0.0.0”,<br>    “server_port”:8900,<br>    “local_address”: “127.0.0.1”,<br>    “local_port”:1080,<br>    “password”:”passwd”,<br>    “timeout”:300,<br>    “method”:”aes-256-cfb”,<br>}</pre><br>如果要多用户登陆，那么就把password改成port_password然后加入多个端口和密码，例如：</p>
+<p><pre>{<br>    “server”:”0.0.0.0”,<br>    “local_address”:”127.0.0.1”,<br>    “local_port”:1080,<br>    “port_password”:{<br>         “8900”:”passwd0”,<br>         “8901”:”passwd1”,<br>         “8902”:”passwd2”,<br>         “8903”:”passwd3”,<br>         “8904”:”passwd4”<br>    },<br>    “timeout”:300,<br>    “method”:”aes-256-cfb”,<br>}</pre><br>然后新建一个ss服务</p>
+<p><pre>vim /etc/systemd/system/shadowsocks.service</pre><br>内容写入：<br><figure class="highlight plain"><table><tr><td class="code"><pre><div class="line">[Unit]</div><div class="line">Description=Shadowsocks</div><div class="line"></div><div class="line">[Service]</div><div class="line">TimeoutStartSec=0</div><div class="line">ExecStart=/usr/bin/ssserver -c /etc/shadowsocks.json</div><div class="line"></div><div class="line">[Install]</div><div class="line">WantedBy=multi-user.target</div></pre></td></tr></table></figure><br>然后开启服务，并让服务开机启动</p>
+<p><pre>systemctl enable shadowsocks<br>systemctl start shadowsocks</pre><br>这时候可以检查一下服务是否正确开启</p>
+<p><pre>systemctl status shadowsocks</pre><br>如果Active那里显示的是绿色的active(running)则说明服务正确开启了。如图：<br><a href="/img/2017/02/sp170211_224944.png"><img src="/img/2017/02/sp170211_224944.png" alt=""></a></p>
+<p>最后，千万记得防火墙开启刚才配置里写的端口，我的例子里写的只有一个8900，防火墙没开的请自动忽略。</p>
+<p><pre>firewall-cmd –add-port=8900/tcp</pre><br>查看端口是否正确开启</p>
+<p><pre>firewall-cmd –query-port=8900/tcp</pre><br>返回success则正确开启了，Enjoy it！</p>
+]]></content>
+      
+        <categories>
+            
+            <category> Linux </category>
+            
+            <category> VPS </category>
+            
+        </categories>
+        
+        
+    </entry>
+    
+    <entry>
+      <title><![CDATA[Binding[2]=数据转换]]></title>
+      <url>/2017/02/09/binding-dataconvert/</url>
+      <content type="html"><![CDATA[<p>上一篇文章中我们了解了如何在Binding的过程中对数据进行校验，确保数据的有效性，并且提到了数据类型转换。我们都知道C#是强类型语言，在绑定的过程中，Target和Source的属性类型不同的情况经常遇到，这时候我们就需要手动进行数据类型的转换了。或许有的小伙伴会提出这样一个问题，上一篇文章中的Slider的Value属性是double类型的，TextBox的Text属性是string类型的，也不见对它们进行了数据转换啊！这个是因为，string和double之间的转换比较简单，WPF类库已经帮我们解决这个问题了，但是当我们遇到更加复杂的业务逻辑的时候，我们只能自己写代码了。要实现数据转换其实很简单，只要写一个类继承IValueConverter接口实现Convert和ConvertBack方法，然后在Binding对象中消费这个类就可以了。</p>
+<hr>
+<h2 id="实现"><a href="#实现" class="headerlink" title="实现"></a><span style="color: #36b2a6;">实现</span></h2><p>现在我们的业务是，一个CheckBox并带有提示文字，问用户是不是小基佬，如果是就在下面显示一个动漫可爱女孩子的图片(●’◡’●)，如果不是就显示一个真叫人头大的图片。图片显示用一个Image对象，我们要让它显示出图片内容，就要为它的Source属性赋值，这是ImageSource类型，赋值的时候给一段图片的URI字符串就可以了，而CheckBox的IsChecked是bool类型，因此我们要手写一个转换器。</p>
+<p><pre>class CheckBoxStateToImageSourceConverter : IValueConverter<br>{<br>    public object Convert(object value, Type targetType, object paremeter, CultureInfo culture)<br>    {<br>        if ((bool)value)<br>        {<br>            return @”/Assets/bigHead.jpg”;<br>        }<br>        return @”/Assets/milai.png”;<br>    }<br>    public object ConvertBack(object value, Type targetType, object paremeter, CultureInfo culture)<br>    {<br>        throw new NotImplementedException();<br>    }<br>}</pre><br>&nbsp;</p>
+<p>然后我们要消费这个转换器，只需要给Binding对象的Converter属性赋值一个我们刚刚写的转换器的实例就可以了，XAML代码如下：</p>
+<p><pre>&lt;StackPanel&gt;<br>    &lt;StackPanel.Resources&gt;<br>        &lt;local:CheckBoxStateToImageSourceConverter x:Key=”converter”/&gt;<br>    &lt;/StackPanel.Resources&gt;<br>    &lt;Grid Margin=”10”&gt;<br>        &lt;CheckBox x:Name=”checkBox”<br>                    HorizontalAlignment=”Left”<br>                    VerticalAlignment=”Center”/&gt;<br>        &lt;TextBlock Text=”你是基佬嘛？”<br>                    FontSize=”20”<br>                    HorizontalAlignment=”Left”<br>                    Margin=”20,0,0,0”/&gt;<br>    &lt;/Grid&gt;<br>    &lt;Image Source=”{Binding<br>        ElementName=checkBox<br>        ,Path=IsChecked<br>        ,Converter={StaticResource converter}<br>        ,Mode=OneWay}”/&gt;<br>&lt;/StackPanel&gt;</pre><br>运行效果如下</p>
+<p><a href="/img/2017/02/sp170209_131407.png"><img src="/img/2017/02/sp170209_131407.png" alt=""></a> <a href="/img/2017/02/sp170209_131440.png"><img src="/img/2017/02/sp170209_131440.png" alt=""></a></p>
+<hr>
+<h2 id="分析"><a href="#分析" class="headerlink" title="分析"></a><span style="color: #36b2a6;">分析</span></h2><p>Q：为什么ConvertBack方法没有实际代码？</p>
+<p>A：Convert是指从Source到Target这个途径，ConvertBack显而易知是从Target到Source这个途径。这里我们是单向的，因此我们不需要给ConvertBack方法写具体的转换代码。如果你遇到的Binding是TwoWay的，那么毫无疑问你就要实现这部分的逻辑。</p>
+<p>Q：讲讲Convert方法的参数列表？</p>
+<p>A：第一个参数是object类型，最大限度地保证了Converter的重用性，我们可以在方法内部对它的类型进行判断；第二个是方法返回类型（命名有点奇怪就是了，target是指返回值）；第三个是用于把额外的信息传入方法，若需要传递多个信息则可以把信息放入一个集合对象里传入方法。</p>
+<p>&nbsp;</p>
+]]></content>
+      
+        <categories>
+            
+            <category> WPF </category>
+            
+        </categories>
+        
+        
+        <tags>
+            
+            <tag> C# </tag>
+            
+        </tags>
+        
+    </entry>
+    
+    <entry>
+      <title><![CDATA[Binding[1]=数据校验]]></title>
+      <url>/2017/02/08/binding-validation/</url>
+      <content type="html"><![CDATA[<p>我们知道，属性的存在是为了解决数据有效性的问题，确保暴露出去的数据是合情合理的。在实际中，数据在目标流动过程中，我们一般都需要对其有效性进行验证。我们已经知道，Binding的作用实在Target和Source之间架起了一座数据流动的桥梁，因此我们需要对在这之间流动的数据进行校验。不仅如此，我们还可以进行数据类型的转换，这个在下一篇文章进行讲解，现在我们来看看如何在绑定的时候对数据进行有效性校验。</p>
+<hr>
+<h2 id="实现"><a href="#实现" class="headerlink" title="实现"></a><span style="color: #36b2a6;">实现</span></h2><p>现在我们的任务是，将一个TextBox（Target）绑定到一个Slider（Source）上，在TextBox输入非Slider的Value的区间值（0到100）时，会显示错误。</p>
+<p>UI的XAML代码：</p>
+<p><pre>&lt;StackPanel&gt;<br>    &lt;TextBox x:Name=”textBox” Margin=”10” Height=”25”/&gt;<br>    &lt;Slider x:Name=”slider” Margin=”10” Minimum=”-10” Maximum=”100”/&gt;<br>&lt;/StackPanel&gt;</pre><br>看到上面的代码，小伙伴们应该很快发现了一个小细节，为什么Slider的最小值设为-10？这个是别有用意的，因为Binding在验证数据的时候，默认是把Source的数据认为是完全正确的，有问题的数据只可能出现在Target上，因此这里模拟了Source数据异常的情况，并且对Source的数据也进行了校验的步骤。</p>
+<p>实现数据的校验是在对Binding的ValidationRules属性赋值，看属性的命名便可知道，这是一个ValidationRule类的集合，准确的类型是Collection&lt;ValidationRule&gt;。ValidatinRule是一个抽象类，因此我们需要准备它的派生类，实现Validate方法，该方法的返回值是ValidationResult类型对象，如果检验通过，则设置ValidationResult对象的IsValid属性为True，反之为False并为ErrorContent属性设置一个合适的消息内容。现在我们来准备ValidationRule的派生类。</p>
+<p><pre>class RangeValidationRule : ValidationRule<br>{<br>    public override ValidationResult Validate(object value, CultureInfo cultureInfo)<br>    {<br>        double data;<br>        if (double.TryParse(value.ToString(), out data))<br>        {<br>            if (data &gt;= 0 &amp;&amp; data &lt;= 100)<br>            {<br>                return new ValidationResult(true, null);<br>            }<br>        }<br>        return new ValidationResult(false, “Validation Failed”);<br>    }<br>}</pre><br>有了这个派生类，我们就可以着手进行将TextBox绑定到Slider上了。</p>
+<p><pre>public MainWindow()<br>{<br>    InitializeComponent();</pre></p>
+<pre><code>Binding binding = new Binding(&quot;Value&quot;) { Source = this.slider };
+binding.UpdateSourceTrigger = UpdateSourceTrigger.PropertyChanged;
+binding.ValidationRules.Add(new RangeValidationRule() { ValidatesOnTargetUpdated = true });
+this.textBox.SetBinding(TextBox.TextProperty, binding);
+</code></pre><p>}<br>运行程序后，不论是我们把Slider手动拨到0以下的值还是直接在TextBox里输入小于0的数，TextBox都会显示红色的边框，提示用户数据有问题。运行效果如下：</p>
+<p><a href="/img/2017/02/sp170208_214114.png"><img src="/img/2017/02/sp170208_214114.png" alt=""></a></p>
+<hr>
+<h2 id="更进一步"><a href="#更进一步" class="headerlink" title="更进一步"></a><span style="color: #36b2a6;">更进一步</span></h2><p>到此我们就已经完成了对数据的校验工作，接下来更进一步。我们刚才说了，ValidatinResult对象携带了一条错误消息，那么，我们如何让这条消息显示出来呢？这里用到了路由事件，我们来把后台代码写的更进一步。</p>
+<p><pre>public partial class MainWindow : Window<br>{<br>    public MainWindow()<br>    {<br>        InitializeComponent();</pre></p>
+<pre><code>    Binding binding = new Binding(&quot;Value&quot;) { Source = this.slider };
+    binding.UpdateSourceTrigger = UpdateSourceTrigger.PropertyChanged;
+    binding.ValidationRules.Add(new RangeValidationRule() { ValidatesOnTargetUpdated = true });
+    binding.NotifyOnValidationError = true;
+    this.textBox.SetBinding(TextBox.TextProperty, binding);
+    this.textBox.AddHandler(Validation.ErrorEvent, new RoutedEventHandler(
+        (sender, e) =&amp;gt;
+        {
+            if (Validation.GetErrors(this.textBox).Count &amp;gt; 0)
+            {
+                this.textBox.ToolTip = Validation.GetErrors(this.textBox)[0].ErrorContent.ToString();
+                ToolTipService.SetIsEnabled(this.textBox, true);
+            }
+        }));
+}
+</code></pre><p>}<br>&nbsp;</p>
+<p>运行效果如下，把鼠标悬停在TextBox上会有小提示出现，这个小提示就是我们在ValidationResult里设置的错误消息。</p>
+<p><a href="/img/2017/02/sp170208_214644.png"><img src="/img/2017/02/sp170208_214644.png" alt=""></a></p>
+<hr>
+<h2 id="分析"><a href="#分析" class="headerlink" title="分析"></a><span style="color: #36b2a6;">分析</span></h2><p>又到了分析部分，仍然是问答的形式来进行。</p>
+<p>Q：后台代码的 ValidatesOnTargetUpdated = true 这句代码是什么意思？</p>
+<p>A：这个问题的答案其实在文章里了，我们说了Binding对象默认把来自Source的数据认定为绝对正确，因此我们特意模拟了Source的数据异常的情况，这句代码就是告诉Binding对象，对来自Source的数据也进行校验。</p>
+<p>Q：为什么要添加 binding.NotifyOnValidationError = true这句代码？</p>
+<p>A：简单的讲就是使得验证失败的时候会触发事件，并执行事件处理器，也就是使得错误消息通过TextBox的ToolTip显示出来。详细请了解路由事件。</p>
+]]></content>
+      
+        <categories>
+            
+            <category> WPF </category>
+            
+        </categories>
+        
+        
+        <tags>
+            
+            <tag> C# </tag>
+            
+            <tag> WPF </tag>
+            
+        </tags>
+        
+    </entry>
+    
+    <entry>
+      <title><![CDATA[Binding[0]=使用ObjectDataProvider对象作为Binding的Source]]></title>
+      <url>/2017/02/07/odp-as-binding-source/</url>
+      <content type="html"><![CDATA[<p>一般情况下，我们通常使用某个类的实例作为Binding的对象，实例中的某个属性作为Path来消费这些类。现在试想一下这样的情形，我们需要绑定的数据是方法的返回值，这时候我们应该怎么办呢？有小伙伴可能会提出，修改这个类，增加属性将需要的数据暴露出来使用。这样是一个解决方法，但是重新设计底层类的风险和成本比较高，而且在黑盒引用类库的时候我们就不可能这样做了。那么是不是就束手无策了？当然不是，我们可以使用ObjectDataProvider包装一个对象然后作为Binding的数据源。怎么来实现呢？</p>
+<hr>
+<h2 id="实现"><a href="#实现" class="headerlink" title="实现"></a><span style="color: #3692b4;">实现</span></h2><p>现在的情形是，我引用一个类库，里面有一个Calculator的类，里面有各种算法，其中一个是加法的算法：</p>
+<p><pre>class Calculator<br>{<br>    public string Add(string arg1, string arg2)<br>    {<br>        double x;<br>        double y;<br>        if (double.TryParse(arg1, out x) &amp;&amp; double.TryParse(arg2, out y))<br>        {<br>            return (x + y).ToString();<br>        }<br>        return @”N/A”;<br>    }<br>}</pre><br>在界面上，准备了三个TextBox，第一个作为Add方法的第一个参数，第二个作为第二个参数，第三个作为Add方法返回值。XAML代码如下：</p>
+<p><pre>&lt;StackPanel&gt;<br>    &lt;TextBox x:Name=”tBArg1” Margin=”10” Height=”25”/&gt;<br>    &lt;TextBox x:Name=”tBArg2” Margin=”10” Height=”25”/&gt;<br>    &lt;TextBox x:Name=”tBResult” Margin=”10” Height=”25”/&gt;<br>&lt;/StackPanel&gt;</pre><br>&nbsp;</p>
+<p>功能上，我要实现在前两个TextBox上输入实数后，在第三个TextBox实时显示出计算结果。过程代码写在一个SetBinding方法里，然后在窗体的构造函数中那个调用这个方法。</p>
+<p><pre>public partial class MainWindow : Window<br>{<br>    public MainWindow()<br>    {<br>        InitializeComponent();<br>        this.SetBinding();<br>    }</pre></p>
+<pre><code>private void SetBinding()
+{
+    //Create and initial ObjectDataProvider instance
+    ObjectDataProvider odp = new ObjectDataProvider();
+    odp.ObjectInstance = new Calculator();
+    odp.MethodName = &quot;Add&quot;;
+    odp.MethodParameters.Add(&quot;&quot;);
+    odp.MethodParameters.Add(&quot;&quot;);
+
+    //Create and initial Binding instance
+    Binding bindingToArg1 = new Binding(&quot;MethodParameters[0]&quot;)
+    {
+        Source = odp,
+        BindsDirectlyToSource = true,
+        UpdateSourceTrigger = UpdateSourceTrigger.PropertyChanged
+    };
+
+    Binding bindingToArg2 = new Binding(&quot;MethodParameters[1]&quot;)
+    {
+        Source = odp,
+        BindsDirectlyToSource = true,
+        UpdateSourceTrigger = UpdateSourceTrigger.PropertyChanged
+    };
+
+    Binding bindingToResult = new Binding(&quot;.&quot;) { Source = odp };
+
+    //Set binding
+    this.tBArg1.SetBinding(TextBox.TextProperty, bindingToArg1);
+    this.tBArg2.SetBinding(TextBox.TextProperty, bindingToArg2);
+    this.tBResult.SetBinding(TextBox.TextProperty, bindingToResult);
+}
+</code></pre><p>}<br>最终的实现效果</p>
+<p><a href="/img/2017/02/sp170207_142045.png"><img src="/img/2017/02/sp170207_142045.png" alt=""></a></p>
+<hr>
+<h2 id="分析"><a href="#分析" class="headerlink" title="分析"></a><span style="color: #3692b4;">分析</span></h2><p>OK，现在我们的问题解决了。让我们以问答的形式具体分析一下这个实现过程。</p>
+<p>Q：ObjectDataProvider类的作用是什么？</p>
+<p>A：文章开头部分就提及到了，ObjectDataProvider类的作用就是将一个<strong>以方法形式暴露数据的对象</strong>包装起来。我们先是创建了一个ObjectDataProvider对象，然后new 一个Calculator实例赋值给它的ObjectInstance属性，这样就完成了将对象包装在ObjectDataProvider对象里的工作。注意这里的ObjectDataProvider对象本身就代表了数据，因此Path写“.”</p>
+<p>Q：BindsDirectlyToSource=true这句代码什么意思？</p>
+<p>A：这句代码的意思是告诉Binding对象，你把从UI元素采集到数据直接写入其直接Source（也就是ObjectDataProvider对象），而不是ObjectDataProvider对象包装着的Calculator对象里。</p>
+<p>Q：如果一个方法有多个重载ObjectDataProvider如何决策使用哪个方法？</p>
+<p>A：我们知道，各个重载方法的区别在于方法参数列表的不同。因此，ObjectDataProvider会根据我们传入的参数来决定使用哪个重载方法。这里可以得到的一个结论是：MethodParameters属性对类型是敏感的。</p>
+<p>Q：三个TextBox的数据源都是谁？</p>
+<p>A：三个TextBox的数据源都是ObjectDataProvider对象。这里体现了WPF的数据驱动UI的理念。</p>
+]]></content>
+      
+        <categories>
+            
+            <category> WPF </category>
+            
+        </categories>
+        
+        
+    </entry>
+    
+    <entry>
+      <title><![CDATA[提高Arduino编程体验]]></title>
+      <url>/2016/12/29/arduino-ide-for-visualstudio/</url>
+      <content type="html"><![CDATA[<p>前阵子学校有个单片机比赛，受其影响突然很想玩板子。于是就买个一块Arduino UNO的国产版ZHONGBEST，就使用上来说和官方原版没有什么区别，最大的区别就是便宜！便宜！便宜！（重说三）</p>
+<hr>
+<p>拿到手后，当然迫不及待地上手一个Hello World程序，开始我用的是官方的IDE，试了没问题之后我尝试着去修改代码，然后我发现了什么？没有智能提示！没有智能提示！没有智能提示！或许我是被VS惯坏了，我实在受不了。搜索一波后发现有个扩展叫做 Arduino IDE For Visual Studio（传送门：<a href="https://marketplace.visualstudio.com/items?itemName=VisualMicro.ArduinoIDEforVisualStudio" target="_blank" rel="external">https://marketplace.visualstudio.com/items?itemName=VisualMicro.ArduinoIDEforVisualStudio</a>），安装好了之后打开VS后可以看到界面已经发生了少许的变化，再次尝试着去写代码的时候找回了那种愉悦感 balabala~</p>
+<p><a href="/img/2016/12/sp161229_125410.png"><img src="/img/2016/12/sp161229_125410-1024x576.png" alt=""></a></p>
+<p>&nbsp;</p>
+]]></content>
+      
+        <categories>
+            
+            <category> Arduino </category>
+            
+        </categories>
+        
+        
+        <tags>
+            
+            <tag> C/C++ </tag>
+            
+        </tags>
+        
+    </entry>
+    
+    <entry>
+      <title><![CDATA[About Me]]></title>
+      <url>/2016/12/07/about/</url>
+      <content type="html"><![CDATA[<p><strong>别人都喜欢叫我糯米</strong></p>
+<hr>
+<p>&nbsp;</p>
+<p>在校大学生。</p>
+<p>理科男，单身，求勾搭。</p>
+<p>喜欢摄影，目前愿望是拥有一部微单。</p>
+<p>努力争取拿奖学金买买买。</p>
+<p>喜欢设计，不断提高审美中。</p>
+<p>程序狗，喜欢做出优雅好用的软件。（虽然还没解锁这个技能）</p>
+<p>偶尔会出去骑行，配合摄影感觉不能再好了。</p>
+<p>微博:<a href="http://weibo.com/Nomyfan" target="_blank" rel="external">@陈诺米同学</a></p>
+]]></content>
+      
+        <categories>
+            
+            <category> Talking </category>
+            
+        </categories>
+        
+        
+    </entry>
+    
+  
+  
+    
+    <entry>
+      <title><![CDATA[Talking]]></title>
+      <url>/Talking/index.html</url>
+      <content type="html"></content>
+    </entry>
+    
+    <entry>
+      <title><![CDATA[ABOUT ME]]></title>
+      <url>/about/index.html</url>
+      <content type="html"><![CDATA[<p><strong>别人都叫我糯米</strong></p>
+<hr>
+<p>&nbsp;</p>
+<p>在校大学生。</p>
+<p>理科男，单身，求勾搭(尤其是学姐(/▽＼)。</p>
+<p>喜欢摄影，目前愿望是拥有一部微单。</p>
+<p>努力争取拿奖学金买买买。</p>
+<p>喜欢设计，不断提高审美中。</p>
+<p>程序狗，喜欢做出优雅好用的软件。（虽然还没解锁这个技能）</p>
+<p>偶尔会出去骑行，配合摄影感觉不能再好了。</p>
+<p>微博:<a href="http://weibo.com/Nomyfan" target="_blank" rel="external">@陈诺米同学</a></p>
+]]></content>
+    </entry>
+    
+    <entry>
+      <title><![CDATA[Articles]]></title>
+      <url>/articles/index.html</url>
+      <content type="html"></content>
+    </entry>
+    
+    <entry>
+      <title><![CDATA[Categories]]></title>
+      <url>/categories/index.html</url>
+      <content type="html"></content>
+    </entry>
+    
+    <entry>
+      <title><![CDATA[Contact]]></title>
+      <url>/feeback/index.html</url>
+      <content type="html"><![CDATA[<p>Contact me with<br><strong><a href="mailto:Myers.Chan@outlook.com?subject=FeebackFromBlog" target="_blank" rel="external">E-mail</a></strong>.<br><strong><a href="http://weibo.com/Nomyfan" target="_blank" rel="external">Weibo</a></strong><br><strong><a href="https://twitter.com/Myers__Chan" target="_blank" rel="external">Twitter</a></strong><br><strong><a href="https://facebook.com/myers.n.chan" target="_blank" rel="external">Facebook</a></strong></p>
+]]></content>
+    </entry>
+    
+    <entry>
+      <title><![CDATA[Tags]]></title>
+      <url>/tags/index.html</url>
+      <content type="html"></content>
+    </entry>
+    
+    <entry>
+      <title><![CDATA[Timeline]]></title>
+      <url>/timeline/index.html</url>
+      <content type="html"></content>
+    </entry>
+    
+    <entry>
+      <title><![CDATA[Photograph]]></title>
+      <url>/photograph/index.html</url>
+      <content type="html"></content>
+    </entry>
+    
+    <entry>
+      <title><![CDATA[Contact]]></title>
+      <url>/contact/index.html</url>
+      <content type="html"><![CDATA[<p>Contact me with<br><strong><a href="mailto:Myers.Chan@outlook.com?subject=FeebackFromBlog" target="_blank" rel="external">E-mail</a></strong>.<br><strong><a href="http://weibo.com/Nomyfan" target="_blank" rel="external">Weibo</a></strong><br><strong><a href="https://twitter.com/Myers__Chan" target="_blank" rel="external">Twitter</a></strong><br><strong><a href="https://facebook.com/myers.n.chan" target="_blank" rel="external">Facebook</a></strong></p>
+]]></content>
+    </entry>
+    
+    <entry>
+      <title><![CDATA[Friends]]></title>
+      <url>/friends/index.html</url>
+      <content type="html"></content>
+    </entry>
+    
+  
+</search>
