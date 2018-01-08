@@ -5,20 +5,70 @@
     <entry>
       <title><![CDATA[记一次C#爬虫经历]]></title>
       <url>/2018/01/06/crawler/</url>
-      <content type="html"><![CDATA[<p>这几天都在写C++，感觉都要吐了（原谅我太渣(/▽＼)），适当写写C#转换一下心情。既然要转换心情，那么就应该有点乐趣，那就把我们学院的所有人的人头照都爬了吧！😜<br>我校的人头照很好爬，连认证都不用就可以用直链Get到。🐕</p>
+      <content type="html"><![CDATA[<p>这几天都在写C++，感觉都要吐了（原谅我太渣(/▽＼)），适当写写C#转换一下心情。既然要转换心情，那么就应该有点乐趣，那就把我们学院的所有人的人头照都爬了吧！<br>我校的人头照很好爬，连认证都不用就可以用直链Get到。</p>
 <h1 id="准备工作"><a href="#准备工作" class="headerlink" title="准备工作"></a>准备工作</h1><p>当然要准备一下所有人的花名册，这个不难get到，这学期分专业的时候有excel文件公示，copy，paste，完工。</p>
 <h1 id="敲代码"><a href="#敲代码" class="headerlink" title="敲代码"></a>敲代码</h1><p>这里一共准备两个方法即可，一个用来读取文件，获得所有人的学号和姓名，另一个方法负责把这些照片download下来。</p>
-<h2 id="文件读取"><a href="#文件读取" class="headerlink" title="文件读取"></a>文件读取</h2><figure class="highlight csharp"><table><tr><td class="code"><pre><div class="line"><span class="function"><span class="keyword">static</span> Dictionary&lt;<span class="keyword">string</span>, <span class="keyword">string</span>&gt; <span class="title">GetInfo</span>(<span class="params"></span>)</span></div><div class="line"><span class="function"></span>&#123;</div><div class="line">    Dictionary&lt;<span class="keyword">string</span>, <span class="keyword">string</span>&gt; dictionary = <span class="keyword">new</span> Dictionary&lt;<span class="keyword">string</span>, <span class="keyword">string</span>&gt;();</div><div class="line"></div><div class="line">    <span class="keyword">using</span> (StreamReader sr = <span class="keyword">new</span> StreamReader(<span class="string">"id_names.txt"</span>))</div><div class="line">    &#123;</div><div class="line">        <span class="keyword">string</span> line = <span class="literal">null</span>;</div><div class="line">        <span class="keyword">while</span> ((line = sr.ReadLine()) != <span class="literal">null</span>)</div><div class="line">        &#123;</div><div class="line">            <span class="keyword">var</span> words = line.Split(<span class="string">' '</span>);</div><div class="line">            dictionary.Add(words[<span class="number">0</span>], words[<span class="number">1</span>]);</div><div class="line">        &#125;</div><div class="line">    &#125;</div><div class="line">    <span class="keyword">return</span> dictionary;</div><div class="line">&#125;</div></pre></td></tr></table></figure>
+<h2 id="文件读取"><a href="#文件读取" class="headerlink" title="文件读取"></a>文件读取</h2><pre><code class="CSharp">static Dictionary&lt;string, string&gt; GetInfo()
+{
+    Dictionary&lt;string, string&gt; dictionary = new Dictionary&lt;string, string&gt;();
+
+    using (StreamReader sr = new StreamReader(&quot;id_names.txt&quot;))
+    {
+        string line = null;
+        while ((line = sr.ReadLine()) != null)
+        {
+            var words = line.Split(&#39; &#39;);
+            dictionary.Add(words[0], words[1]);
+        }
+    }
+    return dictionary;
+}
+</code></pre>
 <p>函数返回一个以学号为Key，姓名为Value的字典，有了这个字典，我们就可以遍历所有的元素然后爬图了。</p>
-<h2 id="爬图"><a href="#爬图" class="headerlink" title="爬图"></a>爬图</h2><figure class="highlight csharp"><table><tr><td class="code"><pre><div class="line"><span class="function"><span class="keyword">static</span> <span class="keyword">void</span> <span class="title">PullImage</span>(<span class="params"><span class="keyword">string</span> url, <span class="keyword">string</span> id, <span class="keyword">string</span> name</span>)</span></div><div class="line"><span class="function"></span>&#123;</div><div class="line">    <span class="keyword">string</span> url_ = url + id + <span class="string">".jpg"</span>;</div><div class="line">    HttpWebRequest webRequest = WebRequest.Create(url_) <span class="keyword">as</span> HttpWebRequest;</div><div class="line"></div><div class="line">    Image img = <span class="literal">null</span>;</div><div class="line">    <span class="keyword">try</span></div><div class="line">    &#123;</div><div class="line">        <span class="keyword">var</span> webResponse = webRequest.GetResponse();</div><div class="line">        <span class="keyword">var</span> stream = webResponse.GetResponseStream();</div><div class="line">        img = Image.FromStream(stream);</div><div class="line">        img.Save(<span class="string">$"pics/<span class="subst">&#123;id&#125;</span> <span class="subst">&#123;name&#125;</span>.jpg"</span>);</div><div class="line">    &#125;</div><div class="line">    <span class="keyword">catch</span> (Exception e)</div><div class="line">    &#123;</div><div class="line">        Console.WriteLine(<span class="string">$"Get <span class="subst">&#123;name&#125;</span>'s pic with error."</span>);</div><div class="line">        Console.WriteLine(e.Message);</div><div class="line">    &#125;</div><div class="line">&#125;</div></pre></td></tr></table></figure>
+<h2 id="爬图"><a href="#爬图" class="headerlink" title="爬图"></a>爬图</h2><pre><code class="CSharp">static void PullImage(string url, string id, string name)
+{
+    string url_ = url + id + &quot;.jpg&quot;;
+    HttpWebRequest webRequest = WebRequest.Create(url_) as HttpWebRequest;
+
+    Image img = null;
+    try
+    {
+        var webResponse = webRequest.GetResponse();
+        var stream = webResponse.GetResponseStream();
+        img = Image.FromStream(stream);
+        img.Save($&quot;pics/{id} {name}.jpg&quot;);
+    }
+    catch (Exception e)
+    {
+        Console.WriteLine($&quot;Get {name}&#39;s pic with error.&quot;);
+        Console.WriteLine(e.Message);
+    }
+}
+</code></pre>
 <p>添加异常捕获，不然会因为某个图片获取过程出现错误而导致程序奔掉，后续学生的照片获取中断。  </p>
-<h2 id="执行"><a href="#执行" class="headerlink" title="执行"></a>执行</h2><p>两个函数都准备好了，那么就开始实验吧！<br><figure class="highlight csharp"><table><tr><td class="code"><pre><div class="line"><span class="function"><span class="keyword">static</span> <span class="keyword">void</span> <span class="title">Main</span>(<span class="params"><span class="keyword">string</span>[] args</span>)</span></div><div class="line"><span class="function"></span>&#123;</div><div class="line">    <span class="keyword">string</span> url = <span class="string">"http://xxx/xxx/photo/student/"</span>; <span class="comment">//这里把链接抹掉了</span></div><div class="line"></div><div class="line">    <span class="keyword">var</span> ret = GetInfo();</div><div class="line">    <span class="keyword">foreach</span> (<span class="keyword">var</span> r <span class="keyword">in</span> ret)</div><div class="line">    &#123;</div><div class="line">        PullImage(url, r.Key, r.Value);</div><div class="line">        Thread.Sleep(<span class="number">1300</span>); <span class="comment">//暂停1.3秒，不然可能会因为频繁发送请求服务器方面出现问题（毕竟土豆服务器）</span></div><div class="line">    &#125;</div><div class="line"></div><div class="line">    Console.WriteLine(<span class="string">"Done"</span>);</div><div class="line">    Console.ReadLine();</div><div class="line"></div><div class="line">&#125;</div></pre></td></tr></table></figure></p>
+<h2 id="执行"><a href="#执行" class="headerlink" title="执行"></a>执行</h2><p>两个函数都准备好了，那么就开始实验吧！</p>
+<pre><code class="CSharp">static void Main(string[] args)
+{
+    string url = &quot;http://xxx/xxx/photo/student/&quot;; //这里把链接抹掉了
+
+    var ret = GetInfo();
+    foreach (var r in ret)
+    {
+        PullImage(url, r.Key, r.Value);
+        Thread.Sleep(1300); //暂停1.3秒，不然可能会因为频繁发送请求服务器方面出现问题（毕竟土豆服务器）
+    }
+
+    Console.WriteLine(&quot;Done&quot;);
+    Console.ReadLine();
+
+}
+</code></pre>
 <h1 id="运行结果"><a href="#运行结果" class="headerlink" title="运行结果"></a>运行结果</h1><p>最后的运行结果如下图，一个学生的照片获取超时了，还行。<br><a href="/img/2018/01/snipaste_20180106_203755.png"><img src="/img/2018/01/snipaste_20180106_203755.png" alt=""></a><br>这下我可以认识认识本学院所有人了(ಥ _ ಥ)</p>
 ]]></content>
       
         <categories>
             
-            <category> 爬虫 </category>
+            <category> Programming </category>
             
         </categories>
         
@@ -28,6 +78,8 @@
             <tag> C# </tag>
             
             <tag> 爬虫 </tag>
+            
+            <tag> .NET </tag>
             
         </tags>
         
@@ -126,7 +178,7 @@ publisher.Invoke();
       
         <categories>
             
-            <category> CSharp </category>
+            <category> Programming </category>
             
         </categories>
         
@@ -217,9 +269,9 @@ string speed = (string)token.SelectToken("wind").SelectToken("speed");</pre>
         
         <tags>
             
-            <tag> .NET </tag>
+            <tag> C# </tag>
             
-            <tag> CSharp </tag>
+            <tag> .NET </tag>
             
             <tag> JSON </tag>
             
@@ -272,6 +324,8 @@ string speed = (string)token.SelectToken("wind").SelectToken("speed");</pre>
             
             <tag> Windows </tag>
             
+            <tag> Windows 10 </tag>
+            
         </tags>
         
     </entry>
@@ -300,6 +354,12 @@ string speed = (string)token.SelectToken("wind").SelectToken("speed");</pre>
             
         </categories>
         
+        
+        <tags>
+            
+            <tag> Windows </tag>
+            
+        </tags>
         
     </entry>
     
@@ -419,14 +479,12 @@ string speed = (string)token.SelectToken("wind").SelectToken("speed");</pre>
       
         <categories>
             
-            <category> WPF </category>
+            <category> Programming </category>
             
         </categories>
         
         
         <tags>
-            
-            <tag> C# </tag>
             
             <tag> WPF </tag>
             
@@ -470,12 +528,12 @@ string speed = (string)token.SelectToken("wind").SelectToken("speed");</pre>
 <p><pre>yum install phpmyadmin</pre><br>安装完成后我们要设置一下权限，不然访问会返回403错误</p>
 <p><pre>vim /etc/httpd/conf.d/phpMyAdmin.conf</pre><br>找到这部分并修改为如下</p>
 <p><pre>&lt;Directory /usr/share/phpMyAdmin/&gt;<br>   AddDefaultCharset UTF-8<br>   &lt;IfModule mod_authz_core.c&gt;</pre></p>
-<pre><code># Apache 2.4
-&amp;lt;RequireAny&amp;gt;
-  #Require ip 127.0.0.1
-  #Require ip ::1
-   Require all granted
-&amp;lt;/RequireAny&amp;gt;
+<pre><code> # Apache 2.4
+ &amp;lt;RequireAny&amp;gt;
+   #Require ip 127.0.0.1
+   #Require ip ::1
+    Require all granted
+ &amp;lt;/RequireAny&amp;gt;
 </code></pre><p>   &lt;/IfModule&gt;<br>   &lt;IfModule !mod_authz_core.c&gt;</p>
 <pre><code> # Apache 2.2
  Order Deny,Allow
@@ -499,7 +557,39 @@ string speed = (string)token.SelectToken("wind").SelectToken("speed");</pre>
 <p>如果你的数据库密码不一样了，修改一下wp-config文件。<br>这时候在浏览器中输入IP/域名试着访问博客，如果之前没有域名的小伙伴就会遇到问题了，比如我- -，那是因为之前的IP地址和现在不同了，数据库中的数据还没更新<br><a href="/img/2017/02/sp170213_113354.png"><img src="/img/2017/02/sp170213_113354.png" alt=""></a><br>就是这里的设置的问题！解决方法就是在数据库中修改这两个值，指向新的IP地址或者你的域名，还记得安装的phpMyAdmin嘛，现在排上用场了<br><a href="/img/2017/02/sp170213_113944.png"><img src="/img/2017/02/sp170213_113944.png" alt=""></a><br>修改两个值就可以了，这时候就可以正常登陆了。<br>然后我们在主页点开文章会出现403错误，调整一下Apache配置文件</p>
 <p><pre>vim /etc/httpd/conf/httpd.conf</pre><br>在文件中加入</p>
 <p><pre>LoadModule rewrite_module modules/mod_rewrite.so</pre><br>位置随意，下图作为参考<br><a href="/img/2017/02/sp170213_114433.png"><img src="/img/2017/02/sp170213_114433.png" alt=""></a></p>
-<p>然后我们再修改一点内容<br><figure class="highlight plain"><table><tr><td class="code"><pre><div class="line">&lt;VirtualHost *:80&gt;</div><div class="line"></div><div class="line">ServerName localhost</div><div class="line"></div><div class="line">DocumentRoot /var/www/html/default</div><div class="line"></div><div class="line">&lt;Directory “/var/www/html/default”&gt;</div><div class="line"></div><div class="line">Options FollowSymLinks</div><div class="line"></div><div class="line">AllowOverride ALL</div><div class="line"></div><div class="line">Order allow,deny</div><div class="line"></div><div class="line">Allow from all</div><div class="line"></div><div class="line">&lt;/Directory&gt;</div><div class="line"></div><div class="line">&lt;/VirtualHost&gt;</div></pre></td></tr></table></figure><br>把<em>AllowOverride</em>的值换成了<em>ALL，</em>位置如下<br><a href="/img/2017/02/sp170213_114405.png"><img src="/img/2017/02/sp170213_114405.png" alt=""></a><br>保存文件退出，重启Apache。最后再新建一个.htaccess文件，丢到博客根目录下就行了，由于这个文件的文件名有点特殊，要借助其他编辑工具生成，比如笔者用的Visual Studio Code。文件内容如下<br><figure class="highlight plain"><table><tr><td class="code"><pre><div class="line">&lt;IfModule mod_rewrite.c&gt;</div><div class="line"></div><div class="line">RewriteEngine On</div><div class="line"></div><div class="line">RewriteBase /</div><div class="line"></div><div class="line">RewriteRule ^index.php$ - [L]</div><div class="line"></div><div class="line">RewriteCond %&#123;REQUEST_FILENAME&#125; !-f</div><div class="line"></div><div class="line">RewriteCond %&#123;REQUEST_FILENAME&#125; !-d</div><div class="line"></div><div class="line">RewriteRule . /index.php [L]</div><div class="line"></div><div class="line">&lt;/IfModule&gt;</div></pre></td></tr></table></figure><br>这时候再点击文章就可以正常访问了。</p>
+<p>然后我们再修改一点内容<br><pre><code>&lt;VirtualHost *:80&gt;
+
+ServerName localhost
+
+DocumentRoot &#x2F;var&#x2F;www&#x2F;html&#x2F;default
+
+&lt;Directory “&#x2F;var&#x2F;www&#x2F;html&#x2F;default”&gt;
+
+Options FollowSymLinks
+
+AllowOverride ALL
+
+Order allow,deny
+
+Allow from all
+
+&lt;&#x2F;Directory&gt;
+
+&lt;&#x2F;VirtualHost&gt;</code></pre><br>把<em>AllowOverride</em>的值换成了<em>ALL，</em>位置如下<br><a href="/img/2017/02/sp170213_114405.png"><img src="/img/2017/02/sp170213_114405.png" alt=""></a><br>保存文件退出，重启Apache。最后再新建一个.htaccess文件，丢到博客根目录下就行了，由于这个文件的文件名有点特殊，要借助其他编辑工具生成，比如笔者用的Visual Studio Code。文件内容如下<br><pre><code>&lt;IfModule mod_rewrite.c&gt;
+
+RewriteEngine On
+
+RewriteBase &#x2F;
+
+RewriteRule ^index.php$ - [L]
+
+RewriteCond %{REQUEST_FILENAME} !-f
+
+RewriteCond %{REQUEST_FILENAME} !-d
+
+RewriteRule . &#x2F;index.php [L]
+
+&lt;&#x2F;IfModule&gt;</code></pre><br>这时候再点击文章就可以正常访问了。</p>
 <hr>
 <h2 id="结束"><a href="#结束" class="headerlink" title="结束"></a><span style="color: #36b2a6;">结束</span></h2><p>自此，迁移工作算是完成了，不过还有些小问题，不如文件的上传，下篇文章再讲啦！</p>
 <p>本文参考了两位dalao的文章，特别感谢！<br><a href="http://blog.gclxry.com/install-wordpress-on-centos7/" target="_blank" rel="external">Centos 7上安装Wordpress</a><br><a href="https://www.yanning.wang/archives/192.html" target="_blank" rel="external">WordPress跨平台迁移实战</a></p>
@@ -509,10 +599,16 @@ string speed = (string)token.SelectToken("wind").SelectToken("speed");</pre>
             
             <category> Linux </category>
             
-            <category> VPS </category>
-            
         </categories>
         
+        
+        <tags>
+            
+            <tag> Linux </tag>
+            
+            <tag> VPS </tag>
+            
+        </tags>
         
     </entry>
     
@@ -527,7 +623,15 @@ string speed = (string)token.SelectToken("wind").SelectToken("speed");</pre>
 <p><pre>vim /etc/shadowsocks.json</pre><br>然后写入配置，端口和密码自己自定义。</p>
 <p><pre>{<br>    “server”:”0.0.0.0”,<br>    “server_port”:8900,<br>    “local_address”: “127.0.0.1”,<br>    “local_port”:1080,<br>    “password”:”passwd”,<br>    “timeout”:300,<br>    “method”:”aes-256-cfb”,<br>}</pre><br>如果要多用户登陆，那么就把password改成port_password然后加入多个端口和密码，例如：</p>
 <p><pre>{<br>    “server”:”0.0.0.0”,<br>    “local_address”:”127.0.0.1”,<br>    “local_port”:1080,<br>    “port_password”:{<br>         “8900”:”passwd0”,<br>         “8901”:”passwd1”,<br>         “8902”:”passwd2”,<br>         “8903”:”passwd3”,<br>         “8904”:”passwd4”<br>    },<br>    “timeout”:300,<br>    “method”:”aes-256-cfb”,<br>}</pre><br>然后新建一个ss服务</p>
-<p><pre>vim /etc/systemd/system/shadowsocks.service</pre><br>内容写入：<br><figure class="highlight plain"><table><tr><td class="code"><pre><div class="line">[Unit]</div><div class="line">Description=Shadowsocks</div><div class="line"></div><div class="line">[Service]</div><div class="line">TimeoutStartSec=0</div><div class="line">ExecStart=/usr/bin/ssserver -c /etc/shadowsocks.json</div><div class="line"></div><div class="line">[Install]</div><div class="line">WantedBy=multi-user.target</div></pre></td></tr></table></figure><br>然后开启服务，并让服务开机启动</p>
+<p><pre>vim /etc/systemd/system/shadowsocks.service</pre><br>内容写入：<br><pre><code>[Unit]
+Description=Shadowsocks
+
+[Service]
+TimeoutStartSec=0
+ExecStart=&#x2F;usr&#x2F;bin&#x2F;ssserver -c &#x2F;etc&#x2F;shadowsocks.json
+
+[Install]
+WantedBy=multi-user.target</code></pre><br>然后开启服务，并让服务开机启动</p>
 <p><pre>systemctl enable shadowsocks<br>systemctl start shadowsocks</pre><br>这时候可以检查一下服务是否正确开启</p>
 <p><pre>systemctl status shadowsocks</pre><br>如果Active那里显示的是绿色的active(running)则说明服务正确开启了。如图：<br><a href="/img/2017/02/sp170211_224944.png"><img src="/img/2017/02/sp170211_224944.png" alt=""></a></p>
 <p>最后，千万记得防火墙开启刚才配置里写的端口，我的例子里写的只有一个8900，防火墙没开的请自动忽略。</p>
@@ -539,10 +643,16 @@ string speed = (string)token.SelectToken("wind").SelectToken("speed");</pre>
             
             <category> Linux </category>
             
-            <category> VPS </category>
-            
         </categories>
         
+        
+        <tags>
+            
+            <tag> Linux </tag>
+            
+            <tag> VPS </tag>
+            
+        </tags>
         
     </entry>
     
@@ -566,14 +676,16 @@ string speed = (string)token.SelectToken("wind").SelectToken("speed");</pre>
       
         <categories>
             
-            <category> WPF </category>
+            <category> Programming </category>
             
         </categories>
         
         
         <tags>
             
-            <tag> C# </tag>
+            <tag> WPF </tag>
+            
+            <tag> .NET </tag>
             
         </tags>
         
@@ -627,14 +739,12 @@ this.textBox.SetBinding(TextBox.TextProperty, binding);
       
         <categories>
             
-            <category> WPF </category>
+            <category> Programming </category>
             
         </categories>
         
         
         <tags>
-            
-            <tag> C# </tag>
             
             <tag> WPF </tag>
             
@@ -699,10 +809,16 @@ this.textBox.SetBinding(TextBox.TextProperty, binding);
       
         <categories>
             
-            <category> WPF </category>
+            <category> Programming </category>
             
         </categories>
         
+        
+        <tags>
+            
+            <tag> WPF </tag>
+            
+        </tags>
         
     </entry>
     
