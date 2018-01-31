@@ -12,7 +12,7 @@
     
     <title>
         
-            WordPress迁移-Windows Server 2012到Centos 7 | 
+            ArchLinux安装gnome桌面 | 
         
         IConnectable&lt;World&gt;
     </title>
@@ -38,7 +38,7 @@
     <meta name="theme-color" content="#0097A7">
     <meta name="author" content="Myers Chan">
     <meta name="description" itemprop="description" content="Nomyfan&#39;s person blog">
-    <meta name="keywords" content="Technology,Prgramming,Microsoft,.NET,Linux,VPS">
+    <meta name="keywords" content="Technology,Prgramming,Microsoft,.NET,ArchLinux,Gnome">
 
     <!-- Site Verification -->
     
@@ -67,18 +67,18 @@
     <!-- The Open Graph protocol -->
     <meta property="og:url" content="https://nomyfan.github.io">
     <meta property="og:type" content="blog">
-    <meta property="og:title" content="WordPress迁移-Windows Server 2012到Centos 7 | IConnectable&lt;World&gt;">
+    <meta property="og:title" content="ArchLinux安装gnome桌面 | IConnectable&lt;World&gt;">
     <meta property="og:image" content="/img/favicon.png" />
     <meta property="og:description" content="Nomyfan&#39;s person blog">
-    <meta property="og:article:tag" content="Linux"> <meta property="og:article:tag" content="VPS"> 
+    <meta property="og:article:tag" content="ArchLinux"> <meta property="og:article:tag" content="Gnome"> 
 
     
-        <meta property="article:published_time" content="Feb 13, 2017" />
-        <meta property="article:modified_time" content="Jan 08, 2018" />
+        <meta property="article:published_time" content="Jan 31, 2018" />
+        <meta property="article:modified_time" content="Jan 31, 2018" />
     
 
     <!-- The Twitter Card protocol -->
-    <meta name="twitter:title" content="WordPress迁移-Windows Server 2012到Centos 7 | IConnectable&lt;World&gt;">
+    <meta name="twitter:title" content="ArchLinux安装gnome桌面 | IConnectable&lt;World&gt;">
     <meta name="twitter:description" content="Nomyfan&#39;s person blog">
     <meta name="twitter:image" content="/img/favicon.png">
     <meta name="twitter:card" content="summary_large_image" />
@@ -86,7 +86,7 @@
 
     <!-- Add canonical link for SEO -->
     
-        <link rel="canonical" href="https://nomyfan.github.io/2017/02/13/wordpress-migration/index.html" />
+        <link rel="canonical" href="https://nomyfan.github.io/2018/01/31/archlinux-gnome-install/index.html" />
     
 
     <!-- Structured-data for SEO -->
@@ -112,10 +112,10 @@
         },
         "description": "NOMYFAN's BLOG,Nice to meet you"
     },
-    "headline": "WordPress迁移-Windows Server 2012到Centos 7",
-    "url": "https://nomyfan.github.io/2017/02/13/wordpress-migration/index.html",
-    "datePublished": "Feb 13, 2017",
-    "dateModified": "Jan 08, 2018",
+    "headline": "ArchLinux安装gnome桌面",
+    "url": "https://nomyfan.github.io/2018/01/31/archlinux-gnome-install/index.html",
+    "datePublished": "Jan 31, 2018",
+    "dateModified": "Jan 31, 2018",
     "description": "Nomyfan&#39;s person blog",
     "mainEntityOfPage": {
         "@type": "WebPage",
@@ -353,7 +353,7 @@
 
     
     <ul class="post-toc-wrap mdl-menu mdl-menu--bottom-left mdl-js-menu mdl-js-ripple-effect" for="post-toc-trigger-btn" style="max-height:80vh; overflow-y:scroll;">
-        <ol class="post-toc"><li class="post-toc-item post-toc-level-2"><a class="post-toc-link" href="#准备工作-环境搭建"><span class="post-toc-number">1.</span> <span class="post-toc-text">准备工作-环境搭建</span></a><ol class="post-toc-child"><li class="post-toc-item post-toc-level-3"><a class="post-toc-link" href="#安装Apache"><span class="post-toc-number">1.1.</span> <span class="post-toc-text">安装Apache</span></a></li><li class="post-toc-item post-toc-level-3"><a class="post-toc-link" href="#安装MySQL-MariaDB"><span class="post-toc-number">1.2.</span> <span class="post-toc-text">安装MySQL(MariaDB)</span></a></li><li class="post-toc-item post-toc-level-3"><a class="post-toc-link" href="#安装PHP"><span class="post-toc-number">1.3.</span> <span class="post-toc-text">安装PHP</span></a></li><li class="post-toc-item post-toc-level-3"><a class="post-toc-link" href="#安装phpMyAdmin（可选）"><span class="post-toc-number">1.4.</span> <span class="post-toc-text">安装phpMyAdmin（可选）</span></a></li></ol></li><li class="post-toc-item post-toc-level-2"><a class="post-toc-link" href="#迁移"><span class="post-toc-number">2.</span> <span class="post-toc-text">迁移</span></a><ol class="post-toc-child"><li class="post-toc-item post-toc-level-3"><a class="post-toc-link" href="#Windows端"><span class="post-toc-number">2.1.</span> <span class="post-toc-text">Windows端</span></a></li><li class="post-toc-item post-toc-level-3"><a class="post-toc-link" href="#Centos端"><span class="post-toc-number">2.2.</span> <span class="post-toc-text">Centos端</span></a></li></ol></li><li class="post-toc-item post-toc-level-2"><a class="post-toc-link" href="#结束"><span class="post-toc-number">3.</span> <span class="post-toc-text">结束</span></a></li></ol>
+        <ol class="post-toc"><li class="post-toc-item post-toc-level-1"><a class="post-toc-link" href="#桌面安装"><span class="post-toc-number">1.</span> <span class="post-toc-text">桌面安装</span></a><ol class="post-toc-child"><li class="post-toc-item post-toc-level-2"><a class="post-toc-link" href="#安装显卡驱动"><span class="post-toc-number">1.1.</span> <span class="post-toc-text">安装显卡驱动</span></a></li><li class="post-toc-item post-toc-level-2"><a class="post-toc-link" href="#安装X"><span class="post-toc-number">1.2.</span> <span class="post-toc-text">安装X</span></a></li><li class="post-toc-item post-toc-level-2"><a class="post-toc-link" href="#安装gnome桌面"><span class="post-toc-number">1.3.</span> <span class="post-toc-text">安装gnome桌面</span></a></li><li class="post-toc-item post-toc-level-2"><a class="post-toc-link" href="#安装工具栏网络图标"><span class="post-toc-number">1.4.</span> <span class="post-toc-text">安装工具栏网络图标</span></a></li></ol></li></ol>
         <!--
         <li class="mdl-menu__item">
             Some Action
@@ -391,7 +391,7 @@
         
     
             <p class="article-headline-p">
-                WordPress迁移-Windows Server 2012到Centos 7
+                ArchLinux安装gnome桌面
             </p>
         </div>
 
@@ -410,7 +410,7 @@
     <!-- Author Name & Date -->
     <div>
         <strong>Myers Chan</strong>
-        <span>Feb 13, 2017</span>
+        <span>Jan 31, 2018</span>
     </div>
 
     <div class="section-spacer"></div>
@@ -432,7 +432,7 @@
 <ul class="mdl-menu mdl-menu--bottom-right mdl-js-menu mdl-js-ripple-effect" for="article-functions-qrcode-button">
     <li class="mdl-menu__item">Read this article on other devices</li>
     
-        <img src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAPYAAAD2CAAAAADAeSUUAAAC1ElEQVR42u3aQW7jMBAEQP//09nrAllru4eKoZClU2DH0hQDpM0Zvr6OvF7Y2NjY2NjY2NjYj2S/4usfN/r2+t+vfP/53bvv6rm+c1szNjY29t7s//zrf1NE+3q+WNeMYc3Y2NjYB7CTx+RFXxeUBORsmbCxsbGxW/b1Z5N32+XAxsbGxr6L3UZXsnDJZgMbGxsbe6WpdL0xyGF50yq//w/20rCxsbEfz86Hps/5+aPzbWxsbOwHs9vrJ6JlJfyKyrGxsbE3ZbfHZVYKWg+hpTqxsbGxN2Xng9h8q9AODGbBVo+isbGxsTdlz4amn1yyfPNT99KwsbGxN2KvUGdD3yTk8npuGPRiY2Nj/3J20pqfDQaKw5HxU/IBMDY2NvYJ7OsPz5pE13fLC51FY91Lw8bGxt6CnTd9EkAbjbMmV/IuNjY29gns4qt88IC8uDzAVu6JjY2NfQI7Ia2MCtrRbx5Obc3Y2NjYe7NnY9pZBOaA9c0SNjY29gnsvLjZIZtk89DWMwtdbGxs7F3ZbRjcNRJY2ai0dWJjY2Ofxl4ZCeTRMluUpeYXNjY29tbsvN3fblHy35nFYdH8wsbGxt6a3bZy2tib3TMPwvrwJTY2NvZG7Fnpnznikx/r/AoubGxs7F3Z68gkotrRb/7cYmCAjY2NvSm7bf0nB3fymGmHyvn2qchtbGxs7I3YLb5tM60MIdb/JNjY2NhnsvNWzl0D2vYoT3EHbGxs7CPZsy/97aYlj6vkqptK2NjY2L+c3V7tEcykoZ//TrKsUYBhY2Njb8Rug6HdMOQHdNrlzhcRGxsb+wT27JH5gLZd1qT9lI8ZsLGxsc9hr2wM2nFs29JqG0nY2NjY2O3g9q5ga+MKGxsbG/veAGtJ+WLNBsbY2NjYp7Hbhk7b1mlHCPmgNwpUbGxs7K3ZK42bdmPQRuBKywkbGxv7BPY5FzY2NjY2NjY2NvZjrj9dzocpCQtXNAAAAABJRU5ErkJggg==">
+        <img src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAPYAAAD2CAAAAADAeSUUAAAC20lEQVR42u3a0U7EMAwEwPv/n4ZXpBNl1ymiJJMn1CtJJkj4bOf1ceR4YWNjY2NjY2NjYz+S/YrH1/evZ3j/9P3N797Jn+d7xsbGxj6B/cO//mCj3x1NcojXR3k9f7FnbGxs7APYSdAqAkaw0TZEzfaMjY2NjZ0HsNkh5kkLNjY2NvZd7CRE3RveHhHAsLGxsR/PTgo0s9DSJiGzBOYXa2nY2NjYj2fPGr1/+/Of9bexsbGxH8ZeGfXCQeC5XmVpt9jY2NibsvOv/nma0baE2xQleVLX0rCxsbH/LTtPAPKyUTtbUn66XjfaFTY2Nvam7NmkeYLRNgySy0DDI8bGxsbelF00SuNwtXL1Jyfl6Q02Njb23uyVi5Urh9KuNStpYWNjY5/MzpsHbes3KS0lqdENRSVsbGzs7djXX/fbEn+OnK2YBDlsbGxs7DxczcpGeRsg/8NgY2Njn8xOnrSftu3evJzUXqzHxsbGPpPdXpRvw9UspWmTHGxsbOwT2HmB/q4Wbw67KynCxsbGPoHdhoe8oJNj2uPIExJsbGzsvdl5erByKLPjmF3ZwcbGxj6HvVL6yQNe26ydHV/R6MXGxsbejp2Hh7YdmzcS2uNbKiphY2NjH8NOtphfuMxbuXkYKxIebGxs7E3ZSxONykx5EMrToag5gY2Njb0pu/i1YNOzUNemIm3DABsbG3tvdtugnaUTeci8d2ZsbGzsE9izon+bqCw1aEdFJWxsbOxz2Hmhvx2zSz8reyiu7GBjY2NvxG5HXpqfJTY5o32OjY2NvSt7JSDlISdPLZI0Jk+EsLGxsc9hrxR6kgs6ySqzJnExMzY2NvYB7FlhKA9I7QyzchI2NjY2dtvKTdKS9YZuHkqxsbGxsduF81Qkbwy0rd+lohI2Njb2Ruw82LQFneRY2xbybQEMGxsbewv2XY3e9ZZA2za4TlGwsbGxT2CfM7CxsbGxsbGxsbEfMz4B7+loOiW9Xs4AAAAASUVORK5CYII=">
     
 </ul>
     
@@ -445,7 +445,7 @@
     </button>
     <ul class="mdl-menu mdl-menu--bottom-right mdl-js-menu mdl-js-ripple-effect" for="article-functions-viewtags-button">
         <li class="mdl-menu__item">
-        <a class="post_tag-link" href="/tags/Linux/">Linux</a></li><li class="mdl-menu__item"><a class="post_tag-link" href="/tags/VPS/">VPS</a>
+        <a class="post_tag-link" href="/tags/ArchLinux/">ArchLinux</a></li><li class="mdl-menu__item"><a class="post_tag-link" href="/tags/Gnome/">Gnome</a>
     </ul>
     
 
@@ -459,7 +459,7 @@
     <!-- Leancloud Views -->
         <a class="post_share-link" href="#">
             <li class="mdl-menu__item">
-                <span id="/2017/02/13/wordpress-migration/" class="leancloud-views_num" data-flag-title="WordPress迁移-Windows Server 2012到Centos 7">
+                <span id="/2018/01/31/archlinux-gnome-install/" class="leancloud-views_num" data-flag-title="ArchLinux安装gnome桌面">
      &nbsp;Views
 </span>
 
@@ -471,7 +471,7 @@
 
     <!-- Share Weibo -->
     
-        <a class="post_share-link" href="http://service.weibo.com/share/share.php?appkey=&title=WordPress迁移-Windows Server 2012到Centos 7&url=https://nomyfan.github.io/2017/02/13/wordpress-migration/index.html&pic=&searchPic=false&style=simple" target="_blank">
+        <a class="post_share-link" href="http://service.weibo.com/share/share.php?appkey=&title=ArchLinux安装gnome桌面&url=https://nomyfan.github.io/2018/01/31/archlinux-gnome-install/index.html&pic=&searchPic=false&style=simple" target="_blank">
             <li class="mdl-menu__item">
                 Share to Weibo
             </li>
@@ -480,7 +480,7 @@
 
     <!-- Share Twitter -->
     
-        <a class="post_share-link" href="https://twitter.com/intent/tweet?text=WordPress迁移-Windows Server 2012到Centos 7&url=https://nomyfan.github.io/2017/02/13/wordpress-migration/index.html&via=Myers Chan" target="_blank">
+        <a class="post_share-link" href="https://twitter.com/intent/tweet?text=ArchLinux安装gnome桌面&url=https://nomyfan.github.io/2018/01/31/archlinux-gnome-install/index.html&via=Myers Chan" target="_blank">
             <li class="mdl-menu__item">
                 Share to Twitter
             </li>
@@ -489,7 +489,7 @@
 
     <!-- Share Facebook -->
     
-        <a class="post_share-link" href="https://www.facebook.com/sharer/sharer.php?u=https://nomyfan.github.io/2017/02/13/wordpress-migration/index.html" target="_blank">
+        <a class="post_share-link" href="https://www.facebook.com/sharer/sharer.php?u=https://nomyfan.github.io/2018/01/31/archlinux-gnome-install/index.html" target="_blank">
             <li class="mdl-menu__item">
                 Share to Facebook
             </li>
@@ -498,7 +498,7 @@
 
     <!-- Share Google+ -->
     
-        <a class="post_share-link" href="https://plus.google.com/share?url=https://nomyfan.github.io/2017/02/13/wordpress-migration/index.html" target="_blank">
+        <a class="post_share-link" href="https://plus.google.com/share?url=https://nomyfan.github.io/2018/01/31/archlinux-gnome-install/index.html" target="_blank">
             <li class="mdl-menu__item">
                 Share to Google+
             </li>
@@ -510,7 +510,7 @@
 
     <!-- Share QQ -->
     
-        <a class="post_share-link" href="http://connect.qq.com/widget/shareqq/index.html?site=IConnectable&lt;World&gt;&title=WordPress迁移-Windows Server 2012到Centos 7&summary=Nomyfan&#39;s person blog&pics=https://nomyfan.github.io/img/favicon.png&url=https://nomyfan.github.io/2017/02/13/wordpress-migration/index.html" target="_blank">
+        <a class="post_share-link" href="http://connect.qq.com/widget/shareqq/index.html?site=IConnectable&lt;World&gt;&title=ArchLinux安装gnome桌面&summary=Nomyfan&#39;s person blog&pics=https://nomyfan.github.io/img/favicon.png&url=https://nomyfan.github.io/2018/01/31/archlinux-gnome-install/index.html" target="_blank">
             <li class="mdl-menu__item">
                 Share to QQ
             </li>
@@ -528,104 +528,19 @@
                 <!-- Post Content -->
                 <div id="post-content" class="mdl-color-text--grey-700 mdl-card__supporting-text fade out">
     
-        <p>买了VPS顺便试着把博客迁移到国外去，实际操作了过后自我感觉WordPress的迁移其实不难。</p>
-<hr>
-<h2 id="准备工作-环境搭建"><a href="#准备工作-环境搭建" class="headerlink" title="准备工作-环境搭建"></a><span style="color: #36b2a6;">准备工作-环境搭建</span></h2><p>在Centos服务器端，我们要先把运行环境搭建好。我选择的是LAMP（Linux+Apache+MySQL+PHP）</p>
-<h3 id="安装Apache"><a href="#安装Apache" class="headerlink" title="安装Apache"></a><span style="color: #36b26a;">安装Apache</span></h3><pre>yum install httpd</pre>
-这样我们就算安装好啦，然后我们就可以将其启动
-<pre>systemctl start httpd</pre>
-接下来可以在浏览器中输入服务器的IP来检查Apache是否正常开启和运行
-[![](/img/2017/02/sp170212_132228.png)](/img/2017/02/sp170212_132228.png)
-这是正常运行的结果，然后我们把Apache设置为开机自启
-<pre>systemctl enable httpd</pre>
-
-<hr>
-<h3 id="安装MySQL-MariaDB"><a href="#安装MySQL-MariaDB" class="headerlink" title="安装MySQL(MariaDB)"></a><span style="color: #36b26a;">安装MySQL(MariaDB)</span></h3><pre>yum install mariadb-server mariadb</pre>
-安装完成后启动数据库
-<pre>systemctl start mariadb</pre>
-然后安装一个数据库安全脚本，去掉一些危险的默认设置
-<pre>mysql_secure_installation</pre>
-接下来会提示你是新安装的，直接按下Enter键，然后设置数据库密码。把MariaDB也设置为开机自启
-<pre>systemctl enable mariadb</pre>
-
-<hr>
-<h3 id="安装PHP"><a href="#安装PHP" class="headerlink" title="安装PHP"></a><span style="color: #36b26a;">安装PHP</span></h3><p>运行以下命令安装PHP</p>
-<p><pre>yum install php php-mysql</pre><br>安装完成之后我们再把Apahce重启一下</p>
-<p><pre>systemctl restart httpd</pre><br>接下来我们检查一下PHP是否正常运行，在/var/www/html目录下新建一个info.php文件</p>
-<p><pre>vim /var/www/html/info.php</pre><br>内容写入IP</p>
-<p><pre>&lt;?php phpinfo();?&gt;</pre><br>然后在浏览器中输入</p>
-<p><pre>xxx.xxx.xxx.xxx/info.php</pre><br>xxx代表你的IP地址<br><a href="/img/2017/02/sp170212_133114.png"><img src="/img/2017/02/sp170212_133114.png" alt=""></a></p>
-<hr>
-<h3 id="安装phpMyAdmin（可选）"><a href="#安装phpMyAdmin（可选）" class="headerlink" title="安装phpMyAdmin（可选）"></a><span style="color: #36b26a;">安装phpMyAdmin（可选）</span></h3><p>这是一个数据库管理的Web界面程序，有时候图形化操作还是方便一点的。首先，我们要先安装epel库</p>
-<p><pre>yum install epel-release</pre><br>然后我们就可以安装phpMyAdmin了</p>
-<p><pre>yum install phpmyadmin</pre><br>安装完成后我们要设置一下权限，不然访问会返回403错误</p>
-<p><pre>vim /etc/httpd/conf.d/phpMyAdmin.conf</pre><br>找到这部分并修改为如下</p>
-<p><pre>&lt;Directory /usr/share/phpMyAdmin/&gt;<br>   AddDefaultCharset UTF-8<br>   &lt;IfModule mod_authz_core.c&gt;</pre></p>
-<pre><code> # Apache 2.4
- &amp;lt;RequireAny&amp;gt;
-   #Require ip 127.0.0.1
-   #Require ip ::1
-    Require all granted
- &amp;lt;/RequireAny&amp;gt;
-</code></pre><p>   &lt;/IfModule&gt;<br>   &lt;IfModule !mod_authz_core.c&gt;</p>
-<pre><code> # Apache 2.2
- Order Deny,Allow
-# Deny from All
-# Allow from 127.0.0.1
-# Allow from ::1
-  Allow from All
-</code></pre><p>   &lt;/IfModule&gt;<br>&lt;/Directory&gt;<br>完了之后再一次重启Apache，然后我们可以在浏览器中输入：</p>
-<p><pre>xxx.xxx.xxx.xxx/phpmyadmin</pre><br>来管理数据库<br><a href="/img/2017/02/sp170212_133728.png"><img src="/img/2017/02/sp170212_133728.png" alt=""></a></p>
-<hr>
-<h2 id="迁移"><a href="#迁移" class="headerlink" title="迁移"></a><span style="color: #36b2a6;">迁移</span></h2><h3 id="Windows端"><a href="#Windows端" class="headerlink" title="Windows端"></a><span style="color: #36b26a;">Windows端</span></h3><p>如果还记得数据库的名称就直接导出，如果不记得了可以先查看一下所有的数据库。</p>
-<p><pre>show databases;</pre><br>注意别忘了最后那里有个分号！<br><a href="/img/2017/02/sp170213_110716.png"><img src="/img/2017/02/sp170213_110716.png" alt=""></a><br>找到MySQL的安装目录，找到mysqldump.exe，然后管理员运行cmd，切换到所在目录，执行这个命令</p>
-<p><pre>mysqldump -uroot -p databaseName&gt;outputFileName.sql</pre><br>在所在目录下找到生成的数据库，再把wordpress整个文件夹打包一起运回本地就可以了，Windows端的工作完成！</p>
-<h3 id="Centos端"><a href="#Centos端" class="headerlink" title="Centos端"></a><span style="color: #36b26a;">Centos端</span></h3><p>用SSH客户端连接上服务器，用FTP工具把数据库文件和打包文件上传，我都丢到了/var/www/html目录下</p>
-<p><a href="/img/2017/02/sp170213_111845.png"><img src="/img/2017/02/sp170213_111845.png" alt=""></a></p>
-<p>然后我们就开始着手把数据库导入了，运行</p>
-<p><pre>mysql -uroot -p</pre><br>然后输入密码，新建一个数据库</p>
-<p><pre>create database databaseName</pre><br>选中新建的数据库</p>
-<p><pre>use databaseName</pre><br>导入数据，以我的数据库文件所在目录为例</p>
-<p><pre>source /var/www/html/wordpress_db.sql</pre><br>数据库迁移成功后输入exit退出，接下来我们把wordpress实体迁移，直接把压缩文件的内容解压到default目录下即可<br><a href="/img/2017/02/sp170213_113104.png"><img src="/img/2017/02/sp170213_113104.png" alt=""></a></p>
-<p>如果你的数据库密码不一样了，修改一下wp-config文件。<br>这时候在浏览器中输入IP/域名试着访问博客，如果之前没有域名的小伙伴就会遇到问题了，比如我- -，那是因为之前的IP地址和现在不同了，数据库中的数据还没更新<br><a href="/img/2017/02/sp170213_113354.png"><img src="/img/2017/02/sp170213_113354.png" alt=""></a><br>就是这里的设置的问题！解决方法就是在数据库中修改这两个值，指向新的IP地址或者你的域名，还记得安装的phpMyAdmin嘛，现在排上用场了<br><a href="/img/2017/02/sp170213_113944.png"><img src="/img/2017/02/sp170213_113944.png" alt=""></a><br>修改两个值就可以了，这时候就可以正常登陆了。<br>然后我们在主页点开文章会出现403错误，调整一下Apache配置文件</p>
-<p><pre>vim /etc/httpd/conf/httpd.conf</pre><br>在文件中加入</p>
-<p><pre>LoadModule rewrite_module modules/mod_rewrite.so</pre><br>位置随意，下图作为参考<br><a href="/img/2017/02/sp170213_114433.png"><img src="/img/2017/02/sp170213_114433.png" alt=""></a></p>
-<p>然后我们再修改一点内容<br><pre><code>&lt;VirtualHost *:80&gt;
-
-ServerName localhost
-
-DocumentRoot &#x2F;var&#x2F;www&#x2F;html&#x2F;default
-
-&lt;Directory “&#x2F;var&#x2F;www&#x2F;html&#x2F;default”&gt;
-
-Options FollowSymLinks
-
-AllowOverride ALL
-
-Order allow,deny
-
-Allow from all
-
-&lt;&#x2F;Directory&gt;
-
-&lt;&#x2F;VirtualHost&gt;</code></pre><br>把<em>AllowOverride</em>的值换成了<em>ALL，</em>位置如下<br><a href="/img/2017/02/sp170213_114405.png"><img src="/img/2017/02/sp170213_114405.png" alt=""></a><br>保存文件退出，重启Apache。最后再新建一个.htaccess文件，丢到博客根目录下就行了，由于这个文件的文件名有点特殊，要借助其他编辑工具生成，比如笔者用的Visual Studio Code。文件内容如下<br><pre><code>&lt;IfModule mod_rewrite.c&gt;
-
-RewriteEngine On
-
-RewriteBase &#x2F;
-
-RewriteRule ^index.php$ - [L]
-
-RewriteCond %{REQUEST_FILENAME} !-f
-
-RewriteCond %{REQUEST_FILENAME} !-d
-
-RewriteRule . &#x2F;index.php [L]
-
-&lt;&#x2F;IfModule&gt;</code></pre><br>这时候再点击文章就可以正常访问了。</p>
-<hr>
-<h2 id="结束"><a href="#结束" class="headerlink" title="结束"></a><span style="color: #36b2a6;">结束</span></h2><p>自此，迁移工作算是完成了，不过还有些小问题，不如文件的上传，下篇文章再讲啦！</p>
-<p>本文参考了两位dalao的文章，特别感谢！<br><a href="http://blog.gclxry.com/install-wordpress-on-centos7/" target="_blank" rel="external">Centos 7上安装Wordpress</a><br><a href="https://www.yanning.wang/archives/192.html" target="_blank" rel="external">WordPress跨平台迁移实战</a></p>
+        <h1 id="桌面安装"><a href="#桌面安装" class="headerlink" title="桌面安装"></a>桌面安装</h1><h2 id="安装显卡驱动"><a href="#安装显卡驱动" class="headerlink" title="安装显卡驱动"></a>安装显卡驱动</h2><p>在<a href="https://wiki.archlinux.org/index.php/xorg#Driver_installation" target="_blank" rel="external">这里</a>可以找到你的显卡对应的包。我的是Intel的集显，所以我执行这条命令</p>
+<pre><code>$ sudo pacman -S xf86-video-intel
+</code></pre><h2 id="安装X"><a href="#安装X" class="headerlink" title="安装X"></a>安装X</h2><pre><code>$ sudo pacman -S xorg xorg-xinit xterm xorg-xeyes xorg-xclock
+</code></pre><h2 id="安装gnome桌面"><a href="#安装gnome桌面" class="headerlink" title="安装gnome桌面"></a>安装gnome桌面</h2><p>其他桌面请活用搜索引擎。</p>
+<pre><code>$ sudo pacman -S gnome
+</code></pre><p>因为桌面是用NetworkManager，因此要让它启动并开启自启</p>
+<pre><code>$ sudo systemctl enable NetworkManager
+$ sudo systemctl start NetworkManager
+</code></pre><h2 id="安装工具栏网络图标"><a href="#安装工具栏网络图标" class="headerlink" title="安装工具栏网络图标"></a>安装工具栏网络图标</h2><pre><code>$ sudo pacman -S network-manager-applet
+</code></pre><p>之后让gdm开启自动然后启动它，这时候就可以看到桌面了</p>
+<pre><code>$ sudo systemctl enable gdm
+$ sudo systemctl start gdm
+</code></pre><p>桌面安装完了之后可以进行一些<a href="">软件安装(还没写=。=)</a></p>
 
     
 
@@ -678,8 +593,8 @@ RewriteRule . &#x2F;index.php [L]
 
 <script type="text/javascript">
     var disqus_config = function () {
-        this.page.url = 'https://nomyfan.github.io/2017/02/13/wordpress-migration/';  // Replace PAGE_URL with your page's canonical URL variable
-        this.page.identifier = 'https://nomyfan.github.io/2017/02/13/wordpress-migration/'; // Replace PAGE_IDENTIFIER with your page's unique identifier variable
+        this.page.url = 'https://nomyfan.github.io/2018/01/31/archlinux-gnome-install/';  // Replace PAGE_URL with your page's canonical URL variable
+        this.page.identifier = 'https://nomyfan.github.io/2018/01/31/archlinux-gnome-install/'; // Replace PAGE_IDENTIFIER with your page's unique identifier variable
     };
 </script>
 
@@ -712,21 +627,13 @@ RewriteRule . &#x2F;index.php [L]
             <nav class="material-nav mdl-color-text--grey-50 mdl-cell mdl-cell--12-col">
     <!-- Prev Nav -->
     
-        <a href="/2017/02/14/binding-multibinding/" id="post_nav-newer" class="prev-content">
-            <button class="mdl-button mdl-js-button mdl-js-ripple-effect mdl-button--icon mdl-color--white mdl-color-text--grey-900" role="presentation">
-                <i class="material-icons">arrow_back</i>
-            </button>
-            &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-            Newer
-        </a>
-    
 
     <!-- Section Spacer -->
     <div class="section-spacer"></div>
 
     <!-- Next Nav -->
     
-        <a href="/2017/02/11/vps-centos-7-shadowsocks/" id="post_nav-older" class="next-content">
+        <a href="/2018/01/31/archlinux-install/" id="post_nav-older" class="next-content">
             Older
             &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
             <button class="mdl-button mdl-js-button mdl-js-ripple-effect mdl-button--icon mdl-color--white mdl-color-text--grey-900" role="presentation">
