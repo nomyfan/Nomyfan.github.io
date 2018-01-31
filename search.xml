@@ -161,7 +161,7 @@ fi
 <p>–hint-bios=hd0,gpt1 –hint-efi=hd0,gpt1 –hint-baremetal=ahci0,gpt1</p>
 </blockquote>
 <p>我大概猜测一下<code>hd0</code>是指第1块磁盘，在<code>fdisk -l</code>的输出结果中，我的磁盘是<code>nvme0n1</code>，如果有第二块NVMe磁盘应该就是<code>nvme1n1</code>。如果你只有单块NVMe磁盘，那么这么写是没错的，亲测能正常启动Windows。而我测试了gpt后边的数字写什么都可以启动，如果你有多块磁盘，你也是可以测试一下。欢迎在评论区写下你的结果。;)</p>
-<h2 id="添加新用户"><a href="#添加新用户" class="headerlink" title="添加新用户"></a>添加新用户</h2><pre><code># adduser -m -G wheel [username]
+<h3 id="添加新用户"><a href="#添加新用户" class="headerlink" title="添加新用户"></a>添加新用户</h3><pre><code># adduser -m -G wheel [username]
 </code></pre><p>设置密码</p>
 <pre><code># passwd [username]
 </code></pre><p>添加sudo</p>
@@ -171,7 +171,7 @@ fi
 <p># %wheel ALL=(ALL)ALL</p>
 </blockquote>
 <p>这行，把<code>#</code>去掉，保存退出。</p>
-<h2 id="安装yaourt"><a href="#安装yaourt" class="headerlink" title="安装yaourt"></a>安装yaourt</h2><pre><code>$ sudo vim /etc/pacman.conf
+<h3 id="安装yaourt"><a href="#安装yaourt" class="headerlink" title="安装yaourt"></a>安装yaourt</h3><pre><code>$ sudo vim /etc/pacman.conf
 </code></pre><p>在末尾加上</p>
 <blockquote>
 <p>[archlinuxcn]<br>SigLevel = Optional TrustAll<br>Server = <a href="https://mirrors.tuna.tsinghua.edu.cn/archlinuxcn/$arch" target="_blank" rel="external">https://mirrors.tuna.tsinghua.edu.cn/archlinuxcn/$arch</a></p>
