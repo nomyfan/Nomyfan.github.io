@@ -271,11 +271,11 @@ fi
         
         <tags>
             
+            <tag> .NET </tag>
+            
             <tag> C# </tag>
             
             <tag> 爬虫 </tag>
-            
-            <tag> .NET </tag>
             
         </tags>
         
@@ -465,9 +465,9 @@ string speed = (string)token.SelectToken("wind").SelectToken("speed");</pre>
         
         <tags>
             
-            <tag> C# </tag>
-            
             <tag> .NET </tag>
+            
+            <tag> C# </tag>
             
             <tag> JSON </tag>
             
@@ -1072,9 +1072,20 @@ this.textBox.SetBinding(TextBox.TextProperty, binding);
   
     
     <entry>
-      <title><![CDATA[Talking]]></title>
-      <url>/Talking/index.html</url>
-      <content type="html"></content>
+      <title><![CDATA[ABOUT ME]]></title>
+      <url>/about/index.html</url>
+      <content type="html"><![CDATA[<p><strong>别人都叫我糯米</strong></p>
+<hr>
+<p>&nbsp;</p>
+<p>在校大学生。</p>
+<p>理科男，单身，求勾搭(尤其是学姐(/▽＼)。</p>
+<p>喜欢摄影，目前愿望是拥有一部微单。</p>
+<p>努力争取拿奖学金买买买。</p>
+<p>喜欢设计，不断提高审美中。</p>
+<p>程序狗，喜欢做出优雅好用的软件。（虽然还没解锁这个技能）</p>
+<p>偶尔会出去骑行，配合摄影感觉不能再好了。</p>
+<p>微博:<a href="http://weibo.com/Nomyfan" target="_blank" rel="external">@陈诺米同学</a></p>
+]]></content>
     </entry>
     
     <entry>
@@ -1104,8 +1115,8 @@ this.textBox.SetBinding(TextBox.TextProperty, binding);
     </entry>
     
     <entry>
-      <title><![CDATA[Friends]]></title>
-      <url>/friends/index.html</url>
+      <title><![CDATA[Photograph]]></title>
+      <url>/photograph/index.html</url>
       <content type="html"></content>
     </entry>
     
@@ -1116,26 +1127,15 @@ this.textBox.SetBinding(TextBox.TextProperty, binding);
     </entry>
     
     <entry>
-      <title><![CDATA[Photograph]]></title>
-      <url>/photograph/index.html</url>
+      <title><![CDATA[Friends]]></title>
+      <url>/friends/index.html</url>
       <content type="html"></content>
     </entry>
     
     <entry>
-      <title><![CDATA[ABOUT ME]]></title>
-      <url>/about/index.html</url>
-      <content type="html"><![CDATA[<p><strong>别人都叫我糯米</strong></p>
-<hr>
-<p>&nbsp;</p>
-<p>在校大学生。</p>
-<p>理科男，单身，求勾搭(尤其是学姐(/▽＼)。</p>
-<p>喜欢摄影，目前愿望是拥有一部微单。</p>
-<p>努力争取拿奖学金买买买。</p>
-<p>喜欢设计，不断提高审美中。</p>
-<p>程序狗，喜欢做出优雅好用的软件。（虽然还没解锁这个技能）</p>
-<p>偶尔会出去骑行，配合摄影感觉不能再好了。</p>
-<p>微博:<a href="http://weibo.com/Nomyfan" target="_blank" rel="external">@陈诺米同学</a></p>
-]]></content>
+      <title><![CDATA[Talking]]></title>
+      <url>/Talking/index.html</url>
+      <content type="html"></content>
     </entry>
     
     <entry>
