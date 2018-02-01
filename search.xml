@@ -17,7 +17,7 @@ $ sudo systemctl start NetworkManager
 </code></pre><p>之后让gdm开启自动然后启动它，这时候就可以看到桌面了</p>
 <pre><code>$ sudo systemctl enable gdm
 $ sudo systemctl start gdm
-</code></pre><p>桌面安装完了之后可以进行一些<a href="">软件安装(还没写=。=)</a></p>
+</code></pre><p>桌面安装完了之后可以进行一些<a href="">软件安装(不写了就这样发布吧=。=)</a></p>
 ]]></content>
       
         <categories>
@@ -32,6 +32,8 @@ $ sudo systemctl start gdm
             <tag> ArchLinux </tag>
             
             <tag> Gnome </tag>
+            
+            <tag> Linux </tag>
             
         </tags>
         
@@ -193,6 +195,8 @@ fi
         <tags>
             
             <tag> ArchLinux </tag>
+            
+            <tag> Linux </tag>
             
         </tags>
         
