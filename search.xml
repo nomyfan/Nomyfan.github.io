@@ -182,7 +182,7 @@ fi
 <pre><code>$ sudo pacman -Sy yaourt fakeroot
 </code></pre><h2 id="重启"><a href="#重启" class="headerlink" title="重启"></a>重启</h2><pre><code># exit
 # reboot
-</code></pre><p>ALL DONE！重启后可以用新建的用户登陆，然后联网进行后序的<a href="http://www.nokky.net/2018/01/31/archlinux-gnome-install/" target="_blank" rel="external">桌面安装</a>。</p>
+</code></pre><p>ALL DONE！重启后可以用新建的用户登陆，然后联网进行后序的<a href="../archlinux-gnome-install/">桌面安装</a>。</p>
 ]]></content>
       
         <categories>
