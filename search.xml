@@ -52,7 +52,7 @@
     }
 }
 </code></pre><p>如果你的VSC提示你找不到头文件，将鼠标放在上边然后就会提示你应该添加什么路径到<code>includePath</code>里了。</p>
-<h3 id="settings-json"><a href="#settings-json" class="headerlink" title="settings.json"></a>settings.json</h3><p>点击左下角的齿轮Button，然后选择Settings。在左侧选择<code>WORKSPACE SETTINGS</code><br><img src="/img/2018/02/snipaste_20180206_183507.png" alt="Settings"><br>搜索<code>C_Cpp.intelliSenseEngine</code>这个属性，设置值为<code>&quot;Default&quot;</code>。官方说明这个是使用新的智能提示引擎。</p>
+<h3 id="settings-json"><a href="#settings-json" class="headerlink" title="settings.json"></a>settings.json</h3><p>点击左下角的齿轮Button，然后选择Settings。在右侧选择<code>WORKSPACE SETTINGS</code><br><img src="/img/2018/02/snipaste_20180206_183507.png" alt="Settings"><br>搜索<code>C_Cpp.intelliSenseEngine</code>这个属性，设置值为<code>&quot;Default&quot;</code>。官方说明这个是使用新的智能提示引擎。</p>
 <h3 id="launch-json"><a href="#launch-json" class="headerlink" title="launch.json"></a>launch.json</h3><p>添加左侧的虫子图标的<code>Debug</code>Button（或者<code>Ctrl+Shift+D</code>），然后添加配置。<br><img src="/img/2018/02/snipaste_20180206_163956.png" alt="Launch"><br>选择<code>GDB</code>的。完整文件内容：  </p>
 <pre><code>{
     // Use IntelliSense to learn about possible attributes.
@@ -168,9 +168,9 @@ int main()
             
             <tag> ArchLinux </tag>
             
-            <tag> Linux </tag>
-            
             <tag> Gnome </tag>
+            
+            <tag> Linux </tag>
             
         </tags>
         
@@ -361,9 +361,9 @@ fi</code><br>fs_uuid这个值是通过这条命令得到的<br><code># grub-prob
             
             <tag> .NET </tag>
             
-            <tag> C# </tag>
-            
             <tag> 爬虫 </tag>
+            
+            <tag> C# </tag>
             
         </tags>
         
@@ -1075,38 +1075,6 @@ this.textBox.SetBinding(TextBox.TextProperty, binding);
   
     
     <entry>
-      <title><![CDATA[Articles]]></title>
-      <url>/articles/index.html</url>
-      <content type="html"></content>
-    </entry>
-    
-    <entry>
-      <title><![CDATA[Talking]]></title>
-      <url>/Talking/index.html</url>
-      <content type="html"></content>
-    </entry>
-    
-    <entry>
-      <title><![CDATA[Categories]]></title>
-      <url>/categories/index.html</url>
-      <content type="html"></content>
-    </entry>
-    
-    <entry>
-      <title><![CDATA[Contact]]></title>
-      <url>/feeback/index.html</url>
-      <content type="html"><![CDATA[<p>Contact me with<br><strong><a href="mailto:Myers.Chan@outlook.com?subject=FeebackFromBlog" target="_blank" rel="external">E-mail</a></strong>.<br><strong><a href="http://weibo.com/Nomyfan" target="_blank" rel="external">Weibo</a></strong><br><strong><a href="https://twitter.com/Myers__Chan" target="_blank" rel="external">Twitter</a></strong><br><strong><a href="https://facebook.com/myers.n.chan" target="_blank" rel="external">Facebook</a></strong></p>
-]]></content>
-    </entry>
-    
-    <entry>
-      <title><![CDATA[Contact]]></title>
-      <url>/contact/index.html</url>
-      <content type="html"><![CDATA[<p>Contact me with<br><strong><a href="mailto:Myers.Chan@outlook.com?subject=FeebackFromBlog" target="_blank" rel="external">E-mail</a></strong>.<br><strong><a href="http://weibo.com/Nomyfan" target="_blank" rel="external">Weibo</a></strong><br><strong><a href="https://twitter.com/Myers__Chan" target="_blank" rel="external">Twitter</a></strong><br><strong><a href="https://facebook.com/myers.n.chan" target="_blank" rel="external">Facebook</a></strong></p>
-]]></content>
-    </entry>
-    
-    <entry>
       <title><![CDATA[ABOUT ME]]></title>
       <url>/about/index.html</url>
       <content type="html"><![CDATA[<p><strong>别人都叫我糯米</strong></p>
@@ -1124,14 +1092,46 @@ this.textBox.SetBinding(TextBox.TextProperty, binding);
     </entry>
     
     <entry>
+      <title><![CDATA[Categories]]></title>
+      <url>/categories/index.html</url>
+      <content type="html"></content>
+    </entry>
+    
+    <entry>
+      <title><![CDATA[Talking]]></title>
+      <url>/Talking/index.html</url>
+      <content type="html"></content>
+    </entry>
+    
+    <entry>
+      <title><![CDATA[Articles]]></title>
+      <url>/articles/index.html</url>
+      <content type="html"></content>
+    </entry>
+    
+    <entry>
       <title><![CDATA[Friends]]></title>
       <url>/friends/index.html</url>
       <content type="html"></content>
     </entry>
     
     <entry>
-      <title><![CDATA[Timeline]]></title>
-      <url>/timeline/index.html</url>
+      <title><![CDATA[Contact]]></title>
+      <url>/contact/index.html</url>
+      <content type="html"><![CDATA[<p>Contact me with<br><strong><a href="mailto:Myers.Chan@outlook.com?subject=FeebackFromBlog" target="_blank" rel="external">E-mail</a></strong>.<br><strong><a href="http://weibo.com/Nomyfan" target="_blank" rel="external">Weibo</a></strong><br><strong><a href="https://twitter.com/Myers__Chan" target="_blank" rel="external">Twitter</a></strong><br><strong><a href="https://facebook.com/myers.n.chan" target="_blank" rel="external">Facebook</a></strong></p>
+]]></content>
+    </entry>
+    
+    <entry>
+      <title><![CDATA[Contact]]></title>
+      <url>/feeback/index.html</url>
+      <content type="html"><![CDATA[<p>Contact me with<br><strong><a href="mailto:Myers.Chan@outlook.com?subject=FeebackFromBlog" target="_blank" rel="external">E-mail</a></strong>.<br><strong><a href="http://weibo.com/Nomyfan" target="_blank" rel="external">Weibo</a></strong><br><strong><a href="https://twitter.com/Myers__Chan" target="_blank" rel="external">Twitter</a></strong><br><strong><a href="https://facebook.com/myers.n.chan" target="_blank" rel="external">Facebook</a></strong></p>
+]]></content>
+    </entry>
+    
+    <entry>
+      <title><![CDATA[Tags]]></title>
+      <url>/tags/index.html</url>
       <content type="html"></content>
     </entry>
     
@@ -1142,8 +1142,8 @@ this.textBox.SetBinding(TextBox.TextProperty, binding);
     </entry>
     
     <entry>
-      <title><![CDATA[Tags]]></title>
-      <url>/tags/index.html</url>
+      <title><![CDATA[Timeline]]></title>
+      <url>/timeline/index.html</url>
       <content type="html"></content>
     </entry>
     
