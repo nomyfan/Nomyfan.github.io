@@ -1245,13 +1245,17 @@ WantedBy=multi-user.target
   
     
     <entry>
-      <title><![CDATA[ABOUT ME]]></title>
+      <title><![CDATA[Articles]]></title>
+      <url>/articles/index.html</url>
+      <content type="html"></content>
+    </entry>
+    
+    <entry>
+      <title><![CDATA[About Me]]></title>
       <url>/about/index.html</url>
-      <content type="html"><![CDATA[<p><strong>别人都叫我糯米</strong></p>
-<hr>
-<p>&nbsp;</p>
+      <content type="html"><![CDATA[<p><strong>别人都叫我糯米，小糯米…</strong></p>
 <p>在校大学生。</p>
-<p>理科男，单身，求勾搭(尤其是学姐(/▽＼)。</p>
+<p>理科男，单身，求勾搭。</p>
 <p>喜欢摄影，目前愿望是拥有一部微单。</p>
 <p>努力争取拿奖学金买买买。</p>
 <p>喜欢设计，不断提高审美中。</p>
@@ -1262,22 +1266,9 @@ WantedBy=multi-user.target
     </entry>
     
     <entry>
-      <title><![CDATA[Talking]]></title>
-      <url>/Talking/index.html</url>
+      <title><![CDATA[Categories]]></title>
+      <url>/categories/index.html</url>
       <content type="html"></content>
-    </entry>
-    
-    <entry>
-      <title><![CDATA[Articles]]></title>
-      <url>/articles/index.html</url>
-      <content type="html"></content>
-    </entry>
-    
-    <entry>
-      <title><![CDATA[Contact]]></title>
-      <url>/contact/index.html</url>
-      <content type="html"><![CDATA[<p>Contact me with<br><strong><a href="mailto:Myers.Chan@outlook.com?subject=FeebackFromBlog" target="_blank" rel="external">E-mail</a></strong>.<br><strong><a href="http://weibo.com/Nomyfan" target="_blank" rel="external">Weibo</a></strong><br><strong><a href="https://twitter.com/Myers__Chan" target="_blank" rel="external">Twitter</a></strong><br><strong><a href="https://facebook.com/myers.n.chan" target="_blank" rel="external">Facebook</a></strong></p>
-]]></content>
     </entry>
     
     <entry>
@@ -1294,9 +1285,16 @@ WantedBy=multi-user.target
     </entry>
     
     <entry>
-      <title><![CDATA[Timeline]]></title>
-      <url>/timeline/index.html</url>
+      <title><![CDATA[Photograph]]></title>
+      <url>/photograph/index.html</url>
       <content type="html"></content>
+    </entry>
+    
+    <entry>
+      <title><![CDATA[Contact]]></title>
+      <url>/contact/index.html</url>
+      <content type="html"><![CDATA[<p>Contact me with<br><strong><a href="mailto:Myers.Chan@outlook.com?subject=FeebackFromBlog" target="_blank" rel="external">E-mail</a></strong>.<br><strong><a href="http://weibo.com/Nomyfan" target="_blank" rel="external">Weibo</a></strong><br><strong><a href="https://twitter.com/Myers__Chan" target="_blank" rel="external">Twitter</a></strong><br><strong><a href="https://facebook.com/myers.n.chan" target="_blank" rel="external">Facebook</a></strong></p>
+]]></content>
     </entry>
     
     <entry>
@@ -1306,14 +1304,14 @@ WantedBy=multi-user.target
     </entry>
     
     <entry>
-      <title><![CDATA[Categories]]></title>
-      <url>/categories/index.html</url>
+      <title><![CDATA[Timeline]]></title>
+      <url>/timeline/index.html</url>
       <content type="html"></content>
     </entry>
     
     <entry>
-      <title><![CDATA[Photograph]]></title>
-      <url>/photograph/index.html</url>
+      <title><![CDATA[Talking]]></title>
+      <url>/Talking/index.html</url>
       <content type="html"></content>
     </entry>
     
