@@ -246,7 +246,7 @@
 
     
         <meta property="article:published_time" content="Wed Jan 31 2018 15:23:06 GMT+0800">
-        <meta property="article:modified_time" content="Tue Feb 06 2018 21:24:00 GMT+0800">
+        <meta property="article:modified_time" content="Sun Feb 11 2018 16:20:49 GMT+0800">
     
 
     <!-- The Twitter Card protocol -->
@@ -269,7 +269,7 @@
     "mainEntityOfPage": "http://www.nokky.net/2018/01/31/archlinux-install/index.html",
     "headline": "安装ArchLinux系统",
     "datePublished": "Wed Jan 31 2018 15:23:06 GMT+0800",
-    "dateModified": "Tue Feb 06 2018 21:24:00 GMT+0800",
+    "dateModified": "Sun Feb 11 2018 16:20:49 GMT+0800",
     "author": {
         "@type": "Person",
         "name": "Myers Chan",
@@ -359,7 +359,7 @@
     </button>
 
     <ul class="post-toc-wrap mdl-menu mdl-menu--bottom-left mdl-js-menu mdl-js-ripple-effect" for="post-toc-trigger-btn" style="max-height:80vh; overflow-y:scroll;">
-        <ol class="post-toc"><li class="post-toc-item post-toc-level-2"><a class="post-toc-link" href="#前期准备"><span class="post-toc-number">1.</span> <span class="post-toc-text">前期准备</span></a></li><li class="post-toc-item post-toc-level-2"><a class="post-toc-link" href="#联网"><span class="post-toc-number">2.</span> <span class="post-toc-text">联网</span></a></li><li class="post-toc-item post-toc-level-2"><a class="post-toc-link" href="#更新系统时间"><span class="post-toc-number">3.</span> <span class="post-toc-text">更新系统时间</span></a></li><li class="post-toc-item post-toc-level-2"><a class="post-toc-link" href="#分区"><span class="post-toc-number">4.</span> <span class="post-toc-text">分区</span></a><ol class="post-toc-child"><li class="post-toc-item post-toc-level-3"><a class="post-toc-link" href="#建立EFI分区（仅对于新磁盘）"><span class="post-toc-number">4.1.</span> <span class="post-toc-text">建立EFI分区（仅对于新磁盘）</span></a></li><li class="post-toc-item post-toc-level-3"><a class="post-toc-link" href="#建立根分区"><span class="post-toc-number">4.2.</span> <span class="post-toc-text">建立根分区</span></a></li><li class="post-toc-item post-toc-level-3"><a class="post-toc-link" href="#挂载根分区"><span class="post-toc-number">4.3.</span> <span class="post-toc-text">挂载根分区</span></a></li></ol></li><li class="post-toc-item post-toc-level-2"><a class="post-toc-link" href="#更换软件源"><span class="post-toc-number">5.</span> <span class="post-toc-text">更换软件源</span></a></li><li class="post-toc-item post-toc-level-2"><a class="post-toc-link" href="#安装基本系统"><span class="post-toc-number">6.</span> <span class="post-toc-text">安装基本系统</span></a></li><li class="post-toc-item post-toc-level-2"><a class="post-toc-link" href="#配置系统"><span class="post-toc-number">7.</span> <span class="post-toc-text">配置系统</span></a><ol class="post-toc-child"><li class="post-toc-item post-toc-level-3"><a class="post-toc-link" href="#生成fstab"><span class="post-toc-number">7.1.</span> <span class="post-toc-text">生成fstab</span></a></li><li class="post-toc-item post-toc-level-3"><a class="post-toc-link" href="#root切换到系统"><span class="post-toc-number">7.2.</span> <span class="post-toc-text">root切换到系统</span></a></li><li class="post-toc-item post-toc-level-3"><a class="post-toc-link" href="#设置时区"><span class="post-toc-number">7.3.</span> <span class="post-toc-text">设置时区</span></a></li><li class="post-toc-item post-toc-level-3"><a class="post-toc-link" href="#安装会用到的软件"><span class="post-toc-number">7.4.</span> <span class="post-toc-text">安装会用到的软件</span></a></li><li class="post-toc-item post-toc-level-3"><a class="post-toc-link" href="#设置Locale"><span class="post-toc-number">7.5.</span> <span class="post-toc-text">设置Locale</span></a></li><li class="post-toc-item post-toc-level-3"><a class="post-toc-link" href="#设置主机名"><span class="post-toc-number">7.6.</span> <span class="post-toc-text">设置主机名</span></a></li><li class="post-toc-item post-toc-level-3"><a class="post-toc-link" href="#设置root密码"><span class="post-toc-number">7.7.</span> <span class="post-toc-text">设置root密码</span></a></li><li class="post-toc-item post-toc-level-3"><a class="post-toc-link" href="#安装Intel-ucode（农企用户请忽视）"><span class="post-toc-number">7.8.</span> <span class="post-toc-text">安装Intel-ucode（农企用户请忽视）</span></a></li><li class="post-toc-item post-toc-level-3"><a class="post-toc-link" href="#安装Bootloader"><span class="post-toc-number">7.9.</span> <span class="post-toc-text">安装Bootloader</span></a></li><li class="post-toc-item post-toc-level-3"><a class="post-toc-link" href="#配置Windows的启动入口"><span class="post-toc-number">7.10.</span> <span class="post-toc-text">配置Windows的启动入口</span></a></li><li class="post-toc-item post-toc-level-3"><a class="post-toc-link" href="#添加新用户"><span class="post-toc-number">7.11.</span> <span class="post-toc-text">添加新用户</span></a></li><li class="post-toc-item post-toc-level-3"><a class="post-toc-link" href="#安装yaourt"><span class="post-toc-number">7.12.</span> <span class="post-toc-text">安装yaourt</span></a></li></ol></li><li class="post-toc-item post-toc-level-2"><a class="post-toc-link" href="#重启"><span class="post-toc-number">8.</span> <span class="post-toc-text">重启</span></a></li></ol>
+        <ol class="post-toc"><li class="post-toc-item post-toc-level-2"><a class="post-toc-link" href="#前期准备"><span class="post-toc-number">1.</span> <span class="post-toc-text">前期准备</span></a></li><li class="post-toc-item post-toc-level-2"><a class="post-toc-link" href="#联网"><span class="post-toc-number">2.</span> <span class="post-toc-text">联网</span></a></li><li class="post-toc-item post-toc-level-2"><a class="post-toc-link" href="#更新系统时间"><span class="post-toc-number">3.</span> <span class="post-toc-text">更新系统时间</span></a></li><li class="post-toc-item post-toc-level-2"><a class="post-toc-link" href="#分区"><span class="post-toc-number">4.</span> <span class="post-toc-text">分区</span></a><ol class="post-toc-child"><li class="post-toc-item post-toc-level-3"><a class="post-toc-link" href="#建立EFI分区"><span class="post-toc-number">4.1.</span> <span class="post-toc-text">建立EFI分区</span></a></li><li class="post-toc-item post-toc-level-3"><a class="post-toc-link" href="#建立根分区"><span class="post-toc-number">4.2.</span> <span class="post-toc-text">建立根分区</span></a></li><li class="post-toc-item post-toc-level-3"><a class="post-toc-link" href="#挂载根分区"><span class="post-toc-number">4.3.</span> <span class="post-toc-text">挂载根分区</span></a></li></ol></li><li class="post-toc-item post-toc-level-2"><a class="post-toc-link" href="#更换软件源"><span class="post-toc-number">5.</span> <span class="post-toc-text">更换软件源</span></a></li><li class="post-toc-item post-toc-level-2"><a class="post-toc-link" href="#安装基本系统"><span class="post-toc-number">6.</span> <span class="post-toc-text">安装基本系统</span></a></li><li class="post-toc-item post-toc-level-2"><a class="post-toc-link" href="#配置系统"><span class="post-toc-number">7.</span> <span class="post-toc-text">配置系统</span></a><ol class="post-toc-child"><li class="post-toc-item post-toc-level-3"><a class="post-toc-link" href="#生成fstab"><span class="post-toc-number">7.1.</span> <span class="post-toc-text">生成fstab</span></a></li><li class="post-toc-item post-toc-level-3"><a class="post-toc-link" href="#root切换到系统"><span class="post-toc-number">7.2.</span> <span class="post-toc-text">root切换到系统</span></a></li><li class="post-toc-item post-toc-level-3"><a class="post-toc-link" href="#设置时区"><span class="post-toc-number">7.3.</span> <span class="post-toc-text">设置时区</span></a></li><li class="post-toc-item post-toc-level-3"><a class="post-toc-link" href="#安装会用到的软件"><span class="post-toc-number">7.4.</span> <span class="post-toc-text">安装会用到的软件</span></a></li><li class="post-toc-item post-toc-level-3"><a class="post-toc-link" href="#设置Locale"><span class="post-toc-number">7.5.</span> <span class="post-toc-text">设置Locale</span></a></li><li class="post-toc-item post-toc-level-3"><a class="post-toc-link" href="#设置主机名"><span class="post-toc-number">7.6.</span> <span class="post-toc-text">设置主机名</span></a></li><li class="post-toc-item post-toc-level-3"><a class="post-toc-link" href="#设置root密码"><span class="post-toc-number">7.7.</span> <span class="post-toc-text">设置root密码</span></a></li><li class="post-toc-item post-toc-level-3"><a class="post-toc-link" href="#安装Intel-ucode（农企用户请忽视）"><span class="post-toc-number">7.8.</span> <span class="post-toc-text">安装Intel-ucode（农企用户请忽视）</span></a></li><li class="post-toc-item post-toc-level-3"><a class="post-toc-link" href="#安装Bootloader"><span class="post-toc-number">7.9.</span> <span class="post-toc-text">安装Bootloader</span></a></li><li class="post-toc-item post-toc-level-3"><a class="post-toc-link" href="#配置Windows的启动入口"><span class="post-toc-number">7.10.</span> <span class="post-toc-text">配置Windows的启动入口</span></a></li><li class="post-toc-item post-toc-level-3"><a class="post-toc-link" href="#添加新用户"><span class="post-toc-number">7.11.</span> <span class="post-toc-text">添加新用户</span></a></li><li class="post-toc-item post-toc-level-3"><a class="post-toc-link" href="#安装yaourt"><span class="post-toc-number">7.12.</span> <span class="post-toc-text">安装yaourt</span></a></li></ol></li><li class="post-toc-item post-toc-level-2"><a class="post-toc-link" href="#重启"><span class="post-toc-number">8.</span> <span class="post-toc-text">重启</span></a></li></ol>
     </ul>
     
 
@@ -538,8 +538,8 @@
 <p>启动进入U盘的安装引导后，开始进行下面的安装步骤。</p>
 <h2 id="联网"><a href="#联网" class="headerlink" title="联网"></a>联网</h2><p>有线网<br><code># dhcpcd</code><br>无线网<br><code># wifi-menu</code><br>网络连接好了之后可以进行一次网络通畅测试<br><code># ping baidu.com</code><br>确认可以后进行下一步。</p>
 <h2 id="更新系统时间"><a href="#更新系统时间" class="headerlink" title="更新系统时间"></a>更新系统时间</h2><p><code># timedatectl set-ntp true</code>  </p>
-<h2 id="分区"><a href="#分区" class="headerlink" title="分区"></a>分区</h2><p>分区用<code>fdisk</code><br>首先<br><code># fdisk -l</code><br>查看一下当前磁盘情况（关注磁盘路径和EFI分区路径（非全新磁盘））。因为这里是建立在Windows已经安装好了的情况下进行的，所以肯定会有一个EFI分区，记住它的路径。如果你的磁盘是新的，那么就要建立一个GPT分区表，看下面。<br><code># fdisk /dev/xxx</code><br>（这里的xxx是指你的磁盘路径，不是分区路径）进入操作界面，然后进行下面的操作。</p>
-<h3 id="建立EFI分区（仅对于新磁盘）"><a href="#建立EFI分区（仅对于新磁盘）" class="headerlink" title="建立EFI分区（仅对于新磁盘）"></a>建立EFI分区（仅对于新磁盘）</h3><p>输入<code>g</code>建立GPT分区表，然后输入<code>n</code>建立分区，然后会要求我们输入起止扇区，开始扇区默认就好，结束扇区可以输入一个大小，一般大于100M就好，所以我们输入<code>+200M</code>，这里就划分出来了一个200M大小的分区用作引导。输入<code>t</code>选择新建分区类型，输入<code>ef</code>表示要建立EFI分区，输入<code>w</code>使刚才的分区操作生效。在这之前可以输入<code>p</code>来查看分区情况。最后格式化一下新建分区<br><code># mkfs.fat -F32 /dev/xxxY</code><br>（这里的xxxY是指你的引导分区）。</p>
+<h2 id="分区"><a href="#分区" class="headerlink" title="分区"></a>分区</h2><p>分区用<code>fdisk</code><br>首先<br><code># fdisk -l</code><br>查看一下当前磁盘情况（关注磁盘路径和EFI分区路径（非全新磁盘））。因为这里是建立在Windows已经安装好了的情况下进行的，所以肯定会有一个EFI分区，记住它的路径，或者想建立一个独立的EFI分区也是可以的。如果你的磁盘是新的，那么就还要建立一个GPT分区表。<br><code># fdisk /dev/xxx</code><br>（这里的xxx是指你的磁盘路径，不是分区路径）进入操作界面，然后进行下面的操作。</p>
+<h3 id="建立EFI分区"><a href="#建立EFI分区" class="headerlink" title="建立EFI分区"></a>建立EFI分区</h3><p>输入<code>g</code>建立GPT分区表（仅对于新磁盘）。然后输入<code>n</code>建立分区，然后会要求我们输入起止扇区，开始扇区默认就好，结束扇区可以输入一个大小，一般大于100M就好，所以我们输入<code>+200M</code>，这里就划分出来了一个200M大小的分区用作引导。输入<code>t</code>选择新建分区类型，输入<code>1</code>表示要建立EFI分区，输入<code>w</code>使刚才的分区操作生效。在这之前可以输入<code>p</code>来查看分区情况。最后格式化一下新建分区<br><code># mkfs.fat -F 32 /dev/xxxY</code><br>（这里的xxxY是指你的引导分区）。</p>
 <h3 id="建立根分区"><a href="#建立根分区" class="headerlink" title="建立根分区"></a>建立根分区</h3><p>这里没有建立其他分区而是直接一个根分区，要是想把Linux其他路径挂在到独立的分区（因为我的是双系统，磁盘空间本来就不够了，懒得再分，如果是要绝心装单系统，那么可以划出更多的分区），那么可以活用搜索引擎了解一下Linux的分区。分区操作是一样，只是在<code>fstab</code>记录分区表的时候会多一点记录。<br><code># fdisk /dev/xxx</code><br>选中磁盘，然后输入<code>n</code>新建分区，因为我想把剩下的空间全部利用上，所以输入起止扇区的时候都直接回车就好了。同样输入<code>w</code>生效，然后格式化分区<br><code># mkfs.ext4 -b 4096 /dev/xxxY</code><br>(这里的xxxY是刚新建的根分区，4096是确保4K对齐)。</p>
 <h3 id="挂载根分区"><a href="#挂载根分区" class="headerlink" title="挂载根分区"></a>挂载根分区</h3><p><code># mount /dev/xxxY /mnt（xxxY是根分区）</code><br><code># mkdir /mnt/boot</code><br><code># mount /dev/xxxY /mnt/boot（这里的xxxY是EFI分区）</code></p>
 <h2 id="更换软件源"><a href="#更换软件源" class="headerlink" title="更换软件源"></a>更换软件源</h2><p><code># vim /etc/pacman.d/mirrorlist</code>  </p>
@@ -555,7 +555,7 @@
 <h3 id="安装会用到的软件"><a href="#安装会用到的软件" class="headerlink" title="安装会用到的软件"></a>安装会用到的软件</h3><p>比如vim等<br><code># pacman -S vim dialog wpa_supplicant ntfs-3g networkmanager</code></p>
 <h3 id="设置Locale"><a href="#设置Locale" class="headerlink" title="设置Locale"></a>设置Locale</h3><p><code># vim /etc/locale.gen</code><br>然后找到</p>
 <blockquote>
-<p>zh_CN.UTF-8 UTF-8<br>zh_HK.UTF-8 UTF-8<br>zh_TW.UTF-8 UTF-8<br>en_US.UTF-8 UTF-8  </p>
+<p>zh_CN.UTF-8 UTF-8<br>  zh_HK.UTF-8 UTF-8<br>  zh_TW.UTF-8 UTF-8<br>en_US.UTF-8 UTF-8  </p>
 </blockquote>
 <p>这四行，去掉注释。接下来运行这条命令<br><code># locale-gen</code><br>然后<br><code># vim /etc/locale.conf</code></p>
 <p>在第一行写入  </p>
@@ -582,7 +582,8 @@
 <p>/etc/lvm/lvm.conf</p>
 </blockquote>
 <p>这个文件，找到<code>use_lvmetad = 1</code>这一行，把<code>1</code>改成<code>0</code>即可。</p>
-<h3 id="配置Windows的启动入口"><a href="#配置Windows的启动入口" class="headerlink" title="配置Windows的启动入口"></a>配置Windows的启动入口</h3><p>参考<a href="https://wiki.archlinux.org/index.php/GRUB#Windows_installed_in_UEFI-GPT_Mode_menu_entry" target="_blank" rel="external">这里</a>，添加到<code>/boot/grub/grub.cfg</code>这个文件中，在<code>Arch Linux</code>这个<code>menuentry</code>前或后添加Windows的<code>menuentry</code><br><code>if [ &quot;${grub_platform}&quot; == &quot;efi&quot; ]; then
+<h3 id="配置Windows的启动入口"><a href="#配置Windows的启动入口" class="headerlink" title="配置Windows的启动入口"></a>配置Windows的启动入口</h3><p>参考<a href="https://wiki.archlinux.org/index.php/GRUB#Windows_installed_in_UEFI-GPT_Mode_menu_entry" target="_blank" rel="external">这里</a>，添加到<code>/boot/grub/grub.cfg</code>这个文件中，在<code>Arch Linux</code>这个<code>menuentry</code>前或后添加Windows的<code>menuentry</code></p>
+<pre><code>if [ &quot;${grub_platform}&quot; == &quot;efi&quot; ]; then
     menuentry &quot;Windows 10&quot; {
         fs_uuid=CEC0-7D1B
         hints_string=--hint-bios,gpt1 --hint-efi=hd0,gpt1 --hint-baremetal=achi0,gpt1
@@ -593,7 +594,8 @@
         search --fs-uuid --set=root $hints_string $fs_uuid
         chainloader /EFI/Microsoft/Boot/bootmgfw.efi
     }
-fi</code><br>fs_uuid这个值是通过这条命令得到的<br><code># grub-probe --target=fs_uuid $esp/EFI/Microsoft/Boot/bootmgfw.efi</code><br>hints_string的值是通过这条命令得到的<br><code># grub-probe --target=hints_string $esp/EFI/Microsoft/Boot/bootmgfw.efi</code><br>如果上边两条命令爆路径错误，直接切换到bootmgfw.efi的路径下<br><code># cd /boot/EFI/Microsoft/Boot</code><br>然后去掉bootmgfw.efi前边的路径执行。比如第一条命令<br><code># grub-probe --target=fs_uuid bootmgfw.efi</code><br>还有可能爆的错是获取hints_string的时候，因为我的SSD是NVMe的，然后爆出了这个错误</p>
+fi
+</code></pre><p>fs_uuid这个值是通过这条命令得到的<br><code># grub-probe --target=fs_uuid $esp/EFI/Microsoft/Boot/bootmgfw.efi</code><br>hints_string的值是通过这条命令得到的<br><code># grub-probe --target=hints_string $esp/EFI/Microsoft/Boot/bootmgfw.efi</code><br>如果上边两条命令爆路径错误，直接切换到bootmgfw.efi的路径下<br><code># cd /boot/EFI/Microsoft/Boot</code><br>然后去掉bootmgfw.efi前边的路径执行。比如第一条命令<br><code># grub-probe --target=fs_uuid bootmgfw.efi</code><br>还有可能爆的错是获取hints_string的时候，因为我的SSD是NVMe的，然后爆出了这个错误</p>
 <blockquote>
 <p>grub-probe: warning: unknown device type nvme0n1.</p>
 </blockquote>
@@ -607,11 +609,11 @@ fi</code><br>fs_uuid这个值是通过这条命令得到的<br><code># grub-prob
 <p># %wheel ALL=(ALL)ALL</p>
 </blockquote>
 <p>这行，把<code>#</code>去掉，保存退出。</p>
-<h3 id="安装yaourt"><a href="#安装yaourt" class="headerlink" title="安装yaourt"></a>安装yaourt</h3><p><code>$ sudo vim /etc/pacman.conf</code><br>在末尾加上</p>
+<h3 id="安装yaourt"><a href="#安装yaourt" class="headerlink" title="安装yaourt"></a>安装yaourt</h3><p><code># vim /etc/pacman.conf</code><br>在末尾加上</p>
 <blockquote>
 <p>[archlinuxcn]<br>SigLevel = Optional TrustAll<br>Server = <a href="https://mirrors.tuna.tsinghua.edu.cn/archlinuxcn/$arch" target="_blank" rel="external">https://mirrors.tuna.tsinghua.edu.cn/archlinuxcn/$arch</a></p>
 </blockquote>
-<p>然后运行<br><code>$ sudo pacman -Sy yaourt fakeroot</code></p>
+<p>然后运行<br><code># pacman -Sy yaourt fakeroot</code></p>
 <h2 id="重启"><a href="#重启" class="headerlink" title="重启"></a>重启</h2><p><code># exit</code><br><code># reboot</code><br>ALL DONE！重启后可以用新建的用户登陆，然后联网进行后序的<a href="../archlinux-gnome-install/">桌面安装</a>。</p>
 
         
