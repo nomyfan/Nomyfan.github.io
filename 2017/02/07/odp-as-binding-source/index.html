@@ -83,11 +83,6 @@
         <style id="style_css"></style><script>if(typeof window.lsLoadCSSMaxNums === "undefined")window.lsLoadCSSMaxNums = 0;window.lsLoadCSSMaxNums++;lsloader.load("style_css","/css/style.min.css?MKetZV3cUTfDxvMffaOezg==",function(){if(typeof window.lsLoadCSSNums === "undefined")window.lsLoadCSSNums = 0;window.lsLoadCSSNums++;if(window.lsLoadCSSNums == window.lsLoadCSSMaxNums)document.documentElement.style.display="";}, false)</script>
 
         
-            
-                <style id="prettify_css"></style><script>if(typeof window.lsLoadCSSMaxNums === "undefined")window.lsLoadCSSMaxNums = 0;window.lsLoadCSSMaxNums++;lsloader.load("prettify_css","/css/prettify.min.css?zp8STOU9v89XWFEnN+6YmQ==",function(){if(typeof window.lsLoadCSSNums === "undefined")window.lsLoadCSSNums = 0;window.lsLoadCSSNums++;if(window.lsLoadCSSNums == window.lsLoadCSSMaxNums)document.documentElement.style.display="";}, false)</script>
-                <style id="prettify_theme"></style><script>if(typeof window.lsLoadCSSMaxNums === "undefined")window.lsLoadCSSMaxNums = 0;window.lsLoadCSSMaxNums++;lsloader.load("prettify_theme","/css/prettify/atelier-forest-light.min.css?HdofjyGu7b4PtoyvVcYV4A==",function(){if(typeof window.lsLoadCSSNums === "undefined")window.lsLoadCSSNums = 0;window.lsLoadCSSNums++;if(window.lsLoadCSSNums == window.lsLoadCSSMaxNums)document.documentElement.style.display="";}, false)</script>
-            
-        
 
     
 
@@ -203,7 +198,7 @@
 <!-- Import Font -->
 <!-- Import Roboto -->
 
-    <link href="https://fonts.googleapis.com/css?family=Roboto:300,400,500" rel="stylesheet">
+    <link href="https://fonts.proxy.ustclug.org/css?family=Roboto:300,400,500" rel="stylesheet">
 
 
 <!-- Import Material Icons -->
@@ -246,7 +241,7 @@
 
     
         <meta property="article:published_time" content="Tue Feb 07 2017 14:56:46 GMT+0800">
-        <meta property="article:modified_time" content="Tue Feb 06 2018 21:20:09 GMT+0800">
+        <meta property="article:modified_time" content="Sun Feb 11 2018 17:33:26 GMT+0800">
     
 
     <!-- The Twitter Card protocol -->
@@ -269,7 +264,7 @@
     "mainEntityOfPage": "http://www.nokky.net/2017/02/07/odp-as-binding-source/index.html",
     "headline": "Binding[0]=使用ObjectDataProvider对象作为Binding的Source",
     "datePublished": "Tue Feb 07 2017 14:56:46 GMT+0800",
-    "dateModified": "Tue Feb 06 2018 21:20:09 GMT+0800",
+    "dateModified": "Sun Feb 11 2018 17:33:26 GMT+0800",
     "author": {
         "@type": "Person",
         "name": "Myers Chan",
@@ -304,8 +299,6 @@
     
         
             <script async src="https://www.googletagmanager.com/gtag/js?id=UA-112028701-1"></script><script>window.dataLayer = window.dataLayer || [];function gtag(){dataLayer.push(arguments);}gtag('js', new Date());gtag('config', 'UA-112028701-1');</script>
-        
-            <script src="https://cdn.rawgit.com/google/code-prettify/master/loader/run_prettify.js"></script>
         
     
 
@@ -526,46 +519,73 @@
                 <div id="post-content" class="mdl-color-text--grey-700 mdl-card__supporting-text fade out">
     
         <p>一般情况下，我们通常使用某个类的实例作为Binding的对象，实例中的某个属性作为Path来消费这些类。现在试想一下这样的情形，我们需要绑定的数据是方法的返回值，这时候我们应该怎么办呢？有小伙伴可能会提出，修改这个类，增加属性将需要的数据暴露出来使用。这样是一个解决方法，但是重新设计底层类的风险和成本比较高，而且在黑盒引用类库的时候我们就不可能这样做了。那么是不是就束手无策了？当然不是，我们可以使用ObjectDataProvider包装一个对象然后作为Binding的数据源。怎么来实现呢？</p>
-<h2 id="实现"><a href="#实现" class="headerlink" title="实现"></a><span style="color: #3692b4;">实现</span></h2><p>现在的情形是，我引用一个类库，里面有一个Calculator的类，里面有各种算法，其中一个是加法的算法：</p>
-<p><pre>class Calculator<br>{<br>    public string Add(string arg1, string arg2)<br>    {<br>        double x;<br>        double y;<br>        if (double.TryParse(arg1, out x) &amp;&amp; double.TryParse(arg2, out y))<br>        {<br>            return (x + y).ToString();<br>        }<br>        return @”N/A”;<br>    }<br>}</pre><br>在界面上，准备了三个TextBox，第一个作为Add方法的第一个参数，第二个作为第二个参数，第三个作为Add方法返回值。XAML代码如下：</p>
-<p><pre>&lt;StackPanel&gt;<br>    &lt;TextBox x:Name=”tBArg1” Margin=”10” Height=”25”/&gt;<br>    &lt;TextBox x:Name=”tBArg2” Margin=”10” Height=”25”/&gt;<br>    &lt;TextBox x:Name=”tBResult” Margin=”10” Height=”25”/&gt;<br>&lt;/StackPanel&gt;</pre><br>&nbsp;</p>
-<p>功能上，我要实现在前两个TextBox上输入实数后，在第三个TextBox实时显示出计算结果。过程代码写在一个SetBinding方法里，然后在窗体的构造函数中那个调用这个方法。</p>
-<p><pre>public partial class MainWindow : Window<br>{<br>    public MainWindow()<br>    {<br>        InitializeComponent();<br>        this.SetBinding();<br>    }</pre></p>
-<pre><code>private void SetBinding()
+<h2 id="实现"><a href="#实现" class="headerlink" title="实现"></a>实现</h2><p>现在的情形是，我引用一个类库，里面有一个Calculator的类，里面有各种算法，其中一个是加法的算法：</p>
+<pre><code class="CSharp">class Calculator
 {
-    //Create and initial ObjectDataProvider instance
-    ObjectDataProvider odp = new ObjectDataProvider();
-    odp.ObjectInstance = new Calculator();
-    odp.MethodName = &quot;Add&quot;;
-    odp.MethodParameters.Add(&quot;&quot;);
-    odp.MethodParameters.Add(&quot;&quot;);
-
-    //Create and initial Binding instance
-    Binding bindingToArg1 = new Binding(&quot;MethodParameters[0]&quot;)
+    public string Add(string arg1, string arg2)
     {
-        Source = odp,
-        BindsDirectlyToSource = true,
-        UpdateSourceTrigger = UpdateSourceTrigger.PropertyChanged
-    };
-
-    Binding bindingToArg2 = new Binding(&quot;MethodParameters[1]&quot;)
-    {
-        Source = odp,
-        BindsDirectlyToSource = true,
-        UpdateSourceTrigger = UpdateSourceTrigger.PropertyChanged
-    };
-
-    Binding bindingToResult = new Binding(&quot;.&quot;) { Source = odp };
-
-    //Set binding
-    this.tBArg1.SetBinding(TextBox.TextProperty, bindingToArg1);
-    this.tBArg2.SetBinding(TextBox.TextProperty, bindingToArg2);
-    this.tBResult.SetBinding(TextBox.TextProperty, bindingToResult);
+        double x;
+        double y;
+        if (double.TryParse(arg1, out x) &amp;amp;&amp;amp; double.TryParse(arg2, out y))
+        {
+            return (x + y).ToString();
+        }
+        return @&quot;N/A&quot;;
+    }
 }
-</code></pre><p>}<br>最终的实现效果</p>
+</code></pre>
+<p>在界面上，准备了三个TextBox，第一个作为Add方法的第一个参数，第二个作为第二个参数，第三个作为Add方法返回值。XAML代码如下：</p>
+<pre><code class="CSharp">&lt;StackPanel&gt;
+    &lt;TextBox x:Name=&quot;tBArg1&quot; Margin=&quot;10&quot; Height=&quot;25&quot;/&gt;
+    &lt;TextBox x:Name=&quot;tBArg2&quot; Margin=&quot;10&quot; Height=&quot;25&quot;/&gt;
+    &lt;TextBox x:Name=&quot;tBResult&quot; Margin=&quot;10&quot; Height=&quot;25&quot;/&gt;
+&lt;/StackPanel&gt;
+</code></pre>
+<p>功能上，我要实现在前两个TextBox上输入实数后，在第三个TextBox实时显示出计算结果。过程代码写在一个SetBinding方法里，然后在窗体的构造函数中那个调用这个方法。</p>
+<pre><code class="CSharp">public partial class MainWindow : Window
+{
+    public MainWindow()
+    {
+        InitializeComponent();
+        this.SetBinding();
+    }
+
+    private void SetBinding()
+    {
+        //Create and initial ObjectDataProvider instance
+        ObjectDataProvider odp = new ObjectDataProvider();
+        odp.ObjectInstance = new Calculator();
+        odp.MethodName = &quot;Add&quot;;
+        odp.MethodParameters.Add(&quot;&quot;);
+        odp.MethodParameters.Add(&quot;&quot;);
+
+        //Create and initial Binding instance
+        Binding bindingToArg1 = new Binding(&quot;MethodParameters[0]&quot;)
+        {
+            Source = odp,
+            BindsDirectlyToSource = true,
+            UpdateSourceTrigger = UpdateSourceTrigger.PropertyChanged
+        };
+
+        Binding bindingToArg2 = new Binding(&quot;MethodParameters[1]&quot;)
+        {
+            Source = odp,
+            BindsDirectlyToSource = true,
+            UpdateSourceTrigger = UpdateSourceTrigger.PropertyChanged
+        };
+
+        Binding bindingToResult = new Binding(&quot;.&quot;) { Source = odp };
+
+        //Set binding
+        this.tBArg1.SetBinding(TextBox.TextProperty, bindingToArg1);
+        this.tBArg2.SetBinding(TextBox.TextProperty, bindingToArg2);
+        this.tBResult.SetBinding(TextBox.TextProperty, bindingToResult);
+    }
+}
+</code></pre>
+<p>最终的实现效果</p>
 <p><a href="/img/2017/02/sp170207_142045.png"><img src="/img/2017/02/sp170207_142045.png" alt=""></a></p>
-<hr>
-<h2 id="分析"><a href="#分析" class="headerlink" title="分析"></a><span style="color: #3692b4;">分析</span></h2><p>OK，现在我们的问题解决了。让我们以问答的形式具体分析一下这个实现过程。</p>
+<h2 id="分析"><a href="#分析" class="headerlink" title="分析"></a>分析</h2><p>OK，现在我们的问题解决了。让我们以问答的形式具体分析一下这个实现过程。</p>
 <p>Q：ObjectDataProvider类的作用是什么？</p>
 <p>A：文章开头部分就提及到了，ObjectDataProvider类的作用就是将一个<strong>以方法形式暴露数据的对象</strong>包装起来。我们先是创建了一个ObjectDataProvider对象，然后new 一个Calculator实例赋值给它的ObjectInstance属性，这样就完成了将对象包装在ObjectDataProvider对象里的工作。注意这里的ObjectDataProvider对象本身就代表了数据，因此Path写“.”</p>
 <p>Q：BindsDirectlyToSource=true这句代码什么意思？</p>
@@ -1189,12 +1209,10 @@ It will not impact the appearance and can give developers a lot of support :)
 
 <!-- Import prettify js  -->
 
-    
-        
-            <script>lsloader.load("prettify_js","/js/prettify.min.js?WN07fivHQSMKWy7BmHBB6w==", true)</script>
-        
-    
 
+    
+        <script>lsloader.load("hanabi","/js/hanabi-browser-bundle.js?Pki5+pzkluqu53g+ouMWpA==", true)</script>
+    
 
 
 <!-- Window Load -->
@@ -1206,13 +1224,10 @@ It will not impact the appearance and can give developers a lot of support :)
     });
 
     
-        
-            $(function() {
-                $('pre').addClass('prettyprint linenums').attr('style', 'overflow:auto;');
-                prettyPrint();
-                })
-        
     
+        
+        
+        HanabiBrowser.start('pre code',true);
     
 </script>
 

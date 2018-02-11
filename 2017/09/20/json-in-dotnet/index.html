@@ -83,11 +83,6 @@
         <style id="style_css"></style><script>if(typeof window.lsLoadCSSMaxNums === "undefined")window.lsLoadCSSMaxNums = 0;window.lsLoadCSSMaxNums++;lsloader.load("style_css","/css/style.min.css?MKetZV3cUTfDxvMffaOezg==",function(){if(typeof window.lsLoadCSSNums === "undefined")window.lsLoadCSSNums = 0;window.lsLoadCSSNums++;if(window.lsLoadCSSNums == window.lsLoadCSSMaxNums)document.documentElement.style.display="";}, false)</script>
 
         
-            
-                <style id="prettify_css"></style><script>if(typeof window.lsLoadCSSMaxNums === "undefined")window.lsLoadCSSMaxNums = 0;window.lsLoadCSSMaxNums++;lsloader.load("prettify_css","/css/prettify.min.css?zp8STOU9v89XWFEnN+6YmQ==",function(){if(typeof window.lsLoadCSSNums === "undefined")window.lsLoadCSSNums = 0;window.lsLoadCSSNums++;if(window.lsLoadCSSNums == window.lsLoadCSSMaxNums)document.documentElement.style.display="";}, false)</script>
-                <style id="prettify_theme"></style><script>if(typeof window.lsLoadCSSMaxNums === "undefined")window.lsLoadCSSMaxNums = 0;window.lsLoadCSSMaxNums++;lsloader.load("prettify_theme","/css/prettify/atelier-forest-light.min.css?HdofjyGu7b4PtoyvVcYV4A==",function(){if(typeof window.lsLoadCSSNums === "undefined")window.lsLoadCSSNums = 0;window.lsLoadCSSNums++;if(window.lsLoadCSSNums == window.lsLoadCSSMaxNums)document.documentElement.style.display="";}, false)</script>
-            
-        
 
     
 
@@ -203,7 +198,7 @@
 <!-- Import Font -->
 <!-- Import Roboto -->
 
-    <link href="https://fonts.googleapis.com/css?family=Roboto:300,400,500" rel="stylesheet">
+    <link href="https://fonts.proxy.ustclug.org/css?family=Roboto:300,400,500" rel="stylesheet">
 
 
 <!-- Import Material Icons -->
@@ -246,7 +241,7 @@
 
     
         <meta property="article:published_time" content="Wed Sep 20 2017 17:32:40 GMT+0800">
-        <meta property="article:modified_time" content="Tue Feb 06 2018 21:20:05 GMT+0800">
+        <meta property="article:modified_time" content="Sun Feb 11 2018 17:31:19 GMT+0800">
     
 
     <!-- The Twitter Card protocol -->
@@ -269,7 +264,7 @@
     "mainEntityOfPage": "http://www.nokky.net/2017/09/20/json-in-dotnet/index.html",
     "headline": "JSON in .NET(C#)",
     "datePublished": "Wed Sep 20 2017 17:32:40 GMT+0800",
-    "dateModified": "Tue Feb 06 2018 21:20:05 GMT+0800",
+    "dateModified": "Sun Feb 11 2018 17:31:19 GMT+0800",
     "author": {
         "@type": "Person",
         "name": "Myers Chan",
@@ -304,8 +299,6 @@
     
         
             <script async src="https://www.googletagmanager.com/gtag/js?id=UA-112028701-1"></script><script>window.dataLayer = window.dataLayer || [];function gtag(){dataLayer.push(arguments);}gtag('js', new Date());gtag('config', 'UA-112028701-1');</script>
-        
-            <script src="https://cdn.rawgit.com/google/code-prettify/master/loader/run_prettify.js"></script>
         
     
 
@@ -528,9 +521,8 @@
         <p>JSON(JavaScript Object Notation) is popularly used nowadays. For JavaScript, it’s easy to convert a object to json. How about C#? How do we get some properties we need from a json typed object? And how do we convert our object into json formatted text? This article aims to solve the problems. You will see it can be convenient to solve the problems<strong><em>.(●’◡’●)</em></strong></p>
 <h1 id="Preparation"><a href="#Preparation" class="headerlink" title="Preparation"></a>Preparation</h1><p>There is one thing we need to do before start. That is installing the a NuGet package named <em><strong>JSON.NET</strong></em>. In Visual Studio, we can search any package and install it easily. Search <em><strong>JSON.NET</strong></em>, then install it to you project.</p>
 <p><img src="/img/2017/09/snipaste_20170920_201049.png" alt="snipaste_20170920_201049"></p>
-<hr>
 <h1 id="Serialization-and-Deserialization"><a href="#Serialization-and-Deserialization" class="headerlink" title="Serialization and Deserialization"></a>Serialization and Deserialization</h1><p>These operations are suitable for the definitive type we know or define. For example, we now have a class named <strong>Rectangle.</strong></p>
-<pre>class Rectangle
+<pre><code class="CSharp">class Rectangle
 {
     public int Height { get; set; }
     public int Width { get; set; }
@@ -540,53 +532,50 @@
         Height = height;
         Width = width;
     }
-}</pre>
-
+}
+</code></pre>
 <p>Then we need to refer one namespace.</p>
-<pre>using Newtonsoft.Json;</pre>
-
+<p><code>using Newtonsoft.Json;</code></p>
 <p>After that, we can use class <strong>JsonConvert</strong> to serialize a Rectangle typed object or a list of Rectangle typed objects. Code as follow.</p>
-<pre>List list = new List();
+<pre><code class="CSharp">List list = new List();
 list.Add(new Rectangle(1, 2));
 list.Add(new Rectangle(45, 23));
-string json = JsonConvert.SerializeObject(list);</pre>
-
-<p>If we print variable <strong>json </strong>to the console window, we can see the result as this.</p>
+string json = JsonConvert.SerializeObject(list);
+</code></pre>
+<p>If we print variable <code>json</code> to the console window, we can see the result as this.</p>
 <p><img src="/img/2017/09/snipaste_20170920_204618.png" alt="snipaste_20170920_204618"></p>
 <p>How about deserialize object(s) from a json formatted text? Much easy! Only one line code!</p>
-<pre>var objs = JsonConvert.DeserializeObject&lt;List&lt;Rectangle&gt;&gt;(json);</pre>
-
+<pre><code class="CSharp">var objs = JsonConvert.DeserializeObject&amp;lt;List&amp;lt;Rectangle&amp;gt;&amp;gt;(json);
+</code></pre>
 <p>You may doubt whether it’s correct. Well, let’s verify that. Write some code as follow.</p>
-<pre>for (int i = 0; i &lt; objs.Count; i++)
+<pre><code class="CSharp">for (int i = 0; i &amp;lt; objs.Count; i++)
 {
-    Console.WriteLine($"{i + 1}th object info:"
-        + $"Height:{objs[i].Height} Width:{objs[i].Width}");
-}</pre>
-
+    Console.WriteLine($&quot;{i + 1}th object info:&quot;
+        + $&quot;Height:{objs[i].Height} Width:{objs[i].Width}&quot;);
+}
+</code></pre>
 <p>We will get the result.</p>
 <p><img src="/img/2017/09/snipaste_20170920_205856.png" alt="snipaste_20170920_205856"></p>
 <p><strong>Correct! Congratulation!</strong></p>
-<hr>
 <h1 id="Pick-Properties-from-JSON"><a href="#Pick-Properties-from-JSON" class="headerlink" title="Pick Properties from JSON"></a>Pick Properties from JSON</h1><p>Consider one situation, we get some JSON typed text from any way like API. One problem we will face is that we don’t have a exact type for that. Thus, we can’t deserialize it to a exact typed object. Thanks to JSON.NET this powerful library, we can continue to work in such situation without too much code. Let’s figure out!</p>
 <p>Firstly, get json formatted text via API.</p>
-<pre>HttpWebRequest request = (HttpWebRequest)WebRequest.Create(@"http://samples.openweathermap.org/data/2.5/weather?q=London,uk&amp;appid=b1b15e88fa797225412429c1c50c122a1");
-request.Method = "GET";
-request.ContentType = "text/json";
+<pre><code class="CSharp">HttpWebRequest request = (HttpWebRequest)WebRequest.Create(@&quot;http://samples.openweathermap.org/data/2.5/weather?q=London,uk&amp;amp;appid=b1b15e88fa797225412429c1c50c122a1&quot;);
+request.Method = &quot;GET&quot;;
+request.ContentType = &quot;text/json&quot;;
 var response = request.GetResponse();
 string json = string.Empty;
 using (StreamReader sr = new StreamReader(response.GetResponseStream()))
 {
     json = sr.ReadToEnd();
-}</pre>
-
-<p>If we print variable <strong>json</strong> out, we will see this.</p>
+}
+</code></pre>
+<p>If we print variable <code>json</code> out, we will see this.</p>
 <p><img src="/img/2017/09/snipaste_20170920_210725.png" alt="snipaste_20170920_210725"></p>
 <p>If we want to get wind speed, we can write this code.</p>
-<pre>JToken token = JObject.Parse(json);
-string speed = (string)token.SelectToken("wind").SelectToken("speed");</pre>
-
+<pre><code class="CSharp">JToken token = JObject.Parse(json);
+string speed = (string)token.SelectToken(&quot;wind&quot;).SelectToken(&quot;speed&quot;);
+</code></pre>
 <p>The variable speed is the result we want. Not complicated.</p>
-<hr>
 <h1 id="End"><a href="#End" class="headerlink" title="End"></a>End</h1><p>(￣y▽￣)╭ Ohohoho…..</p>
 
         
@@ -1203,12 +1192,10 @@ It will not impact the appearance and can give developers a lot of support :)
 
 <!-- Import prettify js  -->
 
-    
-        
-            <script>lsloader.load("prettify_js","/js/prettify.min.js?WN07fivHQSMKWy7BmHBB6w==", true)</script>
-        
-    
 
+    
+        <script>lsloader.load("hanabi","/js/hanabi-browser-bundle.js?Pki5+pzkluqu53g+ouMWpA==", true)</script>
+    
 
 
 <!-- Window Load -->
@@ -1220,13 +1207,10 @@ It will not impact the appearance and can give developers a lot of support :)
     });
 
     
-        
-            $(function() {
-                $('pre').addClass('prettyprint linenums').attr('style', 'overflow:auto;');
-                prettyPrint();
-                })
-        
     
+        
+        
+        HanabiBrowser.start('pre code',true);
     
 </script>
 

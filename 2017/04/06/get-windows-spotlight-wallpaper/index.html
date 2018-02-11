@@ -83,11 +83,6 @@
         <style id="style_css"></style><script>if(typeof window.lsLoadCSSMaxNums === "undefined")window.lsLoadCSSMaxNums = 0;window.lsLoadCSSMaxNums++;lsloader.load("style_css","/css/style.min.css?MKetZV3cUTfDxvMffaOezg==",function(){if(typeof window.lsLoadCSSNums === "undefined")window.lsLoadCSSNums = 0;window.lsLoadCSSNums++;if(window.lsLoadCSSNums == window.lsLoadCSSMaxNums)document.documentElement.style.display="";}, false)</script>
 
         
-            
-                <style id="prettify_css"></style><script>if(typeof window.lsLoadCSSMaxNums === "undefined")window.lsLoadCSSMaxNums = 0;window.lsLoadCSSMaxNums++;lsloader.load("prettify_css","/css/prettify.min.css?zp8STOU9v89XWFEnN+6YmQ==",function(){if(typeof window.lsLoadCSSNums === "undefined")window.lsLoadCSSNums = 0;window.lsLoadCSSNums++;if(window.lsLoadCSSNums == window.lsLoadCSSMaxNums)document.documentElement.style.display="";}, false)</script>
-                <style id="prettify_theme"></style><script>if(typeof window.lsLoadCSSMaxNums === "undefined")window.lsLoadCSSMaxNums = 0;window.lsLoadCSSMaxNums++;lsloader.load("prettify_theme","/css/prettify/atelier-forest-light.min.css?HdofjyGu7b4PtoyvVcYV4A==",function(){if(typeof window.lsLoadCSSNums === "undefined")window.lsLoadCSSNums = 0;window.lsLoadCSSNums++;if(window.lsLoadCSSNums == window.lsLoadCSSMaxNums)document.documentElement.style.display="";}, false)</script>
-            
-        
 
     
 
@@ -203,7 +198,7 @@
 <!-- Import Font -->
 <!-- Import Roboto -->
 
-    <link href="https://fonts.googleapis.com/css?family=Roboto:300,400,500" rel="stylesheet">
+    <link href="https://fonts.proxy.ustclug.org/css?family=Roboto:300,400,500" rel="stylesheet">
 
 
 <!-- Import Material Icons -->
@@ -246,7 +241,7 @@
 
     
         <meta property="article:published_time" content="Thu Apr 06 2017 18:27:33 GMT+0800">
-        <meta property="article:modified_time" content="Tue Feb 06 2018 21:17:34 GMT+0800">
+        <meta property="article:modified_time" content="Sun Feb 11 2018 17:26:17 GMT+0800">
     
 
     <!-- The Twitter Card protocol -->
@@ -269,7 +264,7 @@
     "mainEntityOfPage": "http://www.nokky.net/2017/04/06/get-windows-spotlight-wallpaper/index.html",
     "headline": "揪出Windows Spotlight壁纸",
     "datePublished": "Thu Apr 06 2017 18:27:33 GMT+0800",
-    "dateModified": "Tue Feb 06 2018 21:17:34 GMT+0800",
+    "dateModified": "Sun Feb 11 2018 17:26:17 GMT+0800",
     "author": {
         "@type": "Person",
         "name": "Myers Chan",
@@ -304,8 +299,6 @@
     
         
             <script async src="https://www.googletagmanager.com/gtag/js?id=UA-112028701-1"></script><script>window.dataLayer = window.dataLayer || [];function gtag(){dataLayer.push(arguments);}gtag('js', new Date());gtag('config', 'UA-112028701-1');</script>
-        
-            <script src="https://cdn.rawgit.com/google/code-prettify/master/loader/run_prettify.js"></script>
         
     
 
@@ -532,14 +525,21 @@
 # <span style="color: #ff6600;">**这是一篇无聊的水文！**</span> -->
 <p>Windows 10的Spotlight偶尔会推荐个人比较喜欢的锁屏壁纸，这时候如果我们想得到图片文件该怎么办？比如这张，笔者个人觉得挺魔幻的。</p>
 <p><a href="/img/2017/04/sp170406_120203.png"><img src="/img/2017/04/sp170406_120203-1024x553.png" alt=""></a></p>
-<h2 id="Step1"><a href="#Step1" class="headerlink" title="Step1"></a><span style="color: #36b26a;">Step1</span></h2><p>在Windows Explorer进入该路径<br><span style="color: #d14;">C:\Users&#91;User Name]\AppData\Local\Packages\Microsoft.Windows.ContentDeliveryManager_cw5n1h2txyewy\LocalState\Assets</span><br>在该目录下可以看到一些没有扩展名的文件，这些其实就是图片文件，如图</p>
+<h2 id="Step1"><a href="#Step1" class="headerlink" title="Step1"></a>Step1</h2><p>在Windows Explorer进入该路径</p>
+<pre><code>C:\Users\[User Name]\AppData\Local\Packages\Microsoft.Windows.ContentDeliveryManager_cw5n1h2txyewy\LocalState\Assets
+</code></pre><p>在该目录下可以看到一些没有扩展名的文件，这些其实就是图片文件，如图</p>
 <p><a href="/img/2017/04/sp170406_121024.png"><img src="/img/2017/04/sp170406_121024-1024x751.png" alt=""></a></p>
-<h2 id="Step2"><a href="#Step2" class="headerlink" title="Step2"></a><span style="color: #36b26a;">Step2</span></h2><p>将上图目录下的所有文件复制到任意目录下，我在桌面上新建了一个名为New Folder的文件夹然后全部丢进去。</p>
-<h2 id="Step3"><a href="#Step3" class="headerlink" title="Step3"></a><span style="color: #36b26a;">Step3</span></h2><p>然后正片开始，网上很多都是直接用cmd修改文件名添加扩展名，这里装逼地用了PowerShell。我会给每个图片一个位宽为3的序号并添加扩展名。</p>
-<p>先定义一个序号的变量<br><span style="color: #d14;">$index=1</span><br>然后修改图片文件文件名<br><span style="color: #d14;">Get-ChildItem|foreach{Rename-Item -Path $<em>.FullName -NewName (‘pic</em>{0:d3}.jpg’ -f $index);$index++}</span></p>
+<h2 id="Step2"><a href="#Step2" class="headerlink" title="Step2"></a>Step2</h2><p>将上图目录下的所有文件复制到任意目录下，我在桌面上新建了一个名为New Folder的文件夹然后全部丢进去。</p>
+<h2 id="Step3"><a href="#Step3" class="headerlink" title="Step3"></a>Step3</h2><p>然后正片开始，网上很多都是直接用cmd修改文件名添加扩展名，这里装逼地用了PowerShell。我会给每个图片一个位宽为3的序号并添加扩展名。</p>
+<p>先定义一个序号的变量</p>
+<pre><code class="PowerShell">$index=1
+</code></pre>
+<p>然后修改图片文件文件名</p>
+<pre><code class="PowerShell">Get-ChildItem|foreach{Rename-Item -Path $_.FullName -NewName (&#39;pic_{0:d3}.jpg&#39; -f $index);$index++}
+</code></pre>
 <p><a href="/img/2017/04/sp170406_121955-1.png"><img src="/img/2017/04/sp170406_121955-1-1024x246.png" alt=""></a><br>这时候再看看文件夹，所有文件都已经显示为图片格式文件了。ALL DONE！</p>
 <p><a href="/img/2017/04/sp170406_182143.png"><img src="/img/2017/04/sp170406_182143-1024x365.png" alt=""></a></p>
-<p>这里准备了整个脚本（图片保存在桌面的spotlight文件夹内），保存为ps1直接运行即可（记得修改PowerShell的ExecutionPolicy）：<a href="http://nokky.net/spotlight.ps1" target="_blank" rel="external">点这里</a></p>
+<p>这里准备了整个脚本（图片保存在桌面的spotlight文件夹内），保存为ps1直接运行即可（记得修改PowerShell的ExecutionPolicy）：<a href="/static/spotlight.ps1">点这里</a></p>
 
         
                 <blockquote style="margin: 2em 0 0;padding: 0.5em 1em;border-left: 3px solid #F44336;background-color: #F5F5F5;list-style: none;">
@@ -1155,12 +1155,10 @@ It will not impact the appearance and can give developers a lot of support :)
 
 <!-- Import prettify js  -->
 
-    
-        
-            <script>lsloader.load("prettify_js","/js/prettify.min.js?WN07fivHQSMKWy7BmHBB6w==", true)</script>
-        
-    
 
+    
+        <script>lsloader.load("hanabi","/js/hanabi-browser-bundle.js?Pki5+pzkluqu53g+ouMWpA==", true)</script>
+    
 
 
 <!-- Window Load -->
@@ -1172,13 +1170,10 @@ It will not impact the appearance and can give developers a lot of support :)
     });
 
     
-        
-            $(function() {
-                $('pre').addClass('prettyprint linenums').attr('style', 'overflow:auto;');
-                prettyPrint();
-                })
-        
     
+        
+        
+        HanabiBrowser.start('pre code',true);
     
 </script>
 

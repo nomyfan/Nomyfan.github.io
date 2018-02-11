@@ -83,11 +83,6 @@
         <style id="style_css"></style><script>if(typeof window.lsLoadCSSMaxNums === "undefined")window.lsLoadCSSMaxNums = 0;window.lsLoadCSSMaxNums++;lsloader.load("style_css","/css/style.min.css?MKetZV3cUTfDxvMffaOezg==",function(){if(typeof window.lsLoadCSSNums === "undefined")window.lsLoadCSSNums = 0;window.lsLoadCSSNums++;if(window.lsLoadCSSNums == window.lsLoadCSSMaxNums)document.documentElement.style.display="";}, false)</script>
 
         
-            
-                <style id="prettify_css"></style><script>if(typeof window.lsLoadCSSMaxNums === "undefined")window.lsLoadCSSMaxNums = 0;window.lsLoadCSSMaxNums++;lsloader.load("prettify_css","/css/prettify.min.css?zp8STOU9v89XWFEnN+6YmQ==",function(){if(typeof window.lsLoadCSSNums === "undefined")window.lsLoadCSSNums = 0;window.lsLoadCSSNums++;if(window.lsLoadCSSNums == window.lsLoadCSSMaxNums)document.documentElement.style.display="";}, false)</script>
-                <style id="prettify_theme"></style><script>if(typeof window.lsLoadCSSMaxNums === "undefined")window.lsLoadCSSMaxNums = 0;window.lsLoadCSSMaxNums++;lsloader.load("prettify_theme","/css/prettify/atelier-forest-light.min.css?HdofjyGu7b4PtoyvVcYV4A==",function(){if(typeof window.lsLoadCSSNums === "undefined")window.lsLoadCSSNums = 0;window.lsLoadCSSNums++;if(window.lsLoadCSSNums == window.lsLoadCSSMaxNums)document.documentElement.style.display="";}, false)</script>
-            
-        
 
     
 
@@ -203,7 +198,7 @@
 <!-- Import Font -->
 <!-- Import Roboto -->
 
-    <link href="https://fonts.googleapis.com/css?family=Roboto:300,400,500" rel="stylesheet">
+    <link href="https://fonts.proxy.ustclug.org/css?family=Roboto:300,400,500" rel="stylesheet">
 
 
 <!-- Import Material Icons -->
@@ -246,7 +241,7 @@
 
     
         <meta property="article:published_time" content="Mon Feb 13 2017 11:57:42 GMT+0800">
-        <meta property="article:modified_time" content="Tue Feb 06 2018 21:53:53 GMT+0800">
+        <meta property="article:modified_time" content="Sun Feb 11 2018 17:35:21 GMT+0800">
     
 
     <!-- The Twitter Card protocol -->
@@ -269,7 +264,7 @@
     "mainEntityOfPage": "http://www.nokky.net/2017/02/13/wordpress-migration/index.html",
     "headline": "WordPress迁移-Windows Server 2012到Centos 7",
     "datePublished": "Mon Feb 13 2017 11:57:42 GMT+0800",
-    "dateModified": "Tue Feb 06 2018 21:53:53 GMT+0800",
+    "dateModified": "Sun Feb 11 2018 17:35:21 GMT+0800",
     "author": {
         "@type": "Person",
         "name": "Myers Chan",
@@ -304,8 +299,6 @@
     
         
             <script async src="https://www.googletagmanager.com/gtag/js?id=UA-112028701-1"></script><script>window.dataLayer = window.dataLayer || [];function gtag(){dataLayer.push(arguments);}gtag('js', new Date());gtag('config', 'UA-112028701-1');</script>
-        
-            <script src="https://cdn.rawgit.com/google/code-prettify/master/loader/run_prettify.js"></script>
         
     
 
@@ -531,7 +524,7 @@
 <h3 id="安装MySQL-MariaDB"><a href="#安装MySQL-MariaDB" class="headerlink" title="安装MySQL(MariaDB)"></a>安装MySQL(MariaDB)</h3><p><code># yum install mariadb-server mariadb</code><br>安装完成后启动数据库<br><code># systemctl start mariadb</code><br>然后安装一个数据库安全脚本，去掉一些危险的默认设置<br><code># mysql_secure_installation</code><br>接下来会提示你是新安装的，直接按下Enter键，然后设置数据库密码。把MariaDB也设置为开机自启<br><code># systemctl enable mariadb</code></p>
 <h3 id="安装PHP"><a href="#安装PHP" class="headerlink" title="安装PHP"></a>安装PHP</h3><p>运行以下命令安装PHP<br><code># yum install php php-mysql</code><br>安装完成之后我们再把Apahce重启一下<br><code># systemctl restart httpd</code><br>接下来我们检查一下PHP是否正常运行，在/var/www/html目录下新建一个info.php文件<br><code># vim /var/www/html/info.php</code><br>内容写入IP<br><code>&lt;?php phpinfo();?&gt;</code><br>然后在浏览器中输入<br><code>xxx.xxx.xxx.xxx/info.php</code><br>xxx代表你的IP地址<br><a href="/img/2017/02/sp170212_133114.png"><img src="/img/2017/02/sp170212_133114.png" alt=""></a></p>
 <h3 id="安装phpMyAdmin（可选）"><a href="#安装phpMyAdmin（可选）" class="headerlink" title="安装phpMyAdmin（可选）"></a>安装phpMyAdmin（可选）</h3><p>这是一个数据库管理的Web界面程序，有时候图形化操作还是方便一点的。首先，我们要先安装epel库<br><code># yum install epel-release</code><br>然后我们就可以安装phpMyAdmin了<br><code># yum install phpmyadmin</code><br>安装完成后我们要设置一下权限，不然访问会返回403错误<br><code># vim /etc/httpd/conf.d/phpMyAdmin.conf</code><br>找到这部分并修改为如下  </p>
-<pre><code> &lt;Directory /usr/share/phpMyAdmin/&gt;
+<pre><code class="XML"> &lt;Directory /usr/share/phpMyAdmin/&gt;
    AddDefaultCharset UTF-8
    &lt;IfModule mod_authz_core.c&gt;
      # Apache 2.4
@@ -550,14 +543,15 @@
       Allow from All
    &lt;/IfModule&gt;;
  &lt;/Directory&gt;;
-</code></pre><p>完了之后再一次重启Apache，然后我们可以在浏览器中输入：<br><code>xxx.xxx.xxx.xxx/phpmyadmin</code><br>来管理数据库<br><a href="/img/2017/02/sp170212_133728.png"><img src="/img/2017/02/sp170212_133728.png" alt=""></a></p>
+</code></pre>
+<p>完了之后再一次重启Apache，然后我们可以在浏览器中输入：<br><code>xxx.xxx.xxx.xxx/phpmyadmin</code><br>来管理数据库<br><a href="/img/2017/02/sp170212_133728.png"><img src="/img/2017/02/sp170212_133728.png" alt=""></a></p>
 <h2 id="迁移"><a href="#迁移" class="headerlink" title="迁移"></a>迁移</h2><h3 id="Windows端"><a href="#Windows端" class="headerlink" title="Windows端"></a>Windows端</h3><p>如果还记得数据库的名称就直接导出，如果不记得了可以先查看一下所有的数据库。<br><code>show databases;</code><br>注意别忘了最后那里有个分号！<br><a href="/img/2017/02/sp170213_110716.png"><img src="/img/2017/02/sp170213_110716.png" alt=""></a><br>找到MySQL的安装目录，找到mysqldump.exe，然后管理员运行cmd，切换到所在目录，执行这个命令<br><code>mysqldump -uroot -p databaseName&gt;outputFileName.sql</code><br>在所在目录下找到生成的数据库，再把wordpress整个文件夹打包一起运回本地就可以了，Windows端的工作完成！</p>
 <h3 id="Centos端"><a href="#Centos端" class="headerlink" title="Centos端"></a>Centos端</h3><p>用SSH客户端连接上服务器，用FTP工具把数据库文件和打包文件上传，我都丢到了/var/www/html目录下</p>
 <p><a href="/img/2017/02/sp170213_111845.png"><img src="/img/2017/02/sp170213_111845.png" alt=""></a></p>
 <p>然后我们就开始着手把数据库导入了，运行<br><code>mysql -uroot -p</code><br>然后输入密码，新建一个数据库<br><code>create database databaseName</code><br>选中新建的数据库<br><code>use databaseName</code><br>导入数据，以我的数据库文件所在目录为例<br><code>source /var/www/html/wordpress_db.sql</code><br>数据库迁移成功后输入exit退出，接下来我们把wordpress实体迁移，直接把压缩文件的内容解压到default目录下即可<br><a href="/img/2017/02/sp170213_113104.png"><img src="/img/2017/02/sp170213_113104.png" alt=""></a></p>
 <p>如果你的数据库密码不一样了，修改一下wp-config文件。<br>这时候在浏览器中输入IP/域名试着访问博客，如果之前没有域名的小伙伴就会遇到问题了，比如我- -，那是因为之前的IP地址和现在不同了，数据库中的数据还没更新<br><a href="/img/2017/02/sp170213_113354.png"><img src="/img/2017/02/sp170213_113354.png" alt=""></a><br>就是这里的设置的问题！解决方法就是在数据库中修改这两个值，指向新的IP地址或者你的域名，还记得安装的phpMyAdmin嘛，现在排上用场了<br><a href="/img/2017/02/sp170213_113944.png"><img src="/img/2017/02/sp170213_113944.png" alt=""></a><br>修改两个值就可以了，这时候就可以正常登陆了。<br>然后我们在主页点开文章会出现403错误，调整一下Apache配置文件<br><code># vim /etc/httpd/conf/httpd.conf</code><br>在文件中加入<br><code>LoadModule rewrite_module modules/mod_rewrite.so</code><br>位置随意，下图作为参考<br><a href="/img/2017/02/sp170213_114433.png"><img src="/img/2017/02/sp170213_114433.png" alt=""></a></p>
 <p>然后我们再修改一点内容</p>
-<pre><code>&lt;VirtualHost *:80&gt;
+<pre><code class="XML">&lt;VirtualHost *:80&gt;
 
 ServerName localhost
 
@@ -576,8 +570,9 @@ Allow from all
 &lt;/Directory&gt;
 
 &lt;/VirtualHost&gt;
-</code></pre><p>把<em>AllowOverride</em>的值换成了<em>ALL，</em>位置如下<br><a href="/img/2017/02/sp170213_114405.png"><img src="/img/2017/02/sp170213_114405.png" alt=""></a><br>保存文件退出，重启Apache。最后再新建一个.htaccess文件，丢到博客根目录下就行了，由于这个文件的文件名有点特殊，要借助其他编辑工具生成，比如笔者用的Visual Studio Code。文件内容如下</p>
-<pre><code>&lt;IfModule mod_rewrite.c&gt;
+</code></pre>
+<p>把<em>AllowOverride</em>的值换成了<em>ALL，</em>位置如下<br><a href="/img/2017/02/sp170213_114405.png"><img src="/img/2017/02/sp170213_114405.png" alt=""></a><br>保存文件退出，重启Apache。最后再新建一个.htaccess文件，丢到博客根目录下就行了，由于这个文件的文件名有点特殊，要借助其他编辑工具生成，比如笔者用的Visual Studio Code。文件内容如下</p>
+<pre><code class="XML">&lt;IfModule mod_rewrite.c&gt;
 
 RewriteEngine On
 
@@ -591,8 +586,9 @@ RewriteCond %{REQUEST_FILENAME} !-d
 
 RewriteRule . /index.php [L]
 
-&lt;\/IfModule&gt;
-</code></pre><p>这时候再点击文章就可以正常访问了。</p>
+&lt;/IfModule&gt;
+</code></pre>
+<p>这时候再点击文章就可以正常访问了。</p>
 <h2 id="结束"><a href="#结束" class="headerlink" title="结束"></a>结束</h2><p>自此，迁移工作算是完成了，不过还有些小问题，不如文件的上传，下篇文章再讲啦！</p>
 <p>本文参考了两位dalao的文章，特别感谢！<br><a href="http://blog.gclxry.com/install-wordpress-on-centos7/" target="_blank" rel="external">Centos 7上安装Wordpress</a><br><a href="https://www.yanning.wang/archives/192.html" target="_blank" rel="external">WordPress跨平台迁移实战</a></p>
 
@@ -1210,12 +1206,10 @@ It will not impact the appearance and can give developers a lot of support :)
 
 <!-- Import prettify js  -->
 
-    
-        
-            <script>lsloader.load("prettify_js","/js/prettify.min.js?WN07fivHQSMKWy7BmHBB6w==", true)</script>
-        
-    
 
+    
+        <script>lsloader.load("hanabi","/js/hanabi-browser-bundle.js?Pki5+pzkluqu53g+ouMWpA==", true)</script>
+    
 
 
 <!-- Window Load -->
@@ -1227,13 +1221,10 @@ It will not impact the appearance and can give developers a lot of support :)
     });
 
     
-        
-            $(function() {
-                $('pre').addClass('prettyprint linenums').attr('style', 'overflow:auto;');
-                prettyPrint();
-                })
-        
     
+        
+        
+        HanabiBrowser.start('pre code',true);
     
 </script>
 

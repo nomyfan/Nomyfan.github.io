@@ -83,11 +83,6 @@
         <style id="style_css"></style><script>if(typeof window.lsLoadCSSMaxNums === "undefined")window.lsLoadCSSMaxNums = 0;window.lsLoadCSSMaxNums++;lsloader.load("style_css","/css/style.min.css?MKetZV3cUTfDxvMffaOezg==",function(){if(typeof window.lsLoadCSSNums === "undefined")window.lsLoadCSSNums = 0;window.lsLoadCSSNums++;if(window.lsLoadCSSNums == window.lsLoadCSSMaxNums)document.documentElement.style.display="";}, false)</script>
 
         
-            
-                <style id="prettify_css"></style><script>if(typeof window.lsLoadCSSMaxNums === "undefined")window.lsLoadCSSMaxNums = 0;window.lsLoadCSSMaxNums++;lsloader.load("prettify_css","/css/prettify.min.css?zp8STOU9v89XWFEnN+6YmQ==",function(){if(typeof window.lsLoadCSSNums === "undefined")window.lsLoadCSSNums = 0;window.lsLoadCSSNums++;if(window.lsLoadCSSNums == window.lsLoadCSSMaxNums)document.documentElement.style.display="";}, false)</script>
-                <style id="prettify_theme"></style><script>if(typeof window.lsLoadCSSMaxNums === "undefined")window.lsLoadCSSMaxNums = 0;window.lsLoadCSSMaxNums++;lsloader.load("prettify_theme","/css/prettify/atelier-forest-light.min.css?HdofjyGu7b4PtoyvVcYV4A==",function(){if(typeof window.lsLoadCSSNums === "undefined")window.lsLoadCSSNums = 0;window.lsLoadCSSNums++;if(window.lsLoadCSSNums == window.lsLoadCSSMaxNums)document.documentElement.style.display="";}, false)</script>
-            
-        
 
     
 
@@ -203,7 +198,7 @@
 <!-- Import Font -->
 <!-- Import Roboto -->
 
-    <link href="https://fonts.googleapis.com/css?family=Roboto:300,400,500" rel="stylesheet">
+    <link href="https://fonts.proxy.ustclug.org/css?family=Roboto:300,400,500" rel="stylesheet">
 
 
 <!-- Import Material Icons -->
@@ -246,7 +241,7 @@
 
     
         <meta property="article:published_time" content="Wed Feb 08 2017 22:04:59 GMT+0800">
-        <meta property="article:modified_time" content="Tue Feb 06 2018 21:19:55 GMT+0800">
+        <meta property="article:modified_time" content="Sun Feb 11 2018 17:14:32 GMT+0800">
     
 
     <!-- The Twitter Card protocol -->
@@ -269,7 +264,7 @@
     "mainEntityOfPage": "http://www.nokky.net/2017/02/08/binding-validation/index.html",
     "headline": "Binding[1]=数据校验",
     "datePublished": "Wed Feb 08 2017 22:04:59 GMT+0800",
-    "dateModified": "Tue Feb 06 2018 21:19:55 GMT+0800",
+    "dateModified": "Sun Feb 11 2018 17:14:32 GMT+0800",
     "author": {
         "@type": "Person",
         "name": "Myers Chan",
@@ -304,8 +299,6 @@
     
         
             <script async src="https://www.googletagmanager.com/gtag/js?id=UA-112028701-1"></script><script>window.dataLayer = window.dataLayer || [];function gtag(){dataLayer.push(arguments);}gtag('js', new Date());gtag('config', 'UA-112028701-1');</script>
-        
-            <script src="https://cdn.rawgit.com/google/code-prettify/master/loader/run_prettify.js"></script>
         
     
 
@@ -526,41 +519,71 @@
                 <div id="post-content" class="mdl-color-text--grey-700 mdl-card__supporting-text fade out">
     
         <p>我们知道，属性的存在是为了解决数据有效性的问题，确保暴露出去的数据是合情合理的。在实际中，数据在目标流动过程中，我们一般都需要对其有效性进行验证。我们已经知道，Binding的作用实在Target和Source之间架起了一座数据流动的桥梁，因此我们需要对在这之间流动的数据进行校验。不仅如此，我们还可以进行数据类型的转换，这个在下一篇文章进行讲解，现在我们来看看如何在绑定的时候对数据进行有效性校验。</p>
-<h2 id="实现"><a href="#实现" class="headerlink" title="实现"></a><span style="color: #36b2a6;">实现</span></h2><p>现在我们的任务是，将一个TextBox（Target）绑定到一个Slider（Source）上，在TextBox输入非Slider的Value的区间值（0到100）时，会显示错误。</p>
+<h2 id="实现"><a href="#实现" class="headerlink" title="实现"></a>实现</h2><p>现在我们的任务是，将一个TextBox（Target）绑定到一个Slider（Source）上，在TextBox输入非Slider的Value的区间值（0到100）时，会显示错误。</p>
 <p>UI的XAML代码：</p>
-<p><pre>&lt;StackPanel&gt;<br>    &lt;TextBox x:Name=”textBox” Margin=”10” Height=”25”/&gt;<br>    &lt;Slider x:Name=”slider” Margin=”10” Minimum=”-10” Maximum=”100”/&gt;<br>&lt;/StackPanel&gt;</pre><br>看到上面的代码，小伙伴们应该很快发现了一个小细节，为什么Slider的最小值设为-10？这个是别有用意的，因为Binding在验证数据的时候，默认是把Source的数据认为是完全正确的，有问题的数据只可能出现在Target上，因此这里模拟了Source数据异常的情况，并且对Source的数据也进行了校验的步骤。</p>
-<p>实现数据的校验是在对Binding的ValidationRules属性赋值，看属性的命名便可知道，这是一个ValidationRule类的集合，准确的类型是Collection&lt;ValidationRule&gt;。ValidatinRule是一个抽象类，因此我们需要准备它的派生类，实现Validate方法，该方法的返回值是ValidationResult类型对象，如果检验通过，则设置ValidationResult对象的IsValid属性为True，反之为False并为ErrorContent属性设置一个合适的消息内容。现在我们来准备ValidationRule的派生类。</p>
-<p><pre>class RangeValidationRule : ValidationRule<br>{<br>    public override ValidationResult Validate(object value, CultureInfo cultureInfo)<br>    {<br>        double data;<br>        if (double.TryParse(value.ToString(), out data))<br>        {<br>            if (data &gt;= 0 &amp;&amp; data &lt;= 100)<br>            {<br>                return new ValidationResult(true, null);<br>            }<br>        }<br>        return new ValidationResult(false, “Validation Failed”);<br>    }<br>}</pre><br>有了这个派生类，我们就可以着手进行将TextBox绑定到Slider上了。</p>
-<p><pre>public MainWindow()<br>{<br>    InitializeComponent();</pre></p>
-<pre><code>Binding binding = new Binding(&quot;Value&quot;) { Source = this.slider };
-binding.UpdateSourceTrigger = UpdateSourceTrigger.PropertyChanged;
-binding.ValidationRules.Add(new RangeValidationRule() { ValidatesOnTargetUpdated = true });
-this.textBox.SetBinding(TextBox.TextProperty, binding);
-</code></pre><p>}<br>运行程序后，不论是我们把Slider手动拨到0以下的值还是直接在TextBox里输入小于0的数，TextBox都会显示红色的边框，提示用户数据有问题。运行效果如下：</p>
-<p><a href="/img/2017/02/sp170208_214114.png"><img src="/img/2017/02/sp170208_214114.png" alt=""></a></p>
-<hr>
-<h2 id="更进一步"><a href="#更进一步" class="headerlink" title="更进一步"></a><span style="color: #36b2a6;">更进一步</span></h2><p>到此我们就已经完成了对数据的校验工作，接下来更进一步。我们刚才说了，ValidatinResult对象携带了一条错误消息，那么，我们如何让这条消息显示出来呢？这里用到了路由事件，我们来把后台代码写的更进一步。</p>
-<p><pre>public partial class MainWindow : Window<br>{<br>    public MainWindow()<br>    {<br>        InitializeComponent();</pre></p>
-<pre><code>    Binding binding = new Binding(&quot;Value&quot;) { Source = this.slider };
+<pre><code class="XML">&lt;StackPanel&gt;
+    &lt;TextBox x:Name=&quot;textBox&quot; Margin=&quot;10&quot; Height=&quot;25&quot;/&gt;
+    &lt;Slider x:Name=&quot;slider&quot; Margin=&quot;10&quot; Minimum=&quot;-10&quot; Maximum=&quot;100&quot;/&gt;
+&lt;/StackPanel&gt;
+</code></pre>
+<p>看到上面的代码，小伙伴们应该很快发现了一个小细节，为什么Slider的最小值设为-10？这个是别有用意的，因为Binding在验证数据的时候，默认是把Source的数据认为是完全正确的，有问题的数据只可能出现在Target上，因此这里模拟了Source数据异常的情况，并且对Source的数据也进行了校验的步骤。</p>
+<p>实现数据的校验是在对Binding的ValidationRules属性赋值，看属性的命名便可知道，这是一个ValidationRule类的集合，准确的类型是Collection<validationrule>。ValidatinRule是一个抽象类，因此我们需要准备它的派生类，实现Validate方法，该方法的返回值是ValidationResult类型对象，如果检验通过，则设置ValidationResult对象的IsValid属性为True，反之为False并为ErrorContent属性设置一个合适的消息内容。现在我们来准备ValidationRule的派生类。</validationrule></p>
+<pre><code class="CSharp">class RangeValidationRule : ValidationRule
+{
+    public override ValidationResult Validate(object value, CultureInfo cultureInfo)
+    {
+        double data;
+        if (double.TryParse(value.ToString(), out data))
+        {
+            if (data &amp;gt;= 0 &amp;amp;&amp;amp; data &amp;lt;= 100)
+            {
+                return new ValidationResult(true, null);
+            }
+        }
+        return new ValidationResult(false, &quot;Validation Failed&quot;);
+    }
+}
+</code></pre>
+<p>有了这个派生类，我们就可以着手进行将TextBox绑定到Slider上了。</p>
+<pre><code class="CSharp">public MainWindow()
+{
+    InitializeComponent();
+
+    Binding binding = new Binding(&quot;Value&quot;) { Source = this.slider };
     binding.UpdateSourceTrigger = UpdateSourceTrigger.PropertyChanged;
     binding.ValidationRules.Add(new RangeValidationRule() { ValidatesOnTargetUpdated = true });
-    binding.NotifyOnValidationError = true;
     this.textBox.SetBinding(TextBox.TextProperty, binding);
-    this.textBox.AddHandler(Validation.ErrorEvent, new RoutedEventHandler(
-        (sender, e) =&amp;gt;
-        {
-            if (Validation.GetErrors(this.textBox).Count &amp;gt; 0)
-            {
-                this.textBox.ToolTip = Validation.GetErrors(this.textBox)[0].ErrorContent.ToString();
-                ToolTipService.SetIsEnabled(this.textBox, true);
-            }
-        }));
 }
-</code></pre><p>}<br>&nbsp;</p>
+</code></pre>
+<p>运行程序后，不论是我们把Slider手动拨到0以下的值还是直接在TextBox里输入小于0的数，TextBox都会显示红色的边框，提示用户数据有问题。运行效果如下：</p>
+<p><a href="/img/2017/02/sp170208_214114.png"><img src="/img/2017/02/sp170208_214114.png" alt=""></a></p>
+<h2 id="更进一步"><a href="#更进一步" class="headerlink" title="更进一步"></a>更进一步</h2><p>到此我们就已经完成了对数据的校验工作，接下来更进一步。我们刚才说了，ValidatinResult对象携带了一条错误消息，那么，我们如何让这条消息显示出来呢？这里用到了路由事件，我们来把后台代码写的更进一步。</p>
+<pre><code class="CSharp">public partial class MainWindow : Window
+{
+    public MainWindow()
+    {
+        InitializeComponent();
+
+        Binding binding = new Binding(&quot;Value&quot;) { Source = this.slider };
+        binding.UpdateSourceTrigger = UpdateSourceTrigger.PropertyChanged;
+        binding.ValidationRules.Add(new RangeValidationRule() { ValidatesOnTargetUpdated = true });
+        binding.NotifyOnValidationError = true;
+        this.textBox.SetBinding(TextBox.TextProperty, binding);
+        this.textBox.AddHandler(Validation.ErrorEvent, new RoutedEventHandler(
+            (sender, e) =&amp;gt;
+            {
+                if (Validation.GetErrors(this.textBox).Count &amp;gt; 0)
+                {
+                    this.textBox.ToolTip = Validation.GetErrors(this.textBox)[0].ErrorContent.ToString();
+                    ToolTipService.SetIsEnabled(this.textBox, true);
+                }
+            }));
+    }
+}
+</code></pre>
 <p>运行效果如下，把鼠标悬停在TextBox上会有小提示出现，这个小提示就是我们在ValidationResult里设置的错误消息。</p>
 <p><a href="/img/2017/02/sp170208_214644.png"><img src="/img/2017/02/sp170208_214644.png" alt=""></a></p>
-<hr>
-<h2 id="分析"><a href="#分析" class="headerlink" title="分析"></a><span style="color: #36b2a6;">分析</span></h2><p>又到了分析部分，仍然是问答的形式来进行。</p>
+<h2 id="分析"><a href="#分析" class="headerlink" title="分析"></a>分析</h2><p>又到了分析部分，仍然是问答的形式来进行。</p>
 <p>Q：后台代码的 ValidatesOnTargetUpdated = true 这句代码是什么意思？</p>
 <p>A：这个问题的答案其实在文章里了，我们说了Binding对象默认把来自Source的数据认定为绝对正确，因此我们特意模拟了Source的数据异常的情况，这句代码就是告诉Binding对象，对来自Source的数据也进行校验。</p>
 <p>Q：为什么要添加 binding.NotifyOnValidationError = true这句代码？</p>
@@ -1180,12 +1203,10 @@ It will not impact the appearance and can give developers a lot of support :)
 
 <!-- Import prettify js  -->
 
-    
-        
-            <script>lsloader.load("prettify_js","/js/prettify.min.js?WN07fivHQSMKWy7BmHBB6w==", true)</script>
-        
-    
 
+    
+        <script>lsloader.load("hanabi","/js/hanabi-browser-bundle.js?Pki5+pzkluqu53g+ouMWpA==", true)</script>
+    
 
 
 <!-- Window Load -->
@@ -1197,13 +1218,10 @@ It will not impact the appearance and can give developers a lot of support :)
     });
 
     
-        
-            $(function() {
-                $('pre').addClass('prettyprint linenums').attr('style', 'overflow:auto;');
-                prettyPrint();
-                })
-        
     
+        
+        
+        HanabiBrowser.start('pre code',true);
     
 </script>
 

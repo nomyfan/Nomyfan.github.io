@@ -150,7 +150,7 @@ int main()
     <entry>
       <title><![CDATA[ArchLinux安装gnome桌面]]></title>
       <url>/2018/01/31/archlinux-gnome-install/</url>
-      <content type="html"><![CDATA[<h1 id="桌面安装"><a href="#桌面安装" class="headerlink" title="桌面安装"></a>桌面安装</h1><h2 id="安装显卡驱动"><a href="#安装显卡驱动" class="headerlink" title="安装显卡驱动"></a>安装显卡驱动</h2><p>在<a href="https://wiki.archlinux.org/index.php/xorg#Driver_installation" target="_blank" rel="external">这里</a>可以找到你的显卡对应的包。我的是Intel的集显，所以我执行这条命令<br><code>$ sudo pacman -S xf86-video-intel</code></p>
+      <content type="html"><![CDATA[<h2 id="安装显卡驱动"><a href="#安装显卡驱动" class="headerlink" title="安装显卡驱动"></a>安装显卡驱动</h2><p>在<a href="https://wiki.archlinux.org/index.php/xorg#Driver_installation" target="_blank" rel="external">这里</a>可以找到你的显卡对应的包。我的是Intel的集显，所以我执行这条命令<br><code>$ sudo pacman -S xf86-video-intel</code></p>
 <h2 id="安装X"><a href="#安装X" class="headerlink" title="安装X"></a>安装X</h2><p><code>$ sudo pacman -S xorg xorg-xinit xterm xorg-xeyes xorg-xclock</code></p>
 <h2 id="安装gnome桌面"><a href="#安装gnome桌面" class="headerlink" title="安装gnome桌面"></a>安装gnome桌面</h2><p>其他桌面请活用搜索引擎。<br><code>$ sudo pacman -S gnome</code><br>因为桌面是用NetworkManager，因此要让它启动并开启自启<br><code>$ sudo systemctl enable NetworkManager</code><br><code>$ sudo systemctl start NetworkManager</code></p>
 <h2 id="安装工具栏网络图标"><a href="#安装工具栏网络图标" class="headerlink" title="安装工具栏网络图标"></a>安装工具栏网络图标</h2><p><code>$ sudo pacman -S network-manager-applet</code><br>之后让gdm开启自动然后启动它，这时候就可以看到桌面了<br><code>$ sudo systemctl enable gdm</code><br><code>$ sudo systemctl start gdm</code></p>
@@ -377,61 +377,61 @@ fi
       <content type="html"><![CDATA[<p>C#这门语言我是高中开始接触的，当时学得很肤浅，也没有太多的实践，委托的代码从未写过，事件也只有写WPF的时候用到控件自带的事件。几年后的今天我觉得如此优雅的一门语言时候后要重拾了，重新审视一遍委托和事件后觉得豁然开朗。</p>
 <h1 id="委托"><a href="#委托" class="headerlink" title="委托"></a>委托</h1><p>之前我看委托很是不理解它存在的意义，现在学习C++后知道了函数指针这么一个东西并且用过后才理解了委托，现在想想委托这么一个名字取得也是很形象呢！《C#图解教程》[第4版]这本书上也写了：如果你有C++背景，理解委托最快的方法是把它看成一个类型安全的、面向对象的C++函数指针。</p>
 <p>先看启蒙我的C++的函数指针。很常见的一个方法就是algorithm里的sort方法，它需要一个函数指针作为参数。</p>
-<pre>std::sort(_vec.begin(), _vec.end(), compare);</pre>
-
+<pre><code class="Cpp">std::sort(_vec.begin(), _vec.end(), compare);
+</code></pre>
 <p>最后一个函数的定义是这样的</p>
-<pre>bool compare(int x, int y) { return x &lt; y; }</pre>
-
+<pre><code class="Cpp">bool compare(int x, int y) { return x &amp;lt; y; }
+</code></pre>
 <p>这样就完成了对_vec这个向量的排序，可以看到这里把函数作为参数传进了另外一函数方法里被使用。C#里的委托就实现了相同的功能，而且被设计得更强大，有了委托，我们甚至可以把一组方法传进另一个方法里。</p>
 <p>那么我们看看C#里是如何实现这样的功能的吧。现在我们需要传进的方法的功能是对两个实数进行某种操作，然后把得到的结果返回。首先我们先定义一个委托类型</p>
-<pre>delegate double MathOperation(double x, double y);</pre>
-
+<pre><code class="CSharp">delegate double MathOperation(double x, double y);
+</code></pre>
 <p>然后我们定义类型匹配的方法</p>
-<pre>public static double Add(double x, double y) { return x + y; }</pre>
-
+<pre><code class="CSharp">public static double Add(double x, double y) { return x + y; }
+</code></pre>
 <p>接着我们定义这么一个方法</p>
-<pre>public static void HandleTwoNum(double x, double y, MathOperation operation)
+<pre><code class="CSharp">public static void HandleTwoNum(double x, double y, MathOperation operation)
 {
     double ret = operation(x, y);
     Console.WriteLine(ret);
-}</pre>
-
+}
+</code></pre>
 <p>实现了对两个实数进行相加的操作然后把得到的结果显示出来，而这个[操作]正是通过委托来进行传递的。</p>
 <h1 id="事件"><a href="#事件" class="headerlink" title="事件"></a>事件</h1><p>当年学委托和事件总是傻傻分不清楚，总觉得这两货就是一个东西。其实本质上来说它俩真的就是如此相近的东西！想想吧，我们要弄一个事件出来还得先定义一个委托呢。但是事件基于委托而又显著区别与委托的是什么呢？为什么要弄出事件这么一个东西呢？现在想想不过是微软想弄事件驱动这么一套机制罢了，形成发布者-订阅者的关系，订阅者提供事件处理程序，发布者触发事件。事件普遍存在WinForm和WPF中。</p>
 <p>先定义一个委托</p>
-<pre>delegate void MyEventHandler();</pre>
-
+<pre><code class="CSharp">delegate void MyEventHandler();
+</code></pre>
 <p>定义事件发布者</p>
-<pre>class Publisher
+<pre><code class="CSharp">class Publisher
 {
     public event MyEventHandler Handler;
     public void Invoke()
     {
         Handler();
     }
-}</pre>
-
+}
+</code></pre>
 <p>需要注意的是事件只能在发布者里被触发，即使声明为public可以在类外部添加事件处理函数。</p>
 <p>然后就是订阅者</p>
-<pre>class Subcriber
+<pre><code class="CSharp">class Subcriber
 {
     public void MyEventHandler()
     {
-        Console.WriteLine("Subcriber");
+        Console.WriteLine(&quot;Subcriber&quot;);
     }
     public Subcriber(Publisher publisher)
     {
         publisher.Handler += MyEventHandler;
     }
-}</pre>
-
+}
+</code></pre>
 <p>最后触发事件</p>
-<pre>Publisher publisher = new Publisher();
+<pre><code class="CSharp">Publisher publisher = new Publisher();
 Subcriber subcriber = new Subcriber(publisher);
-publisher.Invoke();</pre>
-
+publisher.Invoke();
+</code></pre>
 <p>如果我不用事件仅仅用委托可不可实现这么以上的关系呢？当然可以，看代码</p>
-<pre>delegate void MyEventHandler();
+<pre><code class="CSharp">delegate void MyEventHandler();
 class FakePublisher
 {
     public MyEventHandler Handler;
@@ -444,20 +444,20 @@ class Subcriber
 {
     public void MyEventHandler()
     {
-        Console.WriteLine("Subcriber");
+        Console.WriteLine(&quot;Subcriber&quot;);
     }
     public Subcriber(FakePublisher publisher)
     {
         publisher.Handler += MyEventHandler;
     }
-}</pre>
-
+}
+</code></pre>
 <p>触发[Fake]事件</p>
-<pre>FakePublisher publisher = new FakePublisher();
+<pre><code class="CSharp">FakePublisher publisher = new FakePublisher();
 Subcriber subcriber = new Subcriber(publisher);
 publisher.Invoke();
-//publisher.Handler();</pre>
-
+//publisher.Handler();
+</code></pre>
 <p>这里我们不仅可以通过Invoke方法触发[Fake]事件，更是可以直接通过委托触发。这里体现出来事件发布者来管理事件的触发这个理念。</p>
 <h1 id="结束"><a href="#结束" class="headerlink" title="结束"></a>结束</h1><p>以上就是我对委托和事件的心得，希望对正在学习的你有所帮助（￣︶￣）↗</p>
 ]]></content>
@@ -483,9 +483,8 @@ publisher.Invoke();
       <content type="html"><![CDATA[<p>JSON(JavaScript Object Notation) is popularly used nowadays. For JavaScript, it’s easy to convert a object to json. How about C#? How do we get some properties we need from a json typed object? And how do we convert our object into json formatted text? This article aims to solve the problems. You will see it can be convenient to solve the problems<strong><em>.(●’◡’●)</em></strong></p>
 <h1 id="Preparation"><a href="#Preparation" class="headerlink" title="Preparation"></a>Preparation</h1><p>There is one thing we need to do before start. That is installing the a NuGet package named <em><strong>JSON.NET</strong></em>. In Visual Studio, we can search any package and install it easily. Search <em><strong>JSON.NET</strong></em>, then install it to you project.</p>
 <p><img src="/img/2017/09/snipaste_20170920_201049.png" alt="snipaste_20170920_201049"></p>
-<hr>
 <h1 id="Serialization-and-Deserialization"><a href="#Serialization-and-Deserialization" class="headerlink" title="Serialization and Deserialization"></a>Serialization and Deserialization</h1><p>These operations are suitable for the definitive type we know or define. For example, we now have a class named <strong>Rectangle.</strong></p>
-<pre>class Rectangle
+<pre><code class="CSharp">class Rectangle
 {
     public int Height { get; set; }
     public int Width { get; set; }
@@ -495,53 +494,50 @@ publisher.Invoke();
         Height = height;
         Width = width;
     }
-}</pre>
-
+}
+</code></pre>
 <p>Then we need to refer one namespace.</p>
-<pre>using Newtonsoft.Json;</pre>
-
+<p><code>using Newtonsoft.Json;</code></p>
 <p>After that, we can use class <strong>JsonConvert</strong> to serialize a Rectangle typed object or a list of Rectangle typed objects. Code as follow.</p>
-<pre>List list = new List();
+<pre><code class="CSharp">List list = new List();
 list.Add(new Rectangle(1, 2));
 list.Add(new Rectangle(45, 23));
-string json = JsonConvert.SerializeObject(list);</pre>
-
-<p>If we print variable <strong>json </strong>to the console window, we can see the result as this.</p>
+string json = JsonConvert.SerializeObject(list);
+</code></pre>
+<p>If we print variable <code>json</code> to the console window, we can see the result as this.</p>
 <p><img src="/img/2017/09/snipaste_20170920_204618.png" alt="snipaste_20170920_204618"></p>
 <p>How about deserialize object(s) from a json formatted text? Much easy! Only one line code!</p>
-<pre>var objs = JsonConvert.DeserializeObject&lt;List&lt;Rectangle&gt;&gt;(json);</pre>
-
+<pre><code class="CSharp">var objs = JsonConvert.DeserializeObject&amp;lt;List&amp;lt;Rectangle&amp;gt;&amp;gt;(json);
+</code></pre>
 <p>You may doubt whether it’s correct. Well, let’s verify that. Write some code as follow.</p>
-<pre>for (int i = 0; i &lt; objs.Count; i++)
+<pre><code class="CSharp">for (int i = 0; i &amp;lt; objs.Count; i++)
 {
-    Console.WriteLine($"{i + 1}th object info:"
-        + $"Height:{objs[i].Height} Width:{objs[i].Width}");
-}</pre>
-
+    Console.WriteLine($&quot;{i + 1}th object info:&quot;
+        + $&quot;Height:{objs[i].Height} Width:{objs[i].Width}&quot;);
+}
+</code></pre>
 <p>We will get the result.</p>
 <p><img src="/img/2017/09/snipaste_20170920_205856.png" alt="snipaste_20170920_205856"></p>
 <p><strong>Correct! Congratulation!</strong></p>
-<hr>
 <h1 id="Pick-Properties-from-JSON"><a href="#Pick-Properties-from-JSON" class="headerlink" title="Pick Properties from JSON"></a>Pick Properties from JSON</h1><p>Consider one situation, we get some JSON typed text from any way like API. One problem we will face is that we don’t have a exact type for that. Thus, we can’t deserialize it to a exact typed object. Thanks to JSON.NET this powerful library, we can continue to work in such situation without too much code. Let’s figure out!</p>
 <p>Firstly, get json formatted text via API.</p>
-<pre>HttpWebRequest request = (HttpWebRequest)WebRequest.Create(@"http://samples.openweathermap.org/data/2.5/weather?q=London,uk&amp;appid=b1b15e88fa797225412429c1c50c122a1");
-request.Method = "GET";
-request.ContentType = "text/json";
+<pre><code class="CSharp">HttpWebRequest request = (HttpWebRequest)WebRequest.Create(@&quot;http://samples.openweathermap.org/data/2.5/weather?q=London,uk&amp;amp;appid=b1b15e88fa797225412429c1c50c122a1&quot;);
+request.Method = &quot;GET&quot;;
+request.ContentType = &quot;text/json&quot;;
 var response = request.GetResponse();
 string json = string.Empty;
 using (StreamReader sr = new StreamReader(response.GetResponseStream()))
 {
     json = sr.ReadToEnd();
-}</pre>
-
-<p>If we print variable <strong>json</strong> out, we will see this.</p>
+}
+</code></pre>
+<p>If we print variable <code>json</code> out, we will see this.</p>
 <p><img src="/img/2017/09/snipaste_20170920_210725.png" alt="snipaste_20170920_210725"></p>
 <p>If we want to get wind speed, we can write this code.</p>
-<pre>JToken token = JObject.Parse(json);
-string speed = (string)token.SelectToken("wind").SelectToken("speed");</pre>
-
+<pre><code class="CSharp">JToken token = JObject.Parse(json);
+string speed = (string)token.SelectToken(&quot;wind&quot;).SelectToken(&quot;speed&quot;);
+</code></pre>
 <p>The variable speed is the result we want. Not complicated.</p>
-<hr>
 <h1 id="End"><a href="#End" class="headerlink" title="End"></a>End</h1><p>(￣y▽￣)╭ Ohohoho…..</p>
 ]]></content>
       
@@ -656,14 +652,21 @@ string speed = (string)token.SelectToken("wind").SelectToken("speed");</pre>
 # <span style="color: #ff6600;">**这是一篇无聊的水文！**</span> -->
 <p>Windows 10的Spotlight偶尔会推荐个人比较喜欢的锁屏壁纸，这时候如果我们想得到图片文件该怎么办？比如这张，笔者个人觉得挺魔幻的。</p>
 <p><a href="/img/2017/04/sp170406_120203.png"><img src="/img/2017/04/sp170406_120203-1024x553.png" alt=""></a></p>
-<h2 id="Step1"><a href="#Step1" class="headerlink" title="Step1"></a><span style="color: #36b26a;">Step1</span></h2><p>在Windows Explorer进入该路径<br><span style="color: #d14;">C:\Users&#91;User Name]\AppData\Local\Packages\Microsoft.Windows.ContentDeliveryManager_cw5n1h2txyewy\LocalState\Assets</span><br>在该目录下可以看到一些没有扩展名的文件，这些其实就是图片文件，如图</p>
+<h2 id="Step1"><a href="#Step1" class="headerlink" title="Step1"></a>Step1</h2><p>在Windows Explorer进入该路径</p>
+<pre><code>C:\Users\[User Name]\AppData\Local\Packages\Microsoft.Windows.ContentDeliveryManager_cw5n1h2txyewy\LocalState\Assets
+</code></pre><p>在该目录下可以看到一些没有扩展名的文件，这些其实就是图片文件，如图</p>
 <p><a href="/img/2017/04/sp170406_121024.png"><img src="/img/2017/04/sp170406_121024-1024x751.png" alt=""></a></p>
-<h2 id="Step2"><a href="#Step2" class="headerlink" title="Step2"></a><span style="color: #36b26a;">Step2</span></h2><p>将上图目录下的所有文件复制到任意目录下，我在桌面上新建了一个名为New Folder的文件夹然后全部丢进去。</p>
-<h2 id="Step3"><a href="#Step3" class="headerlink" title="Step3"></a><span style="color: #36b26a;">Step3</span></h2><p>然后正片开始，网上很多都是直接用cmd修改文件名添加扩展名，这里装逼地用了PowerShell。我会给每个图片一个位宽为3的序号并添加扩展名。</p>
-<p>先定义一个序号的变量<br><span style="color: #d14;">$index=1</span><br>然后修改图片文件文件名<br><span style="color: #d14;">Get-ChildItem|foreach{Rename-Item -Path $<em>.FullName -NewName (‘pic</em>{0:d3}.jpg’ -f $index);$index++}</span></p>
+<h2 id="Step2"><a href="#Step2" class="headerlink" title="Step2"></a>Step2</h2><p>将上图目录下的所有文件复制到任意目录下，我在桌面上新建了一个名为New Folder的文件夹然后全部丢进去。</p>
+<h2 id="Step3"><a href="#Step3" class="headerlink" title="Step3"></a>Step3</h2><p>然后正片开始，网上很多都是直接用cmd修改文件名添加扩展名，这里装逼地用了PowerShell。我会给每个图片一个位宽为3的序号并添加扩展名。</p>
+<p>先定义一个序号的变量</p>
+<pre><code class="PowerShell">$index=1
+</code></pre>
+<p>然后修改图片文件文件名</p>
+<pre><code class="PowerShell">Get-ChildItem|foreach{Rename-Item -Path $_.FullName -NewName (&#39;pic_{0:d3}.jpg&#39; -f $index);$index++}
+</code></pre>
 <p><a href="/img/2017/04/sp170406_121955-1.png"><img src="/img/2017/04/sp170406_121955-1-1024x246.png" alt=""></a><br>这时候再看看文件夹，所有文件都已经显示为图片格式文件了。ALL DONE！</p>
 <p><a href="/img/2017/04/sp170406_182143.png"><img src="/img/2017/04/sp170406_182143-1024x365.png" alt=""></a></p>
-<p>这里准备了整个脚本（图片保存在桌面的spotlight文件夹内），保存为ps1直接运行即可（记得修改PowerShell的ExecutionPolicy）：<a href="http://nokky.net/spotlight.ps1" target="_blank" rel="external">点这里</a></p>
+<p>这里准备了整个脚本（图片保存在桌面的spotlight文件夹内），保存为ps1直接运行即可（记得修改PowerShell的ExecutionPolicy）：<a href="/static/spotlight.ps1">点这里</a></p>
 ]]></content>
       
         <categories>
@@ -684,34 +687,85 @@ string speed = (string)token.SelectToken("wind").SelectToken("speed");</pre>
     <entry>
       <title><![CDATA[Binding[3]=MultiBinding]]></title>
       <url>/2017/02/14/binding-multibinding/</url>
-      <content type="html"><![CDATA[<p>有时候，我们会遇到这样的需求，UI的要显示的信息由多个数据源来决定，比如注册界面会验证两次输入的密码是否一致来决定是否可以注册，这时候就要用到MultiBinding了。因为Binding和MultiBinding的基类都是BindingBase，所以，能用Binding的场合都能用MultiBinding。MultiBinding通过一个Bindings的属性（类型为Collection&lt;BindingBase&gt;）把多个Binding对象集合起来，其中每个Binding对象可以有自己的数据校验和数据转换机制。</p>
-<h2 id="实现"><a href="#实现" class="headerlink" title="实现"></a><span style="color: #36b2a6;">实现</span></h2><p>现在我们就以注册界面为例，需求是，用户名和密码都不会为空，且两次输入的密码要一致，这时候确认信息的Button可用。XAML代码如下，加入了一些部分美化的代码，默认的太难看了受不了- -，主要的就是三个TextBox。</p>
-<p><pre>&lt;StackPanel HorizontalAlignment=”Center” VerticalAlignment=”Center”&gt;<br>    &lt;TextBlock Text=”Sign up” FontSize=”30” Foreground=”#00a2e8” Margin=”3”/&gt;<br>    &lt;TextBlock Text=”User” FontSize=”13” Margin=”3”/&gt;<br>    &lt;TextBox x:Name=”textBox” Height=”23” Width=”150” Margin=”3”/&gt;<br>    &lt;TextBlock Text=”Password” Margin=”5”/&gt;<br>    &lt;TextBox x:Name=”textBox1” Height=”23” Width=”150” Margin=”3”/&gt;<br>    &lt;TextBlock Text=”Verify Password” Margin=”5”/&gt;<br>    &lt;TextBox x:Name=”textBox2” Height=”23” Width=”150” Margin=”3”/&gt;<br>    &lt;Button x:Name=”button” Height=”23” Margin=”3”&gt;<br>        &lt;Button.Style&gt;<br>            &lt;Style TargetType=”Button”&gt;<br>                &lt;Setter Property=”Template”&gt;<br>                    &lt;Setter.Value&gt;<br>                        &lt;ControlTemplate TargetType=”Button”&gt;<br>                            &lt;Border x:Name=”border” Background=”#00a2e8”&gt;<br>                                &lt;TextBlock x:Name=”textBlock” Text=”OK” TextAlignment=”Center” VerticalAlignment=”Center” Foreground=”White”/&gt;<br>                            &lt;/Border&gt;<br>                            &lt;ControlTemplate.Triggers&gt;<br>                                &lt;Trigger Property=”IsEnabled” Value=”False”&gt;<br>                                    &lt;Setter TargetName=”border” Property=”Background” Value=”LightGray”/&gt;<br>                                &lt;/Trigger&gt;<br>                            &lt;/ControlTemplate.Triggers&gt;<br>                        &lt;/ControlTemplate&gt;<br>                    &lt;/Setter.Value&gt;<br>                &lt;/Setter&gt;<br>            &lt;/Style&gt;<br>        &lt;/Button.Style&gt;<br>    &lt;/Button&gt;<br>&lt;/StackPanel&gt;</pre><br>三个TextBox会各自作为三个Binding对象的Source，最终把三个Binding对象加入MultiBinding的Bindings属性中。</p>
-<p><pre>public partial class MainWindow : Window<br>{<br>    public MainWindow()<br>    {<br>        InitializeComponent();<br>        this.SetMultiBinding();<br>    }</pre></p>
-<pre><code>private void SetMultiBinding()
+      <content type="html"><![CDATA[<p>有时候，我们会遇到这样的需求，UI的要显示的信息由多个数据源来决定，比如注册界面会验证两次输入的密码是否一致来决定是否可以注册，这时候就要用到MultiBinding了。因为Binding和MultiBinding的基类都是BindingBase，所以，能用Binding的场合都能用MultiBinding。MultiBinding通过一个Bindings的属性（类型为Collection<bindingbase>）把多个Binding对象集合起来，其中每个Binding对象可以有自己的数据校验和数据转换机制。</bindingbase></p>
+<h2 id="实现"><a href="#实现" class="headerlink" title="实现"></a>实现</h2><p>现在我们就以注册界面为例，需求是，用户名和密码都不会为空，且两次输入的密码要一致，这时候确认信息的Button可用。XAML代码如下，加入了一些部分美化的代码，默认的太难看了受不了- -，主要的就是三个TextBox。</p>
+<pre><code class="XML">    &lt;StackPanel HorizontalAlignment=&quot;Center&quot; VerticalAlignment=&quot;Center&quot;&gt;
+    &lt;TextBlock Text=&quot;Sign up&quot; FontSize=&quot;30&quot; Foreground=&quot;#00a2e8&quot; Margin=&quot;3&quot;/&gt;
+    &lt;TextBlock Text=&quot;User&quot; FontSize=&quot;13&quot; Margin=&quot;3&quot;/&gt;
+    &lt;TextBox x:Name=&quot;textBox&quot; Height=&quot;23&quot; Width=&quot;150&quot; Margin=&quot;3&quot;/&gt;
+    &lt;TextBlock Text=&quot;Password&quot; Margin=&quot;5&quot;/&gt;
+    &lt;TextBox x:Name=&quot;textBox1&quot; Height=&quot;23&quot; Width=&quot;150&quot; Margin=&quot;3&quot;/&gt;
+    &lt;TextBlock Text=&quot;Verify Password&quot; Margin=&quot;5&quot;/&gt;
+    &lt;TextBox x:Name=&quot;textBox2&quot; Height=&quot;23&quot; Width=&quot;150&quot; Margin=&quot;3&quot;/&gt;
+    &lt;Button x:Name=&quot;button&quot; Height=&quot;23&quot; Margin=&quot;3&quot;&gt;
+        &lt;Button.Style&gt;
+            &lt;Style TargetType=&quot;Button&quot;&gt;
+                &lt;Setter Property=&quot;Template&quot;&gt;
+                    &lt;Setter.Value&gt;
+                        &lt;ControlTemplate TargetType=&quot;Button&quot;&gt;
+                            &lt;Border x:Name=&quot;border&quot; Background=&quot;#00a2e8&quot;&gt;
+                                &lt;TextBlock x:Name=&quot;textBlock&quot; Text=&quot;OK&quot; TextAlignment=&quot;Center&quot; VerticalAlignment=&quot;Center&quot; Foreground=&quot;White&quot;/&gt;
+                            &lt;/Border&gt;
+                            &lt;ControlTemplate.Triggers&gt;
+                                &lt;Trigger Property=&quot;IsEnabled&quot; Value=&quot;False&quot;&gt;
+                                    &lt;Setter TargetName=&quot;border&quot; Property=&quot;Background&quot; Value=&quot;LightGray&quot;/&gt;
+                                &lt;/Trigger&gt;
+                            &lt;/ControlTemplate.Triggers&gt;
+                        &lt;/ControlTemplate&gt;
+                    &lt;/Setter.Value&gt;
+                &lt;/Setter&gt;
+            &lt;/Style&gt;
+        &lt;/Button.Style&gt;
+    &lt;/Button&gt;
+&lt;/StackPanel&gt;
+</code></pre>
+<p>三个TextBox会各自作为三个Binding对象的Source，最终把三个Binding对象加入MultiBinding的Bindings属性中。</p>
+<pre><code class="CSharp">public partial class MainWindow : Window
 {
-    Binding b0 = new Binding(&quot;Text&quot;) { Source = this.textBox };
-    Binding b1 = new Binding(&quot;Text&quot;) { Source = this.textBox1 };
-    Binding b2 = new Binding(&quot;Text&quot;) { Source = this.textBox2 };
+    public MainWindow()
+    {
+        InitializeComponent();
+        this.SetMultiBinding();
+    }
 
-    MultiBinding mb = new MultiBinding();
-    mb.Bindings.Add(b0);
-    mb.Bindings.Add(b1);
-    mb.Bindings.Add(b2);
-    mb.Converter = new MultiBindingConverter();
+    private void SetMultiBinding()
+    {
+        Binding b0 = new Binding(&quot;Text&quot;) { Source = this.textBox };
+        Binding b1 = new Binding(&quot;Text&quot;) { Source = this.textBox1 };
+        Binding b2 = new Binding(&quot;Text&quot;) { Source = this.textBox2 };
 
-    this.button.SetBinding(Button.IsEnabledProperty, mb);
+        MultiBinding mb = new MultiBinding();
+        mb.Bindings.Add(b0);
+        mb.Bindings.Add(b1);
+        mb.Bindings.Add(b2);
+        mb.Converter = new MultiBindingConverter();
+
+        this.button.SetBinding(Button.IsEnabledProperty, mb);
+    }
 }
-</code></pre><p>}<br>因为Text和IsEnabled两个属性类型不同，因此我们要给MutilBinding准备一个转换器，这个类继承于IMultiValueConverter接口。</p>
-<p><pre>class MultiBindingConverter : IMultiValueConverter<br>{<br>    public object Convert(object[] values, Type targetType, object parameter, CultureInfo culture)<br>    {<br>        if (!values.Cast&lt;string&gt;().Any(text =&gt; string.IsNullOrWhiteSpace(text))<br>            &amp;&amp; values[1].ToString() == values[2].ToString())<br>        {<br>            return true;<br>        }<br>        return false;<br>    }</pre></p>
-<pre><code>public object[] ConvertBack(object value, Type[] targetTypes, object parameter, CultureInfo culture)
+</code></pre>
+<p>因为Text和IsEnabled两个属性类型不同，因此我们要给MutilBinding准备一个转换器，这个类继承于IMultiValueConverter接口。</p>
+<pre><code class="CSharp">class MultiBindingConverter : IMultiValueConverter
 {
-    throw new NotImplementedException();
+    public object Convert(object[] values, Type targetType, object parameter, CultureInfo culture)
+    {
+        if (!values.Cast&amp;lt;string&amp;gt;().Any(text =&amp;gt; string.IsNullOrWhiteSpace(text))
+            &amp;amp;&amp;amp; values[1].ToString() == values[2].ToString())
+        {
+            return true;
+        }
+        return false;
+    }
+
+    public object[] ConvertBack(object value, Type[] targetTypes, object parameter, CultureInfo culture)
+    {
+        throw new NotImplementedException();
+    }
 }
-</code></pre><p>}<br>运行的效果</p>
+</code></pre>
+<p>运行的效果</p>
 <p><a href="/img/2017/02/sp170214_210649.png"><img src="/img/2017/02/sp170214_210649.png" alt=""></a> <a href="/img/2017/02/sp170214_210735.png"><img src="/img/2017/02/sp170214_210735.png" alt=""></a></p>
-<hr>
-<h2 id="分析"><a href="#分析" class="headerlink" title="分析"></a><span style="color: #36b2a6;">分析</span></h2><p>Q：看了下转换器的代码，其中的values参数应该是指多个Binding对象的Path属性值，那么怎样知道哪个value是哪个Binding对象的呢？</p>
+<h2 id="分析"><a href="#分析" class="headerlink" title="分析"></a>分析</h2><p>Q：看了下转换器的代码，其中的values参数应该是指多个Binding对象的Path属性值，那么怎样知道哪个value是哪个Binding对象的呢？</p>
 <p>A：我们说过，Bindings属性是个集合，在把Binding对象丢进去的时候是按顺序递增索引的，因此只要记住顺序，就可以通过索引得到对应的value。</p>
 ]]></content>
       
@@ -739,7 +793,7 @@ string speed = (string)token.SelectToken("wind").SelectToken("speed");</pre>
 <h3 id="安装MySQL-MariaDB"><a href="#安装MySQL-MariaDB" class="headerlink" title="安装MySQL(MariaDB)"></a>安装MySQL(MariaDB)</h3><p><code># yum install mariadb-server mariadb</code><br>安装完成后启动数据库<br><code># systemctl start mariadb</code><br>然后安装一个数据库安全脚本，去掉一些危险的默认设置<br><code># mysql_secure_installation</code><br>接下来会提示你是新安装的，直接按下Enter键，然后设置数据库密码。把MariaDB也设置为开机自启<br><code># systemctl enable mariadb</code></p>
 <h3 id="安装PHP"><a href="#安装PHP" class="headerlink" title="安装PHP"></a>安装PHP</h3><p>运行以下命令安装PHP<br><code># yum install php php-mysql</code><br>安装完成之后我们再把Apahce重启一下<br><code># systemctl restart httpd</code><br>接下来我们检查一下PHP是否正常运行，在/var/www/html目录下新建一个info.php文件<br><code># vim /var/www/html/info.php</code><br>内容写入IP<br><code>&lt;?php phpinfo();?&gt;</code><br>然后在浏览器中输入<br><code>xxx.xxx.xxx.xxx/info.php</code><br>xxx代表你的IP地址<br><a href="/img/2017/02/sp170212_133114.png"><img src="/img/2017/02/sp170212_133114.png" alt=""></a></p>
 <h3 id="安装phpMyAdmin（可选）"><a href="#安装phpMyAdmin（可选）" class="headerlink" title="安装phpMyAdmin（可选）"></a>安装phpMyAdmin（可选）</h3><p>这是一个数据库管理的Web界面程序，有时候图形化操作还是方便一点的。首先，我们要先安装epel库<br><code># yum install epel-release</code><br>然后我们就可以安装phpMyAdmin了<br><code># yum install phpmyadmin</code><br>安装完成后我们要设置一下权限，不然访问会返回403错误<br><code># vim /etc/httpd/conf.d/phpMyAdmin.conf</code><br>找到这部分并修改为如下  </p>
-<pre><code> &lt;Directory /usr/share/phpMyAdmin/&gt;
+<pre><code class="XML"> &lt;Directory /usr/share/phpMyAdmin/&gt;
    AddDefaultCharset UTF-8
    &lt;IfModule mod_authz_core.c&gt;
      # Apache 2.4
@@ -758,14 +812,15 @@ string speed = (string)token.SelectToken("wind").SelectToken("speed");</pre>
       Allow from All
    &lt;/IfModule&gt;;
  &lt;/Directory&gt;;
-</code></pre><p>完了之后再一次重启Apache，然后我们可以在浏览器中输入：<br><code>xxx.xxx.xxx.xxx/phpmyadmin</code><br>来管理数据库<br><a href="/img/2017/02/sp170212_133728.png"><img src="/img/2017/02/sp170212_133728.png" alt=""></a></p>
+</code></pre>
+<p>完了之后再一次重启Apache，然后我们可以在浏览器中输入：<br><code>xxx.xxx.xxx.xxx/phpmyadmin</code><br>来管理数据库<br><a href="/img/2017/02/sp170212_133728.png"><img src="/img/2017/02/sp170212_133728.png" alt=""></a></p>
 <h2 id="迁移"><a href="#迁移" class="headerlink" title="迁移"></a>迁移</h2><h3 id="Windows端"><a href="#Windows端" class="headerlink" title="Windows端"></a>Windows端</h3><p>如果还记得数据库的名称就直接导出，如果不记得了可以先查看一下所有的数据库。<br><code>show databases;</code><br>注意别忘了最后那里有个分号！<br><a href="/img/2017/02/sp170213_110716.png"><img src="/img/2017/02/sp170213_110716.png" alt=""></a><br>找到MySQL的安装目录，找到mysqldump.exe，然后管理员运行cmd，切换到所在目录，执行这个命令<br><code>mysqldump -uroot -p databaseName&gt;outputFileName.sql</code><br>在所在目录下找到生成的数据库，再把wordpress整个文件夹打包一起运回本地就可以了，Windows端的工作完成！</p>
 <h3 id="Centos端"><a href="#Centos端" class="headerlink" title="Centos端"></a>Centos端</h3><p>用SSH客户端连接上服务器，用FTP工具把数据库文件和打包文件上传，我都丢到了/var/www/html目录下</p>
 <p><a href="/img/2017/02/sp170213_111845.png"><img src="/img/2017/02/sp170213_111845.png" alt=""></a></p>
 <p>然后我们就开始着手把数据库导入了，运行<br><code>mysql -uroot -p</code><br>然后输入密码，新建一个数据库<br><code>create database databaseName</code><br>选中新建的数据库<br><code>use databaseName</code><br>导入数据，以我的数据库文件所在目录为例<br><code>source /var/www/html/wordpress_db.sql</code><br>数据库迁移成功后输入exit退出，接下来我们把wordpress实体迁移，直接把压缩文件的内容解压到default目录下即可<br><a href="/img/2017/02/sp170213_113104.png"><img src="/img/2017/02/sp170213_113104.png" alt=""></a></p>
 <p>如果你的数据库密码不一样了，修改一下wp-config文件。<br>这时候在浏览器中输入IP/域名试着访问博客，如果之前没有域名的小伙伴就会遇到问题了，比如我- -，那是因为之前的IP地址和现在不同了，数据库中的数据还没更新<br><a href="/img/2017/02/sp170213_113354.png"><img src="/img/2017/02/sp170213_113354.png" alt=""></a><br>就是这里的设置的问题！解决方法就是在数据库中修改这两个值，指向新的IP地址或者你的域名，还记得安装的phpMyAdmin嘛，现在排上用场了<br><a href="/img/2017/02/sp170213_113944.png"><img src="/img/2017/02/sp170213_113944.png" alt=""></a><br>修改两个值就可以了，这时候就可以正常登陆了。<br>然后我们在主页点开文章会出现403错误，调整一下Apache配置文件<br><code># vim /etc/httpd/conf/httpd.conf</code><br>在文件中加入<br><code>LoadModule rewrite_module modules/mod_rewrite.so</code><br>位置随意，下图作为参考<br><a href="/img/2017/02/sp170213_114433.png"><img src="/img/2017/02/sp170213_114433.png" alt=""></a></p>
 <p>然后我们再修改一点内容</p>
-<pre><code>&lt;VirtualHost *:80&gt;
+<pre><code class="XML">&lt;VirtualHost *:80&gt;
 
 ServerName localhost
 
@@ -784,8 +839,9 @@ Allow from all
 &lt;/Directory&gt;
 
 &lt;/VirtualHost&gt;
-</code></pre><p>把<em>AllowOverride</em>的值换成了<em>ALL，</em>位置如下<br><a href="/img/2017/02/sp170213_114405.png"><img src="/img/2017/02/sp170213_114405.png" alt=""></a><br>保存文件退出，重启Apache。最后再新建一个.htaccess文件，丢到博客根目录下就行了，由于这个文件的文件名有点特殊，要借助其他编辑工具生成，比如笔者用的Visual Studio Code。文件内容如下</p>
-<pre><code>&lt;IfModule mod_rewrite.c&gt;
+</code></pre>
+<p>把<em>AllowOverride</em>的值换成了<em>ALL，</em>位置如下<br><a href="/img/2017/02/sp170213_114405.png"><img src="/img/2017/02/sp170213_114405.png" alt=""></a><br>保存文件退出，重启Apache。最后再新建一个.htaccess文件，丢到博客根目录下就行了，由于这个文件的文件名有点特殊，要借助其他编辑工具生成，比如笔者用的Visual Studio Code。文件内容如下</p>
+<pre><code class="XML">&lt;IfModule mod_rewrite.c&gt;
 
 RewriteEngine On
 
@@ -799,8 +855,9 @@ RewriteCond %{REQUEST_FILENAME} !-d
 
 RewriteRule . /index.php [L]
 
-&lt;\/IfModule&gt;
-</code></pre><p>这时候再点击文章就可以正常访问了。</p>
+&lt;/IfModule&gt;
+</code></pre>
+<p>这时候再点击文章就可以正常访问了。</p>
 <h2 id="结束"><a href="#结束" class="headerlink" title="结束"></a>结束</h2><p>自此，迁移工作算是完成了，不过还有些小问题，不如文件的上传，下篇文章再讲啦！</p>
 <p>本文参考了两位dalao的文章，特别感谢！<br><a href="http://blog.gclxry.com/install-wordpress-on-centos7/" target="_blank" rel="external">Centos 7上安装Wordpress</a><br><a href="https://www.yanning.wang/archives/192.html" target="_blank" rel="external">WordPress跨平台迁移实战</a></p>
 ]]></content>
@@ -828,20 +885,43 @@ RewriteRule . /index.php [L]
       <content type="html"><![CDATA[<p>刚刚入手了一个VPS，拿来练手Linux类系统，最重要的还是顺便自己搭建SS科学上网。我这里的是Centos 7 64位。</p>
 <h2 id="安装"><a href="#安装" class="headerlink" title="安装"></a>安装</h2><p><code># yum install python-setuptools &amp;&amp; easy_install pip</code><br><code># pip install shadowsocks</code><br>这样SS就安装好啦，然后我们要配置一下。</p>
 <h2 id="配置"><a href="#配置" class="headerlink" title="配置"></a>配置</h2><p>新建一个json文件<br><code># vim /etc/shadowsocks.json</code><br>然后写入配置，端口和密码自己自定义。</p>
-<blockquote>
-<p>{<br>   “server”:”0.0.0.0”,<br>   “server_port”:8900,<br>   “local_address”: “127.0.0.1”,<br>   “local_port”:1080,<br>   “password”:”passwd”,<br>   “timeout”:300,<br>   “method”:”aes-256-cfb”,<br>}  </p>
-</blockquote>
+<pre><code class="JSON">{
+    &quot;server&quot;:&quot;0.0.0.0&quot;,
+    &quot;server_port&quot;:8900,
+    &quot;local_address&quot;: &quot;127.0.0.1&quot;,
+    &quot;local_port&quot;:1080,
+    &quot;password&quot;:&quot;passwd&quot;,
+    &quot;timeout&quot;:300,
+    &quot;method&quot;:&quot;aes-256-cfb&quot;,
+}
+</code></pre>
 <p>如果要多用户登陆，那么就把password改成port_password然后加入多个端口和密码，例如：  </p>
-<blockquote>
-<p>{<br>   “server”:”0.0.0.0”,<br>   “local_address”:”127.0.0.1”,<br>   “local_port”:1080,<br>   “port_password”:{<br>        “8900”:”passwd0”,<br>        “8901”:”passwd1”,<br>        “8902”:”passwd2”,<br>        “8903”:”passwd3”,<br>        “8904”:”passwd4”<br>   },<br>   “timeout”:300,<br>   “method”:”aes-256-cfb”,<br>}  </p>
-</blockquote>
+<pre><code class="JSON">{
+    &quot;server&quot;:&quot;0.0.0.0&quot;,
+    &quot;local_address&quot;:&quot;127.0.0.1&quot;,
+    &quot;local_port&quot;:1080,
+    &quot;port_password&quot;:{
+         &quot;8900&quot;:&quot;passwd0&quot;,
+         &quot;8901&quot;:&quot;passwd1&quot;,
+         &quot;8902&quot;:&quot;passwd2&quot;,
+         &quot;8903&quot;:&quot;passwd3&quot;,
+         &quot;8904&quot;:&quot;passwd4&quot;
+    },
+    &quot;timeout&quot;:300,
+    &quot;method&quot;:&quot;aes-256-cfb&quot;,
+&gt;
+</code></pre>
 <p>然后新建一个ss服务<br><code># vim /etc/systemd/system/shadowsocks.service</code><br>内容写入：  </p>
-<blockquote>
-<p>[Unit]<br>Description=Shadowsocks</p>
-<p>[Service]<br>TimeoutStartSec=0<br>ExecStart=/usr/bin/ssserver -c /etc/shadowsocks.json</p>
-<p>[Install]<br>WantedBy=multi-user.target  </p>
-</blockquote>
-<p>然后开启服务，并让服务开机启动<br><code># systemctl enable shadowsocks</code><br><code># systemctl start shadowsocks</code><br>这时候可以检查一下服务是否正确开启<br><code># systemctl status shadowsocks</code><br>如果Active那里显示的是绿色的active(running)则说明服务正确开启了。如图：<br><a href="/img/2017/02/sp170211_224944.png"><img src="/img/2017/02/sp170211_224944.png" alt=""></a></p>
+<pre><code>[Unit]
+Description=Shadowsocks
+
+[Service]
+TimeoutStartSec=0
+ExecStart=/usr/bin/ssserver -c /etc/shadowsocks.json
+
+[Install]
+WantedBy=multi-user.target
+</code></pre><p>然后开启服务，并让服务开机启动<br><code># systemctl enable shadowsocks</code><br><code># systemctl start shadowsocks</code><br>这时候可以检查一下服务是否正确开启<br><code># systemctl status shadowsocks</code><br>如果Active那里显示的是绿色的active(running)则说明服务正确开启了。如图：<br><a href="/img/2017/02/sp170211_224944.png"><img src="/img/2017/02/sp170211_224944.png" alt=""></a></p>
 <p>最后，千万记得防火墙开启刚才配置里写的端口，我的例子里写的只有一个8900，防火墙没开的请自动忽略。<br><code># firewall-cmd --add-port=8900/tcp</code><br>查看端口是否正确开启<br><code># firewall-cmd --query-port=8900/tcp</code><br>返回success则正确开启了，Enjoy it！</p>
 ]]></content>
       
@@ -866,17 +946,50 @@ RewriteRule . /index.php [L]
       <title><![CDATA[Binding[2]=数据转换]]></title>
       <url>/2017/02/09/binding-dataconvert/</url>
       <content type="html"><![CDATA[<p>上一篇文章中我们了解了如何在Binding的过程中对数据进行校验，确保数据的有效性，并且提到了数据类型转换。我们都知道C#是强类型语言，在绑定的过程中，Target和Source的属性类型不同的情况经常遇到，这时候我们就需要手动进行数据类型的转换了。或许有的小伙伴会提出这样一个问题，上一篇文章中的Slider的Value属性是double类型的，TextBox的Text属性是string类型的，也不见对它们进行了数据转换啊！这个是因为，string和double之间的转换比较简单，WPF类库已经帮我们解决这个问题了，但是当我们遇到更加复杂的业务逻辑的时候，我们只能自己写代码了。要实现数据转换其实很简单，只要写一个类继承IValueConverter接口实现Convert和ConvertBack方法，然后在Binding对象中消费这个类就可以了。</p>
-<h2 id="实现"><a href="#实现" class="headerlink" title="实现"></a><span style="color: #36b2a6;">实现</span></h2><p>现在我们的业务是，一个CheckBox并带有提示文字，问用户是不是小基佬，如果是就在下面显示一个动漫可爱女孩子的图片(●’◡’●)，如果不是就显示一个真叫人头大的图片。图片显示用一个Image对象，我们要让它显示出图片内容，就要为它的Source属性赋值，这是ImageSource类型，赋值的时候给一段图片的URI字符串就可以了，而CheckBox的IsChecked是bool类型，因此我们要手写一个转换器。</p>
-<p><pre>class CheckBoxStateToImageSourceConverter : IValueConverter<br>{<br>    public object Convert(object value, Type targetType, object paremeter, CultureInfo culture)<br>    {<br>        if ((bool)value)<br>        {<br>            return @”/Assets/bigHead.jpg”;<br>        }<br>        return @”/Assets/milai.png”;<br>    }<br>    public object ConvertBack(object value, Type targetType, object paremeter, CultureInfo culture)<br>    {<br>        throw new NotImplementedException();<br>    }<br>}</pre><br>&nbsp;</p>
+<h2 id="实现"><a href="#实现" class="headerlink" title="实现"></a>实现</h2><p>现在我们的业务是，一个CheckBox并带有提示文字，问用户是不是小基佬，如果是就在下面显示一个动漫可爱女孩子的图片(●’◡’●)，如果不是就显示一个真叫人头大的图片。图片显示用一个Image对象，我们要让它显示出图片内容，就要为它的Source属性赋值，这是ImageSource类型，赋值的时候给一段图片的URI字符串就可以了，而CheckBox的IsChecked是bool类型，因此我们要手写一个转换器。</p>
+<pre><code class="CSharp">class CheckBoxStateToImageSourceConverter : IValueConverter
+{
+    public object Convert(object value, Type targetType, object paremeter, CultureInfo culture)
+    {
+        if ((bool)value)
+        {
+            return @&quot;/Assets/bigHead.jpg&quot;;
+        }
+        return @&quot;/Assets/milai.png&quot;;
+    }
+    public object ConvertBack(object value, Type targetType, object paremeter, CultureInfo culture)
+    {
+        throw new NotImplementedException();
+    }
+}
+</code></pre>
 <p>然后我们要消费这个转换器，只需要给Binding对象的Converter属性赋值一个我们刚刚写的转换器的实例就可以了，XAML代码如下：</p>
-<p><pre>&lt;StackPanel&gt;<br>    &lt;StackPanel.Resources&gt;<br>        &lt;local:CheckBoxStateToImageSourceConverter x:Key=”converter”/&gt;<br>    &lt;/StackPanel.Resources&gt;<br>    &lt;Grid Margin=”10”&gt;<br>        &lt;CheckBox x:Name=”checkBox”<br>                    HorizontalAlignment=”Left”<br>                    VerticalAlignment=”Center”/&gt;<br>        &lt;TextBlock Text=”你是基佬嘛？”<br>                    FontSize=”20”<br>                    HorizontalAlignment=”Left”<br>                    Margin=”20,0,0,0”/&gt;<br>    &lt;/Grid&gt;<br>    &lt;Image Source=”{Binding<br>        ElementName=checkBox<br>        ,Path=IsChecked<br>        ,Converter={StaticResource converter}<br>        ,Mode=OneWay}”/&gt;<br>&lt;/StackPanel&gt;</pre><br>运行效果如下</p>
+<pre><code class="XML">&lt;StackPanel&gt;
+    &lt;StackPanel.Resources&gt;
+        &lt;local:CheckBoxStateToImageSourceConverter x:Key=&quot;converter&quot;&gt;
+    &lt;/StackPanel.Resources&gt;
+    &lt;Grid Margin=&quot;10&quot;&gt;
+        &lt;CheckBox x:Name=&quot;checkBox&quot;
+                HorizontalAlignment=&quot;Left&quot;
+                VerticalAlignment=&quot;Center&quot;&gt;;
+        &lt;TextBlock Text=&quot;你是基佬嘛？&quot;
+                FontSize=&quot;20&quot;
+                HorizontalAlignment=&quot;Left&quot;
+                Margin=&quot;20,0,0,0&quot;&gt;;
+    &lt;/Grid&gt;
+    &lt;Image Source=&quot;{Binding 
+        ElementName=checkBox
+        ,Path=IsChecked
+        ,Converter={StaticResource converter}
+        ,Mode=OneWay}&quot;&gt;;
+&lt;/StackPanel&gt;
+</code></pre>
+<p>运行效果如下</p>
 <p><a href="/img/2017/02/sp170209_131407.png"><img src="/img/2017/02/sp170209_131407.png" alt=""></a> <a href="/img/2017/02/sp170209_131440.png"><img src="/img/2017/02/sp170209_131440.png" alt=""></a></p>
-<hr>
-<h2 id="分析"><a href="#分析" class="headerlink" title="分析"></a><span style="color: #36b2a6;">分析</span></h2><p>Q：为什么ConvertBack方法没有实际代码？</p>
+<h2 id="分析"><a href="#分析" class="headerlink" title="分析"></a>分析</h2><p>Q：为什么ConvertBack方法没有实际代码？</p>
 <p>A：Convert是指从Source到Target这个途径，ConvertBack显而易知是从Target到Source这个途径。这里我们是单向的，因此我们不需要给ConvertBack方法写具体的转换代码。如果你遇到的Binding是TwoWay的，那么毫无疑问你就要实现这部分的逻辑。</p>
 <p>Q：讲讲Convert方法的参数列表？</p>
 <p>A：第一个参数是object类型，最大限度地保证了Converter的重用性，我们可以在方法内部对它的类型进行判断；第二个是方法返回类型（命名有点奇怪就是了，target是指返回值）；第三个是用于把额外的信息传入方法，若需要传递多个信息则可以把信息放入一个集合对象里传入方法。</p>
-<p>&nbsp;</p>
 ]]></content>
       
         <categories>
@@ -900,41 +1013,71 @@ RewriteRule . /index.php [L]
       <title><![CDATA[Binding[1]=数据校验]]></title>
       <url>/2017/02/08/binding-validation/</url>
       <content type="html"><![CDATA[<p>我们知道，属性的存在是为了解决数据有效性的问题，确保暴露出去的数据是合情合理的。在实际中，数据在目标流动过程中，我们一般都需要对其有效性进行验证。我们已经知道，Binding的作用实在Target和Source之间架起了一座数据流动的桥梁，因此我们需要对在这之间流动的数据进行校验。不仅如此，我们还可以进行数据类型的转换，这个在下一篇文章进行讲解，现在我们来看看如何在绑定的时候对数据进行有效性校验。</p>
-<h2 id="实现"><a href="#实现" class="headerlink" title="实现"></a><span style="color: #36b2a6;">实现</span></h2><p>现在我们的任务是，将一个TextBox（Target）绑定到一个Slider（Source）上，在TextBox输入非Slider的Value的区间值（0到100）时，会显示错误。</p>
+<h2 id="实现"><a href="#实现" class="headerlink" title="实现"></a>实现</h2><p>现在我们的任务是，将一个TextBox（Target）绑定到一个Slider（Source）上，在TextBox输入非Slider的Value的区间值（0到100）时，会显示错误。</p>
 <p>UI的XAML代码：</p>
-<p><pre>&lt;StackPanel&gt;<br>    &lt;TextBox x:Name=”textBox” Margin=”10” Height=”25”/&gt;<br>    &lt;Slider x:Name=”slider” Margin=”10” Minimum=”-10” Maximum=”100”/&gt;<br>&lt;/StackPanel&gt;</pre><br>看到上面的代码，小伙伴们应该很快发现了一个小细节，为什么Slider的最小值设为-10？这个是别有用意的，因为Binding在验证数据的时候，默认是把Source的数据认为是完全正确的，有问题的数据只可能出现在Target上，因此这里模拟了Source数据异常的情况，并且对Source的数据也进行了校验的步骤。</p>
-<p>实现数据的校验是在对Binding的ValidationRules属性赋值，看属性的命名便可知道，这是一个ValidationRule类的集合，准确的类型是Collection&lt;ValidationRule&gt;。ValidatinRule是一个抽象类，因此我们需要准备它的派生类，实现Validate方法，该方法的返回值是ValidationResult类型对象，如果检验通过，则设置ValidationResult对象的IsValid属性为True，反之为False并为ErrorContent属性设置一个合适的消息内容。现在我们来准备ValidationRule的派生类。</p>
-<p><pre>class RangeValidationRule : ValidationRule<br>{<br>    public override ValidationResult Validate(object value, CultureInfo cultureInfo)<br>    {<br>        double data;<br>        if (double.TryParse(value.ToString(), out data))<br>        {<br>            if (data &gt;= 0 &amp;&amp; data &lt;= 100)<br>            {<br>                return new ValidationResult(true, null);<br>            }<br>        }<br>        return new ValidationResult(false, “Validation Failed”);<br>    }<br>}</pre><br>有了这个派生类，我们就可以着手进行将TextBox绑定到Slider上了。</p>
-<p><pre>public MainWindow()<br>{<br>    InitializeComponent();</pre></p>
-<pre><code>Binding binding = new Binding(&quot;Value&quot;) { Source = this.slider };
-binding.UpdateSourceTrigger = UpdateSourceTrigger.PropertyChanged;
-binding.ValidationRules.Add(new RangeValidationRule() { ValidatesOnTargetUpdated = true });
-this.textBox.SetBinding(TextBox.TextProperty, binding);
-</code></pre><p>}<br>运行程序后，不论是我们把Slider手动拨到0以下的值还是直接在TextBox里输入小于0的数，TextBox都会显示红色的边框，提示用户数据有问题。运行效果如下：</p>
-<p><a href="/img/2017/02/sp170208_214114.png"><img src="/img/2017/02/sp170208_214114.png" alt=""></a></p>
-<hr>
-<h2 id="更进一步"><a href="#更进一步" class="headerlink" title="更进一步"></a><span style="color: #36b2a6;">更进一步</span></h2><p>到此我们就已经完成了对数据的校验工作，接下来更进一步。我们刚才说了，ValidatinResult对象携带了一条错误消息，那么，我们如何让这条消息显示出来呢？这里用到了路由事件，我们来把后台代码写的更进一步。</p>
-<p><pre>public partial class MainWindow : Window<br>{<br>    public MainWindow()<br>    {<br>        InitializeComponent();</pre></p>
-<pre><code>    Binding binding = new Binding(&quot;Value&quot;) { Source = this.slider };
+<pre><code class="XML">&lt;StackPanel&gt;
+    &lt;TextBox x:Name=&quot;textBox&quot; Margin=&quot;10&quot; Height=&quot;25&quot;/&gt;
+    &lt;Slider x:Name=&quot;slider&quot; Margin=&quot;10&quot; Minimum=&quot;-10&quot; Maximum=&quot;100&quot;/&gt;
+&lt;/StackPanel&gt;
+</code></pre>
+<p>看到上面的代码，小伙伴们应该很快发现了一个小细节，为什么Slider的最小值设为-10？这个是别有用意的，因为Binding在验证数据的时候，默认是把Source的数据认为是完全正确的，有问题的数据只可能出现在Target上，因此这里模拟了Source数据异常的情况，并且对Source的数据也进行了校验的步骤。</p>
+<p>实现数据的校验是在对Binding的ValidationRules属性赋值，看属性的命名便可知道，这是一个ValidationRule类的集合，准确的类型是Collection<validationrule>。ValidatinRule是一个抽象类，因此我们需要准备它的派生类，实现Validate方法，该方法的返回值是ValidationResult类型对象，如果检验通过，则设置ValidationResult对象的IsValid属性为True，反之为False并为ErrorContent属性设置一个合适的消息内容。现在我们来准备ValidationRule的派生类。</validationrule></p>
+<pre><code class="CSharp">class RangeValidationRule : ValidationRule
+{
+    public override ValidationResult Validate(object value, CultureInfo cultureInfo)
+    {
+        double data;
+        if (double.TryParse(value.ToString(), out data))
+        {
+            if (data &amp;gt;= 0 &amp;amp;&amp;amp; data &amp;lt;= 100)
+            {
+                return new ValidationResult(true, null);
+            }
+        }
+        return new ValidationResult(false, &quot;Validation Failed&quot;);
+    }
+}
+</code></pre>
+<p>有了这个派生类，我们就可以着手进行将TextBox绑定到Slider上了。</p>
+<pre><code class="CSharp">public MainWindow()
+{
+    InitializeComponent();
+
+    Binding binding = new Binding(&quot;Value&quot;) { Source = this.slider };
     binding.UpdateSourceTrigger = UpdateSourceTrigger.PropertyChanged;
     binding.ValidationRules.Add(new RangeValidationRule() { ValidatesOnTargetUpdated = true });
-    binding.NotifyOnValidationError = true;
     this.textBox.SetBinding(TextBox.TextProperty, binding);
-    this.textBox.AddHandler(Validation.ErrorEvent, new RoutedEventHandler(
-        (sender, e) =&amp;gt;
-        {
-            if (Validation.GetErrors(this.textBox).Count &amp;gt; 0)
-            {
-                this.textBox.ToolTip = Validation.GetErrors(this.textBox)[0].ErrorContent.ToString();
-                ToolTipService.SetIsEnabled(this.textBox, true);
-            }
-        }));
 }
-</code></pre><p>}<br>&nbsp;</p>
+</code></pre>
+<p>运行程序后，不论是我们把Slider手动拨到0以下的值还是直接在TextBox里输入小于0的数，TextBox都会显示红色的边框，提示用户数据有问题。运行效果如下：</p>
+<p><a href="/img/2017/02/sp170208_214114.png"><img src="/img/2017/02/sp170208_214114.png" alt=""></a></p>
+<h2 id="更进一步"><a href="#更进一步" class="headerlink" title="更进一步"></a>更进一步</h2><p>到此我们就已经完成了对数据的校验工作，接下来更进一步。我们刚才说了，ValidatinResult对象携带了一条错误消息，那么，我们如何让这条消息显示出来呢？这里用到了路由事件，我们来把后台代码写的更进一步。</p>
+<pre><code class="CSharp">public partial class MainWindow : Window
+{
+    public MainWindow()
+    {
+        InitializeComponent();
+
+        Binding binding = new Binding(&quot;Value&quot;) { Source = this.slider };
+        binding.UpdateSourceTrigger = UpdateSourceTrigger.PropertyChanged;
+        binding.ValidationRules.Add(new RangeValidationRule() { ValidatesOnTargetUpdated = true });
+        binding.NotifyOnValidationError = true;
+        this.textBox.SetBinding(TextBox.TextProperty, binding);
+        this.textBox.AddHandler(Validation.ErrorEvent, new RoutedEventHandler(
+            (sender, e) =&amp;gt;
+            {
+                if (Validation.GetErrors(this.textBox).Count &amp;gt; 0)
+                {
+                    this.textBox.ToolTip = Validation.GetErrors(this.textBox)[0].ErrorContent.ToString();
+                    ToolTipService.SetIsEnabled(this.textBox, true);
+                }
+            }));
+    }
+}
+</code></pre>
 <p>运行效果如下，把鼠标悬停在TextBox上会有小提示出现，这个小提示就是我们在ValidationResult里设置的错误消息。</p>
 <p><a href="/img/2017/02/sp170208_214644.png"><img src="/img/2017/02/sp170208_214644.png" alt=""></a></p>
-<hr>
-<h2 id="分析"><a href="#分析" class="headerlink" title="分析"></a><span style="color: #36b2a6;">分析</span></h2><p>又到了分析部分，仍然是问答的形式来进行。</p>
+<h2 id="分析"><a href="#分析" class="headerlink" title="分析"></a>分析</h2><p>又到了分析部分，仍然是问答的形式来进行。</p>
 <p>Q：后台代码的 ValidatesOnTargetUpdated = true 这句代码是什么意思？</p>
 <p>A：这个问题的答案其实在文章里了，我们说了Binding对象默认把来自Source的数据认定为绝对正确，因此我们特意模拟了Source的数据异常的情况，这句代码就是告诉Binding对象，对来自Source的数据也进行校验。</p>
 <p>Q：为什么要添加 binding.NotifyOnValidationError = true这句代码？</p>
@@ -960,46 +1103,73 @@ this.textBox.SetBinding(TextBox.TextProperty, binding);
       <title><![CDATA[Binding[0]=使用ObjectDataProvider对象作为Binding的Source]]></title>
       <url>/2017/02/07/odp-as-binding-source/</url>
       <content type="html"><![CDATA[<p>一般情况下，我们通常使用某个类的实例作为Binding的对象，实例中的某个属性作为Path来消费这些类。现在试想一下这样的情形，我们需要绑定的数据是方法的返回值，这时候我们应该怎么办呢？有小伙伴可能会提出，修改这个类，增加属性将需要的数据暴露出来使用。这样是一个解决方法，但是重新设计底层类的风险和成本比较高，而且在黑盒引用类库的时候我们就不可能这样做了。那么是不是就束手无策了？当然不是，我们可以使用ObjectDataProvider包装一个对象然后作为Binding的数据源。怎么来实现呢？</p>
-<h2 id="实现"><a href="#实现" class="headerlink" title="实现"></a><span style="color: #3692b4;">实现</span></h2><p>现在的情形是，我引用一个类库，里面有一个Calculator的类，里面有各种算法，其中一个是加法的算法：</p>
-<p><pre>class Calculator<br>{<br>    public string Add(string arg1, string arg2)<br>    {<br>        double x;<br>        double y;<br>        if (double.TryParse(arg1, out x) &amp;&amp; double.TryParse(arg2, out y))<br>        {<br>            return (x + y).ToString();<br>        }<br>        return @”N/A”;<br>    }<br>}</pre><br>在界面上，准备了三个TextBox，第一个作为Add方法的第一个参数，第二个作为第二个参数，第三个作为Add方法返回值。XAML代码如下：</p>
-<p><pre>&lt;StackPanel&gt;<br>    &lt;TextBox x:Name=”tBArg1” Margin=”10” Height=”25”/&gt;<br>    &lt;TextBox x:Name=”tBArg2” Margin=”10” Height=”25”/&gt;<br>    &lt;TextBox x:Name=”tBResult” Margin=”10” Height=”25”/&gt;<br>&lt;/StackPanel&gt;</pre><br>&nbsp;</p>
-<p>功能上，我要实现在前两个TextBox上输入实数后，在第三个TextBox实时显示出计算结果。过程代码写在一个SetBinding方法里，然后在窗体的构造函数中那个调用这个方法。</p>
-<p><pre>public partial class MainWindow : Window<br>{<br>    public MainWindow()<br>    {<br>        InitializeComponent();<br>        this.SetBinding();<br>    }</pre></p>
-<pre><code>private void SetBinding()
+<h2 id="实现"><a href="#实现" class="headerlink" title="实现"></a>实现</h2><p>现在的情形是，我引用一个类库，里面有一个Calculator的类，里面有各种算法，其中一个是加法的算法：</p>
+<pre><code class="CSharp">class Calculator
 {
-    //Create and initial ObjectDataProvider instance
-    ObjectDataProvider odp = new ObjectDataProvider();
-    odp.ObjectInstance = new Calculator();
-    odp.MethodName = &quot;Add&quot;;
-    odp.MethodParameters.Add(&quot;&quot;);
-    odp.MethodParameters.Add(&quot;&quot;);
-
-    //Create and initial Binding instance
-    Binding bindingToArg1 = new Binding(&quot;MethodParameters[0]&quot;)
+    public string Add(string arg1, string arg2)
     {
-        Source = odp,
-        BindsDirectlyToSource = true,
-        UpdateSourceTrigger = UpdateSourceTrigger.PropertyChanged
-    };
-
-    Binding bindingToArg2 = new Binding(&quot;MethodParameters[1]&quot;)
-    {
-        Source = odp,
-        BindsDirectlyToSource = true,
-        UpdateSourceTrigger = UpdateSourceTrigger.PropertyChanged
-    };
-
-    Binding bindingToResult = new Binding(&quot;.&quot;) { Source = odp };
-
-    //Set binding
-    this.tBArg1.SetBinding(TextBox.TextProperty, bindingToArg1);
-    this.tBArg2.SetBinding(TextBox.TextProperty, bindingToArg2);
-    this.tBResult.SetBinding(TextBox.TextProperty, bindingToResult);
+        double x;
+        double y;
+        if (double.TryParse(arg1, out x) &amp;amp;&amp;amp; double.TryParse(arg2, out y))
+        {
+            return (x + y).ToString();
+        }
+        return @&quot;N/A&quot;;
+    }
 }
-</code></pre><p>}<br>最终的实现效果</p>
+</code></pre>
+<p>在界面上，准备了三个TextBox，第一个作为Add方法的第一个参数，第二个作为第二个参数，第三个作为Add方法返回值。XAML代码如下：</p>
+<pre><code class="CSharp">&lt;StackPanel&gt;
+    &lt;TextBox x:Name=&quot;tBArg1&quot; Margin=&quot;10&quot; Height=&quot;25&quot;/&gt;
+    &lt;TextBox x:Name=&quot;tBArg2&quot; Margin=&quot;10&quot; Height=&quot;25&quot;/&gt;
+    &lt;TextBox x:Name=&quot;tBResult&quot; Margin=&quot;10&quot; Height=&quot;25&quot;/&gt;
+&lt;/StackPanel&gt;
+</code></pre>
+<p>功能上，我要实现在前两个TextBox上输入实数后，在第三个TextBox实时显示出计算结果。过程代码写在一个SetBinding方法里，然后在窗体的构造函数中那个调用这个方法。</p>
+<pre><code class="CSharp">public partial class MainWindow : Window
+{
+    public MainWindow()
+    {
+        InitializeComponent();
+        this.SetBinding();
+    }
+
+    private void SetBinding()
+    {
+        //Create and initial ObjectDataProvider instance
+        ObjectDataProvider odp = new ObjectDataProvider();
+        odp.ObjectInstance = new Calculator();
+        odp.MethodName = &quot;Add&quot;;
+        odp.MethodParameters.Add(&quot;&quot;);
+        odp.MethodParameters.Add(&quot;&quot;);
+
+        //Create and initial Binding instance
+        Binding bindingToArg1 = new Binding(&quot;MethodParameters[0]&quot;)
+        {
+            Source = odp,
+            BindsDirectlyToSource = true,
+            UpdateSourceTrigger = UpdateSourceTrigger.PropertyChanged
+        };
+
+        Binding bindingToArg2 = new Binding(&quot;MethodParameters[1]&quot;)
+        {
+            Source = odp,
+            BindsDirectlyToSource = true,
+            UpdateSourceTrigger = UpdateSourceTrigger.PropertyChanged
+        };
+
+        Binding bindingToResult = new Binding(&quot;.&quot;) { Source = odp };
+
+        //Set binding
+        this.tBArg1.SetBinding(TextBox.TextProperty, bindingToArg1);
+        this.tBArg2.SetBinding(TextBox.TextProperty, bindingToArg2);
+        this.tBResult.SetBinding(TextBox.TextProperty, bindingToResult);
+    }
+}
+</code></pre>
+<p>最终的实现效果</p>
 <p><a href="/img/2017/02/sp170207_142045.png"><img src="/img/2017/02/sp170207_142045.png" alt=""></a></p>
-<hr>
-<h2 id="分析"><a href="#分析" class="headerlink" title="分析"></a><span style="color: #3692b4;">分析</span></h2><p>OK，现在我们的问题解决了。让我们以问答的形式具体分析一下这个实现过程。</p>
+<h2 id="分析"><a href="#分析" class="headerlink" title="分析"></a>分析</h2><p>OK，现在我们的问题解决了。让我们以问答的形式具体分析一下这个实现过程。</p>
 <p>Q：ObjectDataProvider类的作用是什么？</p>
 <p>A：文章开头部分就提及到了，ObjectDataProvider类的作用就是将一个<strong>以方法形式暴露数据的对象</strong>包装起来。我们先是创建了一个ObjectDataProvider对象，然后new 一个Calculator实例赋值给它的ObjectInstance属性，这样就完成了将对象包装在ObjectDataProvider对象里的工作。注意这里的ObjectDataProvider对象本身就代表了数据，因此Path写“.”</p>
 <p>Q：BindsDirectlyToSource=true这句代码什么意思？</p>
@@ -1029,10 +1199,8 @@ this.textBox.SetBinding(TextBox.TextProperty, binding);
       <title><![CDATA[提高Arduino编程体验]]></title>
       <url>/2016/12/29/arduino-ide-for-visualstudio/</url>
       <content type="html"><![CDATA[<p>前阵子学校有个单片机比赛，受其影响突然很想玩板子。于是就买个一块Arduino UNO的国产版ZHONGBEST，就使用上来说和官方原版没有什么区别，最大的区别就是便宜！便宜！便宜！（重说三）</p>
-<hr>
 <p>拿到手后，当然迫不及待地上手一个Hello World程序，开始我用的是官方的IDE，试了没问题之后我尝试着去修改代码，然后我发现了什么？没有智能提示！没有智能提示！没有智能提示！或许我是被VS惯坏了，我实在受不了。搜索一波后发现有个扩展叫做 Arduino IDE For Visual Studio（传送门：<a href="https://marketplace.visualstudio.com/items?itemName=VisualMicro.ArduinoIDEforVisualStudio" target="_blank" rel="external">https://marketplace.visualstudio.com/items?itemName=VisualMicro.ArduinoIDEforVisualStudio</a>），安装好了之后打开VS后可以看到界面已经发生了少许的变化，再次尝试着去写代码的时候找回了那种愉悦感 balabala~</p>
 <p><a href="/img/2016/12/sp161229_125410.png"><img src="/img/2016/12/sp161229_125410-1024x576.png" alt=""></a></p>
-<p>&nbsp;</p>
 ]]></content>
       
         <categories>
@@ -1100,9 +1268,10 @@ this.textBox.SetBinding(TextBox.TextProperty, binding);
     </entry>
     
     <entry>
-      <title><![CDATA[Articles]]></title>
-      <url>/articles/index.html</url>
-      <content type="html"></content>
+      <title><![CDATA[Contact]]></title>
+      <url>/feeback/index.html</url>
+      <content type="html"><![CDATA[<p>Contact me with<br><strong><a href="mailto:Myers.Chan@outlook.com?subject=FeebackFromBlog" target="_blank" rel="external">E-mail</a></strong>.<br><strong><a href="http://weibo.com/Nomyfan" target="_blank" rel="external">Weibo</a></strong><br><strong><a href="https://twitter.com/Myers__Chan" target="_blank" rel="external">Twitter</a></strong><br><strong><a href="https://facebook.com/myers.n.chan" target="_blank" rel="external">Facebook</a></strong></p>
+]]></content>
     </entry>
     
     <entry>
@@ -1112,23 +1281,22 @@ this.textBox.SetBinding(TextBox.TextProperty, binding);
     </entry>
     
     <entry>
+      <title><![CDATA[Friends]]></title>
+      <url>/friends/index.html</url>
+      <content type="html"></content>
+    </entry>
+    
+    <entry>
+      <title><![CDATA[Articles]]></title>
+      <url>/articles/index.html</url>
+      <content type="html"></content>
+    </entry>
+    
+    <entry>
       <title><![CDATA[Contact]]></title>
       <url>/contact/index.html</url>
       <content type="html"><![CDATA[<p>Contact me with<br><strong><a href="mailto:Myers.Chan@outlook.com?subject=FeebackFromBlog" target="_blank" rel="external">E-mail</a></strong>.<br><strong><a href="http://weibo.com/Nomyfan" target="_blank" rel="external">Weibo</a></strong><br><strong><a href="https://twitter.com/Myers__Chan" target="_blank" rel="external">Twitter</a></strong><br><strong><a href="https://facebook.com/myers.n.chan" target="_blank" rel="external">Facebook</a></strong></p>
 ]]></content>
-    </entry>
-    
-    <entry>
-      <title><![CDATA[Contact]]></title>
-      <url>/feeback/index.html</url>
-      <content type="html"><![CDATA[<p>Contact me with<br><strong><a href="mailto:Myers.Chan@outlook.com?subject=FeebackFromBlog" target="_blank" rel="external">E-mail</a></strong>.<br><strong><a href="http://weibo.com/Nomyfan" target="_blank" rel="external">Weibo</a></strong><br><strong><a href="https://twitter.com/Myers__Chan" target="_blank" rel="external">Twitter</a></strong><br><strong><a href="https://facebook.com/myers.n.chan" target="_blank" rel="external">Facebook</a></strong></p>
-]]></content>
-    </entry>
-    
-    <entry>
-      <title><![CDATA[Friends]]></title>
-      <url>/friends/index.html</url>
-      <content type="html"></content>
     </entry>
     
     <entry>

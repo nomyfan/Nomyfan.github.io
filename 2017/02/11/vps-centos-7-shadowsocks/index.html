@@ -83,11 +83,6 @@
         <style id="style_css"></style><script>if(typeof window.lsLoadCSSMaxNums === "undefined")window.lsLoadCSSMaxNums = 0;window.lsLoadCSSMaxNums++;lsloader.load("style_css","/css/style.min.css?MKetZV3cUTfDxvMffaOezg==",function(){if(typeof window.lsLoadCSSNums === "undefined")window.lsLoadCSSNums = 0;window.lsLoadCSSNums++;if(window.lsLoadCSSNums == window.lsLoadCSSMaxNums)document.documentElement.style.display="";}, false)</script>
 
         
-            
-                <style id="prettify_css"></style><script>if(typeof window.lsLoadCSSMaxNums === "undefined")window.lsLoadCSSMaxNums = 0;window.lsLoadCSSMaxNums++;lsloader.load("prettify_css","/css/prettify.min.css?zp8STOU9v89XWFEnN+6YmQ==",function(){if(typeof window.lsLoadCSSNums === "undefined")window.lsLoadCSSNums = 0;window.lsLoadCSSNums++;if(window.lsLoadCSSNums == window.lsLoadCSSMaxNums)document.documentElement.style.display="";}, false)</script>
-                <style id="prettify_theme"></style><script>if(typeof window.lsLoadCSSMaxNums === "undefined")window.lsLoadCSSMaxNums = 0;window.lsLoadCSSMaxNums++;lsloader.load("prettify_theme","/css/prettify/atelier-forest-light.min.css?HdofjyGu7b4PtoyvVcYV4A==",function(){if(typeof window.lsLoadCSSNums === "undefined")window.lsLoadCSSNums = 0;window.lsLoadCSSNums++;if(window.lsLoadCSSNums == window.lsLoadCSSMaxNums)document.documentElement.style.display="";}, false)</script>
-            
-        
 
     
 
@@ -203,7 +198,7 @@
 <!-- Import Font -->
 <!-- Import Roboto -->
 
-    <link href="https://fonts.googleapis.com/css?family=Roboto:300,400,500" rel="stylesheet">
+    <link href="https://fonts.proxy.ustclug.org/css?family=Roboto:300,400,500" rel="stylesheet">
 
 
 <!-- Import Material Icons -->
@@ -246,7 +241,7 @@
 
     
         <meta property="article:published_time" content="Sat Feb 11 2017 22:58:50 GMT+0800">
-        <meta property="article:modified_time" content="Tue Feb 06 2018 21:45:51 GMT+0800">
+        <meta property="article:modified_time" content="Sun Feb 11 2018 17:38:01 GMT+0800">
     
 
     <!-- The Twitter Card protocol -->
@@ -269,7 +264,7 @@
     "mainEntityOfPage": "http://www.nokky.net/2017/02/11/vps-centos-7-shadowsocks/index.html",
     "headline": "VPS-Centos 7搭建配置Shadowsocks科学上网",
     "datePublished": "Sat Feb 11 2017 22:58:50 GMT+0800",
-    "dateModified": "Tue Feb 06 2018 21:45:51 GMT+0800",
+    "dateModified": "Sun Feb 11 2018 17:38:01 GMT+0800",
     "author": {
         "@type": "Person",
         "name": "Myers Chan",
@@ -304,8 +299,6 @@
     
         
             <script async src="https://www.googletagmanager.com/gtag/js?id=UA-112028701-1"></script><script>window.dataLayer = window.dataLayer || [];function gtag(){dataLayer.push(arguments);}gtag('js', new Date());gtag('config', 'UA-112028701-1');</script>
-        
-            <script src="https://cdn.rawgit.com/google/code-prettify/master/loader/run_prettify.js"></script>
         
     
 
@@ -528,20 +521,43 @@
         <p>刚刚入手了一个VPS，拿来练手Linux类系统，最重要的还是顺便自己搭建SS科学上网。我这里的是Centos 7 64位。</p>
 <h2 id="安装"><a href="#安装" class="headerlink" title="安装"></a>安装</h2><p><code># yum install python-setuptools &amp;&amp; easy_install pip</code><br><code># pip install shadowsocks</code><br>这样SS就安装好啦，然后我们要配置一下。</p>
 <h2 id="配置"><a href="#配置" class="headerlink" title="配置"></a>配置</h2><p>新建一个json文件<br><code># vim /etc/shadowsocks.json</code><br>然后写入配置，端口和密码自己自定义。</p>
-<blockquote>
-<p>{<br>   “server”:”0.0.0.0”,<br>   “server_port”:8900,<br>   “local_address”: “127.0.0.1”,<br>   “local_port”:1080,<br>   “password”:”passwd”,<br>   “timeout”:300,<br>   “method”:”aes-256-cfb”,<br>}  </p>
-</blockquote>
+<pre><code class="JSON">{
+    &quot;server&quot;:&quot;0.0.0.0&quot;,
+    &quot;server_port&quot;:8900,
+    &quot;local_address&quot;: &quot;127.0.0.1&quot;,
+    &quot;local_port&quot;:1080,
+    &quot;password&quot;:&quot;passwd&quot;,
+    &quot;timeout&quot;:300,
+    &quot;method&quot;:&quot;aes-256-cfb&quot;,
+}
+</code></pre>
 <p>如果要多用户登陆，那么就把password改成port_password然后加入多个端口和密码，例如：  </p>
-<blockquote>
-<p>{<br>   “server”:”0.0.0.0”,<br>   “local_address”:”127.0.0.1”,<br>   “local_port”:1080,<br>   “port_password”:{<br>        “8900”:”passwd0”,<br>        “8901”:”passwd1”,<br>        “8902”:”passwd2”,<br>        “8903”:”passwd3”,<br>        “8904”:”passwd4”<br>   },<br>   “timeout”:300,<br>   “method”:”aes-256-cfb”,<br>}  </p>
-</blockquote>
+<pre><code class="JSON">{
+    &quot;server&quot;:&quot;0.0.0.0&quot;,
+    &quot;local_address&quot;:&quot;127.0.0.1&quot;,
+    &quot;local_port&quot;:1080,
+    &quot;port_password&quot;:{
+         &quot;8900&quot;:&quot;passwd0&quot;,
+         &quot;8901&quot;:&quot;passwd1&quot;,
+         &quot;8902&quot;:&quot;passwd2&quot;,
+         &quot;8903&quot;:&quot;passwd3&quot;,
+         &quot;8904&quot;:&quot;passwd4&quot;
+    },
+    &quot;timeout&quot;:300,
+    &quot;method&quot;:&quot;aes-256-cfb&quot;,
+&gt;
+</code></pre>
 <p>然后新建一个ss服务<br><code># vim /etc/systemd/system/shadowsocks.service</code><br>内容写入：  </p>
-<blockquote>
-<p>[Unit]<br>Description=Shadowsocks</p>
-<p>[Service]<br>TimeoutStartSec=0<br>ExecStart=/usr/bin/ssserver -c /etc/shadowsocks.json</p>
-<p>[Install]<br>WantedBy=multi-user.target  </p>
-</blockquote>
-<p>然后开启服务，并让服务开机启动<br><code># systemctl enable shadowsocks</code><br><code># systemctl start shadowsocks</code><br>这时候可以检查一下服务是否正确开启<br><code># systemctl status shadowsocks</code><br>如果Active那里显示的是绿色的active(running)则说明服务正确开启了。如图：<br><a href="/img/2017/02/sp170211_224944.png"><img src="/img/2017/02/sp170211_224944.png" alt=""></a></p>
+<pre><code>[Unit]
+Description=Shadowsocks
+
+[Service]
+TimeoutStartSec=0
+ExecStart=/usr/bin/ssserver -c /etc/shadowsocks.json
+
+[Install]
+WantedBy=multi-user.target
+</code></pre><p>然后开启服务，并让服务开机启动<br><code># systemctl enable shadowsocks</code><br><code># systemctl start shadowsocks</code><br>这时候可以检查一下服务是否正确开启<br><code># systemctl status shadowsocks</code><br>如果Active那里显示的是绿色的active(running)则说明服务正确开启了。如图：<br><a href="/img/2017/02/sp170211_224944.png"><img src="/img/2017/02/sp170211_224944.png" alt=""></a></p>
 <p>最后，千万记得防火墙开启刚才配置里写的端口，我的例子里写的只有一个8900，防火墙没开的请自动忽略。<br><code># firewall-cmd --add-port=8900/tcp</code><br>查看端口是否正确开启<br><code># firewall-cmd --query-port=8900/tcp</code><br>返回success则正确开启了，Enjoy it！</p>
 
         
@@ -1158,12 +1174,10 @@ It will not impact the appearance and can give developers a lot of support :)
 
 <!-- Import prettify js  -->
 
-    
-        
-            <script>lsloader.load("prettify_js","/js/prettify.min.js?WN07fivHQSMKWy7BmHBB6w==", true)</script>
-        
-    
 
+    
+        <script>lsloader.load("hanabi","/js/hanabi-browser-bundle.js?Pki5+pzkluqu53g+ouMWpA==", true)</script>
+    
 
 
 <!-- Window Load -->
@@ -1175,13 +1189,10 @@ It will not impact the appearance and can give developers a lot of support :)
     });
 
     
-        
-            $(function() {
-                $('pre').addClass('prettyprint linenums').attr('style', 'overflow:auto;');
-                prettyPrint();
-                })
-        
     
+        
+        
+        HanabiBrowser.start('pre code',true);
     
 </script>
 
