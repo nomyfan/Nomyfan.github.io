@@ -241,7 +241,7 @@
 
     
         <meta property="article:published_time" content="Wed Sep 20 2017 17:32:40 GMT+0800">
-        <meta property="article:modified_time" content="Sun Feb 11 2018 17:31:19 GMT+0800">
+        <meta property="article:modified_time" content="Tue Feb 13 2018 23:30:45 GMT+0800">
     
 
     <!-- The Twitter Card protocol -->
@@ -264,7 +264,7 @@
     "mainEntityOfPage": "http://www.nokky.net/2017/09/20/json-in-dotnet/index.html",
     "headline": "JSON in .NET(C#)",
     "datePublished": "Wed Sep 20 2017 17:32:40 GMT+0800",
-    "dateModified": "Sun Feb 11 2018 17:31:19 GMT+0800",
+    "dateModified": "Tue Feb 13 2018 23:30:45 GMT+0800",
     "author": {
         "@type": "Person",
         "name": "Myers Chan",
@@ -520,7 +520,7 @@
     
         <p>JSON(JavaScript Object Notation) is popularly used nowadays. For JavaScript, it’s easy to convert a object to json. How about C#? How do we get some properties we need from a json typed object? And how do we convert our object into json formatted text? This article aims to solve the problems. You will see it can be convenient to solve the problems<strong><em>.(●’◡’●)</em></strong></p>
 <h1 id="Preparation"><a href="#Preparation" class="headerlink" title="Preparation"></a>Preparation</h1><p>There is one thing we need to do before start. That is installing the a NuGet package named <em><strong>JSON.NET</strong></em>. In Visual Studio, we can search any package and install it easily. Search <em><strong>JSON.NET</strong></em>, then install it to you project.</p>
-<p><img src="/img/2017/09/snipaste_20170920_201049.png" alt="snipaste_20170920_201049"></p>
+<p><a href="/img/2017/09/snipaste_20170920_201049.png"><img src="/img/2017/09/snipaste_20170920_201049.png" alt="snipaste_20170920_201049"></a></p>
 <h1 id="Serialization-and-Deserialization"><a href="#Serialization-and-Deserialization" class="headerlink" title="Serialization and Deserialization"></a>Serialization and Deserialization</h1><p>These operations are suitable for the definitive type we know or define. For example, we now have a class named <strong>Rectangle.</strong></p>
 <pre><code class="CSharp">class Rectangle
 {
@@ -543,7 +543,7 @@ list.Add(new Rectangle(45, 23));
 string json = JsonConvert.SerializeObject(list);
 </code></pre>
 <p>If we print variable <code>json</code> to the console window, we can see the result as this.</p>
-<p><img src="/img/2017/09/snipaste_20170920_204618.png" alt="snipaste_20170920_204618"></p>
+<p><a href="/img/2017/09/snipaste_20170920_204618.png"><img src="/img/2017/09/snipaste_20170920_204618.png" alt="snipaste_20170920_204618"></a></p>
 <p>How about deserialize object(s) from a json formatted text? Much easy! Only one line code!</p>
 <pre><code class="CSharp">var objs = JsonConvert.DeserializeObject&amp;lt;List&amp;lt;Rectangle&amp;gt;&amp;gt;(json);
 </code></pre>
@@ -555,7 +555,7 @@ string json = JsonConvert.SerializeObject(list);
 }
 </code></pre>
 <p>We will get the result.</p>
-<p><img src="/img/2017/09/snipaste_20170920_205856.png" alt="snipaste_20170920_205856"></p>
+<p><a href="/img/2017/09/snipaste_20170920_205856.png"><img src="/img/2017/09/snipaste_20170920_205856.png" alt="snipaste_20170920_205856"></a></p>
 <p><strong>Correct! Congratulation!</strong></p>
 <h1 id="Pick-Properties-from-JSON"><a href="#Pick-Properties-from-JSON" class="headerlink" title="Pick Properties from JSON"></a>Pick Properties from JSON</h1><p>Consider one situation, we get some JSON typed text from any way like API. One problem we will face is that we don’t have a exact type for that. Thus, we can’t deserialize it to a exact typed object. Thanks to JSON.NET this powerful library, we can continue to work in such situation without too much code. Let’s figure out!</p>
 <p>Firstly, get json formatted text via API.</p>
@@ -570,7 +570,7 @@ using (StreamReader sr = new StreamReader(response.GetResponseStream()))
 }
 </code></pre>
 <p>If we print variable <code>json</code> out, we will see this.</p>
-<p><img src="/img/2017/09/snipaste_20170920_210725.png" alt="snipaste_20170920_210725"></p>
+<p><a href="/img/2017/09/snipaste_20170920_210725.png"><img src="/img/2017/09/snipaste_20170920_210725.png" alt="snipaste_20170920_210725"></a></p>
 <p>If we want to get wind speed, we can write this code.</p>
 <pre><code class="CSharp">JToken token = JObject.Parse(json);
 string speed = (string)token.SelectToken(&quot;wind&quot;).SelectToken(&quot;speed&quot;);
@@ -797,7 +797,7 @@ string speed = (string)token.SelectToken(&quot;wind&quot;).SelectToken(&quot;spe
             </a>
             <ul class="dropdown-menu">
             <li>
-                <a class="sidebar_archives-link" href="/archives/2018/02/">February 2018<span class="sidebar_archives-count">1</span></a></li><li><a class="sidebar_archives-link" href="/archives/2018/01/">January 2018<span class="sidebar_archives-count">3</span></a></li><li><a class="sidebar_archives-link" href="/archives/2017/12/">December 2017<span class="sidebar_archives-count">1</span></a></li><li><a class="sidebar_archives-link" href="/archives/2017/09/">September 2017<span class="sidebar_archives-count">1</span></a></li><li><a class="sidebar_archives-link" href="/archives/2017/07/">July 2017<span class="sidebar_archives-count">1</span></a></li><li><a class="sidebar_archives-link" href="/archives/2017/06/">June 2017<span class="sidebar_archives-count">1</span></a></li><li><a class="sidebar_archives-link" href="/archives/2017/04/">April 2017<span class="sidebar_archives-count">1</span></a></li><li><a class="sidebar_archives-link" href="/archives/2017/02/">February 2017<span class="sidebar_archives-count">6</span></a></li><li><a class="sidebar_archives-link" href="/archives/2016/12/">December 2016<span class="sidebar_archives-count">2</span></a>
+                <a class="sidebar_archives-link" href="/archives/2018/02/">February 2018<span class="sidebar_archives-count">1</span></a></li><li><a class="sidebar_archives-link" href="/archives/2018/01/">January 2018<span class="sidebar_archives-count">3</span></a></li><li><a class="sidebar_archives-link" href="/archives/2017/12/">December 2017<span class="sidebar_archives-count">1</span></a></li><li><a class="sidebar_archives-link" href="/archives/2017/09/">September 2017<span class="sidebar_archives-count">1</span></a></li><li><a class="sidebar_archives-link" href="/archives/2017/07/">July 2017<span class="sidebar_archives-count">1</span></a></li><li><a class="sidebar_archives-link" href="/archives/2017/06/">June 2017<span class="sidebar_archives-count">1</span></a></li><li><a class="sidebar_archives-link" href="/archives/2017/04/">April 2017<span class="sidebar_archives-count">1</span></a></li><li><a class="sidebar_archives-link" href="/archives/2017/02/">February 2017<span class="sidebar_archives-count">6</span></a></li><li><a class="sidebar_archives-link" href="/archives/2016/12/">December 2016<span class="sidebar_archives-count">1</span></a>
             </ul>
         </li>
         
@@ -815,7 +815,7 @@ string speed = (string)token.SelectToken(&quot;wind&quot;).SelectToken(&quot;spe
             </a>
             <ul class="dropdown-menu">
                 <li>
-                <a class="sidebar_archives-link" href="/categories/Arduino/">Arduino<span class="sidebar_archives-count">1</span></a></li><li><a class="sidebar_archives-link" href="/categories/Linux/">Linux<span class="sidebar_archives-count">4</span></a></li><li><a class="sidebar_archives-link" href="/categories/Programming/">Programming<span class="sidebar_archives-count">8</span></a></li><li><a class="sidebar_archives-link" href="/categories/Talking/">Talking<span class="sidebar_archives-count">1</span></a></li><li><a class="sidebar_archives-link" href="/categories/Windows/">Windows<span class="sidebar_archives-count">3</span></a>
+                <a class="sidebar_archives-link" href="/categories/Arduino/">Arduino<span class="sidebar_archives-count">1</span></a></li><li><a class="sidebar_archives-link" href="/categories/Linux/">Linux<span class="sidebar_archives-count">4</span></a></li><li><a class="sidebar_archives-link" href="/categories/Programming/">Programming<span class="sidebar_archives-count">8</span></a></li><li><a class="sidebar_archives-link" href="/categories/Windows/">Windows<span class="sidebar_archives-count">3</span></a>
             </ul>
         </li>
         
@@ -881,7 +881,7 @@ string speed = (string)token.SelectToken(&quot;wind&quot;).SelectToken(&quot;spe
         <li>
             <a href="/archives">
                 Number of articles
-                <span class="sidebar-badge">17</span>
+                <span class="sidebar-badge">16</span>
             </a>
         </li>
         
