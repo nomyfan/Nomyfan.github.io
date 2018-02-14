@@ -241,7 +241,7 @@
 
     
         <meta property="article:published_time" content="Wed Sep 20 2017 17:32:40 GMT+0800">
-        <meta property="article:modified_time" content="Tue Feb 13 2018 23:30:45 GMT+0800">
+        <meta property="article:modified_time" content="Wed Feb 14 2018 15:48:16 GMT+0800">
     
 
     <!-- The Twitter Card protocol -->
@@ -264,7 +264,7 @@
     "mainEntityOfPage": "http://www.nokky.net/2017/09/20/json-in-dotnet/index.html",
     "headline": "JSON in .NET(C#)",
     "datePublished": "Wed Sep 20 2017 17:32:40 GMT+0800",
-    "dateModified": "Tue Feb 13 2018 23:30:45 GMT+0800",
+    "dateModified": "Wed Feb 14 2018 15:48:16 GMT+0800",
     "author": {
         "@type": "Person",
         "name": "Myers Chan",
@@ -545,7 +545,7 @@ string json = JsonConvert.SerializeObject(list);
 <p>If we print variable <code>json</code> to the console window, we can see the result as this.</p>
 <p><a href="/img/2017/09/snipaste_20170920_204618.png"><img src="/img/2017/09/snipaste_20170920_204618.png" alt="snipaste_20170920_204618"></a></p>
 <p>How about deserialize object(s) from a json formatted text? Much easy! Only one line code!</p>
-<pre><code class="CSharp">var objs = JsonConvert.DeserializeObject&amp;lt;List&amp;lt;Rectangle&amp;gt;&amp;gt;(json);
+<pre><code class="CSharp">var objs = JsonConvert.DeserializeObject&lt;List&lt;Rectangle&gt;&gt;(json);
 </code></pre>
 <p>You may doubt whether it’s correct. Well, let’s verify that. Write some code as follow.</p>
 <pre><code class="CSharp">for (int i = 0; i &amp;lt; objs.Count; i++)
