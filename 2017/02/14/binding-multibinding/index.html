@@ -241,7 +241,7 @@
 
     
         <meta property="article:published_time" content="Tue Feb 14 2017 21:24:21 GMT+0800">
-        <meta property="article:modified_time" content="Tue Feb 13 2018 23:39:10 GMT+0800">
+        <meta property="article:modified_time" content="Sat Feb 17 2018 16:07:45 GMT+0800">
     
 
     <!-- The Twitter Card protocol -->
@@ -264,7 +264,7 @@
     "mainEntityOfPage": "http://www.nokky.net/2017/02/14/binding-multibinding/index.html",
     "headline": "Binding[3]=MultiBinding",
     "datePublished": "Tue Feb 14 2017 21:24:21 GMT+0800",
-    "dateModified": "Tue Feb 13 2018 23:39:10 GMT+0800",
+    "dateModified": "Sat Feb 17 2018 16:07:45 GMT+0800",
     "author": {
         "@type": "Person",
         "name": "Myers Chan",
@@ -520,7 +520,7 @@
     
         <p>有时候，我们会遇到这样的需求，UI的要显示的信息由多个数据源来决定，比如注册界面会验证两次输入的密码是否一致来决定是否可以注册，这时候就要用到MultiBinding了。因为Binding和MultiBinding的基类都是BindingBase，所以，能用Binding的场合都能用MultiBinding。MultiBinding通过一个Bindings的属性（类型为Collection<bindingbase>）把多个Binding对象集合起来，其中每个Binding对象可以有自己的数据校验和数据转换机制。</bindingbase></p>
 <h2 id="实现"><a href="#实现" class="headerlink" title="实现"></a>实现</h2><p>现在我们就以注册界面为例，需求是，用户名和密码都不会为空，且两次输入的密码要一致，这时候确认信息的Button可用。XAML代码如下，加入了一些部分美化的代码，默认的太难看了受不了- -，主要的就是三个TextBox。</p>
-<pre><code class="XML">    &lt;StackPanel HorizontalAlignment=&quot;Center&quot; VerticalAlignment=&quot;Center&quot;&gt;
+<pre><code class="XML">&lt;StackPanel HorizontalAlignment=&quot;Center&quot; VerticalAlignment=&quot;Center&quot;&gt;
     &lt;TextBlock Text=&quot;Sign up&quot; FontSize=&quot;30&quot; Foreground=&quot;#00a2e8&quot; Margin=&quot;3&quot;/&gt;
     &lt;TextBlock Text=&quot;User&quot; FontSize=&quot;13&quot; Margin=&quot;3&quot;/&gt;
     &lt;TextBox x:Name=&quot;textBox&quot; Height=&quot;23&quot; Width=&quot;150&quot; Margin=&quot;3&quot;/&gt;
@@ -580,8 +580,8 @@
 {
     public object Convert(object[] values, Type targetType, object parameter, CultureInfo culture)
     {
-        if (!values.Cast&amp;lt;string&amp;gt;().Any(text =&amp;gt; string.IsNullOrWhiteSpace(text))
-            &amp;amp;&amp;amp; values[1].ToString() == values[2].ToString())
+        if (!values.Cast&lt;string&gt;().Any(text =&gt; string.IsNullOrWhiteSpace(text)) 
+            &amp;&amp; values[1].ToString() == values[2].ToString())
         {
             return true;
         }

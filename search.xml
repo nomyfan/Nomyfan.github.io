@@ -689,7 +689,7 @@ string speed = (string)token.SelectToken(&quot;wind&quot;).SelectToken(&quot;spe
       <url>/2017/02/14/binding-multibinding/</url>
       <content type="html"><![CDATA[<p>有时候，我们会遇到这样的需求，UI的要显示的信息由多个数据源来决定，比如注册界面会验证两次输入的密码是否一致来决定是否可以注册，这时候就要用到MultiBinding了。因为Binding和MultiBinding的基类都是BindingBase，所以，能用Binding的场合都能用MultiBinding。MultiBinding通过一个Bindings的属性（类型为Collection<bindingbase>）把多个Binding对象集合起来，其中每个Binding对象可以有自己的数据校验和数据转换机制。</bindingbase></p>
 <h2 id="实现"><a href="#实现" class="headerlink" title="实现"></a>实现</h2><p>现在我们就以注册界面为例，需求是，用户名和密码都不会为空，且两次输入的密码要一致，这时候确认信息的Button可用。XAML代码如下，加入了一些部分美化的代码，默认的太难看了受不了- -，主要的就是三个TextBox。</p>
-<pre><code class="XML">    &lt;StackPanel HorizontalAlignment=&quot;Center&quot; VerticalAlignment=&quot;Center&quot;&gt;
+<pre><code class="XML">&lt;StackPanel HorizontalAlignment=&quot;Center&quot; VerticalAlignment=&quot;Center&quot;&gt;
     &lt;TextBlock Text=&quot;Sign up&quot; FontSize=&quot;30&quot; Foreground=&quot;#00a2e8&quot; Margin=&quot;3&quot;/&gt;
     &lt;TextBlock Text=&quot;User&quot; FontSize=&quot;13&quot; Margin=&quot;3&quot;/&gt;
     &lt;TextBox x:Name=&quot;textBox&quot; Height=&quot;23&quot; Width=&quot;150&quot; Margin=&quot;3&quot;/&gt;
@@ -749,8 +749,8 @@ string speed = (string)token.SelectToken(&quot;wind&quot;).SelectToken(&quot;spe
 {
     public object Convert(object[] values, Type targetType, object parameter, CultureInfo culture)
     {
-        if (!values.Cast&amp;lt;string&amp;gt;().Any(text =&amp;gt; string.IsNullOrWhiteSpace(text))
-            &amp;amp;&amp;amp; values[1].ToString() == values[2].ToString())
+        if (!values.Cast&lt;string&gt;().Any(text =&gt; string.IsNullOrWhiteSpace(text)) 
+            &amp;&amp; values[1].ToString() == values[2].ToString())
         {
             return true;
         }
@@ -1055,7 +1055,7 @@ WantedBy=multi-user.target
         double data;
         if (double.TryParse(value.ToString(), out data))
         {
-            if (data &amp;gt;= 0 &amp;amp;&amp;amp; data &amp;lt;= 100)
+            if (data &gt;= 0 &amp;&amp; data &lt;= 100)
             {
                 return new ValidationResult(true, null);
             }
@@ -1090,9 +1090,9 @@ WantedBy=multi-user.target
         binding.NotifyOnValidationError = true;
         this.textBox.SetBinding(TextBox.TextProperty, binding);
         this.textBox.AddHandler(Validation.ErrorEvent, new RoutedEventHandler(
-            (sender, e) =&amp;gt;
+            (sender, e) =&gt;;
             {
-                if (Validation.GetErrors(this.textBox).Count &amp;gt; 0)
+                if (Validation.GetErrors(this.textBox).Count &gt; 0)
                 {
                     this.textBox.ToolTip = Validation.GetErrors(this.textBox)[0].ErrorContent.ToString();
                     ToolTipService.SetIsEnabled(this.textBox, true);
@@ -1136,7 +1136,7 @@ WantedBy=multi-user.target
     {
         double x;
         double y;
-        if (double.TryParse(arg1, out x) &amp;amp;&amp;amp; double.TryParse(arg2, out y))
+        if (double.TryParse(arg1, out x) &amp;&amp; double.TryParse(arg2, out y))
         {
             return (x + y).ToString();
         }
@@ -1248,8 +1248,8 @@ WantedBy=multi-user.target
   
     
     <entry>
-      <title><![CDATA[Categories]]></title>
-      <url>/categories/index.html</url>
+      <title><![CDATA[Talking]]></title>
+      <url>/Talking/index.html</url>
       <content type="html"></content>
     </entry>
     
@@ -1269,21 +1269,14 @@ WantedBy=multi-user.target
     </entry>
     
     <entry>
-      <title><![CDATA[Talking]]></title>
-      <url>/Talking/index.html</url>
+      <title><![CDATA[Articles]]></title>
+      <url>/articles/index.html</url>
       <content type="html"></content>
     </entry>
     
     <entry>
-      <title><![CDATA[Contact]]></title>
-      <url>/contact/index.html</url>
-      <content type="html"><![CDATA[<p>Contact me with<br><strong><a href="mailto:Myers.Chan@outlook.com?subject=FeebackFromBlog" target="_blank" rel="external">E-mail</a></strong>.<br><strong><a href="http://weibo.com/Nomyfan" target="_blank" rel="external">Weibo</a></strong><br><strong><a href="https://twitter.com/Myers__Chan" target="_blank" rel="external">Twitter</a></strong><br><strong><a href="https://facebook.com/myers.n.chan" target="_blank" rel="external">Facebook</a></strong></p>
-]]></content>
-    </entry>
-    
-    <entry>
-      <title><![CDATA[Articles]]></title>
-      <url>/articles/index.html</url>
+      <title><![CDATA[Categories]]></title>
+      <url>/categories/index.html</url>
       <content type="html"></content>
     </entry>
     
@@ -1295,14 +1288,20 @@ WantedBy=multi-user.target
     </entry>
     
     <entry>
+      <title><![CDATA[Friends]]></title>
+      <url>/friends/index.html</url>
+      <content type="html"></content>
+    </entry>
+    
+    <entry>
       <title><![CDATA[Photograph]]></title>
       <url>/photograph/index.html</url>
       <content type="html"></content>
     </entry>
     
     <entry>
-      <title><![CDATA[Friends]]></title>
-      <url>/friends/index.html</url>
+      <title><![CDATA[Timeline]]></title>
+      <url>/timeline/index.html</url>
       <content type="html"></content>
     </entry>
     
@@ -1313,9 +1312,10 @@ WantedBy=multi-user.target
     </entry>
     
     <entry>
-      <title><![CDATA[Timeline]]></title>
-      <url>/timeline/index.html</url>
-      <content type="html"></content>
+      <title><![CDATA[Contact]]></title>
+      <url>/contact/index.html</url>
+      <content type="html"><![CDATA[<p>Contact me with<br><strong><a href="mailto:Myers.Chan@outlook.com?subject=FeebackFromBlog" target="_blank" rel="external">E-mail</a></strong>.<br><strong><a href="http://weibo.com/Nomyfan" target="_blank" rel="external">Weibo</a></strong><br><strong><a href="https://twitter.com/Myers__Chan" target="_blank" rel="external">Twitter</a></strong><br><strong><a href="https://facebook.com/myers.n.chan" target="_blank" rel="external">Facebook</a></strong></p>
+]]></content>
     </entry>
     
   
