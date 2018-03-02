@@ -148,35 +148,6 @@ int main()
     </entry>
     
     <entry>
-      <title><![CDATA[ArchLinux安装gnome桌面]]></title>
-      <url>/2018/01/31/archlinux-gnome-install/</url>
-      <content type="html"><![CDATA[<h2 id="安装显卡驱动"><a href="#安装显卡驱动" class="headerlink" title="安装显卡驱动"></a>安装显卡驱动</h2><p>在<a href="https://wiki.archlinux.org/index.php/xorg#Driver_installation" target="_blank" rel="external">这里</a>可以找到你的显卡对应的包。我的是Intel的集显，所以我执行这条命令<br><code>$ sudo pacman -S xf86-video-intel</code></p>
-<h2 id="安装X"><a href="#安装X" class="headerlink" title="安装X"></a>安装X</h2><p><code>$ sudo pacman -S xorg xorg-xinit xterm xorg-xeyes xorg-xclock</code></p>
-<h2 id="安装gnome桌面"><a href="#安装gnome桌面" class="headerlink" title="安装gnome桌面"></a>安装gnome桌面</h2><p>其他桌面请活用搜索引擎。<br><code>$ sudo pacman -S gnome</code><br>因为桌面是用NetworkManager，因此要让它启动并开启自启<br><code>$ sudo systemctl enable NetworkManager</code><br><code>$ sudo systemctl start NetworkManager</code></p>
-<h2 id="安装工具栏网络图标"><a href="#安装工具栏网络图标" class="headerlink" title="安装工具栏网络图标"></a>安装工具栏网络图标</h2><p><code>$ sudo pacman -S network-manager-applet</code><br>之后让gdm开启自动然后启动它，这时候就可以看到桌面了<br><code>$ sudo systemctl enable gdm</code><br><code>$ sudo systemctl start gdm</code></p>
-<p>桌面安装完了之后可以进行一些<a href="">软件安装(不写了就这样发布吧=。=)</a></p>
-]]></content>
-      
-        <categories>
-            
-            <category> Linux </category>
-            
-        </categories>
-        
-        
-        <tags>
-            
-            <tag> ArchLinux </tag>
-            
-            <tag> Gnome </tag>
-            
-            <tag> Linux </tag>
-            
-        </tags>
-        
-    </entry>
-    
-    <entry>
       <title><![CDATA[安装ArchLinux系统]]></title>
       <url>/2018/01/31/archlinux-install/</url>
       <content type="html"><![CDATA[<p>本来不想写这篇文章的，但是想到我花了挺多的时间在Arch上导致没做到其他什么事情，不写的话觉得对不起自己的产出，也同时方便自己日后重装。<br>本文章主要是针对UEFI启动的，MBR的话有稍许不同，可参考这篇<a href="http://www.viseator.com/2017/05/17/arch_install/" target="_blank" rel="external">文章</a>。</p>
@@ -269,6 +240,11 @@ fi
 </blockquote>
 <p>然后运行<br><code># pacman -Sy yaourt fakeroot</code></p>
 <h2 id="重启"><a href="#重启" class="headerlink" title="重启"></a>重启</h2><p><code># exit</code><br><code># reboot</code><br>ALL DONE！重启后可以用新建的用户登陆，然后联网进行后序的<a href="../archlinux-gnome-install/">桌面安装</a>。</p>
+<h2 id="安装桌面"><a href="#安装桌面" class="headerlink" title="安装桌面"></a>安装桌面</h2><h3 id="安装显卡驱动"><a href="#安装显卡驱动" class="headerlink" title="安装显卡驱动"></a>安装显卡驱动</h3><p>在<a href="https://wiki.archlinux.org/index.php/xorg#Driver_installation" target="_blank" rel="external">这里</a>可以找到你的显卡对应的包。我的是Intel的集显，所以我执行这条命令<br><code>$ sudo pacman -S xf86-video-intel</code></p>
+<h3 id="安装X"><a href="#安装X" class="headerlink" title="安装X"></a>安装X</h3><p><code>$ sudo pacman -S xorg xorg-xinit xterm xorg-xeyes xorg-xclock</code></p>
+<h3 id="安装gnome桌面"><a href="#安装gnome桌面" class="headerlink" title="安装gnome桌面"></a>安装gnome桌面</h3><p>其他桌面请活用搜索引擎。<br><code>$ sudo pacman -S gnome</code><br>因为桌面是用NetworkManager，因此要让它启动并开启自启<br><code>$ sudo systemctl enable NetworkManager</code><br><code>$ sudo systemctl start NetworkManager</code></p>
+<h3 id="安装工具栏网络图标"><a href="#安装工具栏网络图标" class="headerlink" title="安装工具栏网络图标"></a>安装工具栏网络图标</h3><p><code>$ sudo pacman -S network-manager-applet</code><br>之后让gdm开启自动然后启动它，这时候就可以看到桌面了<br><code>$ sudo systemctl enable gdm</code><br><code>$ sudo systemctl start gdm</code></p>
+<p>桌面安装完了之后可以进行一些<a href="">软件安装(不写了就这样发布吧=。=)</a></p>
 ]]></content>
       
         <categories>
@@ -361,11 +337,11 @@ fi
         
         <tags>
             
+            <tag> .NET </tag>
+            
             <tag> 爬虫 </tag>
             
             <tag> C# </tag>
-            
-            <tag> .NET </tag>
             
         </tags>
         
@@ -550,9 +526,9 @@ string speed = (string)token.SelectToken(&quot;wind&quot;).SelectToken(&quot;spe
         
         <tags>
             
-            <tag> C# </tag>
-            
             <tag> .NET </tag>
+            
+            <tag> C# </tag>
             
             <tag> JSON </tag>
             
@@ -1248,56 +1224,6 @@ WantedBy=multi-user.target
   
     
     <entry>
-      <title><![CDATA[Talking]]></title>
-      <url>/Talking/index.html</url>
-      <content type="html"></content>
-    </entry>
-    
-    <entry>
-      <title><![CDATA[Articles]]></title>
-      <url>/articles/index.html</url>
-      <content type="html"></content>
-    </entry>
-    
-    <entry>
-      <title><![CDATA[Categories]]></title>
-      <url>/categories/index.html</url>
-      <content type="html"></content>
-    </entry>
-    
-    <entry>
-      <title><![CDATA[Friends]]></title>
-      <url>/friends/index.html</url>
-      <content type="html"></content>
-    </entry>
-    
-    <entry>
-      <title><![CDATA[Contact]]></title>
-      <url>/contact/index.html</url>
-      <content type="html"><![CDATA[<p>Contact me with<br><strong><a href="mailto:Myers.Chan@outlook.com?subject=FeebackFromBlog" target="_blank" rel="external">E-mail</a></strong>.<br><strong><a href="http://weibo.com/Nomyfan" target="_blank" rel="external">Weibo</a></strong><br><strong><a href="https://twitter.com/Myers__Chan" target="_blank" rel="external">Twitter</a></strong><br><strong><a href="https://facebook.com/myers.n.chan" target="_blank" rel="external">Facebook</a></strong></p>
-]]></content>
-    </entry>
-    
-    <entry>
-      <title><![CDATA[Contact]]></title>
-      <url>/feeback/index.html</url>
-      <content type="html"><![CDATA[<p>Contact me with<br><strong><a href="mailto:Myers.Chan@outlook.com?subject=FeebackFromBlog" target="_blank" rel="external">E-mail</a></strong>.<br><strong><a href="http://weibo.com/Nomyfan" target="_blank" rel="external">Weibo</a></strong><br><strong><a href="https://twitter.com/Myers__Chan" target="_blank" rel="external">Twitter</a></strong><br><strong><a href="https://facebook.com/myers.n.chan" target="_blank" rel="external">Facebook</a></strong></p>
-]]></content>
-    </entry>
-    
-    <entry>
-      <title><![CDATA[Tags]]></title>
-      <url>/tags/index.html</url>
-      <content type="html"></content>
-    </entry>
-    
-    <entry>
-      <title><![CDATA[Timeline]]></title>
-      <url>/timeline/index.html</url>
-      <content type="html"></content>
-    </entry>
-    
-    <entry>
       <title><![CDATA[About Me]]></title>
       <url>/about/index.html</url>
       <content type="html"><![CDATA[<p><strong>别人都叫我糯米，小糯米…</strong></p>
@@ -1313,8 +1239,58 @@ WantedBy=multi-user.target
     </entry>
     
     <entry>
+      <title><![CDATA[Talking]]></title>
+      <url>/Talking/index.html</url>
+      <content type="html"></content>
+    </entry>
+    
+    <entry>
+      <title><![CDATA[Articles]]></title>
+      <url>/articles/index.html</url>
+      <content type="html"></content>
+    </entry>
+    
+    <entry>
+      <title><![CDATA[Contact]]></title>
+      <url>/feeback/index.html</url>
+      <content type="html"><![CDATA[<p>Contact me with<br><strong><a href="mailto:Myers.Chan@outlook.com?subject=FeebackFromBlog" target="_blank" rel="external">E-mail</a></strong>.<br><strong><a href="http://weibo.com/Nomyfan" target="_blank" rel="external">Weibo</a></strong><br><strong><a href="https://twitter.com/Myers__Chan" target="_blank" rel="external">Twitter</a></strong><br><strong><a href="https://facebook.com/myers.n.chan" target="_blank" rel="external">Facebook</a></strong></p>
+]]></content>
+    </entry>
+    
+    <entry>
+      <title><![CDATA[Categories]]></title>
+      <url>/categories/index.html</url>
+      <content type="html"></content>
+    </entry>
+    
+    <entry>
       <title><![CDATA[Photograph]]></title>
       <url>/photograph/index.html</url>
+      <content type="html"></content>
+    </entry>
+    
+    <entry>
+      <title><![CDATA[Contact]]></title>
+      <url>/contact/index.html</url>
+      <content type="html"><![CDATA[<p>Contact me with<br><strong><a href="mailto:Myers.Chan@outlook.com?subject=FeebackFromBlog" target="_blank" rel="external">E-mail</a></strong>.<br><strong><a href="http://weibo.com/Nomyfan" target="_blank" rel="external">Weibo</a></strong><br><strong><a href="https://twitter.com/Myers__Chan" target="_blank" rel="external">Twitter</a></strong><br><strong><a href="https://facebook.com/myers.n.chan" target="_blank" rel="external">Facebook</a></strong></p>
+]]></content>
+    </entry>
+    
+    <entry>
+      <title><![CDATA[Friends]]></title>
+      <url>/friends/index.html</url>
+      <content type="html"></content>
+    </entry>
+    
+    <entry>
+      <title><![CDATA[Tags]]></title>
+      <url>/tags/index.html</url>
+      <content type="html"></content>
+    </entry>
+    
+    <entry>
+      <title><![CDATA[Timeline]]></title>
+      <url>/timeline/index.html</url>
       <content type="html"></content>
     </entry>
     
