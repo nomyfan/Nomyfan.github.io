@@ -56,7 +56,7 @@
 
     <meta name="format-detection" content="telephone=no"/>
     <meta name="description" itemprop="description" content="Nomyfan&#39;s person blog">
-    <meta name="keywords" content="Technology,Programming,Microsoft,.NET,.NET,C#,JSON">
+    <meta name="keywords" content="Technology,Programming,Microsoft,.NET,C#,.NET,JSON">
     <meta name="theme-color" content="#0097A7">
 
     <!-- Disable Fucking Bloody Baidu Tranformation -->
@@ -237,7 +237,7 @@
     <meta property="og:title" content="JSON in .NET(C#) | IConnectable&lt;World&gt;">
     <meta property="og:image" content="/img/favicon.png">
     <meta property="og:description" content="Nomyfan&#39;s person blog">
-    <meta property="og:article:tag" content=".NET"> <meta property="og:article:tag" content="C#"> <meta property="og:article:tag" content="JSON"> 
+    <meta property="og:article:tag" content="C#"> <meta property="og:article:tag" content=".NET"> <meta property="og:article:tag" content="JSON"> 
 
     
         <meta property="article:published_time" content="Wed Sep 20 2017 17:32:40 GMT+0800">
@@ -282,7 +282,7 @@
             "url": "/img/favicon.png"
         }
     },
-    "keywords": ",.NET,C#,JSONTechnology,Programming,Microsoft,.NET",
+    "keywords": ",C#,.NET,JSONTechnology,Programming,Microsoft,.NET",
     "description": "Nomyfan&#39;s person blog",
 }
 </script>
@@ -608,8 +608,8 @@ string speed = (string)token.SelectToken(&quot;wind&quot;).SelectToken(&quot;spe
     var guest_info = 'nick,mail,link'.split(',').filter(function(item){
         return GUEST_INFO.indexOf(item) > -1
     });
-    var notify = 'false' == true;
-    var verify = 'false' == true;
+    var notify = 'true' == true;
+    var verify = 'true' == true;
     new Valine({
         el: '.vcomment',
         notify: notify,
