@@ -45,7 +45,7 @@
     
     <title>
         
-            记一次C#爬虫经历 | 
+            WPF之Command | 
         
         IConnectable&lt;World&gt;
     </title>
@@ -56,7 +56,7 @@
 
     <meta name="format-detection" content="telephone=no"/>
     <meta name="description" itemprop="description" content="Nomyfan&#39;s person blog">
-    <meta name="keywords" content="Technology,Programming,Microsoft,.NET,C#,爬虫,.NET">
+    <meta name="keywords" content="Technology,Programming,Microsoft,.NET,WPF,C#">
     <meta name="theme-color" content="#0097A7">
 
     <!-- Disable Fucking Bloody Baidu Tranformation -->
@@ -217,7 +217,7 @@
     <!-- WebAPP Icons -->
     <meta name="mobile-web-app-capable" content="yes">
     <meta name="application-name" content="IConnectable&lt;World&gt;">
-    <meta name="msapplication-starturl" content="http://blog.nokky.net/2018/01/06/crawler/">
+    <meta name="msapplication-starturl" content="http://blog.nokky.net/2018/03/10/wpf-command/">
     <meta name="msapplication-navbutton-color" content="#0097A7">
     <meta name="apple-mobile-web-app-capable" content="yes">
     <meta name="apple-mobile-web-app-title" content="IConnectable&lt;World&gt;">
@@ -232,16 +232,16 @@
     
 
     <!-- The Open Graph protocol -->
-    <meta property="og:url" content="http://blog.nokky.net/2018/01/06/crawler/">
+    <meta property="og:url" content="http://blog.nokky.net/2018/03/10/wpf-command/">
     <meta property="og:type" content="blog">
-    <meta property="og:title" content="记一次C#爬虫经历 | IConnectable&lt;World&gt;">
+    <meta property="og:title" content="WPF之Command | IConnectable&lt;World&gt;">
     <meta property="og:image" content="/img/favicon.png">
     <meta property="og:description" content="Nomyfan&#39;s person blog">
-    <meta property="og:article:tag" content="C#"> <meta property="og:article:tag" content="爬虫"> <meta property="og:article:tag" content=".NET"> 
+    <meta property="og:article:tag" content="WPF"> <meta property="og:article:tag" content="C#"> 
 
     
-        <meta property="article:published_time" content="Sat Jan 06 2018 20:38:34 GMT+0800">
-        <meta property="article:modified_time" content="Mon Feb 19 2018 20:13:34 GMT+0800">
+        <meta property="article:published_time" content="Sat Mar 10 2018 14:44:01 GMT+0800">
+        <meta property="article:modified_time" content="Sat Mar 10 2018 17:22:19 GMT+0800">
     
 
     <!-- The Twitter Card protocol -->
@@ -249,7 +249,7 @@
 
     <!-- Add canonical link for SEO -->
     
-        <link rel="canonical" href="http://blog.nokky.net/2018/01/06/crawler/index.html" />
+        <link rel="canonical" href="http://blog.nokky.net/2018/03/10/wpf-command/index.html" />
     
 
     <!-- Structured-data for SEO -->
@@ -261,10 +261,10 @@
 {
     "@context": "https://schema.org",
     "@type": "BlogPosting",
-    "mainEntityOfPage": "http://blog.nokky.net/2018/01/06/crawler/index.html",
-    "headline": "记一次C#爬虫经历",
-    "datePublished": "Sat Jan 06 2018 20:38:34 GMT+0800",
-    "dateModified": "Mon Feb 19 2018 20:13:34 GMT+0800",
+    "mainEntityOfPage": "http://blog.nokky.net/2018/03/10/wpf-command/index.html",
+    "headline": "WPF之Command",
+    "datePublished": "Sat Mar 10 2018 14:44:01 GMT+0800",
+    "dateModified": "Sat Mar 10 2018 17:22:19 GMT+0800",
     "author": {
         "@type": "Person",
         "name": "Myers Chan",
@@ -282,7 +282,7 @@
             "url": "/img/favicon.png"
         }
     },
-    "keywords": ",C#,爬虫,.NETTechnology,Programming,Microsoft,.NET",
+    "keywords": ",WPF,C#Technology,Programming,Microsoft,.NET",
     "description": "Nomyfan&#39;s person blog",
 }
 </script>
@@ -352,7 +352,7 @@
     </button>
 
     <ul class="post-toc-wrap mdl-menu mdl-menu--bottom-left mdl-js-menu mdl-js-ripple-effect" for="post-toc-trigger-btn" style="max-height:80vh; overflow-y:scroll;">
-        <ol class="post-toc"><li class="post-toc-item post-toc-level-1"><a class="post-toc-link" href="#准备工作"><span class="post-toc-number">1.</span> <span class="post-toc-text">准备工作</span></a></li><li class="post-toc-item post-toc-level-1"><a class="post-toc-link" href="#敲代码"><span class="post-toc-number">2.</span> <span class="post-toc-text">敲代码</span></a><ol class="post-toc-child"><li class="post-toc-item post-toc-level-2"><a class="post-toc-link" href="#文件读取"><span class="post-toc-number">2.1.</span> <span class="post-toc-text">文件读取</span></a></li><li class="post-toc-item post-toc-level-2"><a class="post-toc-link" href="#爬图"><span class="post-toc-number">2.2.</span> <span class="post-toc-text">爬图</span></a></li><li class="post-toc-item post-toc-level-2"><a class="post-toc-link" href="#执行"><span class="post-toc-number">2.3.</span> <span class="post-toc-text">执行</span></a></li></ol></li><li class="post-toc-item post-toc-level-1"><a class="post-toc-link" href="#运行结果"><span class="post-toc-number">3.</span> <span class="post-toc-text">运行结果</span></a></li></ol>
+        <ol class="post-toc"><li class="post-toc-item post-toc-level-2"><a class="post-toc-link" href="#基本认识"><span class="post-toc-number">1.</span> <span class="post-toc-text">基本认识</span></a></li><li class="post-toc-item post-toc-level-2"><a class="post-toc-link" href="#自定义命令"><span class="post-toc-number">2.</span> <span class="post-toc-text">自定义命令</span></a><ol class="post-toc-child"><li class="post-toc-item post-toc-level-3"><a class="post-toc-link" href="#Command"><span class="post-toc-number">2.1.</span> <span class="post-toc-text">Command</span></a></li><li class="post-toc-item post-toc-level-3"><a class="post-toc-link" href="#CommandTarget"><span class="post-toc-number">2.2.</span> <span class="post-toc-text">CommandTarget</span></a></li><li class="post-toc-item post-toc-level-3"><a class="post-toc-link" href="#CommandSource"><span class="post-toc-number">2.3.</span> <span class="post-toc-text">CommandSource</span></a></li><li class="post-toc-item post-toc-level-3"><a class="post-toc-link" href="#CommandBinding"><span class="post-toc-number">2.4.</span> <span class="post-toc-text">CommandBinding</span></a></li></ol></li></ol>
     </ul>
     
 
@@ -384,7 +384,7 @@
         
     
             <p class="article-headline-p">
-                记一次C#爬虫经历
+                WPF之Command
             </p>
         </div>
 
@@ -403,7 +403,7 @@
     <!-- Author Name & Date -->
     <div>
         <strong>Myers Chan</strong>
-        <span>Jan 06, 2018</span>
+        <span>Mar 10, 2018</span>
     </div>
 
     <div class="section-spacer"></div>
@@ -425,7 +425,7 @@
 <ul class="mdl-menu mdl-menu--bottom-right mdl-js-menu mdl-js-ripple-effect" for="article-functions-qrcode-button">
     <li class="mdl-menu__item">Read this article on other devices</li>
     
-        <img src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAN4AAADeCAAAAAB3DOFrAAACYElEQVR42u3aQW7DMAwEwPz/0+0Lou5StuIGo1OA2q7GAUSG5Ovnq9cLDw8PDw8PDw/vYbxXvN5d/+5p6+vXz5ntDQ8PD+8k74+jdpuXUNefk73h4eHhnee1/z4/ytfXvN1ouTc8PDy8Z/LWd+UH/TrJxsPDw/smXhIY3m03T4vx8PDw/guv+MEfF2eToJIEhkO1Fjw8PLyY1zbATn7+QH8PDw8Pb8kbDjbFpYSdlPpjM2V4eHh4S16SLrdHc/46kivr8QU8PDy8m3mzttasMNFuNC9w4OHh4Z3ktYWA/deRH/d5YQIPDw/vJG/WvG9bZfnn/K94eHh4n+XtHNYzzOzKC6rUeHh4eNu8diw1SbJnZYUkOCXJOh4eHt55Xn5w75d087BRNNvw8PDwbua1B3dbkmhfzX5bDg8PD+8Mrx08bVPnnWGCtiSBh4eHdzevbS/tlB7aksSweYaHh4d3M++qo3zN3h/hKp6Dh4eHd4Q3+9nfljPakYVZko2Hh4d3krezxVn6m6Tp9RPw8PDwbubl46d5ILn2rjZE4eHh4Z3kzQ7rvP0/Gzhom3B4eHh4n+K1G2q3kgDyojAeHh7eed6swT9ra+WvJt8DHh4e3kleu3JSi8mT9aIYgYeHh3cD7xWvPMFtB1Jno6vR6AAeHh7ebbx2LKAoDZSBpA0Ml1Wp8fDw8Ea82VF+VUk3Dy3rrwcPDw/vmbz94kW76SLM4OHh4T2M17bNZsitJB4PDw/vIC8frkoO9/ZpOwEGDw8P7zxv1gDbuasNM8WLwMPDw7uZ930LDw8PDw8PDw/vAesXPqY+2rG41nEAAAAASUVORK5CYII=">
+        <img src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAN4AAADeCAAAAAB3DOFrAAACaElEQVR42u3awW4rMQgF0Pz/T7fbJ1V1LsZD3Kczq6gdORwvbAK8vv7r54WHh4eHh4eHh3cZ7xU//77/8/PP1X5bP1lnLzY8PDy8Sd6bo/aXcKv/XQeds9fx4+Hh4U3y8q9Mgk7WTzYiXx8PDw/vTl7/quivg4eHh/e3eOs0Nwm3ugIeHh7ezbz8B3++Qf3tGK214OHh4cW8fgPsuc9X9Pfw8PDwzg45LTciHy+4dKYMDw8PL0ip947jfAvWpPWmrDcUDw8Pb5IXparxO51hguTiefM+Hh4e3iAvb0TlKXVyDUTHfb/WgoeHh3eIlwTaauQHq+1FgoeHh/dZ3roIu8eolhuSYYLNKjUeHh7eUV75p35cXFiH3h8mwMPDw/sUb53U5l+2DmIvWU82CA8PD2+eV02FOwF1Qi8k93h4eHgjvOQveQEiuTDyy6ZaksDDw8N7mtcvBJQbVHGBuPoZDw8Pb57Xb/yf3aYkscbDw8Ob51WT16RsUS1z5BcMHh4e3m28vBjRHwKoIvPV8PDw8OZ5ebNq7+g/O+aFh4eH9yleEnQ+XnD2ajlQjMDDw8N7jLfX4K8ODeTFi80GGx4eHt4ILz+yy4384pvloi0eHh7eOK/6JIWDvVbZ3lDCm2IEHh4e3gO86nFcTbirA6mdsS08PDy8SV7ezs9DLxRe4zbYgVoLHh4e3lFe59DfO+47ZYhCrQUPDw/vMt7eRVItzh7o7+Hh4eF9iJcXbffGuTqjYHh4eHjzvKQYkV8D+Wr9gggeHh7ePG+vAXYqEe+k1w/29/Dw8PAODV3d/+Dh4eHh4eHh4V3wfAOqmIaS3m1tLQAAAABJRU5ErkJggg==">
     
 </ul>
 
@@ -439,7 +439,7 @@
     </button>
     <ul class="mdl-menu mdl-menu--bottom-right mdl-js-menu mdl-js-ripple-effect" for="article-functions-viewtags-button">
         <li class="mdl-menu__item">
-        <a class="post_tag-link" href="/tags/NET/">.NET</a></li><li class="mdl-menu__item"><a class="post_tag-link" href="/tags/C/">C#</a></li><li class="mdl-menu__item"><a class="post_tag-link" href="/tags/爬虫/">爬虫</a>
+        <a class="post_tag-link" href="/tags/C/">C#</a></li><li class="mdl-menu__item"><a class="post_tag-link" href="/tags/WPF/">WPF</a>
     </ul>
     
 
@@ -454,7 +454,7 @@
     <!-- Leancloud Views -->
         <a class="post_share-link" href="#">
             <li class="mdl-menu__item">
-                <span id="/2018/01/06/crawler/" class="leancloud-views_num" data-flag-title="记一次C#爬虫经历">
+                <span id="/2018/03/10/wpf-command/" class="leancloud-views_num" data-flag-title="WPF之Command">
      &nbsp;Views
 </span>
 
@@ -466,7 +466,7 @@
 
     <!-- Share Weibo -->
     
-        <a class="post_share-link" href="http://service.weibo.com/share/share.php?appkey=&title=记一次C#爬虫经历&url=http://blog.nokky.net/2018/01/06/crawler/index.html&pic=http://blog.nokky.net/img/favicon.png&searchPic=false&style=simple" target="_blank">
+        <a class="post_share-link" href="http://service.weibo.com/share/share.php?appkey=&title=WPF之Command&url=http://blog.nokky.net/2018/03/10/wpf-command/index.html&pic=http://blog.nokky.net/img/favicon.png&searchPic=false&style=simple" target="_blank">
             <li class="mdl-menu__item">
                 Share to Weibo
             </li>
@@ -475,7 +475,7 @@
 
     <!-- Share Twitter -->
     
-        <a class="post_share-link" href="https://twitter.com/intent/tweet?text=记一次C#爬虫经历&url=http://blog.nokky.net/2018/01/06/crawler/index.html&via=Myers Chan" target="_blank">
+        <a class="post_share-link" href="https://twitter.com/intent/tweet?text=WPF之Command&url=http://blog.nokky.net/2018/03/10/wpf-command/index.html&via=Myers Chan" target="_blank">
             <li class="mdl-menu__item">
                 Share to Twitter
             </li>
@@ -484,7 +484,7 @@
 
     <!-- Share Facebook -->
     
-        <a class="post_share-link" href="https://www.facebook.com/sharer/sharer.php?u=http://blog.nokky.net/2018/01/06/crawler/index.html" target="_blank">
+        <a class="post_share-link" href="https://www.facebook.com/sharer/sharer.php?u=http://blog.nokky.net/2018/03/10/wpf-command/index.html" target="_blank">
             <li class="mdl-menu__item">
                 Share to Facebook
             </li>
@@ -493,7 +493,7 @@
 
     <!-- Share Google+ -->
     
-        <a class="post_share-link" href="https://plus.google.com/share?url=http://blog.nokky.net/2018/01/06/crawler/index.html" target="_blank">
+        <a class="post_share-link" href="https://plus.google.com/share?url=http://blog.nokky.net/2018/03/10/wpf-command/index.html" target="_blank">
             <li class="mdl-menu__item">
                 Share to Google+
             </li>
@@ -518,65 +518,194 @@
                 <!-- Post Content -->
                 <div id="post-content" class="mdl-color-text--grey-700 mdl-card__supporting-text fade out">
     
-        <p>这几天都在写C++，感觉都要吐了（原谅我太渣(/▽＼)），适当写写C#转换一下心情。既然要转换心情，那么就应该有点乐趣，那就把我们学院的所有人的人头照都爬了吧！<br>我校的人头照很好爬，连认证都不用就可以用直链Get到。</p>
-<h1 id="准备工作"><a href="#准备工作" class="headerlink" title="准备工作"></a>准备工作</h1><p>当然要准备一下所有人的花名册，这个不难get到，这学期分专业的时候有excel文件公示，copy，paste，完工。</p>
-<h1 id="敲代码"><a href="#敲代码" class="headerlink" title="敲代码"></a>敲代码</h1><p>这里一共准备两个方法即可，一个用来读取文件，获得所有人的学号和姓名，另一个方法负责把这些照片download下来。</p>
-<h2 id="文件读取"><a href="#文件读取" class="headerlink" title="文件读取"></a>文件读取</h2><pre><code class="CSharp">static Dictionary&lt;string, string&gt; GetInfo()
+        <h2 id="基本认识"><a href="#基本认识" class="headerlink" title="基本认识"></a>基本认识</h2><p>有了事件之后为什么要有命令？相比事件命令更关注的是如何规范代码。这里摘抄《深入浅出WPF》里的一句话：命令除了可以约束代码，还可以约束步骤逻辑，这让新来的程序员想犯错都难，也让修改bug的程序员很快能找到规律、容易上手。</p>
+<p>WPF的命令由4个部分组成：</p>
+<ul>
+<li>命令(Command)</li>
+<li>命令源(Command Source)</li>
+<li>命令目标(Command Target)</li>
+<li>命令关联(Command Binding)</li>
+</ul>
+<h2 id="自定义命令"><a href="#自定义命令" class="headerlink" title="自定义命令"></a>自定义命令</h2><p>自定义实现一个命令有两种方式，一种是直接生命RoutedCommand类型的属性，另一个种则是比较复杂但是完全自定义，通过声明<strong>命令源</strong>和<strong>命令</strong>，然后把<strong>命令关联</strong>到<strong>命令目标</strong>上。我要讲的就是第二种。  </p>
+<p>首先声明一个接口，用来约束命令目标实现命令要求的方法</p>
+<pre><code class="CSharp">interface IView
 {
-    Dictionary&lt;string, string&gt; dictionary = new Dictionary&lt;string, string&gt;();
+    void Clear();
+    //...Other functions
+}
+</code></pre>
+<p>从接口就可以看出我要声明的命令是<strong>Clear</strong>命令。</p>
+<h3 id="Command"><a href="#Command" class="headerlink" title="Command"></a>Command</h3><p>接下来我们就声明这个命令。</p>
+<pre><code class="CSharp">class ClearCommand : ICommand
+{
+    public event EventHandler CanExecuteChanged;
 
-    using (StreamReader sr = new StreamReader(&quot;id_names.txt&quot;))
+    public bool CanExecute(object parameter)
     {
-        string line = null;
-        while ((line = sr.ReadLine()) != null)
+        return true; //Command can always execute
+    }
+
+    public void Execute(object parameter)
+    {
+        IView view = parameter as IView;
+        view?.Clear();
+    }
+}
+</code></pre>
+<p>这个类的三个成员都是ICommand的，Execute方法是命令被触发的时候要执行的逻辑代码，因此我们在后续使用这个方法的时候肯定把一个实现了IView的对象传进去，这样就确保了一定有Clear这个方法。</p>
+<h3 id="CommandTarget"><a href="#CommandTarget" class="headerlink" title="CommandTarget"></a>CommandTarget</h3><p>命令创建完毕后我们来着手创建一个命令目标，新建一个UserControl命名为MiniView，然后这个MiniView继承自UserContorl和IView。</p>
+<pre><code class="CSharp">public partial class MiniView : UserControl, IView
+{
+    public MiniView()
+    {
+        InitializeComponent();
+    }
+
+    //Implement IView
+    public void Clear()
+    {
+        textBox1.Clear();
+        textBox2.Clear();
+        textBox3.Clear();
+        textBox4.Clear();
+    }
+}
+</code></pre>
+<p>对应的主要XAML代码如下</p>
+<pre><code class="XML">&lt;Border CornerRadius=&quot;3&quot;
+        BorderThickness=&quot;1&quot;
+        BorderBrush=&quot;ForestGreen&quot;
+        Margin=&quot;10&quot;&gt;
+    &lt;StackPanel&gt;
+        &lt;TextBox x:Name=&quot;textBox1&quot; Margin=&quot;10&quot; TextChanged=&quot;ContentChange&quot;/&gt;
+        &lt;TextBox x:Name=&quot;textBox2&quot; Margin=&quot;10,0&quot; TextChanged=&quot;ContentChange&quot;/&gt;
+        &lt;TextBox x:Name=&quot;textBox3&quot; Margin=&quot;10&quot; TextChanged=&quot;ContentChange&quot;/&gt;
+        &lt;TextBox x:Name=&quot;textBox4&quot; Margin=&quot;10,0,10,10&quot; TextChanged=&quot;ContentChange&quot;/&gt;
+    &lt;/StackPanel&gt;
+&lt;/Border&gt;
+</code></pre>
+<p>这个TextChanged事件的作用在后边再描述。</p>
+<h3 id="CommandSource"><a href="#CommandSource" class="headerlink" title="CommandSource"></a>CommandSource</h3><p>有了命令目标，我们再来创建命令源</p>
+<pre><code class="CSharp">class CustomCommandSource : UserControl, ICommandSource
+{
+    public ICommand Command { get; set; }
+
+    public object CommandParameter { get; set; }
+
+    public IInputElement CommandTarget { get; set; }
+
+    protected override void OnMouseLeftButtonDown(MouseButtonEventArgs e)
+    {
+        base.OnMouseLeftButtonDown(e);
+
+        if (CommandTarget != null)
         {
-            var words = line.Split(&#39; &#39;);
-            dictionary.Add(words[0], words[1]);
+            Command.Execute(CommandTarget);
         }
     }
-    return dictionary;
 }
 </code></pre>
-<p>函数返回一个以学号为Key，姓名为Value的字典，有了这个字典，我们就可以遍历所有的元素然后爬图了。</p>
-<h2 id="爬图"><a href="#爬图" class="headerlink" title="爬图"></a>爬图</h2><pre><code class="CSharp">static void PullImage(string url, string id, string name)
+<h3 id="CommandBinding"><a href="#CommandBinding" class="headerlink" title="CommandBinding"></a>CommandBinding</h3><p>最后我们再将这个东西关联起来。</p>
+<pre><code class="CSharp">public MainWindow()
 {
-    string url_ = url + id + &quot;.jpg&quot;;
-    HttpWebRequest webRequest = WebRequest.Create(url_) as HttpWebRequest;
+    InitializeComponent();
 
-    Image img = null;
-    try
-    {
-        var webResponse = webRequest.GetResponse();
-        var stream = webResponse.GetResponseStream();
-        img = Image.FromStream(stream);
-        img.Save($&quot;pics/{id} {name}.jpg&quot;);
-    }
-    catch (Exception e)
-    {
-        Console.WriteLine($&quot;Get {name}&#39;s pic with error.&quot;);
-        Console.WriteLine(e.Message);
-    }
+    var clearCmd = new ClearCommand();
+    ctrlClear.Command = clearCmd;
+    ctrlClear.CommandTarget = miniView;
 }
 </code></pre>
-<p>添加异常捕获，不然会因为某个图片获取过程出现错误而导致程序奔掉，后续学生的照片获取中断。  </p>
-<h2 id="执行"><a href="#执行" class="headerlink" title="执行"></a>执行</h2><p>两个函数都准备好了，那么就开始实验吧！</p>
-<pre><code class="CSharp">static void Main(string[] args)
+<p>主要XAML代码如下</p>
+<pre><code class="XML">&lt;StackPanel&gt;
+    &lt;local:MiniView x:Name=&quot;miniView&quot;/&gt;
+    &lt;local:CustomCommandSource
+        x:Name=&quot;ctrlClear&quot;
+        Margin=&quot;10&quot;&gt;
+        &lt;TextBlock Text=&quot;N/A&quot; FontSize=&quot;15&quot; HorizontalAlignment=&quot;Center&quot; Background=&quot;Gray&quot; Padding=&quot;5&quot;/&gt;
+    &lt;/local:CustomCommandSource&gt;
+&lt;/StackPanel&gt;
+</code></pre>
+<p>到这里为止程序是可以运行的，但是有个问题就是不论4个TextBox里是否有东西，ClearCommand都会触发，因为命令源的IsEnable属性值一直是true，因此都可以触发单击事件，这显然不是我们想要的效果。我们希望的效果是4个TextBox都有字符的时候这个命令才可以执行。怎么实现呢，这里就要祭出路由事件(RoutedEvent)了，借助一下TextBox的TextChanged事件来传播一个路由事件被上层元素捕抓然后修改命令源的IsEnable属性。在MiniView类里添加一下内容声明一个新的路由事件ContentChanged</p>
+<pre><code class="CSharp">public partial class MiniView
 {
-    string url = &quot;http://xxx/xxx/photo/student/&quot;; //这里把链接抹掉了
+    public static readonly RoutedEvent ContentChangedEvent = EventManager.RegisterRoutedEvent
+            (&quot;ContentChangedEvent&quot;, RoutingStrategy.Bubble, typeof(RoutedEventHandler), typeof(MiniView));
 
-    var ret = GetInfo();
-    foreach (var r in ret)
+    public event RoutedEventHandler ContentChanged
     {
-        PullImage(url, r.Key, r.Value);
-        Thread.Sleep(1300); //暂停1.3秒，不然可能会因为频繁发送请求服务器方面出现问题（毕竟土豆服务器）
+        add =&gt; AddHandler(ContentChangedEvent, value);
+        remove =&gt; RemoveHandler(ContentChangedEvent, value);
     }
+    private void ContentChange(object sender, TextChangedEventArgs e)
+    {
+        bool isEmpty = string.IsNullOrEmpty(textBox1.Text)
+            &amp;&amp; string.IsNullOrEmpty(textBox2.Text)
+            &amp;&amp; string.IsNullOrEmpty(textBox3.Text)
+            &amp;&amp; string.IsNullOrEmpty(textBox4.Text);
 
-    Console.WriteLine(&quot;Done&quot;);
-    Console.ReadLine();
+        //Raise routed event
+        ContentChangedEventArgs args = new ContentChangedEventArgs(ContentChangedEvent, this) { IsEmpty = isEmpty };
+        RaiseEvent(args); 
+    }
+}
 
+class ContentChangedEventArgs : RoutedEventArgs
+{
+    public ContentChangedEventArgs(RoutedEvent routedEvent, object source) : base(routedEvent, source)
+    { }
+
+    public bool IsEmpty { get; set; }
 }
 </code></pre>
-<h1 id="运行结果"><a href="#运行结果" class="headerlink" title="运行结果"></a>运行结果</h1><p>最后的运行结果如下图，一个学生的照片获取超时了，还行。<br><a href="/img/2018/01/snipaste_20180106_203755.png"><img src="/img/2018/01/snipaste_20180106_203755.png" alt=""></a><br>这下我可以认识认识本学院所有人了，嘻嘻嘻(ಥ _ ಥ)</p>
+<p>ContentChange方法是添加到4个TextBox的TextChanged事件里的，用来跟踪4个TextBox的状态，然后传播ContentChanged路由事件。修改一下MainWindow</p>
+<pre><code class="CSharp">public partial class MainWindow : Window
+{
+    public SolidColorBrush GrayColor { get; set; }
+    public SolidColorBrush CrimsonColor { get; set; }
+    public MainWindow()
+    {
+        InitializeComponent();
+
+        GrayColor = new SolidColorBrush(Colors.Gray);
+        CrimsonColor = new SolidColorBrush(Colors.Crimson);
+
+        var clearCmd = new ClearCommand();
+        ctrlClear.Command = clearCmd;
+        ctrlClear.CommandTarget = miniView;
+
+        AddHandler(MiniView.ContentChangedEvent, new RoutedEventHandler((o, e) =&gt;
+        {
+            bool canExecute = clearCmd.CanExecute(e);
+            var tb = (TextBlock)ctrlClear.Content;
+
+            tb.Text = canExecute ? &quot;Clear&quot; : &quot;N/A&quot;;
+            tb.Background = canExecute ? CrimsonColor : GrayColor;
+            ctrlClear.IsEnabled = canExecute ? true : false; //Focus on this line
+            e.Handled = true;
+        }));
+    }
+}
+</code></pre>
+<p>最后我们修改一下CanExecute方法</p>
+<pre><code class="CSharp">class ClearCommand : ICommand
+{
+    public event EventHandler CanExecuteChanged;
+    //
+    //Modified
+    public bool CanExecute(object parameter)
+    {
+        var e = parameter as ContentChangedEventArgs;
+        return !e.IsEmpty;
+    }
+
+    public void Execute(object parameter)
+    {
+        IView view = parameter as IView;
+        view?.Clear();
+    }
+}
+</code></pre>
+<p>最后放下效果图<br><img src="/img/2018/03/commandgif.gif" alt="CommandGif"></p>
 
         
                 <blockquote style="margin: 2em 0 0;padding: 0.5em 1em;border-left: 3px solid #F44336;background-color: #F5F5F5;list-style: none;">
@@ -585,7 +714,7 @@
                             This blog is under a <a href="https://creativecommons.org/licenses/by-nc-sa/3.0/deed.zh" target="_blank">CC BY-NC-SA 3.0 Unported License</a>
                         </strong>
                         <br>
-                        <strong>Link to this article: </strong><a href="http://blog.nokky.net/2018/01/06/crawler/">http://blog.nokky.net/2018/01/06/crawler/</a>
+                        <strong>Link to this article: </strong><a href="http://blog.nokky.net/2018/03/10/wpf-command/">http://blog.nokky.net/2018/03/10/wpf-command/</a>
                     </p>
                 </blockquote>
         
@@ -630,21 +759,13 @@
             <nav class="material-nav mdl-color-text--grey-50 mdl-cell mdl-cell--12-col">
     <!-- Prev Nav -->
     
-        <a href="/2018/01/31/archlinux-install/" id="post_nav-newer" class="prev-content">
-            <button class="mdl-button mdl-js-button mdl-js-ripple-effect mdl-button--icon mdl-color--white mdl-color-text--grey-900" role="presentation">
-                <i class="material-icons">arrow_back</i>
-            </button>
-            &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-            Newer
-        </a>
-    
 
     <!-- Section Spacer -->
     <div class="section-spacer"></div>
 
     <!-- Next Nav -->
     
-        <a href="/2017/12/11/delegate-event/" id="post_nav-older" class="next-content">
+        <a href="/2018/02/06/c-cpp-in-vsc/" id="post_nav-older" class="next-content">
             Older
             &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
             <button class="mdl-button mdl-js-button mdl-js-ripple-effect mdl-button--icon mdl-color--white mdl-color-text--grey-900" role="presentation">

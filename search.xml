@@ -3,6 +3,216 @@
   
     
     <entry>
+      <title><![CDATA[WPF之Command]]></title>
+      <url>/2018/03/10/wpf-command/</url>
+      <content type="html"><![CDATA[<h2 id="基本认识"><a href="#基本认识" class="headerlink" title="基本认识"></a>基本认识</h2><p>有了事件之后为什么要有命令？相比事件命令更关注的是如何规范代码。这里摘抄《深入浅出WPF》里的一句话：命令除了可以约束代码，还可以约束步骤逻辑，这让新来的程序员想犯错都难，也让修改bug的程序员很快能找到规律、容易上手。</p>
+<p>WPF的命令由4个部分组成：</p>
+<ul>
+<li>命令(Command)</li>
+<li>命令源(Command Source)</li>
+<li>命令目标(Command Target)</li>
+<li>命令关联(Command Binding)</li>
+</ul>
+<h2 id="自定义命令"><a href="#自定义命令" class="headerlink" title="自定义命令"></a>自定义命令</h2><p>自定义实现一个命令有两种方式，一种是直接生命RoutedCommand类型的属性，另一个种则是比较复杂但是完全自定义，通过声明<strong>命令源</strong>和<strong>命令</strong>，然后把<strong>命令关联</strong>到<strong>命令目标</strong>上。我要讲的就是第二种。  </p>
+<p>首先声明一个接口，用来约束命令目标实现命令要求的方法</p>
+<pre><code class="CSharp">interface IView
+{
+    void Clear();
+    //...Other functions
+}
+</code></pre>
+<p>从接口就可以看出我要声明的命令是<strong>Clear</strong>命令。</p>
+<h3 id="Command"><a href="#Command" class="headerlink" title="Command"></a>Command</h3><p>接下来我们就声明这个命令。</p>
+<pre><code class="CSharp">class ClearCommand : ICommand
+{
+    public event EventHandler CanExecuteChanged;
+
+    public bool CanExecute(object parameter)
+    {
+        return true; //Command can always execute
+    }
+
+    public void Execute(object parameter)
+    {
+        IView view = parameter as IView;
+        view?.Clear();
+    }
+}
+</code></pre>
+<p>这个类的三个成员都是ICommand的，Execute方法是命令被触发的时候要执行的逻辑代码，因此我们在后续使用这个方法的时候肯定把一个实现了IView的对象传进去，这样就确保了一定有Clear这个方法。</p>
+<h3 id="CommandTarget"><a href="#CommandTarget" class="headerlink" title="CommandTarget"></a>CommandTarget</h3><p>命令创建完毕后我们来着手创建一个命令目标，新建一个UserControl命名为MiniView，然后这个MiniView继承自UserContorl和IView。</p>
+<pre><code class="CSharp">public partial class MiniView : UserControl, IView
+{
+    public MiniView()
+    {
+        InitializeComponent();
+    }
+
+    //Implement IView
+    public void Clear()
+    {
+        textBox1.Clear();
+        textBox2.Clear();
+        textBox3.Clear();
+        textBox4.Clear();
+    }
+}
+</code></pre>
+<p>对应的主要XAML代码如下</p>
+<pre><code class="XML">&lt;Border CornerRadius=&quot;3&quot;
+        BorderThickness=&quot;1&quot;
+        BorderBrush=&quot;ForestGreen&quot;
+        Margin=&quot;10&quot;&gt;
+    &lt;StackPanel&gt;
+        &lt;TextBox x:Name=&quot;textBox1&quot; Margin=&quot;10&quot; TextChanged=&quot;ContentChange&quot;/&gt;
+        &lt;TextBox x:Name=&quot;textBox2&quot; Margin=&quot;10,0&quot; TextChanged=&quot;ContentChange&quot;/&gt;
+        &lt;TextBox x:Name=&quot;textBox3&quot; Margin=&quot;10&quot; TextChanged=&quot;ContentChange&quot;/&gt;
+        &lt;TextBox x:Name=&quot;textBox4&quot; Margin=&quot;10,0,10,10&quot; TextChanged=&quot;ContentChange&quot;/&gt;
+    &lt;/StackPanel&gt;
+&lt;/Border&gt;
+</code></pre>
+<p>这个TextChanged事件的作用在后边再描述。</p>
+<h3 id="CommandSource"><a href="#CommandSource" class="headerlink" title="CommandSource"></a>CommandSource</h3><p>有了命令目标，我们再来创建命令源</p>
+<pre><code class="CSharp">class CustomCommandSource : UserControl, ICommandSource
+{
+    public ICommand Command { get; set; }
+
+    public object CommandParameter { get; set; }
+
+    public IInputElement CommandTarget { get; set; }
+
+    protected override void OnMouseLeftButtonDown(MouseButtonEventArgs e)
+    {
+        base.OnMouseLeftButtonDown(e);
+
+        if (CommandTarget != null)
+        {
+            Command.Execute(CommandTarget);
+        }
+    }
+}
+</code></pre>
+<h3 id="CommandBinding"><a href="#CommandBinding" class="headerlink" title="CommandBinding"></a>CommandBinding</h3><p>最后我们再将这个东西关联起来。</p>
+<pre><code class="CSharp">public MainWindow()
+{
+    InitializeComponent();
+
+    var clearCmd = new ClearCommand();
+    ctrlClear.Command = clearCmd;
+    ctrlClear.CommandTarget = miniView;
+}
+</code></pre>
+<p>主要XAML代码如下</p>
+<pre><code class="XML">&lt;StackPanel&gt;
+    &lt;local:MiniView x:Name=&quot;miniView&quot;/&gt;
+    &lt;local:CustomCommandSource
+        x:Name=&quot;ctrlClear&quot;
+        Margin=&quot;10&quot;&gt;
+        &lt;TextBlock Text=&quot;N/A&quot; FontSize=&quot;15&quot; HorizontalAlignment=&quot;Center&quot; Background=&quot;Gray&quot; Padding=&quot;5&quot;/&gt;
+    &lt;/local:CustomCommandSource&gt;
+&lt;/StackPanel&gt;
+</code></pre>
+<p>到这里为止程序是可以运行的，但是有个问题就是不论4个TextBox里是否有东西，ClearCommand都会触发，因为命令源的IsEnable属性值一直是true，因此都可以触发单击事件，这显然不是我们想要的效果。我们希望的效果是4个TextBox都有字符的时候这个命令才可以执行。怎么实现呢，这里就要祭出路由事件(RoutedEvent)了，借助一下TextBox的TextChanged事件来传播一个路由事件被上层元素捕抓然后修改命令源的IsEnable属性。在MiniView类里添加一下内容声明一个新的路由事件ContentChanged</p>
+<pre><code class="CSharp">public partial class MiniView
+{
+    public static readonly RoutedEvent ContentChangedEvent = EventManager.RegisterRoutedEvent
+            (&quot;ContentChangedEvent&quot;, RoutingStrategy.Bubble, typeof(RoutedEventHandler), typeof(MiniView));
+
+    public event RoutedEventHandler ContentChanged
+    {
+        add =&gt; AddHandler(ContentChangedEvent, value);
+        remove =&gt; RemoveHandler(ContentChangedEvent, value);
+    }
+    private void ContentChange(object sender, TextChangedEventArgs e)
+    {
+        bool isEmpty = string.IsNullOrEmpty(textBox1.Text)
+            &amp;&amp; string.IsNullOrEmpty(textBox2.Text)
+            &amp;&amp; string.IsNullOrEmpty(textBox3.Text)
+            &amp;&amp; string.IsNullOrEmpty(textBox4.Text);
+
+        //Raise routed event
+        ContentChangedEventArgs args = new ContentChangedEventArgs(ContentChangedEvent, this) { IsEmpty = isEmpty };
+        RaiseEvent(args); 
+    }
+}
+
+class ContentChangedEventArgs : RoutedEventArgs
+{
+    public ContentChangedEventArgs(RoutedEvent routedEvent, object source) : base(routedEvent, source)
+    { }
+
+    public bool IsEmpty { get; set; }
+}
+</code></pre>
+<p>ContentChange方法是添加到4个TextBox的TextChanged事件里的，用来跟踪4个TextBox的状态，然后传播ContentChanged路由事件。修改一下MainWindow</p>
+<pre><code class="CSharp">public partial class MainWindow : Window
+{
+    public SolidColorBrush GrayColor { get; set; }
+    public SolidColorBrush CrimsonColor { get; set; }
+    public MainWindow()
+    {
+        InitializeComponent();
+
+        GrayColor = new SolidColorBrush(Colors.Gray);
+        CrimsonColor = new SolidColorBrush(Colors.Crimson);
+
+        var clearCmd = new ClearCommand();
+        ctrlClear.Command = clearCmd;
+        ctrlClear.CommandTarget = miniView;
+
+        AddHandler(MiniView.ContentChangedEvent, new RoutedEventHandler((o, e) =&gt;
+        {
+            bool canExecute = clearCmd.CanExecute(e);
+            var tb = (TextBlock)ctrlClear.Content;
+
+            tb.Text = canExecute ? &quot;Clear&quot; : &quot;N/A&quot;;
+            tb.Background = canExecute ? CrimsonColor : GrayColor;
+            ctrlClear.IsEnabled = canExecute ? true : false; //Focus on this line
+            e.Handled = true;
+        }));
+    }
+}
+</code></pre>
+<p>最后我们修改一下CanExecute方法</p>
+<pre><code class="CSharp">class ClearCommand : ICommand
+{
+    public event EventHandler CanExecuteChanged;
+    //
+    //Modified
+    public bool CanExecute(object parameter)
+    {
+        var e = parameter as ContentChangedEventArgs;
+        return !e.IsEmpty;
+    }
+
+    public void Execute(object parameter)
+    {
+        IView view = parameter as IView;
+        view?.Clear();
+    }
+}
+</code></pre>
+<p>最后放下效果图<br><img src="/img/2018/03/commandgif.gif" alt="CommandGif"></p>
+]]></content>
+      
+        <categories>
+            
+            <category> WPF </category>
+            
+        </categories>
+        
+        
+        <tags>
+            
+            <tag> WPF </tag>
+            
+            <tag> C# </tag>
+            
+        </tags>
+        
+    </entry>
+    
+    <entry>
       <title><![CDATA[在VSC里编写调试C/C++程序]]></title>
       <url>/2018/02/06/c-cpp-in-vsc/</url>
       <content type="html"><![CDATA[<p>刚重装完系统，VS里只装了C#，想到可能会用到C/C++，于是乎就用MinGW+VSC搭建一下开发环境。</p>
@@ -337,11 +547,11 @@ fi
         
         <tags>
             
-            <tag> .NET </tag>
+            <tag> C# </tag>
             
             <tag> 爬虫 </tag>
             
-            <tag> C# </tag>
+            <tag> .NET </tag>
             
         </tags>
         
@@ -526,9 +736,9 @@ string speed = (string)token.SelectToken(&quot;wind&quot;).SelectToken(&quot;spe
         
         <tags>
             
-            <tag> .NET </tag>
-            
             <tag> C# </tag>
+            
+            <tag> .NET </tag>
             
             <tag> JSON </tag>
             
@@ -1224,6 +1434,12 @@ WantedBy=multi-user.target
   
     
     <entry>
+      <title><![CDATA[Talking]]></title>
+      <url>/Talking/index.html</url>
+      <content type="html"></content>
+    </entry>
+    
+    <entry>
       <title><![CDATA[About Me]]></title>
       <url>/about/index.html</url>
       <content type="html"><![CDATA[<p><strong>别人都叫我糯米，小糯米…</strong></p>
@@ -1239,14 +1455,21 @@ WantedBy=multi-user.target
     </entry>
     
     <entry>
-      <title><![CDATA[Talking]]></title>
-      <url>/Talking/index.html</url>
+      <title><![CDATA[Articles]]></title>
+      <url>/articles/index.html</url>
       <content type="html"></content>
     </entry>
     
     <entry>
-      <title><![CDATA[Articles]]></title>
-      <url>/articles/index.html</url>
+      <title><![CDATA[Contact]]></title>
+      <url>/contact/index.html</url>
+      <content type="html"><![CDATA[<p>Contact me with<br><strong><a href="mailto:Myers.Chan@outlook.com?subject=FeebackFromBlog" target="_blank" rel="external">E-mail</a></strong>.<br><strong><a href="http://weibo.com/Nomyfan" target="_blank" rel="external">Weibo</a></strong><br><strong><a href="https://twitter.com/Myers__Chan" target="_blank" rel="external">Twitter</a></strong><br><strong><a href="https://facebook.com/myers.n.chan" target="_blank" rel="external">Facebook</a></strong></p>
+]]></content>
+    </entry>
+    
+    <entry>
+      <title><![CDATA[Photograph]]></title>
+      <url>/photograph/index.html</url>
       <content type="html"></content>
     </entry>
     
@@ -1264,33 +1487,20 @@ WantedBy=multi-user.target
     </entry>
     
     <entry>
-      <title><![CDATA[Photograph]]></title>
-      <url>/photograph/index.html</url>
-      <content type="html"></content>
-    </entry>
-    
-    <entry>
-      <title><![CDATA[Contact]]></title>
-      <url>/contact/index.html</url>
-      <content type="html"><![CDATA[<p>Contact me with<br><strong><a href="mailto:Myers.Chan@outlook.com?subject=FeebackFromBlog" target="_blank" rel="external">E-mail</a></strong>.<br><strong><a href="http://weibo.com/Nomyfan" target="_blank" rel="external">Weibo</a></strong><br><strong><a href="https://twitter.com/Myers__Chan" target="_blank" rel="external">Twitter</a></strong><br><strong><a href="https://facebook.com/myers.n.chan" target="_blank" rel="external">Facebook</a></strong></p>
-]]></content>
-    </entry>
-    
-    <entry>
       <title><![CDATA[Friends]]></title>
       <url>/friends/index.html</url>
       <content type="html"></content>
     </entry>
     
     <entry>
-      <title><![CDATA[Tags]]></title>
-      <url>/tags/index.html</url>
+      <title><![CDATA[Timeline]]></title>
+      <url>/timeline/index.html</url>
       <content type="html"></content>
     </entry>
     
     <entry>
-      <title><![CDATA[Timeline]]></title>
-      <url>/timeline/index.html</url>
+      <title><![CDATA[Tags]]></title>
+      <url>/tags/index.html</url>
       <content type="html"></content>
     </entry>
     
