@@ -53,8 +53,6 @@
     {
         textBox1.Clear();
         textBox2.Clear();
-        textBox3.Clear();
-        textBox4.Clear();
     }
 }
 </code></pre>
@@ -65,9 +63,7 @@
         Margin=&quot;10&quot;&gt;
     &lt;StackPanel&gt;
         &lt;TextBox x:Name=&quot;textBox1&quot; Margin=&quot;10&quot; TextChanged=&quot;ContentChange&quot;/&gt;
-        &lt;TextBox x:Name=&quot;textBox2&quot; Margin=&quot;10,0&quot; TextChanged=&quot;ContentChange&quot;/&gt;
-        &lt;TextBox x:Name=&quot;textBox3&quot; Margin=&quot;10&quot; TextChanged=&quot;ContentChange&quot;/&gt;
-        &lt;TextBox x:Name=&quot;textBox4&quot; Margin=&quot;10,0,10,10&quot; TextChanged=&quot;ContentChange&quot;/&gt;
+        &lt;TextBox x:Name=&quot;textBox2&quot; Margin=&quot;10,0,10,10&quot; TextChanged=&quot;ContentChange&quot;/&gt;
     &lt;/StackPanel&gt;
 &lt;/Border&gt;
 </code></pre>
@@ -112,7 +108,7 @@
     &lt;/local:CustomCommandSource&gt;
 &lt;/StackPanel&gt;
 </code></pre>
-<p>到这里为止程序是可以运行的，但是有个问题就是不论4个TextBox里是否有东西，ClearCommand都会触发，因为命令源的IsEnable属性值一直是true，因此都可以触发单击事件，这显然不是我们想要的效果。我们希望的效果是4个TextBox都有字符的时候这个命令才可以执行。怎么实现呢，这里就要祭出路由事件(RoutedEvent)了，借助一下TextBox的TextChanged事件来传播一个路由事件被上层元素捕抓然后修改命令源的IsEnable属性。在MiniView类里添加一下内容声明一个新的路由事件ContentChanged</p>
+<p>到这里为止程序是可以运行的，但是有个问题就是不论2个TextBox里是否有东西，ClearCommand都会触发，因为命令源的IsEnable属性值一直是true，因此都可以触发单击事件，这显然不是我们想要的效果。我们希望的效果是2个TextBox都有字符的时候这个命令才可以执行。怎么实现呢，这里就要祭出路由事件(RoutedEvent)了，借助一下TextBox的TextChanged事件来传播一个路由事件被上层元素捕抓然后修改命令源的IsEnable属性。在MiniView类里添加一下内容声明一个新的路由事件ContentChanged</p>
 <pre><code class="CSharp">public partial class MiniView
 {
     public static readonly RoutedEvent ContentChangedEvent = EventManager.RegisterRoutedEvent
@@ -126,13 +122,12 @@
     private void ContentChange(object sender, TextChangedEventArgs e)
     {
         bool isEmpty = string.IsNullOrEmpty(textBox1.Text)
-            &amp;&amp; string.IsNullOrEmpty(textBox2.Text)
-            &amp;&amp; string.IsNullOrEmpty(textBox3.Text)
-            &amp;&amp; string.IsNullOrEmpty(textBox4.Text);
-
-        //Raise routed event
-        ContentChangedEventArgs args = new ContentChangedEventArgs(ContentChangedEvent, this) { IsEmpty = isEmpty };
-        RaiseEvent(args); 
+            &amp;&amp; string.IsNullOrEmpty(textBox2.Text);
+        ContentChangedEventArgs args = new ContentChangedEventArgs(ContentChangedEvent, this)
+        {
+            IsEmpty = isEmpty
+        };
+        RaiseEvent(args);
     }
 }
 
@@ -144,7 +139,7 @@ class ContentChangedEventArgs : RoutedEventArgs
     public bool IsEmpty { get; set; }
 }
 </code></pre>
-<p>ContentChange方法是添加到4个TextBox的TextChanged事件里的，用来跟踪4个TextBox的状态，然后传播ContentChanged路由事件。修改一下MainWindow</p>
+<p>ContentChange方法是添加到全部TextBox的TextChanged事件里的，用来跟踪所有TextBox的状态，然后传播ContentChanged路由事件。修改一下MainWindow</p>
 <pre><code class="CSharp">public partial class MainWindow : Window
 {
     public SolidColorBrush GrayColor { get; set; }
@@ -547,11 +542,11 @@ fi
         
         <tags>
             
+            <tag> .NET </tag>
+            
             <tag> C# </tag>
             
             <tag> 爬虫 </tag>
-            
-            <tag> .NET </tag>
             
         </tags>
         
@@ -736,9 +731,9 @@ string speed = (string)token.SelectToken(&quot;wind&quot;).SelectToken(&quot;spe
         
         <tags>
             
-            <tag> C# </tag>
-            
             <tag> .NET </tag>
+            
+            <tag> C# </tag>
             
             <tag> JSON </tag>
             
@@ -1434,8 +1429,58 @@ WantedBy=multi-user.target
   
     
     <entry>
+      <title><![CDATA[Categories]]></title>
+      <url>/categories/index.html</url>
+      <content type="html"></content>
+    </entry>
+    
+    <entry>
+      <title><![CDATA[Contact]]></title>
+      <url>/contact/index.html</url>
+      <content type="html"><![CDATA[<p>Contact me with<br><strong><a href="mailto:Myers.Chan@outlook.com?subject=FeebackFromBlog" target="_blank" rel="external">E-mail</a></strong>.<br><strong><a href="http://weibo.com/Nomyfan" target="_blank" rel="external">Weibo</a></strong><br><strong><a href="https://twitter.com/Myers__Chan" target="_blank" rel="external">Twitter</a></strong><br><strong><a href="https://facebook.com/myers.n.chan" target="_blank" rel="external">Facebook</a></strong></p>
+]]></content>
+    </entry>
+    
+    <entry>
+      <title><![CDATA[Friends]]></title>
+      <url>/friends/index.html</url>
+      <content type="html"></content>
+    </entry>
+    
+    <entry>
+      <title><![CDATA[Contact]]></title>
+      <url>/feeback/index.html</url>
+      <content type="html"><![CDATA[<p>Contact me with<br><strong><a href="mailto:Myers.Chan@outlook.com?subject=FeebackFromBlog" target="_blank" rel="external">E-mail</a></strong>.<br><strong><a href="http://weibo.com/Nomyfan" target="_blank" rel="external">Weibo</a></strong><br><strong><a href="https://twitter.com/Myers__Chan" target="_blank" rel="external">Twitter</a></strong><br><strong><a href="https://facebook.com/myers.n.chan" target="_blank" rel="external">Facebook</a></strong></p>
+]]></content>
+    </entry>
+    
+    <entry>
       <title><![CDATA[Talking]]></title>
       <url>/Talking/index.html</url>
+      <content type="html"></content>
+    </entry>
+    
+    <entry>
+      <title><![CDATA[Articles]]></title>
+      <url>/articles/index.html</url>
+      <content type="html"></content>
+    </entry>
+    
+    <entry>
+      <title><![CDATA[Photograph]]></title>
+      <url>/photograph/index.html</url>
+      <content type="html"></content>
+    </entry>
+    
+    <entry>
+      <title><![CDATA[Tags]]></title>
+      <url>/tags/index.html</url>
+      <content type="html"></content>
+    </entry>
+    
+    <entry>
+      <title><![CDATA[Timeline]]></title>
+      <url>/timeline/index.html</url>
       <content type="html"></content>
     </entry>
     
@@ -1452,56 +1497,6 @@ WantedBy=multi-user.target
 <p>偶尔会出去骑行，配合摄影感觉不能再好了。</p>
 <p>微博:<a href="http://weibo.com/Nomyfan" target="_blank" rel="external">@陈诺米同学</a></p>
 ]]></content>
-    </entry>
-    
-    <entry>
-      <title><![CDATA[Articles]]></title>
-      <url>/articles/index.html</url>
-      <content type="html"></content>
-    </entry>
-    
-    <entry>
-      <title><![CDATA[Contact]]></title>
-      <url>/contact/index.html</url>
-      <content type="html"><![CDATA[<p>Contact me with<br><strong><a href="mailto:Myers.Chan@outlook.com?subject=FeebackFromBlog" target="_blank" rel="external">E-mail</a></strong>.<br><strong><a href="http://weibo.com/Nomyfan" target="_blank" rel="external">Weibo</a></strong><br><strong><a href="https://twitter.com/Myers__Chan" target="_blank" rel="external">Twitter</a></strong><br><strong><a href="https://facebook.com/myers.n.chan" target="_blank" rel="external">Facebook</a></strong></p>
-]]></content>
-    </entry>
-    
-    <entry>
-      <title><![CDATA[Photograph]]></title>
-      <url>/photograph/index.html</url>
-      <content type="html"></content>
-    </entry>
-    
-    <entry>
-      <title><![CDATA[Contact]]></title>
-      <url>/feeback/index.html</url>
-      <content type="html"><![CDATA[<p>Contact me with<br><strong><a href="mailto:Myers.Chan@outlook.com?subject=FeebackFromBlog" target="_blank" rel="external">E-mail</a></strong>.<br><strong><a href="http://weibo.com/Nomyfan" target="_blank" rel="external">Weibo</a></strong><br><strong><a href="https://twitter.com/Myers__Chan" target="_blank" rel="external">Twitter</a></strong><br><strong><a href="https://facebook.com/myers.n.chan" target="_blank" rel="external">Facebook</a></strong></p>
-]]></content>
-    </entry>
-    
-    <entry>
-      <title><![CDATA[Categories]]></title>
-      <url>/categories/index.html</url>
-      <content type="html"></content>
-    </entry>
-    
-    <entry>
-      <title><![CDATA[Friends]]></title>
-      <url>/friends/index.html</url>
-      <content type="html"></content>
-    </entry>
-    
-    <entry>
-      <title><![CDATA[Timeline]]></title>
-      <url>/timeline/index.html</url>
-      <content type="html"></content>
-    </entry>
-    
-    <entry>
-      <title><![CDATA[Tags]]></title>
-      <url>/tags/index.html</url>
-      <content type="html"></content>
     </entry>
     
   

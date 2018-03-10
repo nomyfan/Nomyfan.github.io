@@ -241,7 +241,7 @@
 
     
         <meta property="article:published_time" content="Sat Mar 10 2018 14:44:01 GMT+0800">
-        <meta property="article:modified_time" content="Sat Mar 10 2018 17:22:19 GMT+0800">
+        <meta property="article:modified_time" content="Sat Mar 10 2018 17:40:33 GMT+0800">
     
 
     <!-- The Twitter Card protocol -->
@@ -264,7 +264,7 @@
     "mainEntityOfPage": "http://blog.nokky.net/2018/03/10/wpf-command/index.html",
     "headline": "WPF之Command",
     "datePublished": "Sat Mar 10 2018 14:44:01 GMT+0800",
-    "dateModified": "Sat Mar 10 2018 17:22:19 GMT+0800",
+    "dateModified": "Sat Mar 10 2018 17:40:33 GMT+0800",
     "author": {
         "@type": "Person",
         "name": "Myers Chan",
@@ -566,8 +566,6 @@
     {
         textBox1.Clear();
         textBox2.Clear();
-        textBox3.Clear();
-        textBox4.Clear();
     }
 }
 </code></pre>
@@ -578,9 +576,7 @@
         Margin=&quot;10&quot;&gt;
     &lt;StackPanel&gt;
         &lt;TextBox x:Name=&quot;textBox1&quot; Margin=&quot;10&quot; TextChanged=&quot;ContentChange&quot;/&gt;
-        &lt;TextBox x:Name=&quot;textBox2&quot; Margin=&quot;10,0&quot; TextChanged=&quot;ContentChange&quot;/&gt;
-        &lt;TextBox x:Name=&quot;textBox3&quot; Margin=&quot;10&quot; TextChanged=&quot;ContentChange&quot;/&gt;
-        &lt;TextBox x:Name=&quot;textBox4&quot; Margin=&quot;10,0,10,10&quot; TextChanged=&quot;ContentChange&quot;/&gt;
+        &lt;TextBox x:Name=&quot;textBox2&quot; Margin=&quot;10,0,10,10&quot; TextChanged=&quot;ContentChange&quot;/&gt;
     &lt;/StackPanel&gt;
 &lt;/Border&gt;
 </code></pre>
@@ -625,7 +621,7 @@
     &lt;/local:CustomCommandSource&gt;
 &lt;/StackPanel&gt;
 </code></pre>
-<p>到这里为止程序是可以运行的，但是有个问题就是不论4个TextBox里是否有东西，ClearCommand都会触发，因为命令源的IsEnable属性值一直是true，因此都可以触发单击事件，这显然不是我们想要的效果。我们希望的效果是4个TextBox都有字符的时候这个命令才可以执行。怎么实现呢，这里就要祭出路由事件(RoutedEvent)了，借助一下TextBox的TextChanged事件来传播一个路由事件被上层元素捕抓然后修改命令源的IsEnable属性。在MiniView类里添加一下内容声明一个新的路由事件ContentChanged</p>
+<p>到这里为止程序是可以运行的，但是有个问题就是不论2个TextBox里是否有东西，ClearCommand都会触发，因为命令源的IsEnable属性值一直是true，因此都可以触发单击事件，这显然不是我们想要的效果。我们希望的效果是2个TextBox都有字符的时候这个命令才可以执行。怎么实现呢，这里就要祭出路由事件(RoutedEvent)了，借助一下TextBox的TextChanged事件来传播一个路由事件被上层元素捕抓然后修改命令源的IsEnable属性。在MiniView类里添加一下内容声明一个新的路由事件ContentChanged</p>
 <pre><code class="CSharp">public partial class MiniView
 {
     public static readonly RoutedEvent ContentChangedEvent = EventManager.RegisterRoutedEvent
@@ -639,13 +635,12 @@
     private void ContentChange(object sender, TextChangedEventArgs e)
     {
         bool isEmpty = string.IsNullOrEmpty(textBox1.Text)
-            &amp;&amp; string.IsNullOrEmpty(textBox2.Text)
-            &amp;&amp; string.IsNullOrEmpty(textBox3.Text)
-            &amp;&amp; string.IsNullOrEmpty(textBox4.Text);
-
-        //Raise routed event
-        ContentChangedEventArgs args = new ContentChangedEventArgs(ContentChangedEvent, this) { IsEmpty = isEmpty };
-        RaiseEvent(args); 
+            &amp;&amp; string.IsNullOrEmpty(textBox2.Text);
+        ContentChangedEventArgs args = new ContentChangedEventArgs(ContentChangedEvent, this)
+        {
+            IsEmpty = isEmpty
+        };
+        RaiseEvent(args);
     }
 }
 
@@ -657,7 +652,7 @@ class ContentChangedEventArgs : RoutedEventArgs
     public bool IsEmpty { get; set; }
 }
 </code></pre>
-<p>ContentChange方法是添加到4个TextBox的TextChanged事件里的，用来跟踪4个TextBox的状态，然后传播ContentChanged路由事件。修改一下MainWindow</p>
+<p>ContentChange方法是添加到全部TextBox的TextChanged事件里的，用来跟踪所有TextBox的状态，然后传播ContentChanged路由事件。修改一下MainWindow</p>
 <pre><code class="CSharp">public partial class MainWindow : Window
 {
     public SolidColorBrush GrayColor { get; set; }
