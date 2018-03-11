@@ -21,7 +21,7 @@
     //...Other functions
 }
 </code></pre>
-<p>从接口就可以看出我要声明的命令是<strong>Clear</strong>命令。</p>
+<p>我要声明的命令是<strong>Clear</strong>命令。</p>
 <h3 id="Command"><a href="#Command" class="headerlink" title="Command"></a>Command</h3><p>接下来我们就声明这个命令。</p>
 <pre><code class="CSharp">class ClearCommand : ICommand
 {
@@ -187,7 +187,7 @@ class ContentChangedEventArgs : RoutedEventArgs
     }
 }
 </code></pre>
-<p>最后放下效果图<br><img src="/img/2018/03/commandgif.gif" alt="CommandGif"></p>
+<p>最后放下效果图<br><img src="/img/2018/03/command.gif" alt="CommandGif"></p>
 ]]></content>
       
         <categories>
@@ -1429,8 +1429,29 @@ WantedBy=multi-user.target
   
     
     <entry>
-      <title><![CDATA[Categories]]></title>
-      <url>/categories/index.html</url>
+      <title><![CDATA[Talking]]></title>
+      <url>/Talking/index.html</url>
+      <content type="html"></content>
+    </entry>
+    
+    <entry>
+      <title><![CDATA[About Me]]></title>
+      <url>/about/index.html</url>
+      <content type="html"><![CDATA[<p><strong>别人都叫我糯米，小糯米…</strong></p>
+<p>在校大学生。</p>
+<p>理科男，单身，求勾搭。</p>
+<p>喜欢摄影，目前愿望是拥有一部微单。</p>
+<p>努力争取拿奖学金买买买。</p>
+<p>喜欢设计，不断提高审美中。</p>
+<p>程序狗，喜欢做出优雅好用的软件。（虽然还没解锁这个技能）</p>
+<p>偶尔会出去骑行，配合摄影感觉不能再好了。</p>
+<p>微博:<a href="http://weibo.com/Nomyfan" target="_blank" rel="external">@陈诺米同学</a></p>
+]]></content>
+    </entry>
+    
+    <entry>
+      <title><![CDATA[Articles]]></title>
+      <url>/articles/index.html</url>
       <content type="html"></content>
     </entry>
     
@@ -1439,6 +1460,12 @@ WantedBy=multi-user.target
       <url>/contact/index.html</url>
       <content type="html"><![CDATA[<p>Contact me with<br><strong><a href="mailto:Myers.Chan@outlook.com?subject=FeebackFromBlog" target="_blank" rel="external">E-mail</a></strong>.<br><strong><a href="http://weibo.com/Nomyfan" target="_blank" rel="external">Weibo</a></strong><br><strong><a href="https://twitter.com/Myers__Chan" target="_blank" rel="external">Twitter</a></strong><br><strong><a href="https://facebook.com/myers.n.chan" target="_blank" rel="external">Facebook</a></strong></p>
 ]]></content>
+    </entry>
+    
+    <entry>
+      <title><![CDATA[Categories]]></title>
+      <url>/categories/index.html</url>
+      <content type="html"></content>
     </entry>
     
     <entry>
@@ -1452,18 +1479,6 @@ WantedBy=multi-user.target
       <url>/feeback/index.html</url>
       <content type="html"><![CDATA[<p>Contact me with<br><strong><a href="mailto:Myers.Chan@outlook.com?subject=FeebackFromBlog" target="_blank" rel="external">E-mail</a></strong>.<br><strong><a href="http://weibo.com/Nomyfan" target="_blank" rel="external">Weibo</a></strong><br><strong><a href="https://twitter.com/Myers__Chan" target="_blank" rel="external">Twitter</a></strong><br><strong><a href="https://facebook.com/myers.n.chan" target="_blank" rel="external">Facebook</a></strong></p>
 ]]></content>
-    </entry>
-    
-    <entry>
-      <title><![CDATA[Talking]]></title>
-      <url>/Talking/index.html</url>
-      <content type="html"></content>
-    </entry>
-    
-    <entry>
-      <title><![CDATA[Articles]]></title>
-      <url>/articles/index.html</url>
-      <content type="html"></content>
     </entry>
     
     <entry>
@@ -1482,21 +1497,6 @@ WantedBy=multi-user.target
       <title><![CDATA[Timeline]]></title>
       <url>/timeline/index.html</url>
       <content type="html"></content>
-    </entry>
-    
-    <entry>
-      <title><![CDATA[About Me]]></title>
-      <url>/about/index.html</url>
-      <content type="html"><![CDATA[<p><strong>别人都叫我糯米，小糯米…</strong></p>
-<p>在校大学生。</p>
-<p>理科男，单身，求勾搭。</p>
-<p>喜欢摄影，目前愿望是拥有一部微单。</p>
-<p>努力争取拿奖学金买买买。</p>
-<p>喜欢设计，不断提高审美中。</p>
-<p>程序狗，喜欢做出优雅好用的软件。（虽然还没解锁这个技能）</p>
-<p>偶尔会出去骑行，配合摄影感觉不能再好了。</p>
-<p>微博:<a href="http://weibo.com/Nomyfan" target="_blank" rel="external">@陈诺米同学</a></p>
-]]></content>
     </entry>
     
   
