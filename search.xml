@@ -3,7 +3,7 @@
   
     
     <entry>
-      <title><![CDATA[置顶站点速度太慢？看这里]]></title>
+      <title><![CDATA[站点速度太慢？看这里]]></title>
       <url>/2018/05/03/visit-on-azure/</url>
       <content type="html"><![CDATA[<p>国内的朋友如果觉得本站点访问速度可以访问<a href="https://nokky.azurewebsites.net" target="_blank" rel="external">这里</a>，Azure东亚的节点，速度会好很多。</p>
 ]]></content>
@@ -34,7 +34,7 @@
 <h2 id="修改TSL版本"><a href="#修改TSL版本" class="headerlink" title="修改TSL版本"></a>修改TSL版本</h2><p>可以在<em>SSL Settings</em>里设置</p>
 <h2 id="HTTPS-only"><a href="#HTTPS-only" class="headerlink" title="HTTPS only"></a>HTTPS only</h2><p>想让网站只能通过HTTPS访问，只要在<em>Custom domains</em>里打开就好了<br><a href="/img/2018/05/snipaste_20180503_215003.png"><img src="/img/2018/05/snipaste_20180503_215003.png" alt="HTTPSOnly"></a> </p>
 <h2 id="自定义域名"><a href="#自定义域名" class="headerlink" title="自定义域名"></a>自定义域名</h2><p>默认的域名很长，不过残血版没有额度，我就不修改域名了，你也别想用其他的DNS解析把自己的域名解析过去，微软直接给你禁止访问。看了下最便宜的相比Free Plan只加了Custom domains的D1也要$9.67/month/app，太贵了，放弃，告辞。Azure盈利这么多不是没道理的。<br><a href="/img/2018/05/snipaste_20180503_214257.png"><img src="/img/2018/05/snipaste_20180503_214257.png" alt="CustomDomains"></a></p>
-<h1 id="最后"><a href="#最后" class="headerlink" title="最后"></a>最后</h1><p>我的博客当然没有搬迁，没错，就是因为域名的问题，访问速度慢的小伙伴可以访问<a href="https://nokky.azuresites.net" target="_blank" rel="external">这里</a>。这个是在Azure里的，算作备胎吧。 </p>
+<h1 id="最后"><a href="#最后" class="headerlink" title="最后"></a>最后</h1><p>我的博客当然没有搬迁，没错，就是因为域名的问题，国内朋友觉得访问速度慢可以访问<a href="https://nokky.azuresites.net" target="_blank" rel="external">这里</a>。这个是在Azure里的，算作备胎吧。 </p>
 ]]></content>
       
         <categories>
@@ -387,11 +387,11 @@ fi
         
         <tags>
             
+            <tag> .NET </tag>
+            
             <tag> C# </tag>
             
             <tag> 爬虫 </tag>
-            
-            <tag> .NET </tag>
             
         </tags>
         
@@ -576,9 +576,9 @@ string speed = (string)token.SelectToken(&quot;wind&quot;).SelectToken(&quot;spe
         
         <tags>
             
-            <tag> C# </tag>
-            
             <tag> .NET </tag>
+            
+            <tag> C# </tag>
             
             <tag> JSON </tag>
             
@@ -1274,22 +1274,39 @@ WantedBy=multi-user.target
   
     
     <entry>
-      <title><![CDATA[Articles]]></title>
-      <url>/articles/index.html</url>
-      <content type="html"></content>
-    </entry>
-    
-    <entry>
       <title><![CDATA[Talking]]></title>
       <url>/Talking/index.html</url>
       <content type="html"></content>
     </entry>
     
     <entry>
-      <title><![CDATA[Contact]]></title>
-      <url>/feeback/index.html</url>
-      <content type="html"><![CDATA[<p>Contact me with<br><strong><a href="mailto:Myers.Chan@outlook.com?subject=FeebackFromBlog" target="_blank" rel="external">E-mail</a></strong>.<br><strong><a href="http://weibo.com/Nomyfan" target="_blank" rel="external">Weibo</a></strong><br><strong><a href="https://twitter.com/Myers__Chan" target="_blank" rel="external">Twitter</a></strong><br><strong><a href="https://facebook.com/myers.n.chan" target="_blank" rel="external">Facebook</a></strong></p>
-]]></content>
+      <title><![CDATA[Articles]]></title>
+      <url>/articles/index.html</url>
+      <content type="html"></content>
+    </entry>
+    
+    <entry>
+      <title><![CDATA[Categories]]></title>
+      <url>/categories/index.html</url>
+      <content type="html"></content>
+    </entry>
+    
+    <entry>
+      <title><![CDATA[Tags]]></title>
+      <url>/tags/index.html</url>
+      <content type="html"></content>
+    </entry>
+    
+    <entry>
+      <title><![CDATA[Timeline]]></title>
+      <url>/timeline/index.html</url>
+      <content type="html"></content>
+    </entry>
+    
+    <entry>
+      <title><![CDATA[Friends]]></title>
+      <url>/friends/index.html</url>
+      <content type="html"></content>
     </entry>
     
     <entry>
@@ -1297,12 +1314,6 @@ WantedBy=multi-user.target
       <url>/contact/index.html</url>
       <content type="html"><![CDATA[<p>Contact me with<br><strong><a href="mailto:Myers.Chan@outlook.com?subject=FeebackFromBlog" target="_blank" rel="external">E-mail</a></strong>.<br><strong><a href="http://weibo.com/Nomyfan" target="_blank" rel="external">Weibo</a></strong><br><strong><a href="https://twitter.com/Myers__Chan" target="_blank" rel="external">Twitter</a></strong><br><strong><a href="https://facebook.com/myers.n.chan" target="_blank" rel="external">Facebook</a></strong></p>
 ]]></content>
-    </entry>
-    
-    <entry>
-      <title><![CDATA[Categories]]></title>
-      <url>/categories/index.html</url>
-      <content type="html"></content>
     </entry>
     
     <entry>
@@ -1321,26 +1332,15 @@ WantedBy=multi-user.target
     </entry>
     
     <entry>
-      <title><![CDATA[Tags]]></title>
-      <url>/tags/index.html</url>
-      <content type="html"></content>
-    </entry>
-    
-    <entry>
-      <title><![CDATA[Friends]]></title>
-      <url>/friends/index.html</url>
-      <content type="html"></content>
+      <title><![CDATA[Contact]]></title>
+      <url>/feeback/index.html</url>
+      <content type="html"><![CDATA[<p>Contact me with<br><strong><a href="mailto:Myers.Chan@outlook.com?subject=FeebackFromBlog" target="_blank" rel="external">E-mail</a></strong>.<br><strong><a href="http://weibo.com/Nomyfan" target="_blank" rel="external">Weibo</a></strong><br><strong><a href="https://twitter.com/Myers__Chan" target="_blank" rel="external">Twitter</a></strong><br><strong><a href="https://facebook.com/myers.n.chan" target="_blank" rel="external">Facebook</a></strong></p>
+]]></content>
     </entry>
     
     <entry>
       <title><![CDATA[Photograph]]></title>
       <url>/photograph/index.html</url>
-      <content type="html"></content>
-    </entry>
-    
-    <entry>
-      <title><![CDATA[Timeline]]></title>
-      <url>/timeline/index.html</url>
       <content type="html"></content>
     </entry>
     
