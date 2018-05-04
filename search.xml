@@ -26,15 +26,28 @@
     <entry>
       <title><![CDATA[部署Hexo到Azure]]></title>
       <url>/2018/05/03/hexo-host-on-azure/</url>
-      <content type="html"><![CDATA[<h1 id="残血版Azure-for-Students"><a href="#残血版Azure-for-Students" class="headerlink" title="残血版Azure for Students"></a>残血版Azure for Students</h1><p>本来是打算用EDU邮箱弄个Azure for Students订阅的，结果只能弄个Azure for Students Starter，完全是残血版，很多东西都没有，也没有$100额度。不过考虑到可以免费挂博客，还是可以用用的，之前博客挂在美国的VPS，访问速度一般般，尤其是我的相册加载很慢。这里就记录一下如何将Hexo架构的博客部署到Azure上。</p>
-<h1 id="新建Web-App"><a href="#新建Web-App" class="headerlink" title="新建Web App"></a>新建Web App</h1><p>在左侧的面板里选择<em>App Services</em>，然后新建一个Web App，选择一个Location，我选了东亚，访问速度会好点。<br><a href="/img/2018/02/snipaste_20180503_210508.png"><img src="/img/2018/05/snipaste_20180503_210508.png" alt="Location"></a><br>然后填入App name和其他信息点击确定等待一下创建好了。之后就可以通过连接访问默认的Web了<br><a href="/img/2018/05/snipaste_20180503_174920.png"><img src="/img/2018/05/snipaste_20180503_174920.png" alt="DefalutWeb"></a></p>
-<h1 id="设置部署方式"><a href="#设置部署方式" class="headerlink" title="设置部署方式"></a>设置部署方式</h1><p>选中刚刚建好的App，找到<em>Deployment options</em><br><a href="/img/2018/05/snipaste_20180503_174332.png"><img src="/img/2018/05/snipaste_20180503_174332.png" alt="Deployment"></a><br>然后选择Git<br><a href="/img/2018/05/snipaste_20180503_174355.png"><img src="/img/2018/05/snipaste_20180503_174355.png" alt="Git"></a><br>这里设置好了之后就可以在<em>Overview</em>里看到用于push的链接了，也可以在<em>Property</em>里看，这里可以查看到更多的其他链接。</p>
-<h1 id="设置Hexo的repo"><a href="#设置Hexo的repo" class="headerlink" title="设置Hexo的repo"></a>设置Hexo的repo</h1><p>编辑<em>_config.yml</em>，填写新的repo<br><a href="/img/2018/05/snipaste_20180503_212712.png"><img src="/img/2018/05/snipaste_20180503_212712.png" alt="Config"></a><br>上边都做好了之后就可以在Hexo里push过去了<br><a href="/img/2018/05/snipaste_20180503_192137.png"><img src="/img/2018/05/snipaste_20180503_192137.png" alt="Push"></a><br>再重新访问就可以看到自己的博客啦！</p>
-<h1 id="其他设置"><a href="#其他设置" class="headerlink" title="其他设置"></a>其他设置</h1><h2 id="修改git用户名和密码"><a href="#修改git用户名和密码" class="headerlink" title="修改git用户名和密码"></a>修改git用户名和密码</h2><p>想改用于git的用户名和密码可以在<em>Deployment Credentials</em>里设置</p>
-<h2 id="修改TSL版本"><a href="#修改TSL版本" class="headerlink" title="修改TSL版本"></a>修改TSL版本</h2><p>可以在<em>SSL Settings</em>里设置</p>
-<h2 id="HTTPS-only"><a href="#HTTPS-only" class="headerlink" title="HTTPS only"></a>HTTPS only</h2><p>想让网站只能通过HTTPS访问，只要在<em>Custom domains</em>里打开就好了<br><a href="/img/2018/05/snipaste_20180503_215003.png"><img src="/img/2018/05/snipaste_20180503_215003.png" alt="HTTPSOnly"></a> </p>
-<h2 id="自定义域名"><a href="#自定义域名" class="headerlink" title="自定义域名"></a>自定义域名</h2><p>默认的域名很长，不过残血版没有额度，我就不修改域名了，你也别想用其他的DNS解析把自己的域名解析过去，微软直接给你禁止访问。看了下最便宜的相比Free Plan只加了Custom domains的D1也要$9.67/month/app，太贵了，放弃，告辞。Azure盈利这么多不是没道理的。<br><a href="/img/2018/05/snipaste_20180503_214257.png"><img src="/img/2018/05/snipaste_20180503_214257.png" alt="CustomDomains"></a></p>
-<h1 id="最后"><a href="#最后" class="headerlink" title="最后"></a>最后</h1><p>我的博客当然没有搬迁，没错，就是因为域名的问题，国内朋友觉得访问速度慢可以访问<a href="https://nokky.azuresites.net" target="_blank" rel="external">这里</a>。这个是在Azure里的，算作备胎吧。 </p>
+      <content type="html"><![CDATA[<h2 id="残血版Azure-for-Students"><a href="#残血版Azure-for-Students" class="headerlink" title="残血版Azure for Students"></a>残血版Azure for Students</h2><p>本来是打算用EDU邮箱弄个Azure for Students订阅的，结果只能弄个Azure for Students Starter，完全是残血版，很多东西都没有，也没有$100额度。不过考虑到可以免费挂博客，还是可以用用的，之前博客挂在美国的VPS，访问速度一般般，尤其是我的相册加载很慢。这里就记录一下如何将Hexo架构的博客部署到Azure上。</p>
+<h2 id="新建Web-App"><a href="#新建Web-App" class="headerlink" title="新建Web App"></a>新建Web App</h2><p>在左侧的面板里选择<em>App Services</em>，然后新建一个Web App，选择一个Location，我选了东亚，访问速度会好点。  </p>
+<p><a href="/img/2018/02/snipaste_20180503_210508.png"><img src="/img/2018/05/snipaste_20180503_210508.png" alt="Location"></a>  </p>
+<p>然后填入App name和其他信息点击确定等待一下创建好了。之后就可以通过连接访问默认的Web了  </p>
+<p><a href="/img/2018/05/snipaste_20180503_174920.png"><img src="/img/2018/05/snipaste_20180503_174920.png" alt="DefalutWeb"></a></p>
+<h2 id="设置部署方式"><a href="#设置部署方式" class="headerlink" title="设置部署方式"></a>设置部署方式</h2><p>选中刚刚建好的App，找到<em>Deployment options</em>  </p>
+<p><a href="/img/2018/05/snipaste_20180503_174332.png"><img src="/img/2018/05/snipaste_20180503_174332.png" alt="Deployment"></a>  </p>
+<p>然后选择Git  </p>
+<p><a href="/img/2018/05/snipaste_20180503_174355.png"><img src="/img/2018/05/snipaste_20180503_174355.png" alt="Git"></a>  </p>
+<p>这里设置好了之后就可以在<em>Overview</em>里看到用于push的链接了，也可以在<em>Property</em>里看，这里可以查看到更多的其他链接。</p>
+<h2 id="设置Hexo的repo"><a href="#设置Hexo的repo" class="headerlink" title="设置Hexo的repo"></a>设置Hexo的repo</h2><p>编辑<em>_config.yml</em>，填写新的repo  </p>
+<p><a href="/img/2018/05/snipaste_20180503_212712.png"><img src="/img/2018/05/snipaste_20180503_212712.png" alt="Config"></a>  </p>
+<p>上边都做好了之后就可以在Hexo里push过去了  </p>
+<p><a href="/img/2018/05/snipaste_20180503_192137.png"><img src="/img/2018/05/snipaste_20180503_192137.png" alt="Push"></a>  </p>
+<p>再重新访问就可以看到自己的博客啦！</p>
+<h2 id="其他设置"><a href="#其他设置" class="headerlink" title="其他设置"></a>其他设置</h2><h3 id="修改git用户名和密码"><a href="#修改git用户名和密码" class="headerlink" title="修改git用户名和密码"></a>修改git用户名和密码</h3><p>想改用于git的用户名和密码可以在<em>Deployment Credentials</em>里设置</p>
+<h3 id="修改TSL版本"><a href="#修改TSL版本" class="headerlink" title="修改TSL版本"></a>修改TSL版本</h3><p>可以在<em>SSL Settings</em>里设置</p>
+<h3 id="HTTPS-only"><a href="#HTTPS-only" class="headerlink" title="HTTPS only"></a>HTTPS only</h3><p>想让网站只能通过HTTPS访问，只要在<em>Custom domains</em>里打开就好了  </p>
+<p><a href="/img/2018/05/snipaste_20180503_215003.png"><img src="/img/2018/05/snipaste_20180503_215003.png" alt="HTTPSOnly"></a> </p>
+<h3 id="自定义域名"><a href="#自定义域名" class="headerlink" title="自定义域名"></a>自定义域名</h3><p>默认的域名很长，不过残血版没有额度，我就不修改域名了，你也别想用其他的DNS解析把自己的域名解析过去，微软直接给你禁止访问。看了下最便宜的相比Free Plan只加了Custom domains的D1也要$9.67/month/app，太贵了，放弃，告辞。Azure盈利这么多不是没道理的。  </p>
+<p><a href="/img/2018/05/snipaste_20180503_214257.png"><img src="/img/2018/05/snipaste_20180503_214257.png" alt="CustomDomains"></a></p>
+<h2 id="最后"><a href="#最后" class="headerlink" title="最后"></a>最后</h2><p>我的博客当然没有搬迁，没错，就是因为域名的问题，国内朋友觉得访问速度慢可以访问<a href="https://nokky.azuresites.net" target="_blank" rel="external">这里</a>。这个是在Azure里的，算作备胎吧。 </p>
 ]]></content>
       
         <categories>
@@ -387,11 +400,11 @@ fi
         
         <tags>
             
-            <tag> .NET </tag>
+            <tag> 爬虫 </tag>
             
             <tag> C# </tag>
             
-            <tag> 爬虫 </tag>
+            <tag> .NET </tag>
             
         </tags>
         
@@ -576,9 +589,9 @@ string speed = (string)token.SelectToken(&quot;wind&quot;).SelectToken(&quot;spe
         
         <tags>
             
-            <tag> .NET </tag>
-            
             <tag> C# </tag>
+            
+            <tag> .NET </tag>
             
             <tag> JSON </tag>
             
@@ -1292,15 +1305,10 @@ WantedBy=multi-user.target
     </entry>
     
     <entry>
-      <title><![CDATA[Tags]]></title>
-      <url>/tags/index.html</url>
-      <content type="html"></content>
-    </entry>
-    
-    <entry>
-      <title><![CDATA[Timeline]]></title>
-      <url>/timeline/index.html</url>
-      <content type="html"></content>
+      <title><![CDATA[Contact]]></title>
+      <url>/contact/index.html</url>
+      <content type="html"><![CDATA[<p>Contact me with<br><strong><a href="mailto:Myers.Chan@outlook.com?subject=FeebackFromBlog" target="_blank" rel="external">E-mail</a></strong>.<br><strong><a href="http://weibo.com/Nomyfan" target="_blank" rel="external">Weibo</a></strong><br><strong><a href="https://twitter.com/Myers__Chan" target="_blank" rel="external">Twitter</a></strong><br><strong><a href="https://facebook.com/myers.n.chan" target="_blank" rel="external">Facebook</a></strong></p>
+]]></content>
     </entry>
     
     <entry>
@@ -1310,8 +1318,20 @@ WantedBy=multi-user.target
     </entry>
     
     <entry>
+      <title><![CDATA[Photograph]]></title>
+      <url>/photograph/index.html</url>
+      <content type="html"></content>
+    </entry>
+    
+    <entry>
+      <title><![CDATA[Tags]]></title>
+      <url>/tags/index.html</url>
+      <content type="html"></content>
+    </entry>
+    
+    <entry>
       <title><![CDATA[Contact]]></title>
-      <url>/contact/index.html</url>
+      <url>/feeback/index.html</url>
       <content type="html"><![CDATA[<p>Contact me with<br><strong><a href="mailto:Myers.Chan@outlook.com?subject=FeebackFromBlog" target="_blank" rel="external">E-mail</a></strong>.<br><strong><a href="http://weibo.com/Nomyfan" target="_blank" rel="external">Weibo</a></strong><br><strong><a href="https://twitter.com/Myers__Chan" target="_blank" rel="external">Twitter</a></strong><br><strong><a href="https://facebook.com/myers.n.chan" target="_blank" rel="external">Facebook</a></strong></p>
 ]]></content>
     </entry>
@@ -1332,15 +1352,8 @@ WantedBy=multi-user.target
     </entry>
     
     <entry>
-      <title><![CDATA[Contact]]></title>
-      <url>/feeback/index.html</url>
-      <content type="html"><![CDATA[<p>Contact me with<br><strong><a href="mailto:Myers.Chan@outlook.com?subject=FeebackFromBlog" target="_blank" rel="external">E-mail</a></strong>.<br><strong><a href="http://weibo.com/Nomyfan" target="_blank" rel="external">Weibo</a></strong><br><strong><a href="https://twitter.com/Myers__Chan" target="_blank" rel="external">Twitter</a></strong><br><strong><a href="https://facebook.com/myers.n.chan" target="_blank" rel="external">Facebook</a></strong></p>
-]]></content>
-    </entry>
-    
-    <entry>
-      <title><![CDATA[Photograph]]></title>
-      <url>/photograph/index.html</url>
+      <title><![CDATA[Timeline]]></title>
+      <url>/timeline/index.html</url>
       <content type="html"></content>
     </entry>
     
