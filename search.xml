@@ -400,11 +400,11 @@ fi
         
         <tags>
             
+            <tag> 爬虫 </tag>
+            
             <tag> C# </tag>
             
             <tag> .NET </tag>
-            
-            <tag> 爬虫 </tag>
             
         </tags>
         
@@ -419,7 +419,7 @@ fi
 <pre><code class="Cpp">std::sort(_vec.begin(), _vec.end(), compare);
 </code></pre>
 <p>最后一个函数的定义是这样的</p>
-<pre><code class="Cpp">bool compare(int x, int y) { return x &amp;lt; y; }
+<pre><code class="Cpp">bool compare(int x, int y) { return x &lt; y; }
 </code></pre>
 <p>这样就完成了对_vec这个向量的排序，可以看到这里把函数作为参数传进了另外一函数方法里被使用。C#里的委托就实现了相同的功能，而且被设计得更强大，有了委托，我们甚至可以把一组方法传进另一个方法里。</p>
 <p>那么我们看看C#里是如何实现这样的功能的吧。现在我们需要传进的方法的功能是对两个实数进行某种操作，然后把得到的结果返回。首先我们先定义一个委托类型</p>
@@ -641,9 +641,9 @@ string speed = (string)token.SelectToken(&quot;wind&quot;).SelectToken(&quot;spe
         
         <tags>
             
-            <tag> Windows 10 </tag>
-            
             <tag> Windows </tag>
+            
+            <tag> Windows 10 </tag>
             
         </tags>
         
@@ -1066,9 +1066,9 @@ WantedBy=multi-user.target
         
         <tags>
             
-            <tag> WPF </tag>
-            
             <tag> .NET </tag>
+            
+            <tag> WPF </tag>
             
         </tags>
         
@@ -1293,27 +1293,6 @@ WantedBy=multi-user.target
     </entry>
     
     <entry>
-      <title><![CDATA[Articles]]></title>
-      <url>/articles/index.html</url>
-      <content type="html"></content>
-    </entry>
-    
-    <entry>
-      <title><![CDATA[About Me]]></title>
-      <url>/about/index.html</url>
-      <content type="html"><![CDATA[<p><strong>别人都叫我糯米，小糯米…</strong></p>
-<p>在校大学生。</p>
-<p>理科男，单身，求勾搭。</p>
-<p>喜欢摄影，目前愿望是拥有一部微单。</p>
-<p>努力争取拿奖学金买买买。</p>
-<p>喜欢设计，不断提高审美中。</p>
-<p>程序狗，喜欢做出优雅好用的软件。（虽然还没解锁这个技能）</p>
-<p>偶尔会出去骑行，配合摄影感觉不能再好了。</p>
-<p>微博:<a href="http://weibo.com/Nomyfan" target="_blank" rel="external">@陈诺米同学</a></p>
-]]></content>
-    </entry>
-    
-    <entry>
       <title><![CDATA[Contact]]></title>
       <url>/contact/index.html</url>
       <content type="html"><![CDATA[<p>Contact me with<br><strong><a href="mailto:Myers.Chan@outlook.com?subject=FeebackFromBlog" target="_blank" rel="external">E-mail</a></strong>.<br><strong><a href="http://weibo.com/Nomyfan" target="_blank" rel="external">Weibo</a></strong><br><strong><a href="https://twitter.com/Myers__Chan" target="_blank" rel="external">Twitter</a></strong><br><strong><a href="https://facebook.com/myers.n.chan" target="_blank" rel="external">Facebook</a></strong></p>
@@ -1334,14 +1313,8 @@ WantedBy=multi-user.target
     </entry>
     
     <entry>
-      <title><![CDATA[Tags]]></title>
-      <url>/tags/index.html</url>
-      <content type="html"></content>
-    </entry>
-    
-    <entry>
-      <title><![CDATA[Timeline]]></title>
-      <url>/timeline/index.html</url>
+      <title><![CDATA[Articles]]></title>
+      <url>/articles/index.html</url>
       <content type="html"></content>
     </entry>
     
@@ -1355,6 +1328,33 @@ WantedBy=multi-user.target
       <title><![CDATA[Photograph]]></title>
       <url>/photograph/index.html</url>
       <content type="html"></content>
+    </entry>
+    
+    <entry>
+      <title><![CDATA[Timeline]]></title>
+      <url>/timeline/index.html</url>
+      <content type="html"></content>
+    </entry>
+    
+    <entry>
+      <title><![CDATA[Tags]]></title>
+      <url>/tags/index.html</url>
+      <content type="html"></content>
+    </entry>
+    
+    <entry>
+      <title><![CDATA[About Me]]></title>
+      <url>/about/index.html</url>
+      <content type="html"><![CDATA[<p><strong>别人都叫我糯米，小糯米…</strong></p>
+<p>在校大学生。</p>
+<p>理科男，单身，求勾搭。</p>
+<p>喜欢摄影，目前愿望是拥有一部微单。</p>
+<p>努力争取拿奖学金买买买。</p>
+<p>喜欢设计，不断提高审美中。</p>
+<p>程序狗，喜欢做出优雅好用的软件。（虽然还没解锁这个技能）</p>
+<p>偶尔会出去骑行，配合摄影感觉不能再好了。</p>
+<p>微博:<a href="http://weibo.com/Nomyfan" target="_blank" rel="external">@陈诺米同学</a></p>
+]]></content>
     </entry>
     
   
