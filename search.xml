@@ -3,27 +3,6 @@
   
     
     <entry>
-      <title><![CDATA[站点速度太慢？看这里]]></title>
-      <url>/2018/05/03/visit-on-azure/</url>
-      <content type="html"><![CDATA[<p>国内的朋友如果觉得本站点访问速度可以访问<a href="https://nokky.azurewebsites.net" target="_blank" rel="external">这里</a>，Azure东亚的节点，速度会好很多。</p>
-]]></content>
-      
-        <categories>
-            
-            <category> Azure </category>
-            
-        </categories>
-        
-        
-        <tags>
-            
-            <tag> Azure </tag>
-            
-        </tags>
-        
-    </entry>
-    
-    <entry>
       <title><![CDATA[部署Hexo到Azure]]></title>
       <url>/2018/05/03/hexo-host-on-azure/</url>
       <content type="html"><![CDATA[<h2 id="残血版Azure-for-Students"><a href="#残血版Azure-for-Students" class="headerlink" title="残血版Azure for Students"></a>残血版Azure for Students</h2><p>本来是打算用EDU邮箱弄个Azure for Students订阅的，结果只能弄个Azure for Students Starter，完全是残血版，很多东西都没有，也没有$100额度。不过考虑到可以免费挂博客，还是可以用用的，之前博客挂在美国的VPS，访问速度一般般，尤其是我的相册加载很慢。这里就记录一下如何将Hexo架构的博客部署到Azure上。</p>
@@ -402,9 +381,9 @@ fi
             
             <tag> .NET </tag>
             
-            <tag> 爬虫 </tag>
-            
             <tag> C# </tag>
+            
+            <tag> 爬虫 </tag>
             
         </tags>
         
@@ -1308,6 +1287,12 @@ WantedBy=multi-user.target
     </entry>
     
     <entry>
+      <title><![CDATA[Categories]]></title>
+      <url>/categories/index.html</url>
+      <content type="html"></content>
+    </entry>
+    
+    <entry>
       <title><![CDATA[Articles]]></title>
       <url>/articles/index.html</url>
       <content type="html"></content>
@@ -1333,6 +1318,12 @@ WantedBy=multi-user.target
     </entry>
     
     <entry>
+      <title><![CDATA[Photograph]]></title>
+      <url>/photograph/index.html</url>
+      <content type="html"></content>
+    </entry>
+    
+    <entry>
       <title><![CDATA[Tags]]></title>
       <url>/tags/index.html</url>
       <content type="html"></content>
@@ -1343,18 +1334,6 @@ WantedBy=multi-user.target
       <url>/contact/index.html</url>
       <content type="html"><![CDATA[<p>Contact me with<br><strong><a href="mailto:Myers.Chan@outlook.com?subject=FeebackFromBlog" target="_blank" rel="external">E-mail</a></strong>.<br><strong><a href="http://weibo.com/Nomyfan" target="_blank" rel="external">Weibo</a></strong><br><strong><a href="https://twitter.com/Myers__Chan" target="_blank" rel="external">Twitter</a></strong><br><strong><a href="https://facebook.com/myers.n.chan" target="_blank" rel="external">Facebook</a></strong></p>
 ]]></content>
-    </entry>
-    
-    <entry>
-      <title><![CDATA[Categories]]></title>
-      <url>/categories/index.html</url>
-      <content type="html"></content>
-    </entry>
-    
-    <entry>
-      <title><![CDATA[Photograph]]></title>
-      <url>/photograph/index.html</url>
-      <content type="html"></content>
     </entry>
     
   
