@@ -3,6 +3,49 @@
   
     
     <entry>
+      <title><![CDATA[禁止Windows10的功能更新]]></title>
+      <url>/2018/07/04/disable-windows10-featureupdate/</url>
+      <content type="html"><![CDATA[<h2 id="什么是功能更新？"><a href="#什么是功能更新？" class="headerlink" title="什么是功能更新？"></a>什么是功能更新？</h2><p>所谓的功能更新就是现在Windows10每半年推出的较大的版本更新。</p>
+<h2 id="为什么要禁止功能更新"><a href="#为什么要禁止功能更新" class="headerlink" title="为什么要禁止功能更新?"></a>为什么要禁止功能更新?</h2><p>一般来说我都会第一时间去更新的，但是1803这个版本我翻车了，使用体验巨差。无奈之下，还是回到了1709。那么问题来了，我要如何将1803的更新禁止掉但是不会影响到其他的更新正常运行呢？比如驱动更新和补丁更新？Let’s figure out!</p>
+<h2 id="使用组策略"><a href="#使用组策略" class="headerlink" title="使用组策略"></a>使用组策略</h2><p>对于Pro及更高级的Windows 10版本，可以很方便地使用组策略来进行配置，只需要鼠标点点，键盘敲几个数字即可搞定。</p>
+<ol>
+<li>打开组策略</li>
+<li><p>找到路径<br><code>Computer Configuration\Administrative Templates\Windows Component\Windows Update\Windows Upate for Business</code>  </p>
+<p><a href="/img/2018/06/snipaste_20180704_005409.png"><img src="/img/2018/06/snipaste_20180704_005409.png" alt=""></a></p>
+</li>
+<li><p>点开右侧的<code>Select when Preview Builds and Feature Updates are received</code>  </p>
+<p><a href="snipaste_20180704_010428.png"><img src="/img/2018/06/snipaste_20180704_010428.png" alt=""></a>  </p>
+<p>先设置为<strong>Enabled</strong>，然后在下拉框选择<strong>Semi-Annual Channel</strong>。剩下的两个选项按照图中的中文提示填写就好了。</p>
+</li>
+<li>让组策略生效<br>最简单的方法就是在命令行里敲<code>gpupdate /force</code>即可。</li>
+</ol>
+<h2 id="使用注册表"><a href="#使用注册表" class="headerlink" title="使用注册表"></a>使用注册表</h2><p>因为低于Pro版Windows 10没有组策略的缘故，那么就要祭出注册表了。</p>
+<ol>
+<li>打开注册表  </li>
+<li>找到路径<br><code>Computer\HKEY_LOCAL_MACHINE\SOFTWARE\Microsoft\WindowsUpdate\UpdatePolicy\PolicyState</code><br>直接Copy到路径框里回车即可定位到目标位置。</li>
+<li>修改项<br><a href="/img/2018/06/snipaste_20180704_011254.png"><img src="/img/2018/06/snipaste_20180704_011254.png" alt=""></a><br>图中框起来的是要修改或者新建的项，然后值填图中的（都是十进制），<strong>FeatureUpdatesDeferralInDays</strong>这个值为要推迟接受更新的天数。</li>
+<li>重启一个吧</li>
+</ol>
+]]></content>
+      
+        <categories>
+            
+            <category> Windows </category>
+            
+        </categories>
+        
+        
+        <tags>
+            
+            <tag> Windows </tag>
+            
+            <tag> Windows10 </tag>
+            
+        </tags>
+        
+    </entry>
+    
+    <entry>
       <title><![CDATA[部署Hexo到Azure]]></title>
       <url>/2018/05/03/hexo-host-on-azure/</url>
       <content type="html"><![CDATA[<h2 id="残血版Azure-for-Students"><a href="#残血版Azure-for-Students" class="headerlink" title="残血版Azure for Students"></a>残血版Azure for Students</h2><p>本来是打算用EDU邮箱弄个Azure for Students订阅的，结果只能弄个Azure for Students Starter，完全是残血版，很多东西都没有，也没有$100额度。不过考虑到可以免费挂博客，还是可以用用的，之前博客挂在美国的VPS，访问速度一般般，尤其是我的相册加载很慢。这里就记录一下如何将Hexo架构的博客部署到Azure上。</p>
@@ -331,8 +374,8 @@ fi
 <p>函数返回一个以学号为Key，姓名为Value的字典，有了这个字典，我们就可以遍历所有的元素然后爬图了。</p>
 <h2 id="爬图"><a href="#爬图" class="headerlink" title="爬图"></a>爬图</h2><pre><code class="CSharp">static void PullImage(string url, string id, string name)
 {
-    string url_ = url + id + &quot;.jpg&quot;;
-    HttpWebRequest webRequest = WebRequest.Create(url_) as HttpWebRequest;
+    string _url = url + id + &quot;.jpg&quot;;
+    HttpWebRequest webRequest = WebRequest.Create(_url) as HttpWebRequest;
 
     Image img = null;
     try
@@ -379,124 +422,18 @@ fi
         
         <tags>
             
-            <tag> .NET </tag>
-            
             <tag> C# </tag>
             
             <tag> 爬虫 </tag>
             
-        </tags>
-        
-    </entry>
-    
-    <entry>
-      <title><![CDATA[C#委托和事件]]></title>
-      <url>/2017/12/11/delegate-event/</url>
-      <content type="html"><![CDATA[<p>C#这门语言我是高中开始接触的，当时学得很肤浅，也没有太多的实践，委托的代码从未写过，事件也只有写WPF的时候用到控件自带的事件。几年后的今天我觉得如此优雅的一门语言时候后要重拾了，重新审视一遍委托和事件后觉得豁然开朗。</p>
-<h1 id="委托"><a href="#委托" class="headerlink" title="委托"></a>委托</h1><p>之前我看委托很是不理解它存在的意义，现在学习C++后知道了函数指针这么一个东西并且用过后才理解了委托，现在想想委托这么一个名字取得也是很形象呢！《C#图解教程》[第4版]这本书上也写了：如果你有C++背景，理解委托最快的方法是把它看成一个类型安全的、面向对象的C++函数指针。</p>
-<p>先看启蒙我的C++的函数指针。很常见的一个方法就是algorithm里的sort方法，它需要一个函数指针作为参数。</p>
-<pre><code class="Cpp">std::sort(_vec.begin(), _vec.end(), compare);
-</code></pre>
-<p>最后一个函数的定义是这样的</p>
-<pre><code class="Cpp">bool compare(int x, int y) { return x &lt; y; }
-</code></pre>
-<p>这样就完成了对_vec这个向量的排序，可以看到这里把函数作为参数传进了另外一函数方法里被使用。C#里的委托就实现了相同的功能，而且被设计得更强大，有了委托，我们甚至可以把一组方法传进另一个方法里。</p>
-<p>那么我们看看C#里是如何实现这样的功能的吧。现在我们需要传进的方法的功能是对两个实数进行某种操作，然后把得到的结果返回。首先我们先定义一个委托类型</p>
-<pre><code class="CSharp">delegate double MathOperation(double x, double y);
-</code></pre>
-<p>然后我们定义类型匹配的方法</p>
-<pre><code class="CSharp">public static double Add(double x, double y) { return x + y; }
-</code></pre>
-<p>接着我们定义这么一个方法</p>
-<pre><code class="CSharp">public static void HandleTwoNum(double x, double y, MathOperation operation)
-{
-    double ret = operation(x, y);
-    Console.WriteLine(ret);
-}
-</code></pre>
-<p>实现了对两个实数进行相加的操作然后把得到的结果显示出来，而这个[操作]正是通过委托来进行传递的。</p>
-<h1 id="事件"><a href="#事件" class="headerlink" title="事件"></a>事件</h1><p>当年学委托和事件总是傻傻分不清楚，总觉得这两货就是一个东西。其实本质上来说它俩真的就是如此相近的东西！想想吧，我们要弄一个事件出来还得先定义一个委托呢。但是事件基于委托而又显著区别与委托的是什么呢？为什么要弄出事件这么一个东西呢？现在想想不过是微软想弄事件驱动这么一套机制罢了，形成发布者-订阅者的关系，订阅者提供事件处理程序，发布者触发事件。事件普遍存在WinForm和WPF中。</p>
-<p>先定义一个委托</p>
-<pre><code class="CSharp">delegate void MyEventHandler();
-</code></pre>
-<p>定义事件发布者</p>
-<pre><code class="CSharp">class Publisher
-{
-    public event MyEventHandler Handler;
-    public void Invoke()
-    {
-        Handler();
-    }
-}
-</code></pre>
-<p>需要注意的是事件只能在发布者里被触发，即使声明为public可以在类外部添加事件处理函数。</p>
-<p>然后就是订阅者</p>
-<pre><code class="CSharp">class Subcriber
-{
-    public void MyEventHandler()
-    {
-        Console.WriteLine(&quot;Subcriber&quot;);
-    }
-    public Subcriber(Publisher publisher)
-    {
-        publisher.Handler += MyEventHandler;
-    }
-}
-</code></pre>
-<p>最后触发事件</p>
-<pre><code class="CSharp">Publisher publisher = new Publisher();
-Subcriber subcriber = new Subcriber(publisher);
-publisher.Invoke();
-</code></pre>
-<p>如果我不用事件仅仅用委托可不可实现这么以上的关系呢？当然可以，看代码</p>
-<pre><code class="CSharp">delegate void MyEventHandler();
-class FakePublisher
-{
-    public MyEventHandler Handler;
-    public void Invoke()
-    {
-        Handler();
-    }
-}
-class Subcriber
-{
-    public void MyEventHandler()
-    {
-        Console.WriteLine(&quot;Subcriber&quot;);
-    }
-    public Subcriber(FakePublisher publisher)
-    {
-        publisher.Handler += MyEventHandler;
-    }
-}
-</code></pre>
-<p>触发[Fake]事件</p>
-<pre><code class="CSharp">FakePublisher publisher = new FakePublisher();
-Subcriber subcriber = new Subcriber(publisher);
-publisher.Invoke();
-//publisher.Handler();
-</code></pre>
-<p>这里我们不仅可以通过Invoke方法触发[Fake]事件，更是可以直接通过委托触发。这里体现出来事件发布者来管理事件的触发这个理念。</p>
-<h1 id="结束"><a href="#结束" class="headerlink" title="结束"></a>结束</h1><p>以上就是我对委托和事件的心得，希望对正在学习的你有所帮助（￣︶￣）↗</p>
-]]></content>
-      
-        <categories>
-            
-            <category> Programming </category>
-            
-        </categories>
-        
-        
-        <tags>
-            
-            <tag> C# </tag>
+            <tag> .NET </tag>
             
         </tags>
         
     </entry>
     
     <entry>
-      <title><![CDATA[JSON in .NET(C#)]]></title>
+      <title><![CDATA[Json.NET]]></title>
       <url>/2017/09/20/json-in-dotnet/</url>
       <content type="html"><![CDATA[<p>JSON(JavaScript Object Notation) is popularly used nowadays. For JavaScript, it’s easy to convert a object to json. How about C#? How do we get some properties we need from a json typed object? And how do we convert our object into json formatted text? This article aims to solve the problems. You will see it can be convenient to solve the problems<strong><em>.(●’◡’●)</em></strong></p>
 <h1 id="Preparation"><a href="#Preparation" class="headerlink" title="Preparation"></a>Preparation</h1><p>There is one thing we need to do before start. That is installing the a NuGet package named <em><strong>JSON.NET</strong></em>. In Visual Studio, we can search any package and install it easily. Search <em><strong>JSON.NET</strong></em>, then install it to you project.</p>
@@ -556,7 +493,7 @@ using (StreamReader sr = new StreamReader(response.GetResponseStream()))
 string speed = (string)token.SelectToken(&quot;wind&quot;).SelectToken(&quot;speed&quot;);
 </code></pre>
 <p>The variable speed is the result we want. Not complicated.</p>
-<h1 id="End"><a href="#End" class="headerlink" title="End"></a>End</h1><p>(￣y▽￣)╭ Ohohoho…..</p>
+<h1 id="End"><a href="#End" class="headerlink" title="End"></a>End</h1><p><a href="https://www.newtonsoft.com/json/help/html/Introduction.htm" target="_blank" rel="external">Docs</a><br>(￣y▽￣)╭ Ohohoho…..</p>
 ]]></content>
       
         <categories>
@@ -568,9 +505,9 @@ string speed = (string)token.SelectToken(&quot;wind&quot;).SelectToken(&quot;spe
         
         <tags>
             
-            <tag> .NET </tag>
-            
             <tag> C# </tag>
+            
+            <tag> .NET </tag>
             
             <tag> JSON </tag>
             
@@ -1272,18 +1209,9 @@ WantedBy=multi-user.target
     </entry>
     
     <entry>
-      <title><![CDATA[About Me]]></title>
-      <url>/about/index.html</url>
-      <content type="html"><![CDATA[<p><strong>别人都叫我糯米，小糯米…</strong></p>
-<p>在校大学生。</p>
-<p>理科男，单身，求勾搭。</p>
-<p>喜欢摄影，目前愿望是拥有一部微单。</p>
-<p>努力争取拿奖学金买买买。</p>
-<p>喜欢设计，不断提高审美中。</p>
-<p>程序狗，喜欢做出优雅好用的软件。（虽然还没解锁这个技能）</p>
-<p>偶尔会出去骑行，配合摄影感觉不能再好了。</p>
-<p>微博:<a href="http://weibo.com/Nomyfan" target="_blank" rel="external">@陈诺米同学</a></p>
-]]></content>
+      <title><![CDATA[Articles]]></title>
+      <url>/articles/index.html</url>
+      <content type="html"></content>
     </entry>
     
     <entry>
@@ -1293,15 +1221,10 @@ WantedBy=multi-user.target
     </entry>
     
     <entry>
-      <title><![CDATA[Articles]]></title>
-      <url>/articles/index.html</url>
-      <content type="html"></content>
-    </entry>
-    
-    <entry>
-      <title><![CDATA[Friends]]></title>
-      <url>/friends/index.html</url>
-      <content type="html"></content>
+      <title><![CDATA[Contact]]></title>
+      <url>/contact/index.html</url>
+      <content type="html"><![CDATA[<p>Contact me with<br><strong><a href="mailto:Myers.Chan@outlook.com?subject=FeebackFromBlog" target="_blank" rel="external">E-mail</a></strong>.<br><strong><a href="http://weibo.com/Nomyfan" target="_blank" rel="external">Weibo</a></strong><br><strong><a href="https://twitter.com/Myers__Chan" target="_blank" rel="external">Twitter</a></strong><br><strong><a href="https://facebook.com/myers.n.chan" target="_blank" rel="external">Facebook</a></strong></p>
+]]></content>
     </entry>
     
     <entry>
@@ -1309,12 +1232,6 @@ WantedBy=multi-user.target
       <url>/feeback/index.html</url>
       <content type="html"><![CDATA[<p>Contact me with<br><strong><a href="mailto:Myers.Chan@outlook.com?subject=FeebackFromBlog" target="_blank" rel="external">E-mail</a></strong>.<br><strong><a href="http://weibo.com/Nomyfan" target="_blank" rel="external">Weibo</a></strong><br><strong><a href="https://twitter.com/Myers__Chan" target="_blank" rel="external">Twitter</a></strong><br><strong><a href="https://facebook.com/myers.n.chan" target="_blank" rel="external">Facebook</a></strong></p>
 ]]></content>
-    </entry>
-    
-    <entry>
-      <title><![CDATA[Timeline]]></title>
-      <url>/timeline/index.html</url>
-      <content type="html"></content>
     </entry>
     
     <entry>
@@ -1330,9 +1247,29 @@ WantedBy=multi-user.target
     </entry>
     
     <entry>
-      <title><![CDATA[Contact]]></title>
-      <url>/contact/index.html</url>
-      <content type="html"><![CDATA[<p>Contact me with<br><strong><a href="mailto:Myers.Chan@outlook.com?subject=FeebackFromBlog" target="_blank" rel="external">E-mail</a></strong>.<br><strong><a href="http://weibo.com/Nomyfan" target="_blank" rel="external">Weibo</a></strong><br><strong><a href="https://twitter.com/Myers__Chan" target="_blank" rel="external">Twitter</a></strong><br><strong><a href="https://facebook.com/myers.n.chan" target="_blank" rel="external">Facebook</a></strong></p>
+      <title><![CDATA[Timeline]]></title>
+      <url>/timeline/index.html</url>
+      <content type="html"></content>
+    </entry>
+    
+    <entry>
+      <title><![CDATA[Friends]]></title>
+      <url>/friends/index.html</url>
+      <content type="html"></content>
+    </entry>
+    
+    <entry>
+      <title><![CDATA[About Me]]></title>
+      <url>/about/index.html</url>
+      <content type="html"><![CDATA[<p><strong>别人都叫我糯米，小糯米…</strong></p>
+<p>在校大学生。</p>
+<p>理科男，单身，求勾搭。</p>
+<p>喜欢摄影，目前愿望是拥有一部微单。</p>
+<p>努力争取拿奖学金买买买。</p>
+<p>喜欢设计，不断提高审美中。</p>
+<p>程序狗，喜欢做出优雅好用的软件。（虽然还没解锁这个技能）</p>
+<p>偶尔会出去骑行，配合摄影感觉不能再好了。</p>
+<p>微博:<a href="http://weibo.com/Nomyfan" target="_blank" rel="external">@陈诺米同学</a></p>
 ]]></content>
     </entry>
     
