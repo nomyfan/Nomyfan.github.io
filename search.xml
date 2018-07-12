@@ -3,6 +3,68 @@
   
     
     <entry>
+      <title><![CDATA[魔术师的数字游戏]]></title>
+      <url>/2018/07/12/magician-math-game/</url>
+      <content type="html"><![CDATA[<p>这个问题的名称是我自己想的XD，摘取自《陶哲轩教你学数学》里的习题2.1，原问题如下：</p>
+<blockquote>
+<p>在一个室内游戏中，“魔术师”请一位参与者先想出一个三位数abc<sub>10</sub>。然后，魔术师让该参与者把5个数acb<sub>10</sub>, bac<sub>10</sub>,  bca<sub>10</sub>, cab<sub>10</sub>, cba<sub>10</sub>加起来，并告诉大家它们的和是多少。如果它们的和等于3194，那么最初的abc<sub>10</sub>是多少？  </p>
+</blockquote>
+<p>我们先将题目转化为符号简单表示出来：</p>
+<blockquote>
+<ul>
+<li>取一个数，abc<sub>10</sub>  </li>
+<li>acb<sub>10</sub> + bac<sub>10</sub> + bca<sub>10</sub> + cab<sub>10</sub> + cba<sub>10</sub> = ?  </li>
+<li>abc<sub>10</sub> = ?时，acb<sub>10</sub> + bac<sub>10</sub> + bca<sub>10</sub> + cab<sub>10</sub> + cba<sub>10</sub> = 3194</li>
+</ul>
+</blockquote>
+<p>先解决第一个问题，这五个数的和为</p>
+<blockquote>
+<p>(a + 2b + 2c) x 100 + (2a + b + 2c) x 10 + (2a + 2b + c) = 122a + 212b + 221c</p>
+</blockquote>
+<p>第二个问题。我们可以知道这六个数的和为</p>
+<blockquote>
+<p>sum = (a + b + c) x 222 </p>
+</blockquote>
+<p>那么就是说</p>
+<blockquote>
+<p>222 | sum</p>
+</blockquote>
+<p>其中我们知道了5个数的和为3194，那么</p>
+<blockquote>
+<p>222 | (3194 + abc<sub>10</sub>)</p>
+</blockquote>
+<p>则我们就可以这样求得abc<sub>10</sub></p>
+<blockquote>
+<p>abc<sub>10</sub> % 222 = 222 - 3194 % 222 = 222 - 86 = 136</p>
+<p>abc<sub>10</sub> = 136, 358, 580, 802  </p>
+</blockquote>
+<p>又因为</p>
+<blockquote>
+<p>3194 = 14 x 222 + 86</p>
+</blockquote>
+<p>所以</p>
+<blockquote>
+<p>a + b + c &gt; 14</p>
+</blockquote>
+<p>那么abc<sub>10</sub>只能为358。</p>
+]]></content>
+      
+        <categories>
+            
+            <category> Mathematic </category>
+            
+        </categories>
+        
+        
+        <tags>
+            
+            <tag> Mathematic </tag>
+            
+        </tags>
+        
+    </entry>
+    
+    <entry>
       <title><![CDATA[禁止Windows10的功能更新]]></title>
       <url>/2018/07/04/disable-windows10-featureupdate/</url>
       <content type="html"><![CDATA[<h2 id="什么是功能更新？"><a href="#什么是功能更新？" class="headerlink" title="什么是功能更新？"></a>什么是功能更新？</h2><p>所谓的功能更新就是现在Windows10每半年推出的较大的版本更新。</p>
@@ -424,9 +486,9 @@ fi
             
             <tag> C# </tag>
             
-            <tag> 爬虫 </tag>
-            
             <tag> .NET </tag>
+            
+            <tag> 爬虫 </tag>
             
         </tags>
         
@@ -1209,56 +1271,6 @@ WantedBy=multi-user.target
     </entry>
     
     <entry>
-      <title><![CDATA[Articles]]></title>
-      <url>/articles/index.html</url>
-      <content type="html"></content>
-    </entry>
-    
-    <entry>
-      <title><![CDATA[Categories]]></title>
-      <url>/categories/index.html</url>
-      <content type="html"></content>
-    </entry>
-    
-    <entry>
-      <title><![CDATA[Contact]]></title>
-      <url>/contact/index.html</url>
-      <content type="html"><![CDATA[<p>Contact me with<br><strong><a href="mailto:Myers.Chan@outlook.com?subject=FeebackFromBlog" target="_blank" rel="external">E-mail</a></strong>.<br><strong><a href="http://weibo.com/Nomyfan" target="_blank" rel="external">Weibo</a></strong><br><strong><a href="https://twitter.com/Myers__Chan" target="_blank" rel="external">Twitter</a></strong><br><strong><a href="https://facebook.com/myers.n.chan" target="_blank" rel="external">Facebook</a></strong></p>
-]]></content>
-    </entry>
-    
-    <entry>
-      <title><![CDATA[Contact]]></title>
-      <url>/feeback/index.html</url>
-      <content type="html"><![CDATA[<p>Contact me with<br><strong><a href="mailto:Myers.Chan@outlook.com?subject=FeebackFromBlog" target="_blank" rel="external">E-mail</a></strong>.<br><strong><a href="http://weibo.com/Nomyfan" target="_blank" rel="external">Weibo</a></strong><br><strong><a href="https://twitter.com/Myers__Chan" target="_blank" rel="external">Twitter</a></strong><br><strong><a href="https://facebook.com/myers.n.chan" target="_blank" rel="external">Facebook</a></strong></p>
-]]></content>
-    </entry>
-    
-    <entry>
-      <title><![CDATA[Photograph]]></title>
-      <url>/photograph/index.html</url>
-      <content type="html"></content>
-    </entry>
-    
-    <entry>
-      <title><![CDATA[Tags]]></title>
-      <url>/tags/index.html</url>
-      <content type="html"></content>
-    </entry>
-    
-    <entry>
-      <title><![CDATA[Timeline]]></title>
-      <url>/timeline/index.html</url>
-      <content type="html"></content>
-    </entry>
-    
-    <entry>
-      <title><![CDATA[Friends]]></title>
-      <url>/friends/index.html</url>
-      <content type="html"></content>
-    </entry>
-    
-    <entry>
       <title><![CDATA[About Me]]></title>
       <url>/about/index.html</url>
       <content type="html"><![CDATA[<p><strong>别人都叫我糯米，小糯米…</strong></p>
@@ -1271,6 +1283,56 @@ WantedBy=multi-user.target
 <p>偶尔会出去骑行，配合摄影感觉不能再好了。</p>
 <p>微博:<a href="http://weibo.com/Nomyfan" target="_blank" rel="external">@陈诺米同学</a></p>
 ]]></content>
+    </entry>
+    
+    <entry>
+      <title><![CDATA[Articles]]></title>
+      <url>/articles/index.html</url>
+      <content type="html"></content>
+    </entry>
+    
+    <entry>
+      <title><![CDATA[Contact]]></title>
+      <url>/feeback/index.html</url>
+      <content type="html"><![CDATA[<p>Contact me with<br><strong><a href="mailto:Myers.Chan@outlook.com?subject=FeebackFromBlog" target="_blank" rel="external">E-mail</a></strong>.<br><strong><a href="http://weibo.com/Nomyfan" target="_blank" rel="external">Weibo</a></strong><br><strong><a href="https://twitter.com/Myers__Chan" target="_blank" rel="external">Twitter</a></strong><br><strong><a href="https://facebook.com/myers.n.chan" target="_blank" rel="external">Facebook</a></strong></p>
+]]></content>
+    </entry>
+    
+    <entry>
+      <title><![CDATA[Contact]]></title>
+      <url>/contact/index.html</url>
+      <content type="html"><![CDATA[<p>Contact me with<br><strong><a href="mailto:Myers.Chan@outlook.com?subject=FeebackFromBlog" target="_blank" rel="external">E-mail</a></strong>.<br><strong><a href="http://weibo.com/Nomyfan" target="_blank" rel="external">Weibo</a></strong><br><strong><a href="https://twitter.com/Myers__Chan" target="_blank" rel="external">Twitter</a></strong><br><strong><a href="https://facebook.com/myers.n.chan" target="_blank" rel="external">Facebook</a></strong></p>
+]]></content>
+    </entry>
+    
+    <entry>
+      <title><![CDATA[Friends]]></title>
+      <url>/friends/index.html</url>
+      <content type="html"></content>
+    </entry>
+    
+    <entry>
+      <title><![CDATA[Categories]]></title>
+      <url>/categories/index.html</url>
+      <content type="html"></content>
+    </entry>
+    
+    <entry>
+      <title><![CDATA[Timeline]]></title>
+      <url>/timeline/index.html</url>
+      <content type="html"></content>
+    </entry>
+    
+    <entry>
+      <title><![CDATA[Photograph]]></title>
+      <url>/photograph/index.html</url>
+      <content type="html"></content>
+    </entry>
+    
+    <entry>
+      <title><![CDATA[Tags]]></title>
+      <url>/tags/index.html</url>
+      <content type="html"></content>
     </entry>
     
   
