@@ -3,6 +3,107 @@
   
     
     <entry>
+      <title><![CDATA[Python装饰器]]></title>
+      <url>/2018/07/18/decorator/</url>
+      <content type="html"><![CDATA[<p>本文会涉及到的内容有：</p>
+<ul>
+<li>高阶函数</li>
+<li>闭包</li>
+<li>装饰器</li>
+</ul>
+<p>只要你懂了前两个，那么就可以往下继续阅读了。现在假设我们有这么一个需求，实现对两个虚数的加乘运算。实现方法当然很多，最直接能想到的应该就是写两个函数，然后完成各自的逻辑。这样是可以的，但是没有扩展性。想象一下定义一个通用运算方法，然后把一个函数（即一种运算规则）传入，然后使用这个函数完成运算后返回。这样使用者就可以完全在后期自定义自己的运算规则，这样的好处是可以使用<em>lambda</em>表达式，避免一次性函数在代码中定义。用过C++的标准库里的sort()函数一眼就知道我说什么了。</p>
+<p>首先我们先准备一个类</p>
+<pre><code class="Py">class Complex:
+    def __init__(self,x,y):
+        self.x = x
+        self.y = y   
+    def __repr__(self):
+        return str(self.x) + &#39;i&#39; + (&#39;+&#39; if self.y &gt; 0 else &#39;&#39;) + str(self.y)
+</code></pre>
+<p>到此我们就完成了对Complex类的定义。</p>
+<p>接下来定义一个通用的计算方法</p>
+<pre><code class="Py">def com_cal(func):
+    def run(a,b):
+        return func(a,b)
+    return run
+</code></pre>
+<p>这个函数接收一个函数作为参数（运算规则）（高阶函数特性），函数内部定义一个run()方法，在这个方法里使用了传入的运算规则，最后com_cal()将run()方法返回（闭包特性）。</p>
+<p>到此为止，接下来我们就可以定义具体的运算规则了</p>
+<pre><code class="py">def com_add(a,b):
+    return Complex(a.x+b.x, a.y+b.y)
+</code></pre>
+<p>假设我们直接用闭包，那么可以写下边的代码</p>
+<pre><code class="py"># Closure
+com_cal(com_add)(a,b) # 3i+4
+</code></pre>
+<p>但是这样的问题是要写两个括号，换句话来说就是不够优雅。这时候就可以使用装饰器了！装饰器的本质其实就是<strong>闭包的语法糖</strong>。</p>
+<p>首先修改一下com_add()</p>
+<pre><code class="py"># Decorator
+@com_cal
+def com_add(a,b):
+    return Complex(a.x+b.x, a.y+b.y)
+</code></pre>
+<p>然后就可以这样使用</p>
+<pre><code class="py">com_add(a,b) # 3i+4
+</code></pre>
+<p>这样的代码是不是更加直观可读性更好？装饰器的作用就是将被装饰的函数作为参数传入用于装饰的函数中，在这里例子中，com_cal()就是装饰函数，com_add()就是被装饰的函数，会作为com_cal()的实参，这样完全符合com_cal()的参数要求。在调用的时候可以把com_add()当作已经传入了com_add()的run()方法，因此给它两个Complex实例是完全符合的。</p>
+<p>全部代码如下</p>
+<pre><code class="py">class Complex:
+    def __init__(self,x,y):
+        self.x = x
+        self.y = y   
+    def __repr__(self):
+        return str(self.x) + &#39;i&#39; + (&#39;+&#39; if self.y &gt; 0 else &#39;&#39;) + str(self.y)
+
+def com_cal(func):
+    def run(a,b):
+        return func(a,b)
+    return run
+
+# Decorator
+@com_cal
+def com_add(a,b):
+    return Complex(a.x+b.x, a.y+b.y)
+
+a = Complex(1,1)
+b = Complex(2,3)
+
+print(com_add(a,b)) # 3i+4
+</code></pre>
+<h2 id="额外话题"><a href="#额外话题" class="headerlink" title="额外话题"></a>额外话题</h2><p>这篇文章达到了讲解Python装饰器的目的，但是对于所选的例子来说并不是最好的，有点强行的感觉。因为我完全可以使用更好的实现，代码也更少。</p>
+<pre><code class="py">class Complex:
+    def __init__(self,x,y):
+        self.x = x
+        self.y = y   
+    def __repr__(self):
+        return str(self.x) + &#39;i&#39; + (&#39;+&#39; if self.y &gt; 0 else &#39;&#39;) + str(self.y)
+    def calc(self,func,another):
+        return func(self, another)
+
+a = Complex(1,1)
+b = Complex(2,3)
+
+print(a.calc(lambda a,b: Complex(a.x+b.x, a.y+b.y),b)) # 3i+4
+</code></pre>
+<p>而且就数学运算来说，完全还可以使用运算符重载来实现。下次选个好例子(/▽＼)</p>
+]]></content>
+      
+        <categories>
+            
+            <category> Programming </category>
+            
+        </categories>
+        
+        
+        <tags>
+            
+            <tag> Python </tag>
+            
+        </tags>
+        
+    </entry>
+    
+    <entry>
       <title><![CDATA[魔术师的数字游戏]]></title>
       <url>/2018/07/12/magician-math-game/</url>
       <content type="html"><![CDATA[<p>这个问题的名称是我自己想的XD，摘取自《陶哲轩教你学数学》里的习题2.1，原问题如下：</p>
@@ -99,9 +200,9 @@
         
         <tags>
             
-            <tag> Windows </tag>
+            <tag> Windows 10 </tag>
             
-            <tag> Windows10 </tag>
+            <tag> Windows </tag>
             
         </tags>
         
@@ -1293,13 +1394,6 @@ WantedBy=multi-user.target
     
     <entry>
       <title><![CDATA[Contact]]></title>
-      <url>/feeback/index.html</url>
-      <content type="html"><![CDATA[<p>Contact me with<br><strong><a href="mailto:Myers.Chan@outlook.com?subject=FeebackFromBlog" target="_blank" rel="external">E-mail</a></strong>.<br><strong><a href="http://weibo.com/Nomyfan" target="_blank" rel="external">Weibo</a></strong><br><strong><a href="https://twitter.com/Myers__Chan" target="_blank" rel="external">Twitter</a></strong><br><strong><a href="https://facebook.com/myers.n.chan" target="_blank" rel="external">Facebook</a></strong></p>
-]]></content>
-    </entry>
-    
-    <entry>
-      <title><![CDATA[Contact]]></title>
       <url>/contact/index.html</url>
       <content type="html"><![CDATA[<p>Contact me with<br><strong><a href="mailto:Myers.Chan@outlook.com?subject=FeebackFromBlog" target="_blank" rel="external">E-mail</a></strong>.<br><strong><a href="http://weibo.com/Nomyfan" target="_blank" rel="external">Weibo</a></strong><br><strong><a href="https://twitter.com/Myers__Chan" target="_blank" rel="external">Twitter</a></strong><br><strong><a href="https://facebook.com/myers.n.chan" target="_blank" rel="external">Facebook</a></strong></p>
 ]]></content>
@@ -1312,20 +1406,27 @@ WantedBy=multi-user.target
     </entry>
     
     <entry>
+      <title><![CDATA[Contact]]></title>
+      <url>/feeback/index.html</url>
+      <content type="html"><![CDATA[<p>Contact me with<br><strong><a href="mailto:Myers.Chan@outlook.com?subject=FeebackFromBlog" target="_blank" rel="external">E-mail</a></strong>.<br><strong><a href="http://weibo.com/Nomyfan" target="_blank" rel="external">Weibo</a></strong><br><strong><a href="https://twitter.com/Myers__Chan" target="_blank" rel="external">Twitter</a></strong><br><strong><a href="https://facebook.com/myers.n.chan" target="_blank" rel="external">Facebook</a></strong></p>
+]]></content>
+    </entry>
+    
+    <entry>
       <title><![CDATA[Categories]]></title>
       <url>/categories/index.html</url>
       <content type="html"></content>
     </entry>
     
     <entry>
-      <title><![CDATA[Timeline]]></title>
-      <url>/timeline/index.html</url>
+      <title><![CDATA[Photograph]]></title>
+      <url>/photograph/index.html</url>
       <content type="html"></content>
     </entry>
     
     <entry>
-      <title><![CDATA[Photograph]]></title>
-      <url>/photograph/index.html</url>
+      <title><![CDATA[Timeline]]></title>
+      <url>/timeline/index.html</url>
       <content type="html"></content>
     </entry>
     
