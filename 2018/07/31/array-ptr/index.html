@@ -45,7 +45,7 @@
     
     <title>
         
-            关于我 | 
+            C语言数组名a和&amp;a | 
         
         IConnectable&lt;World&gt;
     </title>
@@ -56,7 +56,7 @@
 
     <meta name="format-detection" content="telephone=no"/>
     <meta name="description" itemprop="description" content="Nomyfan&#39;s personal blog">
-    <meta name="keywords" content="Technology,Programming,Microsoft,.NET,Mathematic,dotnet">
+    <meta name="keywords" content="Technology,Programming,Microsoft,.NET,Mathematic,dotnet,C/C++">
     <meta name="theme-color" content="#0097A7">
 
     <!-- Disable Fucking Bloody Baidu Tranformation -->
@@ -83,6 +83,9 @@
         <style id="style_css"></style><script>if(typeof window.lsLoadCSSMaxNums === "undefined")window.lsLoadCSSMaxNums = 0;window.lsLoadCSSMaxNums++;lsloader.load("style_css","/css/style.min.css?MKetZV3cUTfDxvMffaOezg==",function(){if(typeof window.lsLoadCSSNums === "undefined")window.lsLoadCSSNums = 0;window.lsLoadCSSNums++;if(window.lsLoadCSSNums == window.lsLoadCSSMaxNums)document.documentElement.style.display="";}, false)</script>
 
         
+            
+                <style id="prettify_css"></style><script>if(typeof window.lsLoadCSSMaxNums === "undefined")window.lsLoadCSSMaxNums = 0;window.lsLoadCSSMaxNums++;lsloader.load("prettify_css","/css/prettify.min.css?VbSuLZyOpxJuf3o2tYEOVg==",function(){if(typeof window.lsLoadCSSNums === "undefined")window.lsLoadCSSNums = 0;window.lsLoadCSSNums++;if(window.lsLoadCSSNums == window.lsLoadCSSMaxNums)document.documentElement.style.display="";}, false)</script>
+                <style id="prettify_theme"></style><script>if(typeof window.lsLoadCSSMaxNums === "undefined")window.lsLoadCSSMaxNums = 0;window.lsLoadCSSMaxNums++;lsloader.load("prettify_theme","/css/prettify/tomorrow-night-eighties.min.css?2LJQzURO+Kr8r/fl/T8oMA==",function(){if(typeof window.lsLoadCSSNums === "undefined")window.lsLoadCSSNums = 0;window.lsLoadCSSNums++;if(window.lsLoadCSSNums == window.lsLoadCSSMaxNums)document.documentElement.style.display="";}, false)</script>
             
         
 
@@ -219,7 +222,7 @@
     <!-- WebAPP Icons -->
     <meta name="mobile-web-app-capable" content="yes">
     <meta name="application-name" content="IConnectable&lt;World&gt;">
-    <meta name="msapplication-starturl" content="https://blog.nokky.net/about/">
+    <meta name="msapplication-starturl" content="https://blog.nokky.net/2018/07/31/array-ptr/">
     <meta name="msapplication-navbutton-color" content="#0097A7">
     <meta name="apple-mobile-web-app-capable" content="yes">
     <meta name="apple-mobile-web-app-title" content="IConnectable&lt;World&gt;">
@@ -234,13 +237,16 @@
     
 
     <!-- The Open Graph protocol -->
-    <meta property="og:url" content="https://blog.nokky.net/about/">
+    <meta property="og:url" content="https://blog.nokky.net/2018/07/31/array-ptr/">
     <meta property="og:type" content="blog">
-    <meta property="og:title" content="关于我 | IConnectable&lt;World&gt;">
+    <meta property="og:title" content="C语言数组名a和&amp;a | IConnectable&lt;World&gt;">
     <meta property="og:image" content="/img/favicon.png">
     <meta property="og:description" content="Nomyfan&#39;s personal blog">
-    
+    <meta property="og:article:tag" content="C/C++"> 
 
+    
+        <meta property="article:published_time" content="Tue Jul 31 2018 11:15:00 GMT+0800">
+        <meta property="article:modified_time" content="Tue Jul 31 2018 12:04:58 GMT+0800">
     
 
     <!-- The Twitter Card protocol -->
@@ -248,13 +254,43 @@
 
     <!-- Add canonical link for SEO -->
     
-        <link rel="canonical" href="https://blog.nokky.net/about/index.html" />
+        <link rel="canonical" href="https://blog.nokky.net/2018/07/31/array-ptr/index.html" />
     
 
     <!-- Structured-data for SEO -->
     
         
 
+
+<script type="application/ld+json">
+{
+    "@context": "https://schema.org",
+    "@type": "BlogPosting",
+    "mainEntityOfPage": "https://blog.nokky.net/2018/07/31/array-ptr/index.html",
+    "headline": "C语言数组名a和&a",
+    "datePublished": "Tue Jul 31 2018 11:15:00 GMT+0800",
+    "dateModified": "Tue Jul 31 2018 12:04:58 GMT+0800",
+    "author": {
+        "@type": "Person",
+        "name": "Myers Chan",
+        "image": {
+            "@type": "ImageObject",
+            "url": "/img/avatar.png"
+        },
+        "description": "Debug.WriteLine($"哟，写bug呢！");"
+    },
+    "publisher": {
+        "@type": "Organization",
+        "name": "IConnectable&lt;World&gt;",
+        "logo": {
+            "@type":"ImageObject",
+            "url": "/img/favicon.png"
+        }
+    },
+    "keywords": ",C/C++Technology,Programming,Microsoft,.NET,Mathematic,dotnet",
+    "description": "Nomyfan&#39;s personal blog",
+}
+</script>
 
 
     
@@ -294,6 +330,30 @@
 
                     <!-- Post TOC -->
 
+    
+    <!-- Back Button -->
+    <!--
+    <div class="material-back" id="backhome-div" tabindex="0">
+        <a class="mdl-button mdl-js-button mdl-js-ripple-effect mdl-button--icon"
+           href="#" onclick="window.history.back();return false;"
+           target="_self"
+           role="button"
+           data-upgraded=",MaterialButton,MaterialRipple">
+            <i class="material-icons" role="presentation">arrow_back</i>
+            <span class="mdl-button__ripple-container">
+                <span class="mdl-ripple"></span>
+            </span>
+        </a>
+    </div>
+    -->
+
+
+    <!-- Left aligned menu below button -->
+    
+    
+
+
+
 
 <!-- Layouts -->
 
@@ -320,7 +380,7 @@
         
     
             <p class="article-headline-p">
-                关于我
+                C语言数组名a和&a
             </p>
         </div>
 
@@ -339,7 +399,7 @@
     <!-- Author Name & Date -->
     <div>
         <strong>Myers Chan</strong>
-        <span>Dec 07, 2016</span>
+        <span>Jul 31, 2018</span>
     </div>
 
     <div class="section-spacer"></div>
@@ -361,13 +421,22 @@
 <ul class="mdl-menu mdl-menu--bottom-right mdl-js-menu mdl-js-ripple-effect" for="article-functions-qrcode-button">
     <li class="mdl-menu__item">Read this article on other devices</li>
     
-        <img src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAMYAAADGCAAAAACs8KCBAAAB20lEQVR42u3aS27DMAwFQN//0u0BAqOPpOtW0nhlBImjyYLh7/ra4rowMDAwMDAwMP4N44qvz0/dvfJ5nzytfAYMDIzDGD+EtuA9d8dKntA7AwYGxpmMuwCX3FcPlwdoDAwMjB7jzVQSAwMDY8KIErjxz4SBgYFRLSDz91eD7Ku1OAYGxoKMPNX7vftX5xsYGBhLMcorDjewajCtDhse3hnBwMBYipEHvjz5S9ptedDHwMDAmJSd5S8upp6FIhYDA+MYxmTcWE0fkx+xnOFiYGBsyugFvhzTa+1FJ8HAwDiYkaSA1bbaU0NQDAyMMxlVUhJMJ0F2VMRiYGBsypiMAarHnYxFR/8bGBgYizOqCxDzFts81GJgYJzMSNpwvUb/q0UsBgbGdox5m6xcfD7UzsPAwMB4amCZpKG90IyBgXEyY7IilqSV85CNgYFxMmM+hszB+ULY7fMxMDCOYVSvapCdtOowMDAwJsE0KXEnY4PHdkYwMDA2YvSC7HwMUChZJ4MBDAyMjRj5KLGHyUvZ0WAAAwMDI26xVYvS5FMYGBgYvfWsaru/WjyPRpgYGBjbMXqpXnOpqzX+xMDAOJlRXYDorWvkT2gWsRgYGJsy1r0wMDAwMDAwMP70+gbuHTDdZ8wNfgAAAABJRU5ErkJggg==">
+        <img src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAN4AAADeCAAAAAB3DOFrAAACYklEQVR42u3aQY7CMAwFUO5/6ZntbIb+nxBT0MsKIdr6BamxbD9+vno98PDw8PDw8PDwbsZ7xOvipk9///eb5Dc7seHh4eHN8JLQk3DzTck3oo4NDw8Pb5D3X3DPPydXJQdJu4l4eHh4n85rQ0/ScTw8PLxv5bWJeFuMwMPDw7szLwk0SaPXSsD59wdrLXh4eHgxL28yzX8e7e/h4eHhBbx6pKkcI8gHCJI710NXeHh4eAd4rx0CWEuv2ztcxIOHh4f3Jt65oyJpm7Xf4OHh4d2Bl48ItIn1Whm3aLzh4eHhjfDaRn5bdMibZ8mzLhJ0PDw8vMO8JFXdebnnRYfkkIiegoeHhzfIyxPlpMxat/yTQkOS6OPh4eG9lZe8yvOEeG3L2r8BDw8Pb563U0htR6nWhmWLMi4eHh7eMV5Slt0ZLW1f9zkpSqnx8PDwDvPaoKNHbqTp7QgsHh4e3nt5ebNqsXAQHEV1mo6Hh4c3wlsLuh0IWBu6qhtpeHh4eOO8nSLF/ga1LbGtKjUeHh7eEi8PLnkpt4lyXswttg8PDw9vnLeWyO5c1absFzHg4eHhjfPWAorKBBublQ8x4OHh4c3z2mS6ZbSDBW0bDA8PD+80r11tifZVd8gLu3h4eHineY94tSnv6WGCogGGh4eHd4DXvsqTZtVOIWOr5IGHh4c3yGtf0PlV+Ua0xQg8PDy8T+HlB0NyYLTHzPGDAQ8PD2/kYGhLwO24VVFoxsPDwxvktWHlRYQ2HV97Fh4eHt4kb23UKR8nzcsKSTJ9sel4eHh4h3nft/Dw8PDw8PDw8G6wfgFPG1PvKaVQmAAAAABJRU5ErkJggg==">
     
 </ul>
 
     
 
     <!-- Tags (bookmark) -->
+    
+    <button id="article-functions-viewtags-button" class="mdl-button mdl-js-button mdl-js-ripple-effect mdl-button--icon">
+        <i class="material-icons" role="presentation">bookmark</i>
+        <span class="visuallyhidden">bookmark</span>
+    </button>
+    <ul class="mdl-menu mdl-menu--bottom-right mdl-js-menu mdl-js-ripple-effect" for="article-functions-viewtags-button">
+        <li class="mdl-menu__item">
+        <a class="post_tag-link" href="/tags/C-C/">C/C++</a>
+    </ul>
     
 
     <!-- Share -->
@@ -381,7 +450,7 @@
     <!-- Leancloud Views -->
         <a class="post_share-link" href="#">
             <li class="mdl-menu__item">
-                <span id="/about/index.html" class="leancloud-views_num" data-flag-title="关于我">
+                <span id="/2018/07/31/array-ptr/" class="leancloud-views_num" data-flag-title="C语言数组名a和&amp;a">
      &nbsp;Views
 </span>
 
@@ -393,7 +462,7 @@
 
     <!-- Share Weibo -->
     
-        <a class="post_share-link" href="http://service.weibo.com/share/share.php?appkey=&title=关于我&url=https://blog.nokky.net/about/index.html&pic=https://blog.nokky.net/img/favicon.png&searchPic=false&style=simple" target="_blank">
+        <a class="post_share-link" href="http://service.weibo.com/share/share.php?appkey=&title=C语言数组名a和&amp;a&url=https://blog.nokky.net/2018/07/31/array-ptr/index.html&pic=https://blog.nokky.net/img/favicon.png&searchPic=false&style=simple" target="_blank">
             <li class="mdl-menu__item">
                 Share to Weibo
             </li>
@@ -402,7 +471,7 @@
 
     <!-- Share Twitter -->
     
-        <a class="post_share-link" href="https://twitter.com/intent/tweet?text=关于我&url=https://blog.nokky.net/about/index.html&via=Myers Chan" target="_blank">
+        <a class="post_share-link" href="https://twitter.com/intent/tweet?text=C语言数组名a和&amp;a&url=https://blog.nokky.net/2018/07/31/array-ptr/index.html&via=Myers Chan" target="_blank">
             <li class="mdl-menu__item">
                 Share to Twitter
             </li>
@@ -411,7 +480,7 @@
 
     <!-- Share Facebook -->
     
-        <a class="post_share-link" href="https://www.facebook.com/sharer/sharer.php?u=https://blog.nokky.net/about/index.html" target="_blank">
+        <a class="post_share-link" href="https://www.facebook.com/sharer/sharer.php?u=https://blog.nokky.net/2018/07/31/array-ptr/index.html" target="_blank">
             <li class="mdl-menu__item">
                 Share to Facebook
             </li>
@@ -420,7 +489,7 @@
 
     <!-- Share Google+ -->
     
-        <a class="post_share-link" href="https://plus.google.com/share?url=https://blog.nokky.net/about/index.html" target="_blank">
+        <a class="post_share-link" href="https://plus.google.com/share?url=https://blog.nokky.net/2018/07/31/array-ptr/index.html" target="_blank">
             <li class="mdl-menu__item">
                 Share to Google+
             </li>
@@ -445,15 +514,37 @@
                 <!-- Post Content -->
                 <div id="post-content" class="mdl-color-text--grey-700 mdl-card__supporting-text fade out">
     
-        <p>网名普遍用<em>陈诺米同学</em>，<em>Nomyfan</em>通常也作为唯一ID。</p>
-<p>大二就读上海某高校，读的是软件工程专业。我开始接触计算机的时间点不算早（对比我高中认识的许多人），但也比一些人要早。</p>
-<h2 id="初中篇"><a href="#初中篇" class="headerlink" title="初中篇"></a>初中篇</h2><p>小学的时候我梦寐以求的是拥有一台计算机，然而这个愿望没有得到实现。直到初二的时候家里才有了第一台计算机，即使配置是奔腾E5700+2G内存（那时候我根本不懂这个，我甚至连配置这个名词我还要人给我解释一下是什么意思），也没有网络，但那是我也是及其兴奋。然后我就开始鼓捣这个在当时的我看似很强（实则很烂）的计算机。那时的我都做些什么呢？整天装系统2333，周末跑去附近的电脑城买10块一张的盗版的系统光盘（那时候的我也不知道盗版），然后就开始给家里的电脑装系统。可能你会问，没有网络你怎么用计算机，软件怎么下载？说来你可能不信，我都是叫我的好基友下载然后U盘拷贝给我的，现在想起来也真是搞笑哈哈哈。然后经常性的和好基友探讨手机和计算机方面的问题，也买了几年的电脑报，从中了解到了很多一些我从未知道的事物，开始觉得电子产品真是趣味十足，现在为电脑报的落没深感惋惜。对了，也是这个时候我开始知道了Windows Phone，决定初中毕业一定要买个Lumia 920，WP人脉的那个翻转的效果深深的地把我吸引了，那时候的我压根看不起安卓系统。然而事与愿违，初中毕业靠着打工赚来的钱只够买个Lumia 820。我按耐不住内心的兴奋，因为这是我人生的第一部智能手机。然后我就进了湛江一中开始了我高中的生活。</p>
-<h2 id="高中篇"><a href="#高中篇" class="headerlink" title="高中篇"></a>高中篇</h2><p>高中的我开始接触社团，社团挺多的，但是真正想参加的并没有，就在我打算加入乒乓球社的隔天有人在班里的黑板上写下了IT社的招新，毫不犹豫我就报名参加了。本来还在焦虑地准备面试的，毕竟我什么都不懂，结果社长加了我的QQ告诉我已经入社了，当时真是一脸懵逼。这都不是关键，关键的是社长也是用WP，而且另一个学长是微软的MVP，同时也是WPer！我整个人都高潮了，整体在群里bb，系统有更新bb一下，发图直播一下，应用更新了都要bb，我们三个人成了群里最水的哈哈哈。</p>
-<p>高一第一学期学了C语言，然而因为在学校的原因没有电脑实操，写过的东西不多。然后社团里讲WPF，我就学了下C#，C#我是真的没有写过项目，然后就没了。</p>
-<p>高中后仿佛彻底放松了，我不把心思放在学习上，成绩并不好，即使高三发力学习，但还是很多东西学不好，最后高考失利了，沦落到在上海某高校上大学。不过吧，高中应该是我最快乐的时期了，尤其是高三和同学们一起奋斗的时光，这是最令我难以忘怀的。高中还是我投身IT的启蒙期。</p>
-<h2 id="大学篇"><a href="#大学篇" class="headerlink" title="大学篇"></a>大学篇</h2><p>上了计算机专业，我能彻底做我喜欢的事情了，高考的失利我是一直耿耿于怀的，有时候还后悔自己没有去复读。大学我不让自己放荡了，可是大学我想象中的不一样，可能是学校太渣的缘故，并不是很多人都特别专注于计算机的学习，也就是学习氛围并不强，不少人都是为了应付考试就完事儿了，整天埋在游戏上。这让我很失望，所幸的是我加入了一个软件社，认识了几个真正想做东西的人，现在我和两个组队一起做项目，也还算好。</p>
-<p>在大学我成长了许多，我自认为是这样的。很多第一次的体验，比如第一次远离家乡跑到这么远的上海，第一次住宿，第一次独立照顾自己，第一次自己坐飞机等。经历了高中和大学后，我没有以前那么腼腆害羞了，但是还是有的，只是没有那么严重罢了。</p>
+        <p>为什么要讨论这个话题呢？这个话题起源于我今天打开Leetcode之后看到的两行代码。</p>
+<pre><code class="c">int a[5] = {0, 1, 2, 3, 4};
+vector&lt;int&gt; v4(a, *(&amp;a + 1));
+</code></pre>
+<p>我就好奇了这个用的是哪个构造函数。<code>*(&amp;a + 1)</code>究竟指的是什么，这是令我费解的，调试了一下发现它指的是数组的最后，所以用的是<em>range constructor</em>。那么就往我们一层一层的剥开，深入理解一下吧。</p>
+<p>要理解这个主要理解<code>a</code>和<code>&amp;a</code>即可，而理解这两个我们主要从它们的类型入手，所以，它们类型都是什么？<br>其实<code>a</code>的类型是<code>int*</code>，而<code>&amp;a</code>的类型是<code>int(*)[5]</code>。</p>
+<pre><code class="c">int(*p1)[5] = &amp;a;
+int* p2 = a;
+</code></pre>
+<p>我们都很熟悉的是<code>int*</code>类型的指针偏移一位就是一维数组的下一个元素，本例中的<code>p2</code>偏移一位也就是<code>p2+1</code>指向的元素是1。那么我们做个扩展，<code>int(*)[5]</code>类型的指针偏移一位的下一个元素是什么？对于这个问题，我们主要理解加1的操作偏移的长度是多少即可。对于<code>int*</code>类型加1移动了<code>sizeof(int)</code>的长度，这是我们知道的。那么<code>int(*)[5]</code>实际上原理是一样的，因为它的类型是5个长度的数组，因此它的加1操作偏移的长度是<code>sizeof(int)*5</code>，因此<code>&amp;a+1</code>实际上指向了<code>a</code>这个数组的末尾，因为这是指向数组的指针的缘故，我们再对它取值<code>*(&amp;a+1)</code>就得到了数组<code>a</code>最后的地址。</p>
+<p>测试代码：</p>
+<pre><code class="c">int* p3 = *(&amp;a + 1);
 
+cout &lt;&lt; *a &lt;&lt; endl;
+cout &lt;&lt; *(&amp;a) &lt;&lt; endl;
+cout &lt;&lt; a &lt;&lt; endl;
+cout &lt;&lt; &amp;a[0] &lt;&lt; endl;
+
+cout &lt;&lt; &quot;============&quot; &lt;&lt; endl;
+cout &lt;&lt; p3 &lt;&lt; endl;
+cout &lt;&lt; &amp;a[4] + 1 &lt;&lt; endl;
+</code></pre>
+<p>结果</p>
+<pre><code>0
+0133FDF8
+0133FDF8
+0133FDF8
+============
+0133FE0C
+0133FE0C
+</code></pre>
         
                 <blockquote style="margin: 2em 0 0;padding: 0.5em 1em;border-left: 3px solid #F44336;background-color: #F5F5F5;list-style: none;">
                     <p><strong>
@@ -461,7 +552,7 @@
                             This blog is under a <a href="https://creativecommons.org/licenses/by-nc-sa/3.0/deed.zh" target="_blank">CC BY-NC-SA 3.0 Unported License</a>
                         </strong>
                         <br>
-                        <strong>Link to this article: </strong><a href="https://blog.nokky.net/about/index.html">https://blog.nokky.net/about/index.html</a>
+                        <strong>Link to this article: </strong><a href="https://blog.nokky.net/2018/07/31/array-ptr/">https://blog.nokky.net/2018/07/31/array-ptr/</a>
                     </p>
                 </blockquote>
         
@@ -488,6 +579,14 @@
     <div class="section-spacer"></div>
 
     <!-- Next Nav -->
+    
+        <a href="/2018/07/18/decorator/" id="post_nav-older" class="next-content">
+            Older
+            &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+            <button class="mdl-button mdl-js-button mdl-js-ripple-effect mdl-button--icon mdl-color--white mdl-color-text--grey-900" role="presentation">
+                <i class="material-icons">arrow_forward</i>
+            </button>
+        </a>
     
 </nav>
 
@@ -707,6 +806,14 @@ It will not impact the appearance and can give developers a lot of support :)
 </aside>
 
                     
+
+                    
+                        <!-- Footer Top Button -->
+                        <div id="back-to-top" class="toTop-wrap">
+    <a href="#top" class="toTop">
+        <i class="material-icons footer_top-i">expand_less</i>
+    </a>
+</div>
 
                     
 
@@ -952,6 +1059,10 @@ It will not impact the appearance and can give developers a lot of support :)
 <!-- Import prettify js  -->
 
     
+        
+            <script>lsloader.load("prettify_js","/js/prettify.min.js?WN07fivHQSMKWy7BmHBB6w==", true)</script>
+        
+    
 
 
 
@@ -964,6 +1075,11 @@ It will not impact the appearance and can give developers a lot of support :)
     });
 
     
+        
+            $(function() {
+                $('pre').addClass('prettyprint linenums').attr('style', 'overflow:auto;');
+                prettyPrint();
+                })
         
     
     

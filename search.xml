@@ -3,6 +3,56 @@
   
     
     <entry>
+      <title><![CDATA[C语言数组名a和&a]]></title>
+      <url>/2018/07/31/array-ptr/</url>
+      <content type="html"><![CDATA[<p>为什么要讨论这个话题呢？这个话题起源于我今天打开Leetcode之后看到的两行代码。</p>
+<pre><code class="c">int a[5] = {0, 1, 2, 3, 4};
+vector&lt;int&gt; v4(a, *(&amp;a + 1));
+</code></pre>
+<p>我就好奇了这个用的是哪个构造函数。<code>*(&amp;a + 1)</code>究竟指的是什么，这是令我费解的，调试了一下发现它指的是数组的最后，所以用的是<em>range constructor</em>。那么就往我们一层一层的剥开，深入理解一下吧。</p>
+<p>要理解这个主要理解<code>a</code>和<code>&amp;a</code>即可，而理解这两个我们主要从它们的类型入手，所以，它们类型都是什么？<br>其实<code>a</code>的类型是<code>int*</code>，而<code>&amp;a</code>的类型是<code>int(*)[5]</code>。</p>
+<pre><code class="c">int(*p1)[5] = &amp;a;
+int* p2 = a;
+</code></pre>
+<p>我们都很熟悉的是<code>int*</code>类型的指针偏移一位就是一维数组的下一个元素，本例中的<code>p2</code>偏移一位也就是<code>p2+1</code>指向的元素是1。那么我们做个扩展，<code>int(*)[5]</code>类型的指针偏移一位的下一个元素是什么？对于这个问题，我们主要理解加1的操作偏移的长度是多少即可。对于<code>int*</code>类型加1移动了<code>sizeof(int)</code>的长度，这是我们知道的。那么<code>int(*)[5]</code>实际上原理是一样的，因为它的类型是5个长度的数组，因此它的加1操作偏移的长度是<code>sizeof(int)*5</code>，因此<code>&amp;a+1</code>实际上指向了<code>a</code>这个数组的末尾，因为这是指向数组的指针的缘故，我们再对它取值<code>*(&amp;a+1)</code>就得到了数组<code>a</code>最后的地址。</p>
+<p>测试代码：</p>
+<pre><code class="c">int* p3 = *(&amp;a + 1);
+
+cout &lt;&lt; *a &lt;&lt; endl;
+cout &lt;&lt; *(&amp;a) &lt;&lt; endl;
+cout &lt;&lt; a &lt;&lt; endl;
+cout &lt;&lt; &amp;a[0] &lt;&lt; endl;
+
+cout &lt;&lt; &quot;============&quot; &lt;&lt; endl;
+cout &lt;&lt; p3 &lt;&lt; endl;
+cout &lt;&lt; &amp;a[4] + 1 &lt;&lt; endl;
+</code></pre>
+<p>结果</p>
+<pre><code>0
+0133FDF8
+0133FDF8
+0133FDF8
+============
+0133FE0C
+0133FE0C
+</code></pre>]]></content>
+      
+        <categories>
+            
+            <category> Programming </category>
+            
+        </categories>
+        
+        
+        <tags>
+            
+            <tag> C/C++ </tag>
+            
+        </tags>
+        
+    </entry>
+    
+    <entry>
       <title><![CDATA[Python装饰器]]></title>
       <url>/2018/07/18/decorator/</url>
       <content type="html"><![CDATA[<p>本文会涉及到的内容有：</p>
@@ -237,7 +287,7 @@ print(a.calc(lambda a,b: Complex(a.x+b.x, a.y+b.y),b)) # 3i+4
       
         <categories>
             
-            <category> Azure </category>
+            <category> Linux </category>
             
         </categories>
         
@@ -245,6 +295,8 @@ print(a.calc(lambda a,b: Complex(a.x+b.x, a.y+b.y),b)) # 3i+4
         <tags>
             
             <tag> Azure </tag>
+            
+            <tag> VPS </tag>
             
         </tags>
         
@@ -587,9 +639,9 @@ fi
             
             <tag> C# </tag>
             
-            <tag> .NET </tag>
-            
             <tag> 爬虫 </tag>
+            
+            <tag> .NET </tag>
             
         </tags>
         
@@ -1372,18 +1424,9 @@ WantedBy=multi-user.target
     </entry>
     
     <entry>
-      <title><![CDATA[About Me]]></title>
-      <url>/about/index.html</url>
-      <content type="html"><![CDATA[<p><strong>别人都叫我糯米，小糯米…</strong></p>
-<p>在校大学生。</p>
-<p>理科男，单身，求勾搭。</p>
-<p>喜欢摄影，目前愿望是拥有一部微单。</p>
-<p>努力争取拿奖学金买买买。</p>
-<p>喜欢设计，不断提高审美中。</p>
-<p>程序狗，喜欢做出优雅好用的软件。（虽然还没解锁这个技能）</p>
-<p>偶尔会出去骑行，配合摄影感觉不能再好了。</p>
-<p>微博:<a href="http://weibo.com/Nomyfan" target="_blank" rel="external">@陈诺米同学</a></p>
-]]></content>
+      <title><![CDATA[Articles]]></title>
+      <url>/articles/index.html</url>
+      <content type="html"></content>
     </entry>
     
     <entry>
@@ -1394,21 +1437,23 @@ WantedBy=multi-user.target
     </entry>
     
     <entry>
-      <title><![CDATA[Articles]]></title>
-      <url>/articles/index.html</url>
-      <content type="html"></content>
-    </entry>
-    
-    <entry>
-      <title><![CDATA[Categories]]></title>
-      <url>/categories/index.html</url>
-      <content type="html"></content>
-    </entry>
-    
-    <entry>
       <title><![CDATA[Contact]]></title>
       <url>/feeback/index.html</url>
       <content type="html"><![CDATA[<p>Contact me with<br><strong><a href="mailto:Myers.Chan@outlook.com?subject=FeebackFromBlog" target="_blank" rel="external">E-mail</a></strong>.<br><strong><a href="http://weibo.com/Nomyfan" target="_blank" rel="external">Weibo</a></strong><br><strong><a href="https://twitter.com/Myers__Chan" target="_blank" rel="external">Twitter</a></strong><br><strong><a href="https://facebook.com/myers.n.chan" target="_blank" rel="external">Facebook</a></strong></p>
+]]></content>
+    </entry>
+    
+    <entry>
+      <title><![CDATA[关于我]]></title>
+      <url>/about/index.html</url>
+      <content type="html"><![CDATA[<p>网名普遍用<em>陈诺米同学</em>，<em>Nomyfan</em>通常也作为唯一ID。</p>
+<p>大二就读上海某高校，读的是软件工程专业。我开始接触计算机的时间点不算早（对比我高中认识的许多人），但也比一些人要早。</p>
+<h2 id="初中篇"><a href="#初中篇" class="headerlink" title="初中篇"></a>初中篇</h2><p>小学的时候我梦寐以求的是拥有一台计算机，然而这个愿望没有得到实现。直到初二的时候家里才有了第一台计算机，即使配置是奔腾E5700+2G内存（那时候我根本不懂这个，我甚至连配置这个名词我还要人给我解释一下是什么意思），也没有网络，但那是我也是及其兴奋。然后我就开始鼓捣这个在当时的我看似很强（实则很烂）的计算机。那时的我都做些什么呢？整天装系统2333，周末跑去附近的电脑城买10块一张的盗版的系统光盘（那时候的我也不知道盗版），然后就开始给家里的电脑装系统。可能你会问，没有网络你怎么用计算机，软件怎么下载？说来你可能不信，我都是叫我的好基友下载然后U盘拷贝给我的，现在想起来也真是搞笑哈哈哈。然后经常性的和好基友探讨手机和计算机方面的问题，也买了几年的电脑报，从中了解到了很多一些我从未知道的事物，开始觉得电子产品真是趣味十足，现在为电脑报的落没深感惋惜。对了，也是这个时候我开始知道了Windows Phone，决定初中毕业一定要买个Lumia 920，WP人脉的那个翻转的效果深深的地把我吸引了，那时候的我压根看不起安卓系统。然而事与愿违，初中毕业靠着打工赚来的钱只够买个Lumia 820。我按耐不住内心的兴奋，因为这是我人生的第一部智能手机。然后我就进了湛江一中开始了我高中的生活。</p>
+<h2 id="高中篇"><a href="#高中篇" class="headerlink" title="高中篇"></a>高中篇</h2><p>高中的我开始接触社团，社团挺多的，但是真正想参加的并没有，就在我打算加入乒乓球社的隔天有人在班里的黑板上写下了IT社的招新，毫不犹豫我就报名参加了。本来还在焦虑地准备面试的，毕竟我什么都不懂，结果社长加了我的QQ告诉我已经入社了，当时真是一脸懵逼。这都不是关键，关键的是社长也是用WP，而且另一个学长是微软的MVP，同时也是WPer！我整个人都高潮了，整体在群里bb，系统有更新bb一下，发图直播一下，应用更新了都要bb，我们三个人成了群里最水的哈哈哈。</p>
+<p>高一第一学期学了C语言，然而因为在学校的原因没有电脑实操，写过的东西不多。然后社团里讲WPF，我就学了下C#，C#我是真的没有写过项目，然后就没了。</p>
+<p>高中后仿佛彻底放松了，我不把心思放在学习上，成绩并不好，即使高三发力学习，但还是很多东西学不好，最后高考失利了，沦落到在上海某高校上大学。不过吧，高中应该是我最快乐的时期了，尤其是高三和同学们一起奋斗的时光，这是最令我难以忘怀的。高中还是我投身IT的启蒙期。</p>
+<h2 id="大学篇"><a href="#大学篇" class="headerlink" title="大学篇"></a>大学篇</h2><p>上了计算机专业，我能彻底做我喜欢的事情了，高考的失利我是一直耿耿于怀的，有时候还后悔自己没有去复读。大学我不让自己放荡了，可是大学我想象中的不一样，可能是学校太渣的缘故，并不是很多人都特别专注于计算机的学习，也就是学习氛围并不强，不少人都是为了应付考试就完事儿了，整天埋在游戏上。这让我很失望，所幸的是我加入了一个软件社，认识了几个真正想做东西的人，现在我和两个组队一起做项目，也还算好。</p>
+<p>在大学我成长了许多，我自认为是这样的。很多第一次的体验，比如第一次远离家乡跑到这么远的上海，第一次住宿，第一次独立照顾自己，第一次自己坐飞机等。经历了高中和大学后，我没有以前那么腼腆害羞了，但是还是有的，只是没有那么严重罢了。</p>
 ]]></content>
     </entry>
     
@@ -1419,20 +1464,26 @@ WantedBy=multi-user.target
     </entry>
     
     <entry>
+      <title><![CDATA[Categories]]></title>
+      <url>/categories/index.html</url>
+      <content type="html"></content>
+    </entry>
+    
+    <entry>
       <title><![CDATA[Photograph]]></title>
       <url>/photograph/index.html</url>
       <content type="html"></content>
     </entry>
     
     <entry>
-      <title><![CDATA[Timeline]]></title>
-      <url>/timeline/index.html</url>
+      <title><![CDATA[Tags]]></title>
+      <url>/tags/index.html</url>
       <content type="html"></content>
     </entry>
     
     <entry>
-      <title><![CDATA[Tags]]></title>
-      <url>/tags/index.html</url>
+      <title><![CDATA[Timeline]]></title>
+      <url>/timeline/index.html</url>
       <content type="html"></content>
     </entry>
     
