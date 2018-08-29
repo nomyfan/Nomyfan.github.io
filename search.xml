@@ -3,6 +3,42 @@
   
     
     <entry>
+      <title><![CDATA[无损ROOT掉XPERIA]]></title>
+      <url>/2018/08/29/root-xperiaxp/</url>
+      <content type="html"><![CDATA[<p>大概一个月前捡了个垃圾–Xperia X Performance，坑爹的索尼香港，没给港版XP推送Oreo的更新，无奈之下只能刷了台版，感觉食用良好。有个问题困扰了我很久，就是冰箱和AppOps每次重启都要adb一下才能工作很麻烦，于是有想ROOT掉手机的想法，之前是顾虑到会丢失算法，但当我了解到可以通过备份TA然后作为补丁修到内核里去完美实现“无损”解锁之后就毫无顾忌了，于是开始以下的折腾。所需的东西我分享到了以下地方</p>
+<ul>
+<li><a href="https://1drv.ms/f/s!AtE_8sdzNgS-hJEie2jOwJ17UBFZzA" target="_blank" rel="external">工具 - OneDrive</a></li>
+<li><a href="https://pan.baidu.com/s/1OaOK_90I1P6ht8tHCAsoCA" target="_blank" rel="external">FTF - 百度云</a>，密码：a6kc</li>
+</ul>
+<p>注：如果你的手机没有备份到TA就解锁了，那么可以直接跳到制作内核镜像那部分。</p>
+<h2 id="备份TA"><a href="#备份TA" class="headerlink" title="备份TA"></a>备份TA</h2><p>最先我们要备份TA，在这之前要先装<a href="http://www.flashtool.net/downloads.php" target="_blank" rel="external">flashtool</a>，具体如何安装略过。确保系统是6.0，不然要先降级，用flashtool刷FTF即可。然后将<strong>backupTA_v2</strong>解压出来，开启USB调试，连接手机，命令行切换到解压目录下运行<code>backupTA.cmd</code>，完成之后会得到一个大小刚好是2,097,152 bytes的镜像文件。这个镜像文件要好好保管，以后想养老回锁也用得到/_ \</p>
+<h2 id="解锁"><a href="#解锁" class="headerlink" title="解锁"></a>解锁</h2><p>备份好TA之后手机就可以随意折腾了，前提是我们要将手机解锁，在<a href="https://developer.sony.com/develop/open-devices/get-started/unlock-bootloader/" target="_blank" rel="external">索尼开发者中心</a>的这个页面选择机型然后获取解锁码，根据官方的指示操作即可。<br><a href="/img/2018/08/snipaste_20180829_201131.png"><img src="/img/2018/08/snipaste_20180829_201131.png" alt=""></a></p>
+<h2 id="制作内核镜像"><a href="#制作内核镜像" class="headerlink" title="制作内核镜像"></a>制作内核镜像</h2><p>把rootkernel压缩包解压，在<strong>filesystem_files</strong>里有个txt文件，内容是</p>
+<pre><code>adb pull /system/vendor/etc/fstab.qcom
+adb pull /system/vendor/etc/init/hw/init.qcom.rc
+adb pull /system/vendor/etc/init/hw/init.target.rc
+</code></pre><p>明显，需要用到这三个文件，因此用adb取出来，运行上边的命令即可（确保3个文件在<strong>filesystem_files</strong>下）。<br>取出8.0 FTF包里的kernel.sin，在flashtool的工具栏中选择Tools-&gt;Sin Editor，选择内核，然后点击<strong>Extract data</strong>，然后我们就可以得到一个名为<strong>kernel.elf</strong>的镜像文件，接下来我们对它进行加工。<br><a href="/img/2018/08/snipaste_20180829_202753.png"><img src="/img/2018/08/snipaste_20180829_202753.png" alt=""></a></p>
+<p>将kernel.elf和TA镜像放入rootkernel文件夹下，并把TA镜像命名为<strong>TA.img</strong>，这里注意<strong>大小写敏感</strong>。然后在这个目录下运行命令行，敲入命令<code>rootkernel.cmd kernel.elf boot.img</code>。提问全部敲入Y，如果没有TA镜像，那么在问<strong>Install DRM fix? [Y/n]</strong>的时候敲入n。</p>
+<h2 id="刷机"><a href="#刷机" class="headerlink" title="刷机"></a>刷机</h2><p>遵循以下步骤进行刷机</p>
+<ol>
+<li>备份数据</li>
+<li>将Magisk和DRM-Fix_System_Mode（如果你的手机没备份TA就刷这个）放入手机内部存储不会被刷掉的地方（外部SD卡或者带MicroUSB口的U盘最好）</li>
+<li>用flashtool刷入官方Oreo的FTF，Wipe掉所有，<strong>exclude里选择fotakernel</strong></li>
+<li>刷完之后不要开机</li>
+<li>进入fastboot模式。进入姿势：按住音量加，然后连接USB。看到呼吸灯变成蓝色</li>
+<li>运行命令，<code>fastboot flash boot boot.img</code></li>
+<li>刷入rec，<code>fastboot flash recovery twrp-3.2.3-0-dora.img</code></li>
+<li>拔掉USB，进入twrp，进入姿势：音量减+电源键，屏幕亮起松开电源键，保持音量减。</li>
+<li>在twrp里刷入DRM-Fix_System_Mode（如果没有备份TA）</li>
+<li>刷入Magisk</li>
+</ol>
+<h2 id="修改-system分区应用"><a href="#修改-system分区应用" class="headerlink" title="修改/system分区应用"></a>修改/system分区应用</h2><p>刷了Magisk后我们就有ROOT权限了，可以将系统一些用不着的东西从系统分区里去掉，比如谷歌全家桶的大部分，也可以放些应用进去。在分享的资源的<strong>addons</strong>里有些apk，其中有个谷歌的电话可以放入，比自带的多了一点东西（比如：“来电显示和骚扰电话”这个功能）。还有XZ2里自带的主题和桌面，这个桌面其中一个特性是会将图标统一成圆形，不过没有双击锁屏很可惜，不然我就用它了。后续发现有不错的会继续放入OneDrive。</p>
+]]></content>
+      
+        
+    </entry>
+    
+    <entry>
       <title><![CDATA[C语言指针数组和数组指针]]></title>
       <url>/2018/07/31/array-ptr/</url>
       <content type="html"><![CDATA[<p>为什么要讨论这个话题呢？这个话题起源于我今天打开Leetcode之后看到的两行代码。</p>
@@ -556,9 +592,9 @@ fi
         
         <tags>
             
-            <tag> ArchLinux </tag>
-            
             <tag> Linux </tag>
+            
+            <tag> ArchLinux </tag>
             
         </tags>
         
@@ -637,11 +673,11 @@ fi
         
         <tags>
             
+            <tag> C# </tag>
+            
             <tag> .NET </tag>
             
             <tag> 爬虫 </tag>
-            
-            <tag> C# </tag>
             
         </tags>
         
@@ -720,9 +756,9 @@ string speed = (string)token.SelectToken(&quot;wind&quot;).SelectToken(&quot;spe
         
         <tags>
             
-            <tag> .NET </tag>
-            
             <tag> C# </tag>
+            
+            <tag> .NET </tag>
             
             <tag> JSON </tag>
             
@@ -1054,9 +1090,9 @@ RewriteRule . /index.php [L]
         
         <tags>
             
-            <tag> Linux </tag>
-            
             <tag> VPS </tag>
+            
+            <tag> Linux </tag>
             
         </tags>
         
@@ -1117,9 +1153,9 @@ WantedBy=multi-user.target
         
         <tags>
             
-            <tag> Linux </tag>
-            
             <tag> VPS </tag>
+            
+            <tag> Linux </tag>
             
         </tags>
         
@@ -1431,27 +1467,20 @@ WantedBy=multi-user.target
     </entry>
     
     <entry>
+      <title><![CDATA[Categories]]></title>
+      <url>/categories/index.html</url>
+      <content type="html"></content>
+    </entry>
+    
+    <entry>
       <title><![CDATA[Articles]]></title>
       <url>/articles/index.html</url>
       <content type="html"></content>
     </entry>
     
     <entry>
-      <title><![CDATA[Contact]]></title>
-      <url>/contact/index.html</url>
-      <content type="html"><![CDATA[<p>Contact me with<br><strong><a href="mailto:Myers.Chan@outlook.com?subject=FeebackFromBlog" target="_blank" rel="external">E-mail</a></strong>.<br><strong><a href="http://weibo.com/Nomyfan" target="_blank" rel="external">Weibo</a></strong><br><strong><a href="https://twitter.com/Myers__Chan" target="_blank" rel="external">Twitter</a></strong><br><strong><a href="https://facebook.com/myers.n.chan" target="_blank" rel="external">Facebook</a></strong></p>
-]]></content>
-    </entry>
-    
-    <entry>
       <title><![CDATA[Friends]]></title>
       <url>/friends/index.html</url>
-      <content type="html"></content>
-    </entry>
-    
-    <entry>
-      <title><![CDATA[Categories]]></title>
-      <url>/categories/index.html</url>
       <content type="html"></content>
     </entry>
     
@@ -1468,16 +1497,23 @@ WantedBy=multi-user.target
     </entry>
     
     <entry>
+      <title><![CDATA[Timeline]]></title>
+      <url>/timeline/index.html</url>
+      <content type="html"></content>
+    </entry>
+    
+    <entry>
       <title><![CDATA[Contact]]></title>
-      <url>/feeback/index.html</url>
+      <url>/contact/index.html</url>
       <content type="html"><![CDATA[<p>Contact me with<br><strong><a href="mailto:Myers.Chan@outlook.com?subject=FeebackFromBlog" target="_blank" rel="external">E-mail</a></strong>.<br><strong><a href="http://weibo.com/Nomyfan" target="_blank" rel="external">Weibo</a></strong><br><strong><a href="https://twitter.com/Myers__Chan" target="_blank" rel="external">Twitter</a></strong><br><strong><a href="https://facebook.com/myers.n.chan" target="_blank" rel="external">Facebook</a></strong></p>
 ]]></content>
     </entry>
     
     <entry>
-      <title><![CDATA[Timeline]]></title>
-      <url>/timeline/index.html</url>
-      <content type="html"></content>
+      <title><![CDATA[Contact]]></title>
+      <url>/feeback/index.html</url>
+      <content type="html"><![CDATA[<p>Contact me with<br><strong><a href="mailto:Myers.Chan@outlook.com?subject=FeebackFromBlog" target="_blank" rel="external">E-mail</a></strong>.<br><strong><a href="http://weibo.com/Nomyfan" target="_blank" rel="external">Weibo</a></strong><br><strong><a href="https://twitter.com/Myers__Chan" target="_blank" rel="external">Twitter</a></strong><br><strong><a href="https://facebook.com/myers.n.chan" target="_blank" rel="external">Facebook</a></strong></p>
+]]></content>
     </entry>
     
   
