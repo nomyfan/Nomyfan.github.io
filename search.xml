@@ -592,9 +592,9 @@ fi
         
         <tags>
             
-            <tag> Linux </tag>
-            
             <tag> ArchLinux </tag>
+            
+            <tag> Linux </tag>
             
         </tags>
         
@@ -1090,9 +1090,9 @@ RewriteRule . /index.php [L]
         
         <tags>
             
-            <tag> VPS </tag>
-            
             <tag> Linux </tag>
+            
+            <tag> VPS </tag>
             
         </tags>
         
@@ -1153,9 +1153,9 @@ WantedBy=multi-user.target
         
         <tags>
             
-            <tag> VPS </tag>
-            
             <tag> Linux </tag>
+            
+            <tag> VPS </tag>
             
         </tags>
         
@@ -1479,26 +1479,8 @@ WantedBy=multi-user.target
     </entry>
     
     <entry>
-      <title><![CDATA[Friends]]></title>
-      <url>/friends/index.html</url>
-      <content type="html"></content>
-    </entry>
-    
-    <entry>
       <title><![CDATA[Photograph]]></title>
       <url>/photograph/index.html</url>
-      <content type="html"></content>
-    </entry>
-    
-    <entry>
-      <title><![CDATA[Tags]]></title>
-      <url>/tags/index.html</url>
-      <content type="html"></content>
-    </entry>
-    
-    <entry>
-      <title><![CDATA[Timeline]]></title>
-      <url>/timeline/index.html</url>
       <content type="html"></content>
     </entry>
     
@@ -1514,6 +1496,24 @@ WantedBy=multi-user.target
       <url>/feeback/index.html</url>
       <content type="html"><![CDATA[<p>Contact me with<br><strong><a href="mailto:Myers.Chan@outlook.com?subject=FeebackFromBlog" target="_blank" rel="external">E-mail</a></strong>.<br><strong><a href="http://weibo.com/Nomyfan" target="_blank" rel="external">Weibo</a></strong><br><strong><a href="https://twitter.com/Myers__Chan" target="_blank" rel="external">Twitter</a></strong><br><strong><a href="https://facebook.com/myers.n.chan" target="_blank" rel="external">Facebook</a></strong></p>
 ]]></content>
+    </entry>
+    
+    <entry>
+      <title><![CDATA[Friends]]></title>
+      <url>/friends/index.html</url>
+      <content type="html"></content>
+    </entry>
+    
+    <entry>
+      <title><![CDATA[Timeline]]></title>
+      <url>/timeline/index.html</url>
+      <content type="html"></content>
+    </entry>
+    
+    <entry>
+      <title><![CDATA[Tags]]></title>
+      <url>/tags/index.html</url>
+      <content type="html"></content>
     </entry>
     
   
