@@ -90,6 +90,18 @@ finally
 </ul>
 ]]></content>
       
+        <categories>
+            
+            <category> Programming </category>
+            
+        </categories>
+        
+        
+        <tags>
+            
+            <tag> C# </tag>
+            
+        </tags>
         
     </entry>
     
@@ -126,6 +138,20 @@ adb pull /system/vendor/etc/init/hw/init.target.rc
 <h2 id="修改-system分区应用"><a href="#修改-system分区应用" class="headerlink" title="修改/system分区应用"></a>修改/system分区应用</h2><p>刷了Magisk后我们就有ROOT权限了，可以将系统一些用不着的东西从系统分区里去掉，比如谷歌全家桶的大部分，也可以放些应用进去。在分享的资源的<strong>addons</strong>里有些apk，其中有个谷歌的电话可以放入，比自带的多了一点东西（比如：“来电显示和骚扰电话”这个功能）。还有XZ2里自带的主题和桌面，这个桌面其中一个特性是会将图标统一成圆形，不过没有双击锁屏很可惜，不然我就用它了。后续发现有不错的会继续放入OneDrive。</p>
 ]]></content>
       
+        <categories>
+            
+            <category> Android </category>
+            
+        </categories>
+        
+        
+        <tags>
+            
+            <tag> Root </tag>
+            
+            <tag> Xperia </tag>
+            
+        </tags>
         
     </entry>
     
@@ -421,9 +447,9 @@ print(a.calc(lambda a,b: Complex(a.x+b.x, a.y+b.y),b)) # 3i+4
         
         <tags>
             
-            <tag> Azure </tag>
-            
             <tag> VPS </tag>
+            
+            <tag> Azure </tag>
             
         </tags>
         
@@ -683,9 +709,9 @@ fi
         
         <tags>
             
-            <tag> ArchLinux </tag>
-            
             <tag> Linux </tag>
+            
+            <tag> ArchLinux </tag>
             
         </tags>
         
@@ -764,11 +790,11 @@ fi
         
         <tags>
             
-            <tag> C# </tag>
-            
             <tag> .NET </tag>
             
             <tag> 爬虫 </tag>
+            
+            <tag> C# </tag>
             
         </tags>
         
@@ -847,9 +873,9 @@ string speed = (string)token.SelectToken(&quot;wind&quot;).SelectToken(&quot;spe
         
         <tags>
             
-            <tag> C# </tag>
-            
             <tag> .NET </tag>
+            
+            <tag> C# </tag>
             
             <tag> JSON </tag>
             
@@ -1545,9 +1571,10 @@ WantedBy=multi-user.target
   
     
     <entry>
-      <title><![CDATA[Talking]]></title>
-      <url>/Talking/index.html</url>
-      <content type="html"></content>
+      <title><![CDATA[Contact]]></title>
+      <url>/contact/index.html</url>
+      <content type="html"><![CDATA[<p>Contact me with<br><strong><a href="mailto:Myers.Chan@outlook.com?subject=FeebackFromBlog" target="_blank" rel="external">E-mail</a></strong>.<br><strong><a href="http://weibo.com/Nomyfan" target="_blank" rel="external">Weibo</a></strong><br><strong><a href="https://twitter.com/Myers__Chan" target="_blank" rel="external">Twitter</a></strong><br><strong><a href="https://facebook.com/myers.n.chan" target="_blank" rel="external">Facebook</a></strong></p>
+]]></content>
     </entry>
     
     <entry>
@@ -1564,34 +1591,8 @@ WantedBy=multi-user.target
     </entry>
     
     <entry>
-      <title><![CDATA[Categories]]></title>
-      <url>/categories/index.html</url>
-      <content type="html"></content>
-    </entry>
-    
-    <entry>
-      <title><![CDATA[Contact]]></title>
-      <url>/contact/index.html</url>
-      <content type="html"><![CDATA[<p>Contact me with<br><strong><a href="mailto:Myers.Chan@outlook.com?subject=FeebackFromBlog" target="_blank" rel="external">E-mail</a></strong>.<br><strong><a href="http://weibo.com/Nomyfan" target="_blank" rel="external">Weibo</a></strong><br><strong><a href="https://twitter.com/Myers__Chan" target="_blank" rel="external">Twitter</a></strong><br><strong><a href="https://facebook.com/myers.n.chan" target="_blank" rel="external">Facebook</a></strong></p>
-]]></content>
-    </entry>
-    
-    <entry>
-      <title><![CDATA[Contact]]></title>
-      <url>/feeback/index.html</url>
-      <content type="html"><![CDATA[<p>Contact me with<br><strong><a href="mailto:Myers.Chan@outlook.com?subject=FeebackFromBlog" target="_blank" rel="external">E-mail</a></strong>.<br><strong><a href="http://weibo.com/Nomyfan" target="_blank" rel="external">Weibo</a></strong><br><strong><a href="https://twitter.com/Myers__Chan" target="_blank" rel="external">Twitter</a></strong><br><strong><a href="https://facebook.com/myers.n.chan" target="_blank" rel="external">Facebook</a></strong></p>
-]]></content>
-    </entry>
-    
-    <entry>
       <title><![CDATA[Friends]]></title>
       <url>/friends/index.html</url>
-      <content type="html"></content>
-    </entry>
-    
-    <entry>
-      <title><![CDATA[Photograph]]></title>
-      <url>/photograph/index.html</url>
       <content type="html"></content>
     </entry>
     
@@ -1605,6 +1606,31 @@ WantedBy=multi-user.target
       <title><![CDATA[Timeline]]></title>
       <url>/timeline/index.html</url>
       <content type="html"></content>
+    </entry>
+    
+    <entry>
+      <title><![CDATA[Categories]]></title>
+      <url>/categories/index.html</url>
+      <content type="html"></content>
+    </entry>
+    
+    <entry>
+      <title><![CDATA[Photograph]]></title>
+      <url>/photograph/index.html</url>
+      <content type="html"></content>
+    </entry>
+    
+    <entry>
+      <title><![CDATA[Talking]]></title>
+      <url>/Talking/index.html</url>
+      <content type="html"></content>
+    </entry>
+    
+    <entry>
+      <title><![CDATA[Contact]]></title>
+      <url>/feeback/index.html</url>
+      <content type="html"><![CDATA[<p>Contact me with<br><strong><a href="mailto:Myers.Chan@outlook.com?subject=FeebackFromBlog" target="_blank" rel="external">E-mail</a></strong>.<br><strong><a href="http://weibo.com/Nomyfan" target="_blank" rel="external">Weibo</a></strong><br><strong><a href="https://twitter.com/Myers__Chan" target="_blank" rel="external">Twitter</a></strong><br><strong><a href="https://facebook.com/myers.n.chan" target="_blank" rel="external">Facebook</a></strong></p>
+]]></content>
     </entry>
     
   
