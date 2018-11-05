@@ -3,6 +3,97 @@
   
     
     <entry>
+      <title><![CDATA[Pattern Matching(C# 7.0)]]></title>
+      <url>/2018/11/05/pattern-matching/</url>
+      <content type="html"><![CDATA[<h2 id="场景1"><a href="#场景1" class="headerlink" title="场景1"></a>场景1</h2><p>最近在写ASP&#46;NET Core MVC项目，发现在处理异常的时候会遇到<code>duplicate code</code>，例如这样:</p>
+<pre><code class="csharp">var client = new HttpClient { Timeout = TimeSpan.FromSeconds(3) };
+try
+{
+    // code here...
+    var response = await client.PostAsync(ApiUrls.LoginUrl, content);
+    if (response.IsSuccessStatusCode)
+    {
+        // code here...
+    }
+}
+catch(HttpRequestException ex)
+{
+    ViewData[&quot;Message&quot;] = &quot;❌连接错误&quot;;
+    return View(); // duplicate
+}
+catch (Exception ex)
+{
+    ViewData[&quot;Message&quot;] = &quot;❌账号或密码错误&quot;;
+    return View(); // deuplicate
+}
+finally
+{
+    client.Dispose();
+}
+</code></pre>
+<p>可以看到，在异常内部我们根据不同的错误给出不同<code>Message</code>，在这个场景里我们只要关注<code>Message</code>的不同。利用 <em>Pattern Matching(since C#7.0)</em> 就可以优化<code>return View();</code>这一行，修改后的代码如下</p>
+<pre><code class="csharp">var client = new HttpClient { Timeout = TimeSpan.FromSeconds(3) };
+try
+{
+    // code here...
+    if (response.IsSuccessStatusCode)
+    {
+        // code here...
+    }
+    else
+    {
+        throw new Exception();
+    }
+}
+catch (Exception excetion)
+{
+    switch (excetion)
+    {
+        case HttpRequestException hrex:
+            ViewData[&quot;Message&quot;] = &quot;❌连接错误&quot;;
+            break;
+        case Exception ex:
+            ViewData[&quot;Message&quot;] = &quot;❌账号或密码错误&quot;;
+            break;
+    }
+    return View(); // not duplicate now
+}
+finally
+{
+    client.Dispose();
+}
+</code></pre>
+<p>试想一下如果<code>return View();</code>这行代码在其他场景中等价于很多代码，而且也不好用 <em>extract method</em> 进行处理的时候，<em>Pattern Matching</em> 不妨是一个不错的选择。</p>
+<h2 id="场景2"><a href="#场景2" class="headerlink" title="场景2"></a>场景2</h2><p>在WinForm中空间的<code>Tag</code>属性可以作为数据的媒介，假设在Do方法内部只针对<code>ListView.CheckedListViewItemCollection</code>这个类型的集合做遍历处理，常规的代码可能如下</p>
+<pre><code class="csharp">private void Do(object sender, EventArgs e)
+{
+    var items = Tag as ListView.CheckedListViewItemCollection;
+    if(items == null) return;
+    for(var i = items.Count - 1; i &gt;=0; i--)
+    {
+        // code here...
+    }
+}
+</code></pre>
+<p>而利用 <em>Pattern Matching</em> 可以这样写</p>
+<pre><code class="csharp">private void Do(object sender, EventArgs e)
+{
+    if(!(Tag is ListView.CheckedListViewItemCollection) items) return;
+    for(var i = items.Count - 1; i &gt;= 0; i--)
+    {
+        // code here...
+    }
+}
+</code></pre>
+<h3 id="参考"><a href="#参考" class="headerlink" title="参考"></a>参考</h3><ul>
+<li><a href="https://docs.microsoft.com/en-us/dotnet/csharp/pattern-matching" target="_blank" rel="external">Pattern Matching - C# Guide</a></li>
+</ul>
+]]></content>
+      
+        
+    </entry>
+    
+    <entry>
       <title><![CDATA[无损ROOT掉XPERIA]]></title>
       <url>/2018/08/29/root-xperiaxp/</url>
       <content type="html"><![CDATA[<p>大概一个月前捡了个垃圾–Xperia X Performance，坑爹的索尼香港，没给港版XP推送Oreo的更新，无奈之下只能刷了台版，感觉食用良好。有个问题困扰了我很久，就是冰箱和AppOps每次重启都要adb一下才能工作很麻烦，于是有想ROOT掉手机的想法，之前是顾虑到会丢失算法，但当我了解到可以通过备份TA然后作为补丁修到内核里去完美实现“无损”解锁之后就毫无顾忌了，于是开始以下的折腾。所需的东西我分享到了以下地方</p>
@@ -1467,20 +1558,14 @@ WantedBy=multi-user.target
     </entry>
     
     <entry>
-      <title><![CDATA[Categories]]></title>
-      <url>/categories/index.html</url>
-      <content type="html"></content>
-    </entry>
-    
-    <entry>
       <title><![CDATA[Articles]]></title>
       <url>/articles/index.html</url>
       <content type="html"></content>
     </entry>
     
     <entry>
-      <title><![CDATA[Photograph]]></title>
-      <url>/photograph/index.html</url>
+      <title><![CDATA[Categories]]></title>
+      <url>/categories/index.html</url>
       <content type="html"></content>
     </entry>
     
@@ -1505,14 +1590,20 @@ WantedBy=multi-user.target
     </entry>
     
     <entry>
-      <title><![CDATA[Timeline]]></title>
-      <url>/timeline/index.html</url>
+      <title><![CDATA[Photograph]]></title>
+      <url>/photograph/index.html</url>
       <content type="html"></content>
     </entry>
     
     <entry>
       <title><![CDATA[Tags]]></title>
       <url>/tags/index.html</url>
+      <content type="html"></content>
+    </entry>
+    
+    <entry>
+      <title><![CDATA[Timeline]]></title>
+      <url>/timeline/index.html</url>
       <content type="html"></content>
     </entry>
     
