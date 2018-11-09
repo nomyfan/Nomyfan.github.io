@@ -123,7 +123,7 @@ fun demo(x: Comparable&lt;Number&gt;) {
     val y: Comparable&lt;Double&gt; = x // OK!
 }
 </code></pre>
-<p>其二，Kotlin编译完了之后会都是泛型参数信息，文档描述</p>
+<p>其二，Kotlin编译完了之后会丢失泛型参数信息，文档描述</p>
 <blockquote>
 <p>The type safety checks that Kotlin performs for generic declaration usages are only done at compile time. At runtime, the instances of generic types do not hold any information about their actual type arguments. The type information is said to be erased. For example, the instances of Foo<bar> and Foo<baz?> are erased to just Foo&lt;*&gt;.</baz?></bar></p>
 </blockquote>
@@ -609,9 +609,9 @@ print(a.calc(lambda a,b: Complex(a.x+b.x, a.y+b.y),b)) # 3i+4
         
         <tags>
             
-            <tag> Azure </tag>
-            
             <tag> VPS </tag>
+            
+            <tag> Azure </tag>
             
         </tags>
         
@@ -871,9 +871,9 @@ fi
         
         <tags>
             
-            <tag> ArchLinux </tag>
-            
             <tag> Linux </tag>
+            
+            <tag> ArchLinux </tag>
             
         </tags>
         
@@ -952,11 +952,11 @@ fi
         
         <tags>
             
-            <tag> C# </tag>
-            
             <tag> .NET </tag>
             
             <tag> 爬虫 </tag>
+            
+            <tag> C# </tag>
             
         </tags>
         
@@ -1035,9 +1035,9 @@ string speed = (string)token.SelectToken(&quot;wind&quot;).SelectToken(&quot;spe
         
         <tags>
             
-            <tag> C# </tag>
-            
             <tag> .NET </tag>
+            
+            <tag> C# </tag>
             
             <tag> JSON </tag>
             
@@ -1746,8 +1746,8 @@ WantedBy=multi-user.target
     </entry>
     
     <entry>
-      <title><![CDATA[Articles]]></title>
-      <url>/articles/index.html</url>
+      <title><![CDATA[Categories]]></title>
+      <url>/categories/index.html</url>
       <content type="html"></content>
     </entry>
     
@@ -1763,12 +1763,6 @@ WantedBy=multi-user.target
       <url>/feeback/index.html</url>
       <content type="html"><![CDATA[<p>Contact me with<br><strong><a href="mailto:Myers.Chan@outlook.com?subject=FeebackFromBlog" target="_blank" rel="external">E-mail</a></strong>.<br><strong><a href="http://weibo.com/Nomyfan" target="_blank" rel="external">Weibo</a></strong><br><strong><a href="https://twitter.com/Myers__Chan" target="_blank" rel="external">Twitter</a></strong><br><strong><a href="https://facebook.com/myers.n.chan" target="_blank" rel="external">Facebook</a></strong></p>
 ]]></content>
-    </entry>
-    
-    <entry>
-      <title><![CDATA[Friends]]></title>
-      <url>/friends/index.html</url>
-      <content type="html"></content>
     </entry>
     
     <entry>
@@ -1790,8 +1784,14 @@ WantedBy=multi-user.target
     </entry>
     
     <entry>
-      <title><![CDATA[Categories]]></title>
-      <url>/categories/index.html</url>
+      <title><![CDATA[Friends]]></title>
+      <url>/friends/index.html</url>
+      <content type="html"></content>
+    </entry>
+    
+    <entry>
+      <title><![CDATA[Articles]]></title>
+      <url>/articles/index.html</url>
       <content type="html"></content>
     </entry>
     
