@@ -47,7 +47,7 @@
         
             泛型协变和逆变(Kotlin) | 
         
-        IConnectable&lt;World&gt;
+        Zmus
     </title>
 
     <!-- Favicons -->
@@ -56,7 +56,7 @@
 
     <meta name="format-detection" content="telephone=no"/>
     <meta name="description" itemprop="description" content="Nomyfan&#39;s personal blog">
-    <meta name="keywords" content="Technology,Programming,Microsoft,.NET,Mathematic,dotnet,C#,Kotlin,Generics">
+    <meta name="keywords" content="Technology,Programming,Microsoft,.NET,Mathematic,dotnet,Kotlin,C#,Kotlin,Generics">
     <meta name="theme-color" content="#0097A7">
 
     <!-- Disable Fucking Bloody Baidu Tranformation -->
@@ -221,11 +221,11 @@
 
     <!-- WebAPP Icons -->
     <meta name="mobile-web-app-capable" content="yes">
-    <meta name="application-name" content="IConnectable&lt;World&gt;">
+    <meta name="application-name" content="Zmus">
     <meta name="msapplication-starturl" content="https://blog.nokky.net/2018/11/09/kotlin-generics/">
     <meta name="msapplication-navbutton-color" content="#0097A7">
     <meta name="apple-mobile-web-app-capable" content="yes">
-    <meta name="apple-mobile-web-app-title" content="IConnectable&lt;World&gt;">
+    <meta name="apple-mobile-web-app-title" content="Zmus">
     <meta name="apple-mobile-web-app-status-bar-style" content="black">
     <link rel="apple-touch-icon" href="/img/favicon.png">
 
@@ -239,14 +239,14 @@
     <!-- The Open Graph protocol -->
     <meta property="og:url" content="https://blog.nokky.net/2018/11/09/kotlin-generics/">
     <meta property="og:type" content="blog">
-    <meta property="og:title" content="泛型协变和逆变(Kotlin) | IConnectable&lt;World&gt;">
+    <meta property="og:title" content="泛型协变和逆变(Kotlin) | Zmus">
     <meta property="og:image" content="/img/favicon.png">
     <meta property="og:description" content="Nomyfan&#39;s personal blog">
     <meta property="og:article:tag" content="C#"> <meta property="og:article:tag" content="Kotlin"> <meta property="og:article:tag" content="Generics"> 
 
     
         <meta property="article:published_time" content="Fri Nov 09 2018 18:53:04 GMT+0800">
-        <meta property="article:modified_time" content="Fri Nov 09 2018 22:36:25 GMT+0800">
+        <meta property="article:modified_time" content="Sat Nov 10 2018 00:59:42 GMT+0800">
     
 
     <!-- The Twitter Card protocol -->
@@ -269,7 +269,7 @@
     "mainEntityOfPage": "https://blog.nokky.net/2018/11/09/kotlin-generics/index.html",
     "headline": "泛型协变和逆变(Kotlin)",
     "datePublished": "Fri Nov 09 2018 18:53:04 GMT+0800",
-    "dateModified": "Fri Nov 09 2018 22:36:25 GMT+0800",
+    "dateModified": "Sat Nov 10 2018 00:59:42 GMT+0800",
     "author": {
         "@type": "Person",
         "name": "Myers Chan",
@@ -277,17 +277,17 @@
             "@type": "ImageObject",
             "url": "/img/avatar.png"
         },
-        "description": "Debug.WriteLine("哟，写bug呢！");"
+        "description": "Debug.WriteLine("Oops, bugs!");"
     },
     "publisher": {
         "@type": "Organization",
-        "name": "IConnectable&lt;World&gt;",
+        "name": "Zmus",
         "logo": {
             "@type":"ImageObject",
             "url": "/img/favicon.png"
         }
     },
-    "keywords": ",C#,Kotlin,GenericsTechnology,Programming,Microsoft,.NET,Mathematic,dotnet",
+    "keywords": ",C#,Kotlin,GenericsTechnology,Programming,Microsoft,.NET,Mathematic,dotnet,Kotlin",
     "description": "Nomyfan&#39;s personal blog",
 }
 </script>
@@ -574,7 +574,7 @@ class Program
 <blockquote>
 <p>We believe that the words in and out are self-explaining (as they were successfully used in C# for quite some time already), thus the mnemonic mentioned above is not really needed, and one can rephrase it for a higher purpose</p>
 </blockquote>
-<h2 id="记忆out和in"><a href="#记忆out和in" class="headerlink" title="记忆out和in"></a>记忆out和in</h2><p><em>out</em>和<em>in</em>两个词好像和协变，逆变之间没什么关系。其实就和上边引用的文档的那句话所说的，<em>out</em>和<em>in</em>其实很好记忆，因为它们描述的是泛型参数在方法的位置。<em>out</em> 的泛型参数只能出现在方法的参数列表中，<em>in</em> 的泛型参数则是只能出现在方法返回值。上边两个C#文档的例子并没有凸显出这一点，接下来我们看一个Kotlin的例子，这个例子主要凸显两个修饰符的对应的泛型参数的摆放位置。</p>
+<h2 id="记忆out和in"><a href="#记忆out和in" class="headerlink" title="记忆out和in"></a>记忆out和in</h2><p><em>out</em>和<em>in</em>两个词好像和协变，逆变之间没什么关系。其实就和上边引用的文档的那句话所说的，<em>out</em>和<em>in</em>其实很好记忆，因为它们描述的是泛型参数在方法的位置。<em>in</em> 的泛型参数只能出现在方法的参数列表中，<em>out</em> 的泛型参数则是只能出现在方法返回值。上边两个C#文档的例子并没有凸显出这一点，接下来我们看一个Kotlin的例子，这个例子主要凸显两个修饰符的对应的泛型参数的摆放位置。</p>
 <p>有一个家庭，家庭里有儿子和妈妈，儿子每天告诉妈妈他想吃什么，妈妈就会为儿子精心准备。</p>
 <p>首先，我们准备食物，假设有胡萝卜🥕和牛肉🐂</p>
 <pre><code class="kotlin">open class Food(val name: String)
@@ -1009,7 +1009,7 @@ It will not impact the appearance and can give developers a lot of support :)
 
         <!--Copyright-->
         <div id="copyright">
-            Copyright&nbsp;©&nbsp;2016&nbsp;-<script type="text/javascript">var fd = new Date();document.write("&nbsp;" + fd.getFullYear() + "&nbsp;");</script>IConnectable<World>
+            Copyright&nbsp;©&nbsp;2016&nbsp;-<script type="text/javascript">var fd = new Date();document.write("&nbsp;" + fd.getFullYear() + "&nbsp;");</script>Zmus
             
         </div>
 

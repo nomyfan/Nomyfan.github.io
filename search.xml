@@ -56,7 +56,7 @@ class Program
 <blockquote>
 <p>We believe that the words in and out are self-explaining (as they were successfully used in C# for quite some time already), thus the mnemonic mentioned above is not really needed, and one can rephrase it for a higher purpose</p>
 </blockquote>
-<h2 id="记忆out和in"><a href="#记忆out和in" class="headerlink" title="记忆out和in"></a>记忆out和in</h2><p><em>out</em>和<em>in</em>两个词好像和协变，逆变之间没什么关系。其实就和上边引用的文档的那句话所说的，<em>out</em>和<em>in</em>其实很好记忆，因为它们描述的是泛型参数在方法的位置。<em>out</em> 的泛型参数只能出现在方法的参数列表中，<em>in</em> 的泛型参数则是只能出现在方法返回值。上边两个C#文档的例子并没有凸显出这一点，接下来我们看一个Kotlin的例子，这个例子主要凸显两个修饰符的对应的泛型参数的摆放位置。</p>
+<h2 id="记忆out和in"><a href="#记忆out和in" class="headerlink" title="记忆out和in"></a>记忆out和in</h2><p><em>out</em>和<em>in</em>两个词好像和协变，逆变之间没什么关系。其实就和上边引用的文档的那句话所说的，<em>out</em>和<em>in</em>其实很好记忆，因为它们描述的是泛型参数在方法的位置。<em>in</em> 的泛型参数只能出现在方法的参数列表中，<em>out</em> 的泛型参数则是只能出现在方法返回值。上边两个C#文档的例子并没有凸显出这一点，接下来我们看一个Kotlin的例子，这个例子主要凸显两个修饰符的对应的泛型参数的摆放位置。</p>
 <p>有一个家庭，家庭里有儿子和妈妈，儿子每天告诉妈妈他想吃什么，妈妈就会为儿子精心准备。</p>
 <p>首先，我们准备食物，假设有胡萝卜🥕和牛肉🐂</p>
 <pre><code class="kotlin">open class Food(val name: String)
@@ -609,9 +609,9 @@ print(a.calc(lambda a,b: Complex(a.x+b.x, a.y+b.y),b)) # 3i+4
         
         <tags>
             
-            <tag> VPS </tag>
-            
             <tag> Azure </tag>
+            
+            <tag> VPS </tag>
             
         </tags>
         
@@ -871,9 +871,9 @@ fi
         
         <tags>
             
-            <tag> Linux </tag>
-            
             <tag> ArchLinux </tag>
+            
+            <tag> Linux </tag>
             
         </tags>
         
@@ -952,11 +952,11 @@ fi
         
         <tags>
             
+            <tag> C# </tag>
+            
             <tag> .NET </tag>
             
             <tag> 爬虫 </tag>
-            
-            <tag> C# </tag>
             
         </tags>
         
@@ -1035,9 +1035,9 @@ string speed = (string)token.SelectToken(&quot;wind&quot;).SelectToken(&quot;spe
         
         <tags>
             
-            <tag> .NET </tag>
-            
             <tag> C# </tag>
+            
+            <tag> .NET </tag>
             
             <tag> JSON </tag>
             
@@ -1369,9 +1369,9 @@ RewriteRule . /index.php [L]
         
         <tags>
             
-            <tag> Linux </tag>
-            
             <tag> VPS </tag>
+            
+            <tag> Linux </tag>
             
         </tags>
         
@@ -1432,9 +1432,9 @@ WantedBy=multi-user.target
         
         <tags>
             
-            <tag> Linux </tag>
-            
             <tag> VPS </tag>
+            
+            <tag> Linux </tag>
             
         </tags>
         
@@ -1739,15 +1739,8 @@ WantedBy=multi-user.target
     </entry>
     
     <entry>
-      <title><![CDATA[关于我]]></title>
-      <url>/about/index.html</url>
-      <content type="html"><![CDATA[<p>喜欢摄影主业写代码的工科男(/▽＼)</p>
-]]></content>
-    </entry>
-    
-    <entry>
-      <title><![CDATA[Categories]]></title>
-      <url>/categories/index.html</url>
+      <title><![CDATA[Articles]]></title>
+      <url>/articles/index.html</url>
       <content type="html"></content>
     </entry>
     
@@ -1759,10 +1752,15 @@ WantedBy=multi-user.target
     </entry>
     
     <entry>
-      <title><![CDATA[Contact]]></title>
-      <url>/feeback/index.html</url>
-      <content type="html"><![CDATA[<p>Contact me with<br><strong><a href="mailto:Myers.Chan@outlook.com?subject=FeebackFromBlog" target="_blank" rel="external">E-mail</a></strong>.<br><strong><a href="http://weibo.com/Nomyfan" target="_blank" rel="external">Weibo</a></strong><br><strong><a href="https://twitter.com/Myers__Chan" target="_blank" rel="external">Twitter</a></strong><br><strong><a href="https://facebook.com/myers.n.chan" target="_blank" rel="external">Facebook</a></strong></p>
-]]></content>
+      <title><![CDATA[Friends]]></title>
+      <url>/friends/index.html</url>
+      <content type="html"></content>
+    </entry>
+    
+    <entry>
+      <title><![CDATA[Categories]]></title>
+      <url>/categories/index.html</url>
+      <content type="html"></content>
     </entry>
     
     <entry>
@@ -1784,15 +1782,17 @@ WantedBy=multi-user.target
     </entry>
     
     <entry>
-      <title><![CDATA[Friends]]></title>
-      <url>/friends/index.html</url>
-      <content type="html"></content>
+      <title><![CDATA[关于我]]></title>
+      <url>/about/index.html</url>
+      <content type="html"><![CDATA[<p>喜欢摄影主业写代码的工科男(/▽＼)</p>
+]]></content>
     </entry>
     
     <entry>
-      <title><![CDATA[Articles]]></title>
-      <url>/articles/index.html</url>
-      <content type="html"></content>
+      <title><![CDATA[Contact]]></title>
+      <url>/feeback/index.html</url>
+      <content type="html"><![CDATA[<p>Contact me with<br><strong><a href="mailto:Myers.Chan@outlook.com?subject=FeebackFromBlog" target="_blank" rel="external">E-mail</a></strong>.<br><strong><a href="http://weibo.com/Nomyfan" target="_blank" rel="external">Weibo</a></strong><br><strong><a href="https://twitter.com/Myers__Chan" target="_blank" rel="external">Twitter</a></strong><br><strong><a href="https://facebook.com/myers.n.chan" target="_blank" rel="external">Facebook</a></strong></p>
+]]></content>
     </entry>
     
   
