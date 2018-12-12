@@ -1369,9 +1369,9 @@ RewriteRule . /index.php [L]
         
         <tags>
             
-            <tag> VPS </tag>
-            
             <tag> Linux </tag>
+            
+            <tag> VPS </tag>
             
         </tags>
         
@@ -1432,9 +1432,9 @@ WantedBy=multi-user.target
         
         <tags>
             
-            <tag> VPS </tag>
-            
             <tag> Linux </tag>
+            
+            <tag> VPS </tag>
             
         </tags>
         
@@ -1739,6 +1739,12 @@ WantedBy=multi-user.target
     </entry>
     
     <entry>
+      <title><![CDATA[Categories]]></title>
+      <url>/categories/index.html</url>
+      <content type="html"></content>
+    </entry>
+    
+    <entry>
       <title><![CDATA[Articles]]></title>
       <url>/articles/index.html</url>
       <content type="html"></content>
@@ -1752,14 +1758,22 @@ WantedBy=multi-user.target
     </entry>
     
     <entry>
-      <title><![CDATA[Friends]]></title>
-      <url>/friends/index.html</url>
-      <content type="html"></content>
+      <title><![CDATA[关于我]]></title>
+      <url>/about/index.html</url>
+      <content type="html"><![CDATA[<p>喜欢摄影主业写代码的工科男(/▽＼)</p>
+]]></content>
     </entry>
     
     <entry>
-      <title><![CDATA[Categories]]></title>
-      <url>/categories/index.html</url>
+      <title><![CDATA[Contact]]></title>
+      <url>/feeback/index.html</url>
+      <content type="html"><![CDATA[<p>Contact me with<br><strong><a href="mailto:Myers.Chan@outlook.com?subject=FeebackFromBlog" target="_blank" rel="external">E-mail</a></strong>.<br><strong><a href="http://weibo.com/Nomyfan" target="_blank" rel="external">Weibo</a></strong><br><strong><a href="https://twitter.com/Myers__Chan" target="_blank" rel="external">Twitter</a></strong><br><strong><a href="https://facebook.com/myers.n.chan" target="_blank" rel="external">Facebook</a></strong></p>
+]]></content>
+    </entry>
+    
+    <entry>
+      <title><![CDATA[Friends]]></title>
+      <url>/friends/index.html</url>
       <content type="html"></content>
     </entry>
     
@@ -1779,20 +1793,6 @@ WantedBy=multi-user.target
       <title><![CDATA[Timeline]]></title>
       <url>/timeline/index.html</url>
       <content type="html"></content>
-    </entry>
-    
-    <entry>
-      <title><![CDATA[关于我]]></title>
-      <url>/about/index.html</url>
-      <content type="html"><![CDATA[<p>喜欢摄影主业写代码的工科男(/▽＼)</p>
-]]></content>
-    </entry>
-    
-    <entry>
-      <title><![CDATA[Contact]]></title>
-      <url>/feeback/index.html</url>
-      <content type="html"><![CDATA[<p>Contact me with<br><strong><a href="mailto:Myers.Chan@outlook.com?subject=FeebackFromBlog" target="_blank" rel="external">E-mail</a></strong>.<br><strong><a href="http://weibo.com/Nomyfan" target="_blank" rel="external">Weibo</a></strong><br><strong><a href="https://twitter.com/Myers__Chan" target="_blank" rel="external">Twitter</a></strong><br><strong><a href="https://facebook.com/myers.n.chan" target="_blank" rel="external">Facebook</a></strong></p>
-]]></content>
     </entry>
     
   
