@@ -45,7 +45,7 @@
     
     <title>
         
-            Pattern Matching(C# 7.0) | 
+            在VSC里编写调试C/C++程序 | 
         
         Zmus
     </title>
@@ -56,7 +56,7 @@
 
     <meta name="format-detection" content="telephone=no"/>
     <meta name="description" itemprop="description" content="Nomyfan&#39;s personal blog">
-    <meta name="keywords" content="Technology,Programming,Microsoft,.NET,Mathematic,dotnet,Kotlin,C#">
+    <meta name="keywords" content="Technology,Programming,Microsoft,.NET,Mathematic,dotnet,Kotlin,C/C++,VSC,CMake">
     <meta name="theme-color" content="#0097A7">
 
     <!-- Disable Fucking Bloody Baidu Tranformation -->
@@ -222,7 +222,7 @@
     <!-- WebAPP Icons -->
     <meta name="mobile-web-app-capable" content="yes">
     <meta name="application-name" content="Zmus">
-    <meta name="msapplication-starturl" content="https://blog.nokky.net/2018/11/05/pattern-matching/">
+    <meta name="msapplication-starturl" content="https://blog.nokky.net/2018/02/06/cpp-vsc/">
     <meta name="msapplication-navbutton-color" content="#0097A7">
     <meta name="apple-mobile-web-app-capable" content="yes">
     <meta name="apple-mobile-web-app-title" content="Zmus">
@@ -237,16 +237,16 @@
     
 
     <!-- The Open Graph protocol -->
-    <meta property="og:url" content="https://blog.nokky.net/2018/11/05/pattern-matching/">
+    <meta property="og:url" content="https://blog.nokky.net/2018/02/06/cpp-vsc/">
     <meta property="og:type" content="blog">
-    <meta property="og:title" content="Pattern Matching(C# 7.0) | Zmus">
+    <meta property="og:title" content="在VSC里编写调试C/C++程序 | Zmus">
     <meta property="og:image" content="/img/favicon.png">
     <meta property="og:description" content="Nomyfan&#39;s personal blog">
-    <meta property="og:article:tag" content="C#"> 
+    <meta property="og:article:tag" content="C/C++"> <meta property="og:article:tag" content="VSC"> <meta property="og:article:tag" content="CMake"> 
 
     
-        <meta property="article:published_time" content="Mon Nov 05 2018 17:20:24 GMT+0800">
-        <meta property="article:modified_time" content="Mon Nov 05 2018 19:57:57 GMT+0800">
+        <meta property="article:published_time" content="Tue Feb 06 2018 17:54:38 GMT+0800">
+        <meta property="article:modified_time" content="Wed Dec 26 2018 12:20:44 GMT+0800">
     
 
     <!-- The Twitter Card protocol -->
@@ -254,7 +254,7 @@
 
     <!-- Add canonical link for SEO -->
     
-        <link rel="canonical" href="https://blog.nokky.net/2018/11/05/pattern-matching/index.html" />
+        <link rel="canonical" href="https://blog.nokky.net/2018/02/06/cpp-vsc/index.html" />
     
 
     <!-- Structured-data for SEO -->
@@ -266,10 +266,10 @@
 {
     "@context": "https://schema.org",
     "@type": "BlogPosting",
-    "mainEntityOfPage": "https://blog.nokky.net/2018/11/05/pattern-matching/index.html",
-    "headline": "Pattern Matching(C# 7.0)",
-    "datePublished": "Mon Nov 05 2018 17:20:24 GMT+0800",
-    "dateModified": "Mon Nov 05 2018 19:57:57 GMT+0800",
+    "mainEntityOfPage": "https://blog.nokky.net/2018/02/06/cpp-vsc/index.html",
+    "headline": "在VSC里编写调试C/C++程序",
+    "datePublished": "Tue Feb 06 2018 17:54:38 GMT+0800",
+    "dateModified": "Wed Dec 26 2018 12:20:44 GMT+0800",
     "author": {
         "@type": "Person",
         "name": "Myers Chan",
@@ -287,7 +287,7 @@
             "url": "/img/favicon.png"
         }
     },
-    "keywords": ",C#Technology,Programming,Microsoft,.NET,Mathematic,dotnet,Kotlin",
+    "keywords": ",C/C++,VSC,CMakeTechnology,Programming,Microsoft,.NET,Mathematic,dotnet,Kotlin",
     "description": "Nomyfan&#39;s personal blog",
 }
 </script>
@@ -357,7 +357,7 @@
     </button>
 
     <ul class="post-toc-wrap mdl-menu mdl-menu--bottom-left mdl-js-menu mdl-js-ripple-effect" for="post-toc-trigger-btn" style="max-height:80vh; overflow-y:scroll;">
-        <ol class="post-toc"><li class="post-toc-item post-toc-level-2"><a class="post-toc-link" href="#场景1"><span class="post-toc-number">1.</span> <span class="post-toc-text">场景1</span></a></li><li class="post-toc-item post-toc-level-2"><a class="post-toc-link" href="#场景2"><span class="post-toc-number">2.</span> <span class="post-toc-text">场景2</span></a><ol class="post-toc-child"><li class="post-toc-item post-toc-level-3"><a class="post-toc-link" href="#参考"><span class="post-toc-number">2.1.</span> <span class="post-toc-text">参考</span></a></li></ol></li></ol>
+        <ol class="post-toc"><li class="post-toc-item post-toc-level-2"><a class="post-toc-link" href="#Changlogs"><span class="post-toc-number">1.</span> <span class="post-toc-text">Changlogs</span></a></li><li class="post-toc-item post-toc-level-2"><a class="post-toc-link" href="#安装MinGW"><span class="post-toc-number">2.</span> <span class="post-toc-text">安装MinGW</span></a></li><li class="post-toc-item post-toc-level-2"><a class="post-toc-link" href="#安装CMake"><span class="post-toc-number">3.</span> <span class="post-toc-text">安装CMake</span></a></li><li class="post-toc-item post-toc-level-2"><a class="post-toc-link" href="#生成Makefile"><span class="post-toc-number">4.</span> <span class="post-toc-text">生成Makefile</span></a></li><li class="post-toc-item post-toc-level-2"><a class="post-toc-link" href="#安装C-C-插件"><span class="post-toc-number">5.</span> <span class="post-toc-text">安装C/C++插件</span></a></li><li class="post-toc-item post-toc-level-2"><a class="post-toc-link" href="#配置C-C-项目"><span class="post-toc-number">6.</span> <span class="post-toc-text">配置C/C++项目</span></a><ol class="post-toc-child"><li class="post-toc-item post-toc-level-3"><a class="post-toc-link" href="#c-cpp-properties-json"><span class="post-toc-number">6.1.</span> <span class="post-toc-text">c_cpp_properties.json</span></a></li><li class="post-toc-item post-toc-level-3"><a class="post-toc-link" href="#launch-json"><span class="post-toc-number">6.2.</span> <span class="post-toc-text">launch.json</span></a></li><li class="post-toc-item post-toc-level-3"><a class="post-toc-link" href="#task-json"><span class="post-toc-number">6.3.</span> <span class="post-toc-text">task.json</span></a></li></ol></li><li class="post-toc-item post-toc-level-2"><a class="post-toc-link" href="#启动"><span class="post-toc-number">7.</span> <span class="post-toc-text">启动</span></a></li><li class="post-toc-item post-toc-level-2"><a class="post-toc-link" href="#附"><span class="post-toc-number">8.</span> <span class="post-toc-text">附</span></a></li></ol>
     </ul>
     
 
@@ -389,7 +389,7 @@
         
     
             <p class="article-headline-p">
-                Pattern Matching(C# 7.0)
+                在VSC里编写调试C/C++程序
             </p>
         </div>
 
@@ -408,7 +408,7 @@
     <!-- Author Name & Date -->
     <div>
         <strong>Myers Chan</strong>
-        <span>Nov 05, 2018</span>
+        <span>Feb 06, 2018</span>
     </div>
 
     <div class="section-spacer"></div>
@@ -430,7 +430,7 @@
 <ul class="mdl-menu mdl-menu--bottom-right mdl-js-menu mdl-js-ripple-effect" for="article-functions-qrcode-button">
     <li class="mdl-menu__item">Read this article on other devices</li>
     
-        <img src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAN4AAADeCAAAAAB3DOFrAAACWUlEQVR42u3aUXKDMAwEUO5/6fYAHcjKwgpJH1+ZBIqfPyx17ePnq68DDw8PDw8PDw/vYbwjvs6eyr8/e+Pfe1pjw8PDwxvhvVhqT+45G1x1gq7/TnVseHh4eJO8u155vdCflZDbygkeHh7e43l5G309EXh4eHj/h5eXh6TJxsPDw/ssXj7E6wU9/zUPO4ayFjw8PLyYl28yzX8e3d/Dw8PDC3jV6wzcORxQLQYvRoiHh4e3mZcvxNWGu3qM4Lbx4OHh4W3mrRWAPIrNqZ1v8PDw8J7Dyzeu1hbxQjibH0TAw8PDG+HlwUF1M6way3Zaczw8PLx5Xr7cd+LafAqqb8HDw8Ob4eXHUqtLeTWK7ZQZPDw8vElesvjmcW11svKpzCMJPDw8vEledVidApDfk3yPh4eHN8mLgtHi0nzXFlr+LB4eHt4k73pw+SGqpHhUn1o8+IWHh4c3wksa5U7kmhSPfDpa/zHg4eHhtXnVDa3qZn81Ml4LOPDw8PAmeWtxwFpou3YoIW/x8fDw8GZ4O8LWJGJI2utqrIyHh4c3z+u0s8kBqbxlr8a7eHh4eO/i5a/MSf0pS4IMPDw8vHfx+mFrtU2vhh3R5hweHh7eZl71WmOsba0thiZ4eHh4m3k7trWSopIEwXmzjoeHhzfPWysGeUjROTRQDTLw8PDwJnn5gp4wOg13gsHDw8P7LF6+NdWJdG8LI/Dw8PAewMsPCuTte7XAlMMIPDw8vA286ourv/ZjYjw8PLzn8DoRQLWN7oQdSaCMh4eHt5v3fRceHh4eHh4eHt4Drl+ekO050EqGngAAAABJRU5ErkJggg==">
+        <img src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAN4AAADeCAAAAAB3DOFrAAACZElEQVR42u3awW7DIBAEUP//T6fXSm2SGbAxiZ5PlZsQHgdYLXM8vvo58PDw8PDw8PDwNuMd8fPPQH/eP/v87zfPRn49Wj43PDw8vDW8N1ttyRib+rOFqOeGh4eHt5CX/2RyVLz+Vr4E9cLh4eHhbcnLj418c8+XFQ8PD+8Tee22npTI2517eHh4eCc1I9qSemz823oteHh4eDEvv2Ra//fS+z08PDy8gFdHmsoYQX5sJMdANEM8PDy8i3n5RtyGCdrRZkbAw8PDW8k7dyrtRddYvKBo4+Lh4eEt5OVldLIQ+XGSl+NTBwMeHh7eBC/ZfPOWRDKVscJ9KjqAh4eHt4SXF8FtC7ht77ZtXzw8PLy7eG1R2y5K+6ZYCDw8PLyLeWNbeV58jzUXxpYYDw8Pbw0vb0Mc5TPWAm7f4+Hh4e3Jy1ux+ednIgVv5oaHh4e3kJdfbuUHw1mLmCwEHh4e3kpevpUn7deicRA3Mk4LXeHh4eFN8/INNy+O8yuxsc/j4eHh7c9rL6vykMFMYxcPDw/vLl4bpUrCAW2Zfm6AAA8PD28lL9/oZ0IGj/KpGxx4eHh4C3ljk545ZvJIQTJDPDw8vHt5+fvkgJk5SPJoFx4eHt4a3liB21LzuEASMihCV3h4eHgX8Mbip3mzNY9kzUe48PDw8Fby2kZq+635kfOlx8PDw1vJOytI2kYHxoKqeHh4eJ/FS7b1vNTOC/TBZgQeHh7eBrz5Vmzy34R62v0eHh4e3mV9zhaQxwvGLt7w8PDw7uLNR52SwnqmGZFfg+Hh4eFdzfu+Bw8PDw8PDw8Pb4PnB5P7Xcl/dYcZAAAAAElFTkSuQmCC">
     
 </ul>
 
@@ -444,7 +444,7 @@
     </button>
     <ul class="mdl-menu mdl-menu--bottom-right mdl-js-menu mdl-js-ripple-effect" for="article-functions-viewtags-button">
         <li class="mdl-menu__item">
-        <a class="post_tag-link" href="/tags/C/">C#</a>
+        <a class="post_tag-link" href="/tags/C-C/">C/C++</a></li><li class="mdl-menu__item"><a class="post_tag-link" href="/tags/CMake/">CMake</a></li><li class="mdl-menu__item"><a class="post_tag-link" href="/tags/VSC/">VSC</a>
     </ul>
     
 
@@ -459,7 +459,7 @@
     <!-- Leancloud Views -->
         <a class="post_share-link" href="#">
             <li class="mdl-menu__item">
-                <span id="/2018/11/05/pattern-matching/" class="leancloud-views_num" data-flag-title="Pattern Matching(C# 7.0)">
+                <span id="/2018/02/06/cpp-vsc/" class="leancloud-views_num" data-flag-title="在VSC里编写调试C/C++程序">
      &nbsp;Views
 </span>
 
@@ -471,7 +471,7 @@
 
     <!-- Share Weibo -->
     
-        <a class="post_share-link" href="http://service.weibo.com/share/share.php?appkey=&title=Pattern Matching(C# 7.0)&url=https://blog.nokky.net/2018/11/05/pattern-matching/index.html&pic=https://blog.nokky.net/img/favicon.png&searchPic=false&style=simple" target="_blank">
+        <a class="post_share-link" href="http://service.weibo.com/share/share.php?appkey=&title=在VSC里编写调试C/C++程序&url=https://blog.nokky.net/2018/02/06/cpp-vsc/index.html&pic=https://blog.nokky.net/img/favicon.png&searchPic=false&style=simple" target="_blank">
             <li class="mdl-menu__item">
                 Share to Weibo
             </li>
@@ -480,7 +480,7 @@
 
     <!-- Share Twitter -->
     
-        <a class="post_share-link" href="https://twitter.com/intent/tweet?text=Pattern Matching(C# 7.0)&url=https://blog.nokky.net/2018/11/05/pattern-matching/index.html&via=Myers Chan" target="_blank">
+        <a class="post_share-link" href="https://twitter.com/intent/tweet?text=在VSC里编写调试C/C++程序&url=https://blog.nokky.net/2018/02/06/cpp-vsc/index.html&via=Myers Chan" target="_blank">
             <li class="mdl-menu__item">
                 Share to Twitter
             </li>
@@ -489,7 +489,7 @@
 
     <!-- Share Facebook -->
     
-        <a class="post_share-link" href="https://www.facebook.com/sharer/sharer.php?u=https://blog.nokky.net/2018/11/05/pattern-matching/index.html" target="_blank">
+        <a class="post_share-link" href="https://www.facebook.com/sharer/sharer.php?u=https://blog.nokky.net/2018/02/06/cpp-vsc/index.html" target="_blank">
             <li class="mdl-menu__item">
                 Share to Facebook
             </li>
@@ -498,7 +498,7 @@
 
     <!-- Share Google+ -->
     
-        <a class="post_share-link" href="https://plus.google.com/share?url=https://blog.nokky.net/2018/11/05/pattern-matching/index.html" target="_blank">
+        <a class="post_share-link" href="https://plus.google.com/share?url=https://blog.nokky.net/2018/02/06/cpp-vsc/index.html" target="_blank">
             <li class="mdl-menu__item">
                 Share to Google+
             </li>
@@ -523,89 +523,156 @@
                 <!-- Post Content -->
                 <div id="post-content" class="mdl-color-text--grey-700 mdl-card__supporting-text fade out">
     
-        <h2 id="场景1"><a href="#场景1" class="headerlink" title="场景1"></a>场景1</h2><p>最近在写ASP&#46;NET Core MVC项目，发现在处理异常的时候会遇到<code>duplicate code</code>，例如这样:</p>
-<pre><code class="csharp">var client = new HttpClient { Timeout = TimeSpan.FromSeconds(3) };
-try
-{
-    // code here...
-    var response = await client.PostAsync(ApiUrls.LoginUrl, content);
-    if (response.IsSuccessStatusCode)
-    {
-        // code here...
-    }
-}
-catch(HttpRequestException ex)
-{
-    ViewData[&quot;Message&quot;] = &quot;❌连接错误&quot;;
-    return View(); // duplicate
-}
-catch (Exception ex)
-{
-    ViewData[&quot;Message&quot;] = &quot;❌账号或密码错误&quot;;
-    return View(); // deuplicate
-}
-finally
-{
-    client.Dispose();
-}
-</code></pre>
-<p>可以看到，在异常内部我们根据不同的错误给出不同<code>Message</code>，在这个场景里我们只要关注<code>Message</code>的不同。利用 <em>Pattern Matching(since C#7.0)</em> 就可以优化<code>return View();</code>这一行，修改后的代码如下</p>
-<pre><code class="csharp">var client = new HttpClient { Timeout = TimeSpan.FromSeconds(3) };
-try
-{
-    // code here...
-    if (response.IsSuccessStatusCode)
-    {
-        // code here...
-    }
-    else
-    {
-        throw new Exception();
-    }
-}
-catch (Exception excetion)
-{
-    switch (excetion)
-    {
-        case HttpRequestException hrex:
-            ViewData[&quot;Message&quot;] = &quot;❌连接错误&quot;;
-            break;
-        case Exception ex:
-            ViewData[&quot;Message&quot;] = &quot;❌账号或密码错误&quot;;
-            break;
-    }
-    return View(); // not duplicate now
-}
-finally
-{
-    client.Dispose();
-}
-</code></pre>
-<p>试想一下如果<code>return View();</code>这行代码在其他场景中等价于很多代码，而且也不好用 <em>extract method</em> 进行处理的时候，<em>Pattern Matching</em> 不妨是一个不错的选择。</p>
-<h2 id="场景2"><a href="#场景2" class="headerlink" title="场景2"></a>场景2</h2><p>在WinForm中空间的<code>Tag</code>属性可以作为数据的媒介，假设在Do方法内部只针对<code>ListView.CheckedListViewItemCollection</code>这个类型的集合做遍历处理，常规的代码可能如下</p>
-<pre><code class="csharp">private void Do(object sender, EventArgs e)
-{
-    var items = Tag as ListView.CheckedListViewItemCollection;
-    if(items == null) return;
-    for(var i = items.Count - 1; i &gt;=0; i--)
-    {
-        // code here...
-    }
-}
-</code></pre>
-<p>而利用 <em>Pattern Matching</em> 可以这样写</p>
-<pre><code class="csharp">private void Do(object sender, EventArgs e)
-{
-    if(!(Tag is ListView.CheckedListViewItemCollection) items) return;
-    for(var i = items.Count - 1; i &gt;= 0; i--)
-    {
-        // code here...
-    }
-}
-</code></pre>
-<h3 id="参考"><a href="#参考" class="headerlink" title="参考"></a>参考</h3><ul>
-<li><a href="https://docs.microsoft.com/en-us/dotnet/csharp/pattern-matching" target="_blank" rel="external">Pattern Matching - C# Guide</a></li>
+        <h2 id="Changlogs"><a href="#Changlogs" class="headerlink" title="Changlogs"></a>Changlogs</h2><ul>
+<li>2018.12.25<ul>
+<li>利用CMake构建</li>
 </ul>
+</li>
+<li>2018.02.06<ul>
+<li>初版</li>
+</ul>
+</li>
+</ul>
+<hr>
+<p>刚重装完系统，VS里只装了C#，想到可能会用到C/C++，于是乎就用MinGW+CMake+VSC搭建一下开发环境。</p>
+<h2 id="安装MinGW"><a href="#安装MinGW" class="headerlink" title="安装MinGW"></a>安装MinGW</h2><p>现在<a href="http://www.mingw.org/" target="_blank" rel="external">这里</a>找到下载器，然后下载进行安装。安装完成后打开勾选需要安装的选项。这里需要选择三个，分别是：</p>
+<ul>
+<li>mingw32-gcc</li>
+<li>mingw32-gcc-g++</li>
+<li>mingw-gdb<br>需要注意的是，要选择<code>class</code>为<code>bin</code>的。如下图为例：<br><a href="/img/2018/02/snipaste_20180206_163843.png"><img src="/img/2018/02/snipaste_20180206_163843.png" alt="MinGW"></a><br>选完之后安装，过程可能会很慢或者直接下载失败，科学上网即可。安装结束之后要配置一下环境变量，添加<code>gdb.exe</code>，<code>mingw32-make.exe</code>等工具的路径，默认是<code>C:\MinGW\bin</code>。如图：<br><a href="/img/2018/02/snipaste_20180206_163807.png"><img src="/img/2018/02/snipaste_20180206_163807.png" alt="EditEnvironmentVariable"></a></li>
+</ul>
+<h2 id="安装CMake"><a href="#安装CMake" class="headerlink" title="安装CMake"></a>安装CMake</h2><p>这里借助CMake来生成Makefile，移步<a href="https://cmake.org/" target="_blank" rel="external">CMake官网</a></p>
+<h2 id="生成Makefile"><a href="#生成Makefile" class="headerlink" title="生成Makefile"></a>生成Makefile</h2><p>先编写CMakelists.txt</p>
+<pre><code class="cmake">cmake_minimum_required(VERSION 3.12)
+project(CppCmake)
+
+set(CMAKE_CXX_STANDARD 11)
+set(CMAKE_MAKE_PROGRAM cmd cmake)
+set(PROJECT_VERSION 0.0.0.1)
+set(CMAKE_CXX_FLAGS_DEBUG &quot;${CMAKE_CXX_FLAGS_DEBUG} -Wall&quot;)
+set(CMAKE_CXX_FLAGS_RELEASE &quot;${CMAKE_CXX_FLAGS_RELEASE} -Wall&quot;)
+
+include_directories(C:/MinGW/lib/gcc/mingw32/6.3.0/include/c++)
+include_directories(./Headers)
+
+add_executable(Main ./Src/Main.cxx)
+</code></pre>
+<p>然后运行命令</p>
+<p><code>cmake -S ./ -B ./GNU -G &quot;MinGW Makefiles&quot; -Wdev -Werror=dev -DCMAKE_BUILD_TYPE=Debug</code></p>
+<h2 id="安装C-C-插件"><a href="#安装C-C-插件" class="headerlink" title="安装C/C++插件"></a>安装C/C++插件</h2><p>在VSC里搜索<code>C/C++</code>然后安装这个插件。<br><a href="/img/2018/02/snipaste_20180206_181253.png"><img src="/img/2018/02/snipaste_20180206_181253.png" alt="C/C++"></a></p>
+<h2 id="配置C-C-项目"><a href="#配置C-C-项目" class="headerlink" title="配置C/C++项目"></a>配置C/C++项目</h2><p>一个C/C++项目会的配置文件包含在<code>.vscode</code>文件夹里，里面包含了3个文件，分别是：  </p>
+<ul>
+<li>c_cpp_properties.json</li>
+<li>launch.json</li>
+<li>task.json<br>只要把这些文件配置信息写好了我们的Console项目就能运行起来了，这些文件都不需要我们手动创建，下面就讲讲如何创建和填写这些文件的信息。</li>
+</ul>
+<h3 id="c-cpp-properties-json"><a href="#c-cpp-properties-json" class="headerlink" title="c_cpp_properties.json"></a>c_cpp_properties.json</h3><p>键盘按住<code>Ctrl+Shift+P</code>，然后输入<code>C/Cpp</code>，然后从中选择<code>Edit Configurations...</code><br><a href="/img/2018/02/snipaste_20180206_164042.png"><img src="/img/2018/02/snipaste_20180206_164042.png" alt="Configurations"></a><br>参考插件<a href="https://github.com/Microsoft/vscode-cpptools/blob/master/Documentation/LanguageServer/MinGW.md" target="_blank" rel="external">官方配置</a>做了些修改，官方的<code>includePath</code>和<code>path</code>这两个属性填写得不够完整。这里给出了我修改后的：</p>
+<pre><code>{
+    &quot;configurations&quot;: [
+        {
+            &quot;name&quot;: &quot;Win32&quot;,
+            &quot;includePath&quot;: [
+                &quot;${workspaceFolder}/**&quot;,
+                &quot;C:/MinGW/lib/gcc/mingw32/6.3.0/include/c++/**&quot;
+            ],
+            &quot;defines&quot;: [
+                &quot;_DEBUG&quot;,
+                &quot;UNICODE&quot;,
+                &quot;_UNICODE&quot;
+            ],
+            &quot;compilerPath&quot;: &quot;g++.exe&quot;,
+            &quot;cStandard&quot;: &quot;c11&quot;,
+            &quot;cppStandard&quot;: &quot;c++17&quot;,
+            &quot;intelliSenseMode&quot;: &quot;gcc-x64&quot;
+        }
+    ],
+    &quot;version&quot;: 4
+}
+</code></pre><p>如果你的VSC提示你找不到头文件，将鼠标放在上边然后就会提示你应该添加什么路径到<code>includePath</code>里了。</p>
+<h3 id="launch-json"><a href="#launch-json" class="headerlink" title="launch.json"></a>launch.json</h3><p>添加左侧的虫子图标的<code>Debug</code>Button（或者<code>Ctrl+Shift+D</code>），然后添加配置。<br><a href="/img/2018/02/snipaste_20180206_163956.png"><img src="/img/2018/02/snipaste_20180206_163956.png" alt="Launch"></a><br>选择<code>GDB</code>的。完整文件内容：  </p>
+<pre><code>{
+    // Use IntelliSense to learn about possible attributes.
+    // Hover to view descriptions of existing attributes.
+    // For more information, visit: https://go.microsoft.com/fwlink/?linkid=830387
+    &quot;version&quot;: &quot;0.2.0&quot;,
+    &quot;configurations&quot;: [
+        {
+            &quot;name&quot;: &quot;(gdb) Launch&quot;,
+            &quot;type&quot;: &quot;cppdbg&quot;,
+            &quot;request&quot;: &quot;launch&quot;,
+            &quot;program&quot;: &quot;${workspaceFolder}/GNU/Main.exe&quot;,
+            &quot;args&quot;: [],
+            &quot;stopAtEntry&quot;: false,
+            &quot;cwd&quot;: &quot;${workspaceFolder}&quot;,
+            &quot;environment&quot;: [],
+            &quot;externalConsole&quot;: true,
+            &quot;MIMode&quot;: &quot;gdb&quot;,
+            &quot;miDebuggerPath&quot;: &quot;C:/MinGW/bin/gdb.exe&quot;,
+            &quot;setupCommands&quot;: [
+                {
+                    &quot;description&quot;: &quot;Enable pretty-printing for gdb&quot;,
+                    &quot;text&quot;: &quot;-enable-pretty-printing&quot;,
+                    &quot;ignoreFailures&quot;: true
+                }
+            ],
+            &quot;preLaunchTask&quot;: &quot;GnuBuild&quot;
+        }
+    ]
+}
+</code></pre><h3 id="task-json"><a href="#task-json" class="headerlink" title="task.json"></a>task.json</h3><p><code>Ctrl+Shift+P</code>输入<code>tasks</code>，选择<code>Configure Task</code><br><a href="/img/2018/02/snipaste_20180206_175001.png"><img src="/img/2018/02/snipaste_20180206_175001.png" alt="Task"></a><br>文件完整内容：</p>
+<pre><code>{
+    // See https://go.microsoft.com/fwlink/?LinkId=733558
+    // for the documentation about the tasks.json format
+    &quot;version&quot;: &quot;2.0.0&quot;,
+    &quot;tasks&quot;: [
+        {
+            &quot;label&quot;: &quot;GnuBuild&quot;,
+            &quot;type&quot;: &quot;shell&quot;,
+            &quot;command&quot;: &quot;powershell ./GNUBuild.ps1&quot;,
+            &quot;problemMatcher&quot;: {
+                &quot;owner&quot;: &quot;cpp&quot;,
+                &quot;fileLocation&quot;: [
+                    &quot;relative&quot;,
+                    &quot;${workspaceFolder}&quot;
+                ],
+                &quot;pattern&quot;: {
+                    &quot;regexp&quot;: &quot;^(.*):(\\d+):(\\d+):\\s+(warning|error):\\s+(.*)$&quot;,
+                    &quot;file&quot;: 1,
+                    &quot;line&quot;: 2,
+                    &quot;column&quot;: 3,
+                    &quot;severity&quot;: 4,
+                    &quot;message&quot;: 5
+                }
+            }
+        }
+    ]
+}
+</code></pre><p>GNUBuild.ps1的内容如下</p>
+<pre><code class="powershell">Set-Location .\GNU
+mingw32-make.exe
+</code></pre>
+<h2 id="启动"><a href="#启动" class="headerlink" title="启动"></a>启动</h2><p>编写简单的HelloWorld程序测试一下</p>
+<pre><code class="cpp">#include &lt;iostream&gt;
+#include &quot;Math.hxx&quot;
+
+using std::cout;
+using std::endl;
+using Zmus::Math;
+
+int main()
+{
+    int v1 = 10;
+    int v2 = 20;
+
+    int ans = Math::Add&lt;int&gt;(v1, v2);
+    cout &lt;&lt; ans &lt;&lt; endl;
+    cout &lt;&lt; &quot;CMake&quot; &lt;&lt; endl;
+
+    return 0;
+}
+</code></pre>
+<p>按F5运行，正常。<br><a href="/img/2018/12/snipaste_20181226_120309.png"><img src="/img/2018/12/snipaste_20181226_120309.png" alt="Run"></a></p>
+<h2 id="附"><a href="#附" class="headerlink" title="附"></a>附</h2><p>项目目录结构<br><a href="/img/2018/12/snipaste_20181226_120947.png"><img src="/img/2018/12/snipaste_20181226_120947.png" alt="FileTree"></a></p>
 
         
                 <blockquote style="margin: 2em 0 0;padding: 0.5em 1em;border-left: 3px solid #F44336;background-color: #F5F5F5;list-style: none;">
@@ -614,7 +681,7 @@ finally
                             This blog is under a <a href="https://creativecommons.org/licenses/by-nc-sa/4.0/deed.zh" target="_blank">CC BY-NC-SA 4.0 Unported License</a>
                         </strong>
                         <br>
-                        <strong>Link to this article: </strong><a href="https://blog.nokky.net/2018/11/05/pattern-matching/">https://blog.nokky.net/2018/11/05/pattern-matching/</a>
+                        <strong>Link to this article: </strong><a href="https://blog.nokky.net/2018/02/06/cpp-vsc/">https://blog.nokky.net/2018/02/06/cpp-vsc/</a>
                     </p>
                 </blockquote>
         
@@ -636,7 +703,7 @@ finally
             <nav class="material-nav mdl-color-text--grey-50 mdl-cell mdl-cell--12-col">
     <!-- Prev Nav -->
     
-        <a href="/2018/11/09/kotlin-generics/" id="post_nav-newer" class="prev-content">
+        <a href="/2018/05/03/hexo-host-on-azure/" id="post_nav-newer" class="prev-content">
             <button class="mdl-button mdl-js-button mdl-js-ripple-effect mdl-button--icon mdl-color--white mdl-color-text--grey-900" role="presentation">
                 <i class="material-icons">arrow_back</i>
             </button>
@@ -650,7 +717,7 @@ finally
 
     <!-- Next Nav -->
     
-        <a href="/2018/08/29/root-xperiaxp/" id="post_nav-older" class="next-content">
+        <a href="/2018/01/31/archlinux-install/" id="post_nav-older" class="next-content">
             Older
             &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
             <button class="mdl-button mdl-js-button mdl-js-ripple-effect mdl-button--icon mdl-color--white mdl-color-text--grey-900" role="presentation">
@@ -742,7 +809,7 @@ finally
             </a>
             <ul class="dropdown-menu">
             <li>
-                <a class="sidebar_archives-link" href="/archives/2018/11/">November 2018<span class="sidebar_archives-count">2</span></a></li><li><a class="sidebar_archives-link" href="/archives/2018/08/">August 2018<span class="sidebar_archives-count">1</span></a></li><li><a class="sidebar_archives-link" href="/archives/2018/07/">July 2018<span class="sidebar_archives-count">4</span></a></li><li><a class="sidebar_archives-link" href="/archives/2018/05/">May 2018<span class="sidebar_archives-count">1</span></a></li><li><a class="sidebar_archives-link" href="/archives/2018/02/">February 2018<span class="sidebar_archives-count">1</span></a></li><li><a class="sidebar_archives-link" href="/archives/2018/01/">January 2018<span class="sidebar_archives-count">2</span></a></li><li><a class="sidebar_archives-link" href="/archives/2017/09/">September 2017<span class="sidebar_archives-count">1</span></a></li><li><a class="sidebar_archives-link" href="/archives/2017/07/">July 2017<span class="sidebar_archives-count">1</span></a></li><li><a class="sidebar_archives-link" href="/archives/2017/06/">June 2017<span class="sidebar_archives-count">1</span></a></li><li><a class="sidebar_archives-link" href="/archives/2017/04/">April 2017<span class="sidebar_archives-count">1</span></a></li><li><a class="sidebar_archives-link" href="/archives/2017/02/">February 2017<span class="sidebar_archives-count">6</span></a></li><li><a class="sidebar_archives-link" href="/archives/2016/12/">December 2016<span class="sidebar_archives-count">1</span></a>
+                <a class="sidebar_archives-link" href="/archives/2018/11/">November 2018<span class="sidebar_archives-count">1</span></a></li><li><a class="sidebar_archives-link" href="/archives/2018/08/">August 2018<span class="sidebar_archives-count">1</span></a></li><li><a class="sidebar_archives-link" href="/archives/2018/07/">July 2018<span class="sidebar_archives-count">4</span></a></li><li><a class="sidebar_archives-link" href="/archives/2018/05/">May 2018<span class="sidebar_archives-count">1</span></a></li><li><a class="sidebar_archives-link" href="/archives/2018/02/">February 2018<span class="sidebar_archives-count">1</span></a></li><li><a class="sidebar_archives-link" href="/archives/2018/01/">January 2018<span class="sidebar_archives-count">2</span></a></li><li><a class="sidebar_archives-link" href="/archives/2017/09/">September 2017<span class="sidebar_archives-count">1</span></a></li><li><a class="sidebar_archives-link" href="/archives/2017/07/">July 2017<span class="sidebar_archives-count">1</span></a></li><li><a class="sidebar_archives-link" href="/archives/2017/06/">June 2017<span class="sidebar_archives-count">1</span></a></li><li><a class="sidebar_archives-link" href="/archives/2017/04/">April 2017<span class="sidebar_archives-count">1</span></a></li><li><a class="sidebar_archives-link" href="/archives/2017/02/">February 2017<span class="sidebar_archives-count">6</span></a></li><li><a class="sidebar_archives-link" href="/archives/2016/12/">December 2016<span class="sidebar_archives-count">1</span></a>
             </ul>
         </li>
         
@@ -760,7 +827,7 @@ finally
             </a>
             <ul class="dropdown-menu">
                 <li>
-                <a class="sidebar_archives-link" href="/categories/Android/">Android<span class="sidebar_archives-count">1</span></a></li><li><a class="sidebar_archives-link" href="/categories/Arduino/">Arduino<span class="sidebar_archives-count">1</span></a></li><li><a class="sidebar_archives-link" href="/categories/Linux/">Linux<span class="sidebar_archives-count">4</span></a></li><li><a class="sidebar_archives-link" href="/categories/Mathematic/">Mathematic<span class="sidebar_archives-count">1</span></a></li><li><a class="sidebar_archives-link" href="/categories/Programming/">Programming<span class="sidebar_archives-count">11</span></a></li><li><a class="sidebar_archives-link" href="/categories/Windows/">Windows<span class="sidebar_archives-count">4</span></a>
+                <a class="sidebar_archives-link" href="/categories/Android/">Android<span class="sidebar_archives-count">1</span></a></li><li><a class="sidebar_archives-link" href="/categories/Arduino/">Arduino<span class="sidebar_archives-count">1</span></a></li><li><a class="sidebar_archives-link" href="/categories/Linux/">Linux<span class="sidebar_archives-count">4</span></a></li><li><a class="sidebar_archives-link" href="/categories/Mathematic/">Mathematic<span class="sidebar_archives-count">1</span></a></li><li><a class="sidebar_archives-link" href="/categories/Programming/">Programming<span class="sidebar_archives-count">10</span></a></li><li><a class="sidebar_archives-link" href="/categories/Windows/">Windows<span class="sidebar_archives-count">4</span></a>
             </ul>
         </li>
         
@@ -826,7 +893,7 @@ finally
         <li>
             <a href="/archives">
                 Number of articles
-                <span class="sidebar-badge">22</span>
+                <span class="sidebar-badge">21</span>
             </a>
         </li>
         
