@@ -3,6 +3,203 @@
   
     
     <entry>
+      <title><![CDATA[SynchronizationContext - 同步上下文]]></title>
+      <url>/2019/01/12/synchronizationcontext/</url>
+      <content type="html"><![CDATA[<p>SynchronizationContext是一个极其重要的东西，尤其是涉及到多线程和UI有牵扯的时候。从它可以展开两个话题：异步和线程通信，我们来简单看看这两个玩意。</p>
+<h1 id="异步"><a href="#异步" class="headerlink" title="异步"></a>异步</h1><p>我们先来看看异步。在C#中，我们可以很轻松地写用书写同步代码的习惯书写异步代码，功劳归于await关键字。我们先来看看await为我们做了什么工作，以及为什么异步和SynchronizationContext有关系。<br>一个Button的Click事件处理函数里边</p>
+<pre><code class="csharp">private async void Button_Click(object sender, RoutedEventArgs e)
+{
+    Console.WriteLine(&quot;Event handler starts...&quot;);
+    await FooAsync();
+    Console.WriteLine(&quot;Event handler ends...&quot;);
+}
+</code></pre>
+<p>它的等效代码为</p>
+<pre><code class="csharp">private void Button_Click2(object sender, RoutedEventArgs e)
+{
+    Console.WriteLine(&quot;Event handler starts...&quot;);
+    var t = FooAsync();
+    var context = SynchronizationContext.Current;
+    t.ContinueWith((_) =&gt;
+    {
+        if (context == null)
+        {
+            RestOfMethod();
+        }
+        else
+        {
+            context.Post((o) =&gt; RestOfMethod(), null); // Important!!!
+        }
+    }, TaskScheduler.Current);
+}
+
+private void RestOfMethod()
+{
+    Console.WriteLine(&quot;Event handler ends...&quot;);
+}
+</code></pre>
+<p>可以看到，实际上，await是把之后的代码提取成一个方法（这里我们演示把这个方法命名为RestOfMethod），然后生成一个委托放入SynchronizationContext的Post方法里边去去执行。在两三年前JS的异步代码还是普遍如此来实现的，现在也都采用了await的形式。这里的关键是是Post方法的执行，在WPF等有UI线程的程序中，会有一个很有意思的现象，就是如果在代码用了Task的Wait方法，就一定会产生死锁，本质上就是因为Post方法得不到执行。那么问题来了，为什么不能执行呢？首先，在WPF这里UI程序中，SynchronizationContext都是同一个且在UI线程上，所有UI的更新都要通过UI线程来完成，不能跨线程更新UI。其次，Wait和await是两种不同的实现，Wait会导致当前线程阻塞等待任务的完成，当任务完成之后就会调用ContinueWith里边的委托，也就是要执行Post方法，可是要知道SynchronizationContext.Current获得的同步上下文是UI线程上的，此时UI线程在阻塞，所以它会等待UI线程变为就绪态，两者相互等待，所以就进入了死锁的状态。所以一般情况下，是不建议用Wait方法，正确的姿势应该是<em>async/await all the way up</em>，但是这就会导致一个问题，异步代码会向上如同病毒般地进行传播，称为<em>zombie virus</em>。一般情况下，这种传播会到达一个事件处理函数，也就像上边的Button的Click事件的处理函数。那么有没有什么手段来阻止这种病毒式的传播，在普通的同步方法内调用异步方法且不会阻塞UI线程呢？还是有的，只要我们提供一个非UI线程的SynchronizationContext来执行Post即可。默认的SynchronizationContext的Post方法会在线程池中申请线程执行，因此多个ContinueWith的委托会在不同的线程中被执行。这里我们希望所有的委托都能在一个线程中执行，避免线程切换带来的性能损耗，那么我们要手动编写一个自己的SynchronizationContext类，来管理所有的委托的执行。</p>
+<h2 id="手撸SynchronizationContext"><a href="#手撸SynchronizationContext" class="headerlink" title="手撸SynchronizationContext"></a>手撸SynchronizationContext</h2><p>首先，我们先来明确一下任务。SynchronizationContext主要就是实现Post和Send方法，前者是异步的，后者则是同步的，我们这里就实现Post方法就好了，Send不作为可被调用的。其次，两个方法的参数都是一个SendOrPostCallback加一个object类型，我们要把这两个参数保存起来，因此要用到集合类。再来，考虑到线程安全性，因此要用到线程安全的集合类，当然，自己手动加锁也是可以的，这里简化就直接用自带的就好了。</p>
+<pre><code class="csharp">private class SingleThreadSynchronizationContext : SynchronizationContext, IDisposable
+{
+    private bool done;
+    public Exception InnerException { get; set; }
+    private readonly AutoResetEvent mux = new AutoResetEvent(false);
+    private readonly ConcurrentQueue&lt;Tuple&lt;SendOrPostCallback, object&gt;&gt; tasks =
+        new ConcurrentQueue&lt;Tuple&lt;SendOrPostCallback, object&gt;&gt;();
+
+    public override void Send(SendOrPostCallback d, object state)
+    {
+        throw new NotSupportedException(&quot;Use Post instead.&quot;);
+    }
+
+    public override void Post(SendOrPostCallback d, object state)
+    {
+        tasks.Enqueue(Tuple.Create(d, state));
+        mux.Set();
+    }
+
+    public void Complete()
+    {
+        Post(_ =&gt; done = true, null);
+    }
+
+    public void Start()
+    {
+        while (!done)
+        {
+            if (tasks.TryDequeue(out var task))
+            {
+                task.Item1(task.Item2);
+                if (InnerException != null)
+                {
+                    throw new AggregateException(InnerException);
+                }
+            }
+            else
+            {
+                mux.WaitOne();
+            }
+        }
+    }
+
+    public override SynchronizationContext CreateCopy()
+    {
+        return this;
+    }
+
+    public void Dispose()
+    {
+        if (mux != null)
+        {
+            mux.Dispose();
+        }
+    }
+}
+</code></pre>
+<h2 id="化异步为同步"><a href="#化异步为同步" class="headerlink" title="化异步为同步"></a>化异步为同步</h2><p>准备把异步代码在单线程上同步执行的方法，两个差别只有返回值类型。关键部分是保存原来的同步上下文，设置新的手动实现的为当前的同步上下文，这样await就会调用我们实现的同步上下文的Post方法了，最后在结束返回的时候设回原来的。</p>
+<pre><code class="csharp">public static void RunSync(Func&lt;Task&gt; task, object p)
+{
+    var oldContext = SynchronizationContext.Current;
+    var synch = new SingleThreadSynchronizationContext();
+    SynchronizationContext.SetSynchronizationContext(synch); // 关键
+    synch.Post(async _ =&gt;
+    {
+        try
+        {
+            await task();
+        }
+        catch (Exception e)
+        {
+            synch.InnerException = e;
+            throw;
+        }
+        finally
+        {
+            synch.Complete();
+        }
+    }, null);
+    synch.Start();
+
+    SynchronizationContext.SetSynchronizationContext(oldContext); // 设回上下文
+}
+
+public static T RunSync&lt;T&gt;(Func&lt;Task&lt;T&gt;&gt; task)
+{
+    var oldContext = SynchronizationContext.Current;
+    var synch = new SingleThreadSynchronizationContext();
+    SynchronizationContext.SetSynchronizationContext(synch);
+    T ret = default(T);
+    synch.Post(async _ =&gt;
+    {
+        try
+        {
+            ret = await task();
+        }
+        catch (Exception e)
+        {
+            synch.InnerException = e;
+            throw;
+        }
+        finally
+        {
+            synch.Complete();
+        }
+    }, null);
+    synch.Start();
+    SynchronizationContext.SetSynchronizationContext(oldContext);
+    return ret;
+}
+</code></pre>
+<p>调用的时候，我们可以这样子来用</p>
+<pre><code class="csharp">public Stream ReadStream =&gt; AsyncHelper.RunSync(async () =&gt;
+    await file.OpenStreamForReadAsync());
+</code></pre>
+<h1 id="线程通信"><a href="#线程通信" class="headerlink" title="线程通信"></a>线程通信</h1><p>讲完异步部分，我们再来谈谈线程通信问题。这里举其他线程要更新UI元素为例。上边我们明确过了，其他线程是不能直接更新UI元素的，需要通过UI线程来完成。可是，现实确实需要在其他线程进行一些计算，然后把结果在UI元素上呈现，那么还有什么办法呢？在WPF中，有两种方法，第一是用Control类的Dispatcher的Invoke方法；另外一种就是用到同步上下文了。后者会比前者好点，因为在用前者的时候我们必须要有一个控件的引用，这意味和UI牵扯性太高。后者大可以把更新UI的方法作为委托传进去，那么就不用care到底如何更新UI，和UI进行脱离了。</p>
+<p>举个栗子</p>
+<pre><code class="csharp">private void TrackPlayingProgress(SynchronizationContext context, CancellationToken token)
+{
+    while (MainPage.MediaPlayer.PlaybackSession.PlaybackState != MediaPlaybackState.Playing)
+    {
+        Thread.Sleep(100);
+    }
+    while (!token.IsCancellationRequested &amp;&amp; MainPage.MediaPlayer.PlaybackSession.PlaybackState == MediaPlaybackState.Playing)
+    {
+        var p = MainPage.MediaPlayer.PlaybackSession.Position;
+        var whole = MainPage.MediaPlayer.PlaybackSession.NaturalDuration;
+        if (p == whole)
+        {
+            break;
+        }
+        context.Post((o) =&gt; UpdateProgressbarValue(p, whole), null); // UpdateProgressbarValue为更新UI的方法
+        Thread.Sleep(1000);
+    }
+}
+</code></pre>
+<p>这里的context给的是UI线程的，而且UpdateProgressbarValue也在这个上下文内，因此这个更新完全是没问题的。实际上运行的时候，我们会把这个方法放在其他线程上运行，因此不用担心Thread.Sleep阻塞UI。</p>
+<p>先酱紫，我先去拍照吃饭了，以上。</p>
+<h1 id="参考"><a href="#参考" class="headerlink" title="参考"></a>参考</h1><p><a href="https://msdn.microsoft.com/en-us/magazine/jj991977.aspx" target="_blank" rel="external">1.Async/Await - Best Practices in Asynchronous Programming</a></p>
+<p><a href="https://blogs.msdn.microsoft.com/pfxteam/2012/01/20/await-synchronizationcontext-and-console-apps/" target="_blank" rel="external">2.Await, SynchronizationContext, and Console Apps</a></p>
+]]></content>
+      
+        <categories>
+            
+            <category> C# </category>
+            
+        </categories>
+        
+        
+        <tags>
+            
+            <tag> async </tag>
+            
+            <tag> MultiThread </tag>
+            
+        </tags>
+        
+    </entry>
+    
+    <entry>
       <title><![CDATA[泛型协变和逆变(Kotlin)]]></title>
       <url>/2018/11/09/kotlin-generics/</url>
       <content type="html"><![CDATA[<p>之前听说Kotlin这门语言很elegant，但是没有具体了解，最近抽空学了一下，发现语法特性真的媲美C#，比Java不知道高到哪里去了。Kotlin给我的感觉就是在用一门强类型的动态语言，函数式体验很棒！这篇文章来了解一下Kotlin的泛型。</p>
@@ -1672,8 +1869,20 @@ WantedBy=multi-user.target
     </entry>
     
     <entry>
+      <title><![CDATA[Categories]]></title>
+      <url>/categories/index.html</url>
+      <content type="html"></content>
+    </entry>
+    
+    <entry>
       <title><![CDATA[Articles]]></title>
       <url>/articles/index.html</url>
+      <content type="html"></content>
+    </entry>
+    
+    <entry>
+      <title><![CDATA[Friends]]></title>
+      <url>/friends/index.html</url>
       <content type="html"></content>
     </entry>
     
@@ -1685,20 +1894,14 @@ WantedBy=multi-user.target
     </entry>
     
     <entry>
-      <title><![CDATA[Friends]]></title>
-      <url>/friends/index.html</url>
+      <title><![CDATA[Photograph]]></title>
+      <url>/photograph/index.html</url>
       <content type="html"></content>
     </entry>
     
     <entry>
       <title><![CDATA[Timeline]]></title>
       <url>/timeline/index.html</url>
-      <content type="html"></content>
-    </entry>
-    
-    <entry>
-      <title><![CDATA[Categories]]></title>
-      <url>/categories/index.html</url>
       <content type="html"></content>
     </entry>
     
@@ -1712,12 +1915,6 @@ WantedBy=multi-user.target
     <entry>
       <title><![CDATA[Tags]]></title>
       <url>/tags/index.html</url>
-      <content type="html"></content>
-    </entry>
-    
-    <entry>
-      <title><![CDATA[Photograph]]></title>
-      <url>/photograph/index.html</url>
       <content type="html"></content>
     </entry>
     
