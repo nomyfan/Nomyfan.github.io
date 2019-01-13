@@ -45,7 +45,7 @@
     
     <title>
         
-            泛型协变和逆变(Kotlin) | 
+            Categories: Programming | 
         
         Zmus
     </title>
@@ -56,7 +56,7 @@
 
     <meta name="format-detection" content="telephone=no"/>
     <meta name="description" itemprop="description" content="Nomyfan&#39;s personal blog">
-    <meta name="keywords" content="Technology,Programming,Microsoft,.NET,Mathematic,dotnet,Kotlin,C#,Kotlin,Generics">
+    <meta name="keywords" content="Technology,Programming,Microsoft,.NET,Mathematic,dotnet,Kotlin">
     <meta name="theme-color" content="#0097A7">
 
     <!-- Disable Fucking Bloody Baidu Tranformation -->
@@ -83,9 +83,6 @@
         <style id="style_css"></style><script>if(typeof window.lsLoadCSSMaxNums === "undefined")window.lsLoadCSSMaxNums = 0;window.lsLoadCSSMaxNums++;lsloader.load("style_css","/css/style.min.css?MKetZV3cUTfDxvMffaOezg==",function(){if(typeof window.lsLoadCSSNums === "undefined")window.lsLoadCSSNums = 0;window.lsLoadCSSNums++;if(window.lsLoadCSSNums == window.lsLoadCSSMaxNums)document.documentElement.style.display="";}, false)</script>
 
         
-            
-                <style id="prettify_css"></style><script>if(typeof window.lsLoadCSSMaxNums === "undefined")window.lsLoadCSSMaxNums = 0;window.lsLoadCSSMaxNums++;lsloader.load("prettify_css","/css/prettify.min.css?VbSuLZyOpxJuf3o2tYEOVg==",function(){if(typeof window.lsLoadCSSNums === "undefined")window.lsLoadCSSNums = 0;window.lsLoadCSSNums++;if(window.lsLoadCSSNums == window.lsLoadCSSMaxNums)document.documentElement.style.display="";}, false)</script>
-                <style id="prettify_theme"></style><script>if(typeof window.lsLoadCSSMaxNums === "undefined")window.lsLoadCSSMaxNums = 0;window.lsLoadCSSMaxNums++;lsloader.load("prettify_theme","/css/prettify/tomorrow-night-eighties.min.css?2LJQzURO+Kr8r/fl/T8oMA==",function(){if(typeof window.lsLoadCSSNums === "undefined")window.lsLoadCSSNums = 0;window.lsLoadCSSNums++;if(window.lsLoadCSSNums == window.lsLoadCSSMaxNums)document.documentElement.style.display="";}, false)</script>
             
         
 
@@ -222,7 +219,7 @@
     <!-- WebAPP Icons -->
     <meta name="mobile-web-app-capable" content="yes">
     <meta name="application-name" content="Zmus">
-    <meta name="msapplication-starturl" content="https://blog.nokky.net/2018/11/09/kotlin-generics/">
+    <meta name="msapplication-starturl" content="https://blog.nokky.net/categories/Programming/page/2/">
     <meta name="msapplication-navbutton-color" content="#0097A7">
     <meta name="apple-mobile-web-app-capable" content="yes">
     <meta name="apple-mobile-web-app-title" content="Zmus">
@@ -237,16 +234,13 @@
     
 
     <!-- The Open Graph protocol -->
-    <meta property="og:url" content="https://blog.nokky.net/2018/11/09/kotlin-generics/">
+    <meta property="og:url" content="https://blog.nokky.net/categories/Programming/page/2/">
     <meta property="og:type" content="blog">
-    <meta property="og:title" content="泛型协变和逆变(Kotlin) | Zmus">
+    <meta property="og:title" content="Categories: Programming | Zmus">
     <meta property="og:image" content="/img/favicon.png">
     <meta property="og:description" content="Nomyfan&#39;s personal blog">
-    <meta property="og:article:tag" content="C#"> <meta property="og:article:tag" content="Kotlin"> <meta property="og:article:tag" content="Generics"> 
-
     
-        <meta property="article:published_time" content="Fri Nov 09 2018 18:53:04 GMT+0800">
-        <meta property="article:modified_time" content="Sat Nov 10 2018 00:59:42 GMT+0800">
+
     
 
     <!-- The Twitter Card protocol -->
@@ -254,43 +248,13 @@
 
     <!-- Add canonical link for SEO -->
     
-        <link rel="canonical" href="https://blog.nokky.net/2018/11/09/kotlin-generics/index.html" />
+        <link rel="canonical" href="https://blog.nokky.net/categories/Programming/page/2/index.html" />
     
 
     <!-- Structured-data for SEO -->
     
         
 
-
-<script type="application/ld+json">
-{
-    "@context": "https://schema.org",
-    "@type": "BlogPosting",
-    "mainEntityOfPage": "https://blog.nokky.net/2018/11/09/kotlin-generics/index.html",
-    "headline": "泛型协变和逆变(Kotlin)",
-    "datePublished": "Fri Nov 09 2018 18:53:04 GMT+0800",
-    "dateModified": "Sat Nov 10 2018 00:59:42 GMT+0800",
-    "author": {
-        "@type": "Person",
-        "name": "Myers Chan",
-        "image": {
-            "@type": "ImageObject",
-            "url": "/img/avatar.png"
-        },
-        "description": "Debug.WriteLine("Oops, bugs!");"
-    },
-    "publisher": {
-        "@type": "Organization",
-        "name": "Zmus",
-        "logo": {
-            "@type":"ImageObject",
-            "url": "/img/favicon.png"
-        }
-    },
-    "keywords": ",C#,Kotlin,GenericsTechnology,Programming,Microsoft,.NET,Mathematic,dotnet,Kotlin",
-    "description": "Nomyfan&#39;s personal blog",
-}
-</script>
 
 
     
@@ -328,396 +292,103 @@
                         </button>
                     
 
-                    <!-- Post TOC -->
-
+                    <!-- Index Module -->
+<div class="material-index mdl-grid">
     
-    <!-- Back Button -->
-    <!--
-    <div class="material-back" id="backhome-div" tabindex="0">
-        <a class="mdl-button mdl-js-button mdl-js-ripple-effect mdl-button--icon"
-           href="#" onclick="window.history.back();return false;"
-           target="_self"
-           role="button"
-           data-upgraded=",MaterialButton,MaterialRipple">
-            <i class="material-icons" role="presentation">arrow_back</i>
-            <span class="mdl-button__ripple-container">
-                <span class="mdl-ripple"></span>
-            </span>
-        </a>
-    </div>
-    -->
+    <div class="locate-thumbnail-symbol"></div>
 
-
-    <!-- Left aligned menu below button -->
-    
-    
-    <button id="post-toc-trigger-btn"
-        class="mdl-button mdl-js-button mdl-button--icon">
-        <i class="material-icons">format_list_numbered</i>
-    </button>
-
-    <ul class="post-toc-wrap mdl-menu mdl-menu--bottom-left mdl-js-menu mdl-js-ripple-effect" for="post-toc-trigger-btn" style="max-height:80vh; overflow-y:scroll;">
-        <ol class="post-toc"><li class="post-toc-item post-toc-level-2"><a class="post-toc-link" href="#理解泛型"><span class="post-toc-number">1.</span> <span class="post-toc-text">理解泛型</span></a></li><li class="post-toc-item post-toc-level-2"><a class="post-toc-link" href="#记忆out和in"><span class="post-toc-number">2.</span> <span class="post-toc-text">记忆out和in</span></a></li><li class="post-toc-item post-toc-level-2"><a class="post-toc-link" href="#C-和Kotlin的差异"><span class="post-toc-number">3.</span> <span class="post-toc-text">C#和Kotlin的差异</span></a></li></ol>
-    </ul>
+    <!-- Pin on top -->
     
 
-
-
-
-<!-- Layouts -->
-
-    <!-- Post Module -->
-    <div class="material-post_container">
-
-        <div class="material-post mdl-grid">
-            <div class="mdl-card mdl-shadow--4dp mdl-cell mdl-cell--12-col">
-
-                <!-- Post Header(Thumbnail & Title) -->
-                
-    <!-- Paradox Post Header -->
+    <!-- Normal Post -->
+    
+        
+            
+                <!-- Paradox Thumbnail -->
+                <div class="post_entry-module mdl-card mdl-shadow--2dp mdl-cell mdl-cell--12-col fade out">
+    <!-- Post Thumbnail -->
     
         
             <!-- Random Thumbnail -->
             <div class="post_thumbnail-random mdl-card__media mdl-color-text--grey-50">
-            <script type="text/ls-javascript" id="post-thumbnail-script">
-    var randomNum = Math.floor(Math.random() * 19 + 1);
+        
+    
 
-    $('.post_thumbnail-random').attr('data-original', '/img/random/material-' + randomNum + '.png');
+        <!-- Post Title -->
+        <p class="article-headline-p"><a href="/2017/02/07/odp-as-binding-source/">Binding[0]=使用ObjectDataProvider对象作为Binding的Source</a></p>
+    </div>
+
+    <!-- Post Excerpt -->
+    <div class="mdl-color-text--grey-600 mdl-card__supporting-text post_entry-content">
+        
+            一般情况下，我们通常使用某个类的实例作为Binding的对象，实例中的某个属性作为Path来消费这些类。现在试想一下这样的情形，我们需要绑定的数据是...
+        
+        &nbsp;&nbsp;&nbsp;
+        <span>
+            <a href="/2017/02/07/odp-as-binding-source/" target="_self">Read more</a>
+        </span>
+    </div>
+    <!-- Post_entry Info-->
+    <div id="post_entry-info">
+        <div id="post_entry-left-info" class="mdl-card__supporting-text meta mdl-color-text--grey-600 ">
+            <!-- Author Avatar -->
+            <div id="author-avatar">
+                <img src="/img/avatar.png" width="44px" height="44px" alt="Myers Chan's avatar">
+            </div>
+            <div>
+                <strong>Myers Chan</strong>
+                <span>Feb 07, 2017</span>
+            </div>
+        </div>
+        <div id="post_entry-right-info">
+          
+              <!-- Category -->
+              <span class="post_entry-category">
+                  <a class="post_category-link" href="/categories/Programming/">Programming</a>
+              </span>
+            
+
+            
+
+            
+
+            <!-- Post Views -->
+            <span class="post_entry-views">
+            </span>
+        </div>
+    </div>
+</div>
+
+            
+            
+        
+    
+
+    
+    <!-- Index nav -->
+        <nav class="material-nav mdl-cell mdl-cell--12-col">
+            <a class="extend prev" rel="prev" href="/categories/Programming/"><button class="mdl-button mdl-js-button mdl-js-ripple-effect mdl-button--icon"><i class="material-icons" role="presentation">arrow_back</i></button></a><a class="page-number" href="/categories/Programming/">1</a><span class="page-number current">2</span>
+        </nav>
+    
+
+    
+        <script type="text/ls-javascript" id="thumbnail-script">
+    var randomNum;
+
+    var locatePost = $('.locate-thumbnail-symbol').next();
+    for(var i = 0; i < 10; i++) {
+        randomNum = Math.floor(Math.random() * 19 + 1);
+
+        locatePost.children('.post_thumbnail-random').attr('id', 'random_thumbnail-'+randomNum);
+        locatePost.children('.post_thumbnail-random').attr('data-original', '/img/random/material-' + randomNum + '.png');
     $('.post_thumbnail-random').addClass('lazy');
+
+        locatePost = locatePost.next();
+    }
 </script>
 
-        
-    
-            <p class="article-headline-p">
-                泛型协变和逆变(Kotlin)
-            </p>
-        </div>
-
-
-
-
-
-                
-                    <!-- Paradox Post Info -->
-                    <div class="mdl-color-text--grey-700 mdl-card__supporting-text meta">
-
-    <!-- Author Avatar -->
-    <div id="author-avatar">
-        <img src="/img/avatar.png" width="44px" height="44px" alt="Author Avatar"/>
-    </div>
-    <!-- Author Name & Date -->
-    <div>
-        <strong>Myers Chan</strong>
-        <span>Nov 09, 2018</span>
-    </div>
-
-    <div class="section-spacer"></div>
-
-    <!-- Favorite -->
-    <!--
-        <button id="article-functions-like-button" class="mdl-button mdl-js-button mdl-js-ripple-effect mdl-button--icon btn-like">
-            <i class="material-icons" role="presentation">favorite</i>
-            <span class="visuallyhidden">favorites</span>
-        </button>
-    -->
-
-    <!-- Qrcode -->
-    
-        <button id="article-functions-qrcode-button" class="mdl-button mdl-js-button mdl-js-ripple-effect mdl-button--icon">
-    <i class="material-icons" role="presentation">devices other</i>
-    <span class="visuallyhidden">devices other</span>
-</button>
-<ul class="mdl-menu mdl-menu--bottom-right mdl-js-menu mdl-js-ripple-effect" for="article-functions-qrcode-button">
-    <li class="mdl-menu__item">Read this article on other devices</li>
-    
-        <img src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAN4AAADeCAAAAAB3DOFrAAACWElEQVR42u3ay47CMAwFUP7/p2e2SAh6bTdpQacrxKPNySIx13n8/fT1wMPDw8PDw8PDuxnvEV9vb/f0af7912++/qo3Njw8PLw9vIOl9uODk6H0kM2x4eHh4W3kzR+ZLPSfp2MyNjw8PLw78/JSOJ+U/Ll4eHh4387rFeLJPfHw8PDuz+sFtcngqve/LGvBw8PDi3l5k2n/6639PTw8PLyAVz7SND4ckBfHzRHi4eHhLeb12v/zg1OT6TiYXDw8PLzFvDw+SELVfFNJQo38HTw8PLy78ZL3kwMEvfK9Gu/i4eHhrebly27e4qoW2b1fvX06Hh4e3mJeEtTON4B8mpJIonB0AA8PD28BLz+Kmm8DZx3Sqk4EHh4e3k5etfmUB7IJ5qyyGw8PD28n76xIt9zmDw4TVFtueHh4eKt5+RALQWq80PeK8mbWgoeHh7eAV90SJi2x/G7lYh0PDw9vCy9ZuPMtYRLUJk8sl9R4eHh4y3jJ62RAeWHdm1Y8PDy8a3m9QVQX7ioj/xQPDw/vWl7equ9tD2cV3IUYFw8PD28Lrxq89u6QDL05xXh4eHgbeZMG1aR9NWmJ4eHh4V3LSwaULNATRi/kxcPDw9vJq15JG2xSFlePbeHh4eHt51WbW1XqpFyuxhB4eHh4O3nVIHUFqXrn8j8GPDw8vAW8PHrIJyU/klUNMvDw8PC+izd5nfPydhoeHh7e/XkHcUDMmMQTo6MDeHh4eCfxkjBiRVDbO7CFh4eHdy3vhAggeD/ZbOZtMDw8PLzVvN+78PDw8PDw8PDwbnD9A344pYEqH5LFAAAAAElFTkSuQmCC">
-    
-</ul>
-
-    
-
-    <!-- Tags (bookmark) -->
-    
-    <button id="article-functions-viewtags-button" class="mdl-button mdl-js-button mdl-js-ripple-effect mdl-button--icon">
-        <i class="material-icons" role="presentation">bookmark</i>
-        <span class="visuallyhidden">bookmark</span>
-    </button>
-    <ul class="mdl-menu mdl-menu--bottom-right mdl-js-menu mdl-js-ripple-effect" for="article-functions-viewtags-button">
-        <li class="mdl-menu__item">
-        <a class="post_tag-link" href="/tags/C/">C#</a></li><li class="mdl-menu__item"><a class="post_tag-link" href="/tags/Generics/">Generics</a></li><li class="mdl-menu__item"><a class="post_tag-link" href="/tags/Kotlin/">Kotlin</a>
-    </ul>
-    
-
-    <!-- Share -->
-    
-        <button id="article-fuctions-share-button" class="mdl-button mdl-js-button mdl-js-ripple-effect mdl-button--icon">
-    <i class="material-icons" role="presentation">share</i>
-    <span class="visuallyhidden">share</span>
-</button>
-<ul class="mdl-menu mdl-menu--bottom-right mdl-js-menu mdl-js-ripple-effect" for="article-fuctions-share-button">
-    
-    <!-- Leancloud Views -->
-        <a class="post_share-link" href="#">
-            <li class="mdl-menu__item">
-                <span id="/2018/11/09/kotlin-generics/" class="leancloud-views_num" data-flag-title="泛型协变和逆变(Kotlin)">
-     &nbsp;Views
-</span>
-
-            </li>
-        </a>
-    
-
-    
-
-    <!-- Share Weibo -->
-    
-        <a class="post_share-link" href="http://service.weibo.com/share/share.php?appkey=&title=泛型协变和逆变(Kotlin)&url=https://blog.nokky.net/2018/11/09/kotlin-generics/index.html&pic=https://blog.nokky.net/img/favicon.png&searchPic=false&style=simple" target="_blank">
-            <li class="mdl-menu__item">
-                Share to Weibo
-            </li>
-        </a>
-    
-
-    <!-- Share Twitter -->
-    
-        <a class="post_share-link" href="https://twitter.com/intent/tweet?text=泛型协变和逆变(Kotlin)&url=https://blog.nokky.net/2018/11/09/kotlin-generics/index.html&via=Myers Chan" target="_blank">
-            <li class="mdl-menu__item">
-                Share to Twitter
-            </li>
-        </a>
-    
-
-    <!-- Share Facebook -->
-    
-        <a class="post_share-link" href="https://www.facebook.com/sharer/sharer.php?u=https://blog.nokky.net/2018/11/09/kotlin-generics/index.html" target="_blank">
-            <li class="mdl-menu__item">
-                Share to Facebook
-            </li>
-        </a>
-    
-
-    <!-- Share Google+ -->
-    
-        <a class="post_share-link" href="https://plus.google.com/share?url=https://blog.nokky.net/2018/11/09/kotlin-generics/index.html" target="_blank">
-            <li class="mdl-menu__item">
-                Share to Google+
-            </li>
-        </a>
-    
-
-    <!-- Share LinkedIn -->
-    
-
-    <!-- Share QQ -->
-    
-
-    <!-- Share Telegram -->
-    
-</ul>
-
     
 </div>
-
-                
-
-                <!-- Post Content -->
-                <div id="post-content" class="mdl-color-text--grey-700 mdl-card__supporting-text fade out">
-    
-        <p>之前听说Kotlin这门语言很elegant，但是没有具体了解，最近抽空学了一下，发现语法特性真的媲美C#，比Java不知道高到哪里去了。Kotlin给我的感觉就是在用一门强类型的动态语言，函数式体验很棒！这篇文章来了解一下Kotlin的泛型。</p>
-<h2 id="理解泛型"><a href="#理解泛型" class="headerlink" title="理解泛型"></a>理解泛型</h2><p>如何<a href="https://kotlinlang.org/docs/reference/generics.html" target="_blank" rel="external">声明泛型类和泛型方法</a>这里就省略了，本篇文章着重要讲的是 <em>in</em> 和 <em>out</em>，也就是协/逆变。开始的时候可能会有点混淆，甚至觉得违反了多态的<em>向上转型</em>规则（其实这么说是错的），为什么呢？先看一个C#的例子</p>
-<pre><code class="csharp">// Contravariant interface.
-interface IContravariant&lt;in A&gt; { }
-
-// Extending contravariant interface.
-interface IExtContravariant&lt;in A&gt; : IContravariant&lt;A&gt; { }
-
-// Implementing contravariant interface.
-class Sample&lt;A&gt; : IContravariant&lt;A&gt; { }
-
-class Program
-{
-    static void Test()
-    {
-        IContravariant&lt;Object&gt; iobj = new Sample&lt;Object&gt;();
-        IContravariant&lt;String&gt; istr = new Sample&lt;String&gt;();
-
-        // You can assign iobj to istr because
-        // the IContravariant interface is contravariant.
-        istr = iobj;
-    }
-}
-</code></pre>
-<p>我们知道String类是派生自Object类的，那么我们熟知的 <em>向上转型</em> 的规则是用父类的引用去引用子类对象，那么<code>istr = iobj;</code>就有点逆 <em>向上转型</em> 规则了，初看之下好像是这么一种感觉。但是要知道，在泛型世界中，这是不对的。这是因为，<em>向上转型</em> 成立的前提条件都没有，<code>IContravariant&lt;Object&gt;</code>和<code>IContravariant&lt;String&gt;</code>是两个类型，它们之间不存在继承关系，即使泛型参数的类型构成了继承关系。上边的例子可以实现复制的原因是在泛型声明的时候用了 <em>in</em> 修饰符修饰，那么可以构成逆变，而用 <em>out</em> 就能构成协变。下边就是协变的例子：</p>
-<pre><code class="csharp">// Covariant interface.
-interface ICovariant&lt;out R&gt; { }
-
-// Extending covariant interface.
-interface IExtCovariant&lt;out R&gt; : ICovariant&lt;R&gt; { }
-
-// Implementing covariant interface.
-class Sample&lt;R&gt; : ICovariant&lt;R&gt; { }
-
-class Program
-{
-    static void Test()
-    {
-        ICovariant&lt;Object&gt; iobj = new Sample&lt;Object&gt;();
-        ICovariant&lt;String&gt; istr = new Sample&lt;String&gt;();
-
-        // You can assign istr to iobj because
-        // the ICovariant interface is covariant.
-        iobj = istr;
-    }
-}
-</code></pre>
-<p>可以看到通过协变/逆变能够实现泛型参数有继承关系的泛型类型之间相互引用的效果。Java中也有这样的实现，但是不是通过这两个修饰符来实现的，而是通过<code>? extends Object</code>和<code>? super String</code>通配符这样的形式。而在Kotlin中则采用了和C#相同的规则来实现，在文档中可以找到这样一句话</p>
-<blockquote>
-<p>We believe that the words in and out are self-explaining (as they were successfully used in C# for quite some time already), thus the mnemonic mentioned above is not really needed, and one can rephrase it for a higher purpose</p>
-</blockquote>
-<h2 id="记忆out和in"><a href="#记忆out和in" class="headerlink" title="记忆out和in"></a>记忆out和in</h2><p><em>out</em>和<em>in</em>两个词好像和协变，逆变之间没什么关系。其实就和上边引用的文档的那句话所说的，<em>out</em>和<em>in</em>其实很好记忆，因为它们描述的是泛型参数在方法的位置。<em>in</em> 的泛型参数只能出现在方法的参数列表中，<em>out</em> 的泛型参数则是只能出现在方法返回值。上边两个C#文档的例子并没有凸显出这一点，接下来我们看一个Kotlin的例子，这个例子主要凸显两个修饰符的对应的泛型参数的摆放位置。</p>
-<p>有一个家庭，家庭里有儿子和妈妈，儿子每天告诉妈妈他想吃什么，妈妈就会为儿子精心准备。</p>
-<p>首先，我们准备食物，假设有胡萝卜🥕和牛肉🐂</p>
-<pre><code class="kotlin">open class Food(val name: String)
-
-class Carrot(name: String) : Food(name)
-
-class Beef(name: String) : Food(name)
-</code></pre>
-<p>准备两个接口，一个是吃货，另一个是厨子</p>
-<pre><code class="kotlin">interface Eater&lt;out TFood : Food&gt; {
-    // TFood作为结果从方法返回(out)
-    fun want(): TFood
-}
-
-interface Cook&lt;in TFood : Food&gt; {
-    // TFood作为参数进入(in)方法
-    fun cook(food: TFood) {
-        println(&quot;Cooking ${food.name}&quot;)
-    }
-}
-</code></pre>
-<p>吃货告诉厨子他想吃的食物。通知厨子根据被告知的食物去厨房里忙碌（和C#不同，Kotlin的接口可以有默认实现）。</p>
-<p>然后儿子和妈妈出场了</p>
-<pre><code class="kotlin">class Son&lt;TFood : Food&gt; : Eater&lt;TFood&gt; {
-    override fun want(): TFood {
-        val food = when (Random().nextInt(10)) {
-            in 0..6 -&gt; Beef(&quot;Beef&quot;) as TFood // Unchecked cast
-            else -&gt; Carrot(&quot;Carrot&quot;) as TFood // Unchecked cast
-        }
-        println(&quot;Son wants to eat ${food.name}&quot;)
-        return food
-    }
-}
-
-class Mother&lt;TFood : Food&gt; : Cook&lt;TFood&gt; {
-    override fun cook(food: TFood) {
-        println(&quot;Mother is cooking ${food.name}&quot;)
-    }
-}
-</code></pre>
-<p>嗯，看来这个儿子很喜欢吃牛肉，可能家里有矿。</p>
-<p>某一天儿子要吃饭了</p>
-<pre><code class="kotlin">fun main(args: Array&lt;String&gt;) {
-    val son = Son&lt;Food&gt;()
-    val mother = Mother&lt;Food&gt;()
-    val wanted = son.want()
-    mother.cook(wanted)
-}
-</code></pre>
-<p>其实这个儿子还是能什么都吃的，不挑食的好孩子，妈妈更是厉害，什么都会煮哈哈哈。</p>
-<h2 id="C-和Kotlin的差异"><a href="#C-和Kotlin的差异" class="headerlink" title="C#和Kotlin的差异"></a>C#和Kotlin的差异</h2><p>虽然两者在泛型上很相似，还是有点差别的。</p>
-<p>其一， C#在实现协变/逆变上只支持引用类型作为泛型参数（<a href="https://blogs.msdn.microsoft.com/ericlippert/2009/03/19/representation-and-identity/" target="_blank" rel="external">为什么？</a>）</p>
-<blockquote>
-<p>Covariance and contravariance in generic type parameters are supported for reference types, but they are not supported for value types. <a href="https://docs.microsoft.com/en-us/dotnet/csharp/language-reference/keywords/in-generic-modifier" target="_blank" rel="external">in (Generic Modifier)</a></p>
-</blockquote>
-<p>而Kotlin数值类型也可以，益于有引用类型的Double</p>
-<pre><code class="kotlin">interface Comparable&lt;in T&gt; {
-    operator fun compareTo(other: T): Int
-}
-
-fun demo(x: Comparable&lt;Number&gt;) {
-    x.compareTo(1.0) // 1.0 has type Double, which is a subtype of Number
-    // Thus, we can assign x to a variable of type Comparable&lt;Double&gt;
-    val y: Comparable&lt;Double&gt; = x // OK!
-}
-</code></pre>
-<p>其二，Kotlin编译完了之后会丢失泛型参数信息，文档描述</p>
-<blockquote>
-<p>The type safety checks that Kotlin performs for generic declaration usages are only done at compile time. At runtime, the instances of generic types do not hold any information about their actual type arguments. The type information is said to be erased. For example, the instances of Foo<bar> and Foo<baz?> are erased to just Foo&lt;*&gt;.</baz?></bar></p>
-</blockquote>
-<p>所以说如果在main方法里做这样的判断会出现编译错误</p>
-<pre><code class="kotlin">println(son is Son&lt;Beef&gt;)
-// Error:(5, 20) Kotlin: Cannot check for instance of erased type: Son&lt;Beef&gt;
-</code></pre>
-<p>看看C#这边只是给出一个警告说son永远不会为Son&lt;Beef&gt;类型，叫我们不要做无所谓的判定，但是可以正常编译运行。</p>
-<pre><code class="csharp">Console.WriteLine(son is Son&lt;Beef&gt;); 
-// The given expression is never of the provided (&#39;Son&lt;Beef&gt;&#39;) type [GenericsInCSharpe]
-</code></pre>
-<p>其三，Kotlin中不能对in参数进行赋值，这是因为被in修饰的为val的，不允许再次赋值。感觉Kotlin的in是C#的<a href="https://docs.microsoft.com/en-us/dotnet/csharp/language-reference/keywords/in-generic-modifier" target="_blank" rel="external">in修饰符</a>和<a href="https://dotnetcoretutorials.com/2018/01/08/new-keyword-c-7-2/" target="_blank" rel="external">in关键字</a>的结合。</p>
-<pre><code class="kotlin">interface Cook&lt;in TFood : Food&gt; {
-    fun cook(food: TFood) {
-        food = Beef(&quot;Beef&quot;) as TFood // Val cannot be reassigned
-        println(&quot;Cooking ${food.name}&quot;)
-    }
-}
-</code></pre>
-
-        
-                <blockquote style="margin: 2em 0 0;padding: 0.5em 1em;border-left: 3px solid #F44336;background-color: #F5F5F5;list-style: none;">
-                    <p><strong>
-                         
-                            This blog is under a <a href="https://creativecommons.org/licenses/by-nc-sa/4.0/deed.zh" target="_blank">CC BY-NC-SA 4.0 Unported License</a>
-                        </strong>
-                        <br>
-                        <strong>Link to this article: </strong><a href="https://blog.nokky.net/2018/11/09/kotlin-generics/">https://blog.nokky.net/2018/11/09/kotlin-generics/</a>
-                    </p>
-                </blockquote>
-        
-    
-
-    
-</div>
-
-
-                
-
-                <!-- Post Comments -->
-                
-                    
-                
-            </div>
-
-            <!-- Post Prev & Next Nav -->
-            <nav class="material-nav mdl-color-text--grey-50 mdl-cell mdl-cell--12-col">
-    <!-- Prev Nav -->
-    
-        <a href="/2019/01/12/synchronizationcontext/" id="post_nav-newer" class="prev-content">
-            <button class="mdl-button mdl-js-button mdl-js-ripple-effect mdl-button--icon mdl-color--white mdl-color-text--grey-900" role="presentation">
-                <i class="material-icons">arrow_back</i>
-            </button>
-            &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-            Newer
-        </a>
-    
-
-    <!-- Section Spacer -->
-    <div class="section-spacer"></div>
-
-    <!-- Next Nav -->
-    
-        <a href="/2018/08/29/root-xperiaxp/" id="post_nav-older" class="next-content">
-            Older
-            &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-            <button class="mdl-button mdl-js-button mdl-js-ripple-effect mdl-button--icon mdl-color--white mdl-color-text--grey-900" role="presentation">
-                <i class="material-icons">arrow_forward</i>
-            </button>
-        </a>
-    
-</nav>
-
-        </div>
-    </div>
-
 
 
                     
@@ -1184,10 +855,6 @@ It will not impact the appearance and can give developers a lot of support :)
 <!-- Import prettify js  -->
 
     
-        
-            <script>lsloader.load("prettify_js","/js/prettify.min.js?WN07fivHQSMKWy7BmHBB6w==", true)</script>
-        
-    
 
 
 
@@ -1200,11 +867,6 @@ It will not impact the appearance and can give developers a lot of support :)
     });
 
     
-        
-            $(function() {
-                $('pre').addClass('prettyprint linenums').attr('style', 'overflow:auto;');
-                prettyPrint();
-                })
         
     
     
