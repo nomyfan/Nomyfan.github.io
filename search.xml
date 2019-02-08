@@ -969,6 +969,9 @@ fi
 <p>–hint-bios=hd0,gpt1 –hint-efi=hd0,gpt1 –hint-baremetal=ahci0,gpt1</p>
 </blockquote>
 <p>我大概猜测一下<code>hd0</code>是指第1块磁盘，在<code>fdisk -l</code>的输出结果中，我的磁盘是<code>nvme0n1</code>，如果有第二块NVMe磁盘应该就是<code>nvme1n1</code>。如果你只有单块NVMe磁盘，那么这么写是没错的，亲测能正常启动Windows。而我测试了gpt后边的数字写什么都可以启动，如果你有多块磁盘，你也是可以测试一下。欢迎在评论区写下你的结果。;)</p>
+<blockquote>
+<p>根据网友tpob的说法是：BIOS里是第几块硬盘就是hd几。（看来和我猜想的一致）</p>
+</blockquote>
 <h3 id="添加新用户"><a href="#添加新用户" class="headerlink" title="添加新用户"></a>添加新用户</h3><p><code># adduser -m -G wheel [username]</code><br>设置密码<br><code># passwd [username]</code><br>添加sudo<br><code># vim /etc/sudoers</code><br>找到</p>
 <blockquote>
 <p># %wheel ALL=(ALL)ALL</p>
@@ -996,9 +999,9 @@ fi
         
         <tags>
             
-            <tag> ArchLinux </tag>
-            
             <tag> Linux </tag>
+            
+            <tag> ArchLinux </tag>
             
         </tags>
         
@@ -1079,9 +1082,9 @@ fi
             
             <tag> .NET </tag>
             
-            <tag> C# </tag>
-            
             <tag> 爬虫 </tag>
+            
+            <tag> C# </tag>
             
         </tags>
         
@@ -1494,9 +1497,9 @@ RewriteRule . /index.php [L]
         
         <tags>
             
-            <tag> Linux </tag>
-            
             <tag> VPS </tag>
+            
+            <tag> Linux </tag>
             
         </tags>
         
@@ -1557,9 +1560,9 @@ WantedBy=multi-user.target
         
         <tags>
             
-            <tag> Linux </tag>
-            
             <tag> VPS </tag>
+            
+            <tag> Linux </tag>
             
         </tags>
         
@@ -1858,8 +1861,46 @@ WantedBy=multi-user.target
   
     
     <entry>
+      <title><![CDATA[关于我]]></title>
+      <url>/about/index.html</url>
+      <content type="html"><![CDATA[<p>喜欢摄影主业写代码的工科男(/▽＼)</p>
+]]></content>
+    </entry>
+    
+    <entry>
+      <title><![CDATA[Talking]]></title>
+      <url>/Talking/index.html</url>
+      <content type="html"></content>
+    </entry>
+    
+    <entry>
+      <title><![CDATA[Categories]]></title>
+      <url>/categories/index.html</url>
+      <content type="html"></content>
+    </entry>
+    
+    <entry>
       <title><![CDATA[Articles]]></title>
       <url>/articles/index.html</url>
+      <content type="html"></content>
+    </entry>
+    
+    <entry>
+      <title><![CDATA[Contact]]></title>
+      <url>/feeback/index.html</url>
+      <content type="html"><![CDATA[<p>Contact me with<br><strong><a href="mailto:Myers.Chan@outlook.com?subject=FeebackFromBlog" target="_blank" rel="external">E-mail</a></strong>.<br><strong><a href="http://weibo.com/Nomyfan" target="_blank" rel="external">Weibo</a></strong><br><strong><a href="https://twitter.com/Myers__Chan" target="_blank" rel="external">Twitter</a></strong><br><strong><a href="https://facebook.com/myers.n.chan" target="_blank" rel="external">Facebook</a></strong></p>
+]]></content>
+    </entry>
+    
+    <entry>
+      <title><![CDATA[Photograph]]></title>
+      <url>/photograph/index.html</url>
+      <content type="html"></content>
+    </entry>
+    
+    <entry>
+      <title><![CDATA[Tags]]></title>
+      <url>/tags/index.html</url>
       <content type="html"></content>
     </entry>
     
@@ -1871,27 +1912,8 @@ WantedBy=multi-user.target
     </entry>
     
     <entry>
-      <title><![CDATA[Talking]]></title>
-      <url>/Talking/index.html</url>
-      <content type="html"></content>
-    </entry>
-    
-    <entry>
-      <title><![CDATA[Photograph]]></title>
-      <url>/photograph/index.html</url>
-      <content type="html"></content>
-    </entry>
-    
-    <entry>
-      <title><![CDATA[关于我]]></title>
-      <url>/about/index.html</url>
-      <content type="html"><![CDATA[<p>喜欢摄影主业写代码的工科男(/▽＼)</p>
-]]></content>
-    </entry>
-    
-    <entry>
-      <title><![CDATA[Tags]]></title>
-      <url>/tags/index.html</url>
+      <title><![CDATA[Timeline]]></title>
+      <url>/timeline/index.html</url>
       <content type="html"></content>
     </entry>
     
@@ -1899,25 +1921,6 @@ WantedBy=multi-user.target
       <title><![CDATA[Friends]]></title>
       <url>/friends/index.html</url>
       <content type="html"></content>
-    </entry>
-    
-    <entry>
-      <title><![CDATA[Timeline]]></title>
-      <url>/timeline/index.html</url>
-      <content type="html"></content>
-    </entry>
-    
-    <entry>
-      <title><![CDATA[Categories]]></title>
-      <url>/categories/index.html</url>
-      <content type="html"></content>
-    </entry>
-    
-    <entry>
-      <title><![CDATA[Contact]]></title>
-      <url>/feeback/index.html</url>
-      <content type="html"><![CDATA[<p>Contact me with<br><strong><a href="mailto:Myers.Chan@outlook.com?subject=FeebackFromBlog" target="_blank" rel="external">E-mail</a></strong>.<br><strong><a href="http://weibo.com/Nomyfan" target="_blank" rel="external">Weibo</a></strong><br><strong><a href="https://twitter.com/Myers__Chan" target="_blank" rel="external">Twitter</a></strong><br><strong><a href="https://facebook.com/myers.n.chan" target="_blank" rel="external">Facebook</a></strong></p>
-]]></content>
     </entry>
     
   
