@@ -3,6 +3,40 @@
   
     
     <entry>
+      <title><![CDATA[用YAML配置Spring Boot]]></title>
+      <url>/2019/04/02/spring-boot-yaml/</url>
+      <content type="html"><![CDATA[<p>.properties配置过于冗余，YAML看起来十分简介而且有层次感，因此决定切换过去，然而一开始被坑了，怎么都是无法找到Bean的错误，最后发现都是注解没写好，感觉JVM平台的开发配置起来就是麻烦。还有pom.xml文件的冗余看起来十分吃力，哪天切换到Gradle去。</p>
+<h2 id="正确的姿势"><a href="#正确的姿势" class="headerlink" title="正确的姿势"></a>正确的姿势</h2><h3 id="添加YAML文件"><a href="#添加YAML文件" class="headerlink" title="添加YAML文件"></a>添加YAML文件</h3><p>添加两个YAML文件，一个为application.yml，另一个为app.yml。前者我用了配置Spring加载的包需要的配置信息，后者我用来添加自定义的属性集。</p>
+<h3 id="修改项目结构"><a href="#修改项目结构" class="headerlink" title="修改项目结构"></a>修改项目结构</h3><p>操作(File -&gt; Project Structure)，把app.yml设置为资源文件。</p>
+<p><a href="/img/2019/03/snipaste_20190402_222445.png"><img src="/img/2019/03/snipaste_20190402_222445.png" alt=""></a></p>
+<h3 id="编写注入类"><a href="#编写注入类" class="headerlink" title="编写注入类"></a>编写注入类</h3><pre><code class="kotlin">@Component
+@PropertySource(&quot;classpath:/app.yml&quot;)
+@EnableConfigurationProperties
+@ConfigurationProperties(prefix = &quot;net.nokky.security&quot;)
+class RSAKeyPair(@param:Value(&quot;\${rsa-private-key}&quot;) val privateKey: String,
+                 @param:Value(&quot;\${rsa-public-key}&quot;) val publicKey: String)
+</code></pre>
+<h2 id="额外话题"><a href="#额外话题" class="headerlink" title="额外话题"></a>额外话题</h2><p>我把Spring Boot的开发语言切换到Kotlin了，其实语法糖让Kotlin语法变得十分简洁，然而也增加了学习的成本，不如Java容易入手，正所谓事物的两面性。不过我还是愿意增加一点学习成本，毕竟可以提高开发效率，印象最深刻的是我某个类的Java的代码转换到Kotlin，28行的代码变成了3行！在类的定义上，Kotlin真的做到了极简。当然还有很多其他的特性，比如<code>?:</code>替代了卫语句（Guard Clauses）等等。不过还是有点坑的，主要是和一些库的搭配使用的时候，所以不大建议去尝新。Kotlin是个好工具，看你怎么使了。</p>
+]]></content>
+      
+        <categories>
+            
+            <category> Programming </category>
+            
+        </categories>
+        
+        
+        <tags>
+            
+            <tag> Kotlin </tag>
+            
+            <tag> Spring Boot </tag>
+            
+        </tags>
+        
+    </entry>
+    
+    <entry>
       <title><![CDATA[SynchronizationContext - 同步上下文]]></title>
       <url>/2019/01/12/synchronizationcontext/</url>
       <content type="html"><![CDATA[<p>SynchronizationContext是一个极其重要的东西，尤其是涉及到多线程和UI有牵扯的时候。从它可以展开两个话题：异步和线程通信，我们来简单看看这两个玩意。</p>
@@ -1873,8 +1907,22 @@ WantedBy=multi-user.target
     </entry>
     
     <entry>
-      <title><![CDATA[Articles]]></title>
-      <url>/articles/index.html</url>
+      <title><![CDATA[Contact]]></title>
+      <url>/contact/index.html</url>
+      <content type="html"><![CDATA[<p>Contact me with<br><strong><a href="mailto:Myers.Chan@outlook.com?subject=FeebackFromBlog" target="_blank" rel="external">E-mail</a></strong>.<br><strong><a href="http://weibo.com/Nomyfan" target="_blank" rel="external">Weibo</a></strong><br><strong><a href="https://twitter.com/Myers__Chan" target="_blank" rel="external">Twitter</a></strong><br><strong><a href="https://facebook.com/myers.n.chan" target="_blank" rel="external">Facebook</a></strong></p>
+]]></content>
+    </entry>
+    
+    <entry>
+      <title><![CDATA[Contact]]></title>
+      <url>/feeback/index.html</url>
+      <content type="html"><![CDATA[<p>Contact me with<br><strong><a href="mailto:Myers.Chan@outlook.com?subject=FeebackFromBlog" target="_blank" rel="external">E-mail</a></strong>.<br><strong><a href="http://weibo.com/Nomyfan" target="_blank" rel="external">Weibo</a></strong><br><strong><a href="https://twitter.com/Myers__Chan" target="_blank" rel="external">Twitter</a></strong><br><strong><a href="https://facebook.com/myers.n.chan" target="_blank" rel="external">Facebook</a></strong></p>
+]]></content>
+    </entry>
+    
+    <entry>
+      <title><![CDATA[Friends]]></title>
+      <url>/friends/index.html</url>
       <content type="html"></content>
     </entry>
     
@@ -1886,40 +1934,26 @@ WantedBy=multi-user.target
     </entry>
     
     <entry>
-      <title><![CDATA[Contact]]></title>
-      <url>/contact/index.html</url>
-      <content type="html"><![CDATA[<p>Contact me with<br><strong><a href="mailto:Myers.Chan@outlook.com?subject=FeebackFromBlog" target="_blank" rel="external">E-mail</a></strong>.<br><strong><a href="http://weibo.com/Nomyfan" target="_blank" rel="external">Weibo</a></strong><br><strong><a href="https://twitter.com/Myers__Chan" target="_blank" rel="external">Twitter</a></strong><br><strong><a href="https://facebook.com/myers.n.chan" target="_blank" rel="external">Facebook</a></strong></p>
-]]></content>
-    </entry>
-    
-    <entry>
       <title><![CDATA[Tags]]></title>
       <url>/tags/index.html</url>
       <content type="html"></content>
     </entry>
     
     <entry>
-      <title><![CDATA[Friends]]></title>
-      <url>/friends/index.html</url>
-      <content type="html"></content>
-    </entry>
-    
-    <entry>
-      <title><![CDATA[Contact]]></title>
-      <url>/feeback/index.html</url>
-      <content type="html"><![CDATA[<p>Contact me with<br><strong><a href="mailto:Myers.Chan@outlook.com?subject=FeebackFromBlog" target="_blank" rel="external">E-mail</a></strong>.<br><strong><a href="http://weibo.com/Nomyfan" target="_blank" rel="external">Weibo</a></strong><br><strong><a href="https://twitter.com/Myers__Chan" target="_blank" rel="external">Twitter</a></strong><br><strong><a href="https://facebook.com/myers.n.chan" target="_blank" rel="external">Facebook</a></strong></p>
-]]></content>
-    </entry>
-    
-    <entry>
-      <title><![CDATA[Timeline]]></title>
-      <url>/timeline/index.html</url>
+      <title><![CDATA[Articles]]></title>
+      <url>/articles/index.html</url>
       <content type="html"></content>
     </entry>
     
     <entry>
       <title><![CDATA[Photograph]]></title>
       <url>/photograph/index.html</url>
+      <content type="html"></content>
+    </entry>
+    
+    <entry>
+      <title><![CDATA[Timeline]]></title>
+      <url>/timeline/index.html</url>
       <content type="html"></content>
     </entry>
     
