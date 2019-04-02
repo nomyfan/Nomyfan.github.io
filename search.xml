@@ -16,7 +16,7 @@
 class RSAKeyPair(@param:Value(&quot;\${rsa-private-key}&quot;) val privateKey: String,
                  @param:Value(&quot;\${rsa-public-key}&quot;) val publicKey: String)
 </code></pre>
-<h2 id="额外话题"><a href="#额外话题" class="headerlink" title="额外话题"></a>额外话题</h2><p>我把Spring Boot的开发语言切换到Kotlin了，其实语法糖让Kotlin语法变得十分简洁，然而也增加了学习的成本，不如Java容易入手，正所谓事物的两面性。不过我还是愿意增加一点学习成本，毕竟可以提高开发效率，印象最深刻的是我某个类的Java的代码转换到Kotlin，28行的代码变成了3行！在类的定义上，Kotlin真的做到了极简。当然还有很多其他的特性，比如<code>?:</code>替代了卫语句（Guard Clauses）等等。不过还是有点坑的，主要是和一些库的搭配使用的时候，所以不大建议去尝新。Kotlin是个好工具，看你怎么使了。</p>
+<h2 id="额外话题"><a href="#额外话题" class="headerlink" title="额外话题"></a>额外话题</h2><p>我把Spring Boot的开发语言切换到Kotlin了，其实语法糖让Kotlin语法变得十分简洁的同时，也稍微增加了一点学习的成本，不如Java容易入手，正所谓事物的两面性。当你用来之后会发现，我靠，代码写起来怎么这么自然。不过还是有点坑的，主要是和一些库的搭配使用的时候。不过我还是愿意增加一点学习成本，毕竟可以提高开发效率，印象最深刻的是我某个类的Java的代码转换到Kotlin，28行的代码变成了3行！在类的定义上，Kotlin真的做到了极简。当然还有很多其他的特性，比如<code>?:</code>替代了卫语句（Guard Clauses）等等。Kotlin是个好工具，看你怎么使了。</p>
 ]]></content>
       
         <categories>
@@ -1895,14 +1895,15 @@ WantedBy=multi-user.target
   
     
     <entry>
-      <title><![CDATA[Talking]]></title>
-      <url>/Talking/index.html</url>
-      <content type="html"></content>
+      <title><![CDATA[关于我]]></title>
+      <url>/about/index.html</url>
+      <content type="html"><![CDATA[<p>喜欢摄影主业写代码的工科男(/▽＼)</p>
+]]></content>
     </entry>
     
     <entry>
-      <title><![CDATA[Categories]]></title>
-      <url>/categories/index.html</url>
+      <title><![CDATA[Talking]]></title>
+      <url>/Talking/index.html</url>
       <content type="html"></content>
     </entry>
     
@@ -1914,10 +1915,9 @@ WantedBy=multi-user.target
     </entry>
     
     <entry>
-      <title><![CDATA[Contact]]></title>
-      <url>/feeback/index.html</url>
-      <content type="html"><![CDATA[<p>Contact me with<br><strong><a href="mailto:Myers.Chan@outlook.com?subject=FeebackFromBlog" target="_blank" rel="external">E-mail</a></strong>.<br><strong><a href="http://weibo.com/Nomyfan" target="_blank" rel="external">Weibo</a></strong><br><strong><a href="https://twitter.com/Myers__Chan" target="_blank" rel="external">Twitter</a></strong><br><strong><a href="https://facebook.com/myers.n.chan" target="_blank" rel="external">Facebook</a></strong></p>
-]]></content>
+      <title><![CDATA[Categories]]></title>
+      <url>/categories/index.html</url>
+      <content type="html"></content>
     </entry>
     
     <entry>
@@ -1927,10 +1927,16 @@ WantedBy=multi-user.target
     </entry>
     
     <entry>
-      <title><![CDATA[关于我]]></title>
-      <url>/about/index.html</url>
-      <content type="html"><![CDATA[<p>喜欢摄影主业写代码的工科男(/▽＼)</p>
+      <title><![CDATA[Contact]]></title>
+      <url>/feeback/index.html</url>
+      <content type="html"><![CDATA[<p>Contact me with<br><strong><a href="mailto:Myers.Chan@outlook.com?subject=FeebackFromBlog" target="_blank" rel="external">E-mail</a></strong>.<br><strong><a href="http://weibo.com/Nomyfan" target="_blank" rel="external">Weibo</a></strong><br><strong><a href="https://twitter.com/Myers__Chan" target="_blank" rel="external">Twitter</a></strong><br><strong><a href="https://facebook.com/myers.n.chan" target="_blank" rel="external">Facebook</a></strong></p>
 ]]></content>
+    </entry>
+    
+    <entry>
+      <title><![CDATA[Photograph]]></title>
+      <url>/photograph/index.html</url>
+      <content type="html"></content>
     </entry>
     
     <entry>
@@ -1942,12 +1948,6 @@ WantedBy=multi-user.target
     <entry>
       <title><![CDATA[Articles]]></title>
       <url>/articles/index.html</url>
-      <content type="html"></content>
-    </entry>
-    
-    <entry>
-      <title><![CDATA[Photograph]]></title>
-      <url>/photograph/index.html</url>
       <content type="html"></content>
     </entry>
     
