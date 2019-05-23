@@ -45,7 +45,7 @@
     
     <title>
         
-            泛型协变和逆变(Kotlin) | 
+            泛型协变和逆变 | 
         
         Zmus
     </title>
@@ -239,14 +239,14 @@
     <!-- The Open Graph protocol -->
     <meta property="og:url" content="https://blog.nokky.net/2018/11/09/kotlin-generics/">
     <meta property="og:type" content="blog">
-    <meta property="og:title" content="泛型协变和逆变(Kotlin) | Zmus">
+    <meta property="og:title" content="泛型协变和逆变 | Zmus">
     <meta property="og:image" content="/img/favicon.png">
     <meta property="og:description" content="陈诺米个人博客">
     <meta property="og:article:tag" content="C#"> <meta property="og:article:tag" content="Kotlin"> <meta property="og:article:tag" content="Generics"> 
 
     
         <meta property="article:published_time" content="Fri Nov 09 2018 18:53:04 GMT+0800">
-        <meta property="article:modified_time" content="Sat Nov 10 2018 00:59:42 GMT+0800">
+        <meta property="article:modified_time" content="Thu May 23 2019 18:39:02 GMT+0800">
     
 
     <!-- The Twitter Card protocol -->
@@ -267,9 +267,9 @@
     "@context": "https://schema.org",
     "@type": "BlogPosting",
     "mainEntityOfPage": "https://blog.nokky.net/2018/11/09/kotlin-generics/index.html",
-    "headline": "泛型协变和逆变(Kotlin)",
+    "headline": "泛型协变和逆变",
     "datePublished": "Fri Nov 09 2018 18:53:04 GMT+0800",
-    "dateModified": "Sat Nov 10 2018 00:59:42 GMT+0800",
+    "dateModified": "Thu May 23 2019 18:39:02 GMT+0800",
     "author": {
         "@type": "Person",
         "name": "Kim Chan",
@@ -389,7 +389,7 @@
         
     
             <p class="article-headline-p">
-                泛型协变和逆变(Kotlin)
+                泛型协变和逆变
             </p>
         </div>
 
@@ -459,7 +459,7 @@
     <!-- Leancloud Views -->
         <a class="post_share-link" href="#">
             <li class="mdl-menu__item">
-                <span id="/2018/11/09/kotlin-generics/" class="leancloud-views_num" data-flag-title="泛型协变和逆变(Kotlin)">
+                <span id="/2018/11/09/kotlin-generics/" class="leancloud-views_num" data-flag-title="泛型协变和逆变">
      &nbsp;Views
 </span>
 
@@ -471,7 +471,7 @@
 
     <!-- Share Weibo -->
     
-        <a class="post_share-link" href="http://service.weibo.com/share/share.php?appkey=&title=泛型协变和逆变(Kotlin)&url=https://blog.nokky.net/2018/11/09/kotlin-generics/index.html&pic=https://blog.nokky.net/img/favicon.png&searchPic=false&style=simple" target="_blank">
+        <a class="post_share-link" href="http://service.weibo.com/share/share.php?appkey=&title=泛型协变和逆变&url=https://blog.nokky.net/2018/11/09/kotlin-generics/index.html&pic=https://blog.nokky.net/img/favicon.png&searchPic=false&style=simple" target="_blank">
             <li class="mdl-menu__item">
                 Share to Weibo
             </li>
@@ -480,7 +480,7 @@
 
     <!-- Share Twitter -->
     
-        <a class="post_share-link" href="https://twitter.com/intent/tweet?text=泛型协变和逆变(Kotlin)&url=https://blog.nokky.net/2018/11/09/kotlin-generics/index.html&via=Kim Chan" target="_blank">
+        <a class="post_share-link" href="https://twitter.com/intent/tweet?text=泛型协变和逆变&url=https://blog.nokky.net/2018/11/09/kotlin-generics/index.html&via=Kim Chan" target="_blank">
             <li class="mdl-menu__item">
                 Share to Twitter
             </li>
@@ -523,8 +523,7 @@
                 <!-- Post Content -->
                 <div id="post-content" class="mdl-color-text--grey-700 mdl-card__supporting-text fade out">
     
-        <p>之前听说Kotlin这门语言很elegant，但是没有具体了解，最近抽空学了一下，发现语法特性真的媲美C#，比Java不知道高到哪里去了。Kotlin给我的感觉就是在用一门强类型的动态语言，函数式体验很棒！这篇文章来了解一下Kotlin的泛型。</p>
-<h2 id="理解泛型"><a href="#理解泛型" class="headerlink" title="理解泛型"></a>理解泛型</h2><p>如何<a href="https://kotlinlang.org/docs/reference/generics.html" target="_blank" rel="external">声明泛型类和泛型方法</a>这里就省略了，本篇文章着重要讲的是 <em>in</em> 和 <em>out</em>，也就是协/逆变。开始的时候可能会有点混淆，甚至觉得违反了多态的<em>向上转型</em>规则（其实这么说是错的），为什么呢？先看一个C#的例子</p>
+        <h2 id="理解泛型"><a href="#理解泛型" class="headerlink" title="理解泛型"></a>理解泛型</h2><p>Kotlin如何<a href="https://kotlinlang.org/docs/reference/generics.html" target="_blank" rel="external">声明泛型类和泛型方法</a>这里就省略了，本篇文章着重要讲的是 <em>in</em> 和 <em>out</em>，也就是协/逆变。开始的时候可能会有点混淆，甚至觉得违反了多态的<em>向上转型</em>规则（其实这么说是错的），为什么呢？先看C#的例子</p>
 <pre><code class="csharp">// Contravariant interface.
 interface IContravariant&lt;in A&gt; { }
 
@@ -574,63 +573,13 @@ class Program
 <blockquote>
 <p>We believe that the words in and out are self-explaining (as they were successfully used in C# for quite some time already), thus the mnemonic mentioned above is not really needed, and one can rephrase it for a higher purpose</p>
 </blockquote>
-<h2 id="记忆out和in"><a href="#记忆out和in" class="headerlink" title="记忆out和in"></a>记忆out和in</h2><p><em>out</em>和<em>in</em>两个词好像和协变，逆变之间没什么关系。其实就和上边引用的文档的那句话所说的，<em>out</em>和<em>in</em>其实很好记忆，因为它们描述的是泛型参数在方法的位置。<em>in</em> 的泛型参数只能出现在方法的参数列表中，<em>out</em> 的泛型参数则是只能出现在方法返回值。上边两个C#文档的例子并没有凸显出这一点，接下来我们看一个Kotlin的例子，这个例子主要凸显两个修饰符的对应的泛型参数的摆放位置。</p>
-<p>有一个家庭，家庭里有儿子和妈妈，儿子每天告诉妈妈他想吃什么，妈妈就会为儿子精心准备。</p>
-<p>首先，我们准备食物，假设有胡萝卜🥕和牛肉🐂</p>
-<pre><code class="kotlin">open class Food(val name: String)
-
-class Carrot(name: String) : Food(name)
-
-class Beef(name: String) : Food(name)
-</code></pre>
-<p>准备两个接口，一个是吃货，另一个是厨子</p>
-<pre><code class="kotlin">interface Eater&lt;out TFood : Food&gt; {
-    // TFood作为结果从方法返回(out)
-    fun want(): TFood
-}
-
-interface Cook&lt;in TFood : Food&gt; {
-    // TFood作为参数进入(in)方法
-    fun cook(food: TFood) {
-        println(&quot;Cooking ${food.name}&quot;)
-    }
-}
-</code></pre>
-<p>吃货告诉厨子他想吃的食物。通知厨子根据被告知的食物去厨房里忙碌（和C#不同，Kotlin的接口可以有默认实现）。</p>
-<p>然后儿子和妈妈出场了</p>
-<pre><code class="kotlin">class Son&lt;TFood : Food&gt; : Eater&lt;TFood&gt; {
-    override fun want(): TFood {
-        val food = when (Random().nextInt(10)) {
-            in 0..6 -&gt; Beef(&quot;Beef&quot;) as TFood // Unchecked cast
-            else -&gt; Carrot(&quot;Carrot&quot;) as TFood // Unchecked cast
-        }
-        println(&quot;Son wants to eat ${food.name}&quot;)
-        return food
-    }
-}
-
-class Mother&lt;TFood : Food&gt; : Cook&lt;TFood&gt; {
-    override fun cook(food: TFood) {
-        println(&quot;Mother is cooking ${food.name}&quot;)
-    }
-}
-</code></pre>
-<p>嗯，看来这个儿子很喜欢吃牛肉，可能家里有矿。</p>
-<p>某一天儿子要吃饭了</p>
-<pre><code class="kotlin">fun main(args: Array&lt;String&gt;) {
-    val son = Son&lt;Food&gt;()
-    val mother = Mother&lt;Food&gt;()
-    val wanted = son.want()
-    mother.cook(wanted)
-}
-</code></pre>
-<p>其实这个儿子还是能什么都吃的，不挑食的好孩子，妈妈更是厉害，什么都会煮哈哈哈。</p>
+<h2 id="记忆out和in"><a href="#记忆out和in" class="headerlink" title="记忆out和in"></a>记忆out和in</h2><p><em>out</em>和<em>in</em>两个词好像和协变，逆变之间没什么关系。其实就和上边引用的文档的那句话所说的，<em>out</em>和<em>in</em>其实很好记忆，因为它们描述的是泛型参数在方法的位置。<em>in</em> 的泛型参数只能出现在方法的参数列表中，描述的是如果T的具体类型是约束的子类那么都可以传进来，<em>out</em> 的泛型参数则是只能出现在方法返回值，描述的是如果T的具体类型是约束的子类都可以返回。</p>
 <h2 id="C-和Kotlin的差异"><a href="#C-和Kotlin的差异" class="headerlink" title="C#和Kotlin的差异"></a>C#和Kotlin的差异</h2><p>虽然两者在泛型上很相似，还是有点差别的。</p>
 <p>其一， C#在实现协变/逆变上只支持引用类型作为泛型参数（<a href="https://blogs.msdn.microsoft.com/ericlippert/2009/03/19/representation-and-identity/" target="_blank" rel="external">为什么？</a>）</p>
 <blockquote>
 <p>Covariance and contravariance in generic type parameters are supported for reference types, but they are not supported for value types. <a href="https://docs.microsoft.com/en-us/dotnet/csharp/language-reference/keywords/in-generic-modifier" target="_blank" rel="external">in (Generic Modifier)</a></p>
 </blockquote>
-<p>而Kotlin数值类型也可以，益于有引用类型的Double</p>
+<p>而Kotlin数值类型也可以，因为Kotlin只有引用类型。</p>
 <pre><code class="kotlin">interface Comparable&lt;in T&gt; {
     operator fun compareTo(other: T): Int
 }
@@ -654,13 +603,6 @@ fun demo(x: Comparable&lt;Number&gt;) {
 // The given expression is never of the provided (&#39;Son&lt;Beef&gt;&#39;) type [GenericsInCSharpe]
 </code></pre>
 <p>其三，Kotlin中不能对in参数进行赋值，这是因为被in修饰的为val的，不允许再次赋值。感觉Kotlin的in是C#的<a href="https://docs.microsoft.com/en-us/dotnet/csharp/language-reference/keywords/in-generic-modifier" target="_blank" rel="external">in修饰符</a>和<a href="https://dotnetcoretutorials.com/2018/01/08/new-keyword-c-7-2/" target="_blank" rel="external">in关键字</a>的结合。</p>
-<pre><code class="kotlin">interface Cook&lt;in TFood : Food&gt; {
-    fun cook(food: TFood) {
-        food = Beef(&quot;Beef&quot;) as TFood // Val cannot be reassigned
-        println(&quot;Cooking ${food.name}&quot;)
-    }
-}
-</code></pre>
 
         
                 <blockquote style="margin: 2em 0 0;padding: 0.5em 1em;border-left: 3px solid #F44336;background-color: #F5F5F5;list-style: none;">
@@ -797,7 +739,7 @@ fun demo(x: Comparable&lt;Number&gt;) {
             </a>
             <ul class="dropdown-menu">
             <li>
-                <a class="sidebar_archives-link" href="/archives/2019/04/">April 2019<span class="sidebar_archives-count">1</span></a></li><li><a class="sidebar_archives-link" href="/archives/2019/01/">January 2019<span class="sidebar_archives-count">1</span></a></li><li><a class="sidebar_archives-link" href="/archives/2018/11/">November 2018<span class="sidebar_archives-count">1</span></a></li><li><a class="sidebar_archives-link" href="/archives/2018/08/">August 2018<span class="sidebar_archives-count">1</span></a></li><li><a class="sidebar_archives-link" href="/archives/2018/07/">July 2018<span class="sidebar_archives-count">4</span></a></li><li><a class="sidebar_archives-link" href="/archives/2018/05/">May 2018<span class="sidebar_archives-count">1</span></a></li><li><a class="sidebar_archives-link" href="/archives/2018/02/">February 2018<span class="sidebar_archives-count">1</span></a></li><li><a class="sidebar_archives-link" href="/archives/2018/01/">January 2018<span class="sidebar_archives-count">2</span></a></li><li><a class="sidebar_archives-link" href="/archives/2017/09/">September 2017<span class="sidebar_archives-count">1</span></a></li><li><a class="sidebar_archives-link" href="/archives/2017/07/">July 2017<span class="sidebar_archives-count">1</span></a></li><li><a class="sidebar_archives-link" href="/archives/2017/06/">June 2017<span class="sidebar_archives-count">1</span></a></li><li><a class="sidebar_archives-link" href="/archives/2017/04/">April 2017<span class="sidebar_archives-count">1</span></a></li><li><a class="sidebar_archives-link" href="/archives/2017/02/">February 2017<span class="sidebar_archives-count">6</span></a></li><li><a class="sidebar_archives-link" href="/archives/2016/12/">December 2016<span class="sidebar_archives-count">1</span></a>
+                <a class="sidebar_archives-link" href="/archives/2019/01/">January 2019<span class="sidebar_archives-count">1</span></a></li><li><a class="sidebar_archives-link" href="/archives/2018/11/">November 2018<span class="sidebar_archives-count">1</span></a></li><li><a class="sidebar_archives-link" href="/archives/2018/08/">August 2018<span class="sidebar_archives-count">1</span></a></li><li><a class="sidebar_archives-link" href="/archives/2018/07/">July 2018<span class="sidebar_archives-count">4</span></a></li><li><a class="sidebar_archives-link" href="/archives/2018/05/">May 2018<span class="sidebar_archives-count">1</span></a></li><li><a class="sidebar_archives-link" href="/archives/2018/02/">February 2018<span class="sidebar_archives-count">1</span></a></li><li><a class="sidebar_archives-link" href="/archives/2018/01/">January 2018<span class="sidebar_archives-count">2</span></a></li><li><a class="sidebar_archives-link" href="/archives/2017/09/">September 2017<span class="sidebar_archives-count">1</span></a></li><li><a class="sidebar_archives-link" href="/archives/2017/07/">July 2017<span class="sidebar_archives-count">1</span></a></li><li><a class="sidebar_archives-link" href="/archives/2017/06/">June 2017<span class="sidebar_archives-count">1</span></a></li><li><a class="sidebar_archives-link" href="/archives/2017/04/">April 2017<span class="sidebar_archives-count">1</span></a></li><li><a class="sidebar_archives-link" href="/archives/2017/02/">February 2017<span class="sidebar_archives-count">6</span></a></li><li><a class="sidebar_archives-link" href="/archives/2016/12/">December 2016<span class="sidebar_archives-count">1</span></a>
             </ul>
         </li>
         
@@ -815,7 +757,7 @@ fun demo(x: Comparable&lt;Number&gt;) {
             </a>
             <ul class="dropdown-menu">
                 <li>
-                <a class="sidebar_archives-link" href="/categories/Android/">Android<span class="sidebar_archives-count">1</span></a></li><li><a class="sidebar_archives-link" href="/categories/Arduino/">Arduino<span class="sidebar_archives-count">1</span></a></li><li><a class="sidebar_archives-link" href="/categories/Linux/">Linux<span class="sidebar_archives-count">4</span></a></li><li><a class="sidebar_archives-link" href="/categories/Mathematic/">Mathematic<span class="sidebar_archives-count">1</span></a></li><li><a class="sidebar_archives-link" href="/categories/Programming/">Programming<span class="sidebar_archives-count">12</span></a></li><li><a class="sidebar_archives-link" href="/categories/Windows/">Windows<span class="sidebar_archives-count">4</span></a>
+                <a class="sidebar_archives-link" href="/categories/Android/">Android<span class="sidebar_archives-count">1</span></a></li><li><a class="sidebar_archives-link" href="/categories/Arduino/">Arduino<span class="sidebar_archives-count">1</span></a></li><li><a class="sidebar_archives-link" href="/categories/Linux/">Linux<span class="sidebar_archives-count">4</span></a></li><li><a class="sidebar_archives-link" href="/categories/Mathematic/">Mathematic<span class="sidebar_archives-count">1</span></a></li><li><a class="sidebar_archives-link" href="/categories/Programming/">Programming<span class="sidebar_archives-count">11</span></a></li><li><a class="sidebar_archives-link" href="/categories/Windows/">Windows<span class="sidebar_archives-count">4</span></a>
             </ul>
         </li>
         
@@ -881,7 +823,7 @@ fun demo(x: Comparable&lt;Number&gt;) {
         <li>
             <a href="/archives">
                 Number of articles
-                <span class="sidebar-badge">23</span>
+                <span class="sidebar-badge">22</span>
             </a>
         </li>
         

@@ -3,40 +3,6 @@
   
     
     <entry>
-      <title><![CDATA[用YAML配置Spring Boot]]></title>
-      <url>/2019/04/02/spring-boot-yaml/</url>
-      <content type="html"><![CDATA[<p>.properties配置过于冗余，YAML看起来十分简介而且有层次感，因此决定切换过去，然而一开始被坑了，怎么都是无法找到Bean的错误，最后发现都是注解没写好，感觉JVM平台的开发配置起来就是麻烦。还有pom.xml文件的冗余看起来十分吃力，哪天切换到Gradle去。</p>
-<h2 id="正确的姿势"><a href="#正确的姿势" class="headerlink" title="正确的姿势"></a>正确的姿势</h2><h3 id="添加YAML文件"><a href="#添加YAML文件" class="headerlink" title="添加YAML文件"></a>添加YAML文件</h3><p>添加两个YAML文件，一个为application.yml，另一个为app.yml。前者我用了配置Spring加载的包需要的配置信息，后者我用来添加自定义的属性集。</p>
-<h3 id="修改项目结构"><a href="#修改项目结构" class="headerlink" title="修改项目结构"></a>修改项目结构</h3><p>操作(File -&gt; Project Structure)，把app.yml设置为资源文件。</p>
-<p><a href="/img/2019/03/snipaste_20190402_222445.png"><img src="/img/2019/03/snipaste_20190402_222445.png" alt=""></a></p>
-<h3 id="编写注入类"><a href="#编写注入类" class="headerlink" title="编写注入类"></a>编写注入类</h3><pre><code class="kotlin">@Component
-@PropertySource(&quot;classpath:/app.yml&quot;)
-@EnableConfigurationProperties
-@ConfigurationProperties(prefix = &quot;net.nokky.security&quot;)
-class RSAKeyPair(@param:Value(&quot;\${rsa-private-key}&quot;) val privateKey: String,
-                 @param:Value(&quot;\${rsa-public-key}&quot;) val publicKey: String)
-</code></pre>
-<h2 id="额外话题"><a href="#额外话题" class="headerlink" title="额外话题"></a>额外话题</h2><p>我把Spring Boot的开发语言切换到Kotlin了，其实语法糖让Kotlin语法变得十分简洁的同时，也稍微增加了一点学习的成本，不如Java容易入手，正所谓事物的两面性。不过当你用了之后会发现，我靠，代码写起来怎么可以这么自然。不过还是有点坑的，主要是和一些库的搭配使用的时候。不过我还是愿意增加一点学习成本，印象最深刻的是我将某个类的Java的代码转换到Kotlin时，28行的代码变成了3行！在类的定义上，Kotlin真的做到了极简。当然还有很多其他的特性，比如<code>?:</code>替代了卫语句（Guard Clauses）等等。Kotlin是个好工具，看你怎么使了。</p>
-]]></content>
-      
-        <categories>
-            
-            <category> Programming </category>
-            
-        </categories>
-        
-        
-        <tags>
-            
-            <tag> Kotlin </tag>
-            
-            <tag> Spring Boot </tag>
-            
-        </tags>
-        
-    </entry>
-    
-    <entry>
       <title><![CDATA[SynchronizationContext - 同步上下文]]></title>
       <url>/2019/01/12/synchronizationcontext/</url>
       <content type="html"><![CDATA[<p>SynchronizationContext是一个极其重要的东西，尤其是涉及到多线程和UI有牵扯的时候。从它可以展开两个话题：异步和线程通信，我们来简单看看这两个玩意。</p>
@@ -236,10 +202,9 @@ public static T RunSync&lt;T&gt;(Func&lt;Task&lt;T&gt;&gt; task)
     </entry>
     
     <entry>
-      <title><![CDATA[泛型协变和逆变(Kotlin)]]></title>
+      <title><![CDATA[泛型协变和逆变]]></title>
       <url>/2018/11/09/kotlin-generics/</url>
-      <content type="html"><![CDATA[<p>之前听说Kotlin这门语言很elegant，但是没有具体了解，最近抽空学了一下，发现语法特性真的媲美C#，比Java不知道高到哪里去了。Kotlin给我的感觉就是在用一门强类型的动态语言，函数式体验很棒！这篇文章来了解一下Kotlin的泛型。</p>
-<h2 id="理解泛型"><a href="#理解泛型" class="headerlink" title="理解泛型"></a>理解泛型</h2><p>如何<a href="https://kotlinlang.org/docs/reference/generics.html" target="_blank" rel="external">声明泛型类和泛型方法</a>这里就省略了，本篇文章着重要讲的是 <em>in</em> 和 <em>out</em>，也就是协/逆变。开始的时候可能会有点混淆，甚至觉得违反了多态的<em>向上转型</em>规则（其实这么说是错的），为什么呢？先看一个C#的例子</p>
+      <content type="html"><![CDATA[<h2 id="理解泛型"><a href="#理解泛型" class="headerlink" title="理解泛型"></a>理解泛型</h2><p>Kotlin如何<a href="https://kotlinlang.org/docs/reference/generics.html" target="_blank" rel="external">声明泛型类和泛型方法</a>这里就省略了，本篇文章着重要讲的是 <em>in</em> 和 <em>out</em>，也就是协/逆变。开始的时候可能会有点混淆，甚至觉得违反了多态的<em>向上转型</em>规则（其实这么说是错的），为什么呢？先看C#的例子</p>
 <pre><code class="csharp">// Contravariant interface.
 interface IContravariant&lt;in A&gt; { }
 
@@ -289,63 +254,13 @@ class Program
 <blockquote>
 <p>We believe that the words in and out are self-explaining (as they were successfully used in C# for quite some time already), thus the mnemonic mentioned above is not really needed, and one can rephrase it for a higher purpose</p>
 </blockquote>
-<h2 id="记忆out和in"><a href="#记忆out和in" class="headerlink" title="记忆out和in"></a>记忆out和in</h2><p><em>out</em>和<em>in</em>两个词好像和协变，逆变之间没什么关系。其实就和上边引用的文档的那句话所说的，<em>out</em>和<em>in</em>其实很好记忆，因为它们描述的是泛型参数在方法的位置。<em>in</em> 的泛型参数只能出现在方法的参数列表中，<em>out</em> 的泛型参数则是只能出现在方法返回值。上边两个C#文档的例子并没有凸显出这一点，接下来我们看一个Kotlin的例子，这个例子主要凸显两个修饰符的对应的泛型参数的摆放位置。</p>
-<p>有一个家庭，家庭里有儿子和妈妈，儿子每天告诉妈妈他想吃什么，妈妈就会为儿子精心准备。</p>
-<p>首先，我们准备食物，假设有胡萝卜🥕和牛肉🐂</p>
-<pre><code class="kotlin">open class Food(val name: String)
-
-class Carrot(name: String) : Food(name)
-
-class Beef(name: String) : Food(name)
-</code></pre>
-<p>准备两个接口，一个是吃货，另一个是厨子</p>
-<pre><code class="kotlin">interface Eater&lt;out TFood : Food&gt; {
-    // TFood作为结果从方法返回(out)
-    fun want(): TFood
-}
-
-interface Cook&lt;in TFood : Food&gt; {
-    // TFood作为参数进入(in)方法
-    fun cook(food: TFood) {
-        println(&quot;Cooking ${food.name}&quot;)
-    }
-}
-</code></pre>
-<p>吃货告诉厨子他想吃的食物。通知厨子根据被告知的食物去厨房里忙碌（和C#不同，Kotlin的接口可以有默认实现）。</p>
-<p>然后儿子和妈妈出场了</p>
-<pre><code class="kotlin">class Son&lt;TFood : Food&gt; : Eater&lt;TFood&gt; {
-    override fun want(): TFood {
-        val food = when (Random().nextInt(10)) {
-            in 0..6 -&gt; Beef(&quot;Beef&quot;) as TFood // Unchecked cast
-            else -&gt; Carrot(&quot;Carrot&quot;) as TFood // Unchecked cast
-        }
-        println(&quot;Son wants to eat ${food.name}&quot;)
-        return food
-    }
-}
-
-class Mother&lt;TFood : Food&gt; : Cook&lt;TFood&gt; {
-    override fun cook(food: TFood) {
-        println(&quot;Mother is cooking ${food.name}&quot;)
-    }
-}
-</code></pre>
-<p>嗯，看来这个儿子很喜欢吃牛肉，可能家里有矿。</p>
-<p>某一天儿子要吃饭了</p>
-<pre><code class="kotlin">fun main(args: Array&lt;String&gt;) {
-    val son = Son&lt;Food&gt;()
-    val mother = Mother&lt;Food&gt;()
-    val wanted = son.want()
-    mother.cook(wanted)
-}
-</code></pre>
-<p>其实这个儿子还是能什么都吃的，不挑食的好孩子，妈妈更是厉害，什么都会煮哈哈哈。</p>
+<h2 id="记忆out和in"><a href="#记忆out和in" class="headerlink" title="记忆out和in"></a>记忆out和in</h2><p><em>out</em>和<em>in</em>两个词好像和协变，逆变之间没什么关系。其实就和上边引用的文档的那句话所说的，<em>out</em>和<em>in</em>其实很好记忆，因为它们描述的是泛型参数在方法的位置。<em>in</em> 的泛型参数只能出现在方法的参数列表中，描述的是如果T的具体类型是约束的子类那么都可以传进来，<em>out</em> 的泛型参数则是只能出现在方法返回值，描述的是如果T的具体类型是约束的子类都可以返回。</p>
 <h2 id="C-和Kotlin的差异"><a href="#C-和Kotlin的差异" class="headerlink" title="C#和Kotlin的差异"></a>C#和Kotlin的差异</h2><p>虽然两者在泛型上很相似，还是有点差别的。</p>
 <p>其一， C#在实现协变/逆变上只支持引用类型作为泛型参数（<a href="https://blogs.msdn.microsoft.com/ericlippert/2009/03/19/representation-and-identity/" target="_blank" rel="external">为什么？</a>）</p>
 <blockquote>
 <p>Covariance and contravariance in generic type parameters are supported for reference types, but they are not supported for value types. <a href="https://docs.microsoft.com/en-us/dotnet/csharp/language-reference/keywords/in-generic-modifier" target="_blank" rel="external">in (Generic Modifier)</a></p>
 </blockquote>
-<p>而Kotlin数值类型也可以，益于有引用类型的Double</p>
+<p>而Kotlin数值类型也可以，因为Kotlin只有引用类型。</p>
 <pre><code class="kotlin">interface Comparable&lt;in T&gt; {
     operator fun compareTo(other: T): Int
 }
@@ -369,13 +284,6 @@ fun demo(x: Comparable&lt;Number&gt;) {
 // The given expression is never of the provided (&#39;Son&lt;Beef&gt;&#39;) type [GenericsInCSharpe]
 </code></pre>
 <p>其三，Kotlin中不能对in参数进行赋值，这是因为被in修饰的为val的，不允许再次赋值。感觉Kotlin的in是C#的<a href="https://docs.microsoft.com/en-us/dotnet/csharp/language-reference/keywords/in-generic-modifier" target="_blank" rel="external">in修饰符</a>和<a href="https://dotnetcoretutorials.com/2018/01/08/new-keyword-c-7-2/" target="_blank" rel="external">in关键字</a>的结合。</p>
-<pre><code class="kotlin">interface Cook&lt;in TFood : Food&gt; {
-    fun cook(food: TFood) {
-        food = Beef(&quot;Beef&quot;) as TFood // Val cannot be reassigned
-        println(&quot;Cooking ${food.name}&quot;)
-    }
-}
-</code></pre>
 ]]></content>
       
         <categories>
@@ -1033,9 +941,9 @@ fi
         
         <tags>
             
-            <tag> ArchLinux </tag>
-            
             <tag> Linux </tag>
+            
+            <tag> ArchLinux </tag>
             
         </tags>
         
@@ -1114,11 +1022,11 @@ fi
         
         <tags>
             
+            <tag> 爬虫 </tag>
+            
             <tag> C# </tag>
             
             <tag> .NET </tag>
-            
-            <tag> 爬虫 </tag>
             
         </tags>
         
@@ -1531,9 +1439,9 @@ RewriteRule . /index.php [L]
         
         <tags>
             
-            <tag> Linux </tag>
-            
             <tag> VPS </tag>
+            
+            <tag> Linux </tag>
             
         </tags>
         
@@ -1594,9 +1502,9 @@ WantedBy=multi-user.target
         
         <tags>
             
-            <tag> Linux </tag>
-            
             <tag> VPS </tag>
+            
+            <tag> Linux </tag>
             
         </tags>
         
@@ -1908,21 +1816,14 @@ WantedBy=multi-user.target
     </entry>
     
     <entry>
-      <title><![CDATA[Contact]]></title>
-      <url>/feeback/index.html</url>
-      <content type="html"><![CDATA[<p>Contact me with<br><strong><a href="mailto:Myers.Chan@outlook.com?subject=FeebackFromBlog" target="_blank" rel="external">E-mail</a></strong>.<br><strong><a href="http://weibo.com/Nomyfan" target="_blank" rel="external">Weibo</a></strong><br><strong><a href="https://twitter.com/Myers__Chan" target="_blank" rel="external">Twitter</a></strong><br><strong><a href="https://facebook.com/myers.n.chan" target="_blank" rel="external">Facebook</a></strong></p>
-]]></content>
-    </entry>
-    
-    <entry>
-      <title><![CDATA[Articles]]></title>
-      <url>/articles/index.html</url>
+      <title><![CDATA[Friends]]></title>
+      <url>/friends/index.html</url>
       <content type="html"></content>
     </entry>
     
     <entry>
-      <title><![CDATA[Categories]]></title>
-      <url>/categories/index.html</url>
+      <title><![CDATA[Photograph]]></title>
+      <url>/photograph/index.html</url>
       <content type="html"></content>
     </entry>
     
@@ -1934,9 +1835,10 @@ WantedBy=multi-user.target
     </entry>
     
     <entry>
-      <title><![CDATA[Friends]]></title>
-      <url>/friends/index.html</url>
-      <content type="html"></content>
+      <title><![CDATA[Contact]]></title>
+      <url>/feeback/index.html</url>
+      <content type="html"><![CDATA[<p>Contact me with<br><strong><a href="mailto:Myers.Chan@outlook.com?subject=FeebackFromBlog" target="_blank" rel="external">E-mail</a></strong>.<br><strong><a href="http://weibo.com/Nomyfan" target="_blank" rel="external">Weibo</a></strong><br><strong><a href="https://twitter.com/Myers__Chan" target="_blank" rel="external">Twitter</a></strong><br><strong><a href="https://facebook.com/myers.n.chan" target="_blank" rel="external">Facebook</a></strong></p>
+]]></content>
     </entry>
     
     <entry>
@@ -1952,8 +1854,14 @@ WantedBy=multi-user.target
     </entry>
     
     <entry>
-      <title><![CDATA[Photograph]]></title>
-      <url>/photograph/index.html</url>
+      <title><![CDATA[Categories]]></title>
+      <url>/categories/index.html</url>
+      <content type="html"></content>
+    </entry>
+    
+    <entry>
+      <title><![CDATA[Articles]]></title>
+      <url>/articles/index.html</url>
       <content type="html"></content>
     </entry>
     
