@@ -45,7 +45,7 @@
     
     <title>
         
-            Archives: 2019 | 
+            Leetcode - Add Digits - 同余数 | 
         
         Zmus
     </title>
@@ -83,6 +83,9 @@
         <style id="style_css"></style><script>if(typeof window.lsLoadCSSMaxNums === "undefined")window.lsLoadCSSMaxNums = 0;window.lsLoadCSSMaxNums++;lsloader.load("style_css","/css/style.min.css?MKetZV3cUTfDxvMffaOezg==",function(){if(typeof window.lsLoadCSSNums === "undefined")window.lsLoadCSSNums = 0;window.lsLoadCSSNums++;if(window.lsLoadCSSNums == window.lsLoadCSSMaxNums)document.documentElement.style.display="";}, false)</script>
 
         
+            
+                <style id="prettify_css"></style><script>if(typeof window.lsLoadCSSMaxNums === "undefined")window.lsLoadCSSMaxNums = 0;window.lsLoadCSSMaxNums++;lsloader.load("prettify_css","/css/prettify.min.css?VbSuLZyOpxJuf3o2tYEOVg==",function(){if(typeof window.lsLoadCSSNums === "undefined")window.lsLoadCSSNums = 0;window.lsLoadCSSNums++;if(window.lsLoadCSSNums == window.lsLoadCSSMaxNums)document.documentElement.style.display="";}, false)</script>
+                <style id="prettify_theme"></style><script>if(typeof window.lsLoadCSSMaxNums === "undefined")window.lsLoadCSSMaxNums = 0;window.lsLoadCSSMaxNums++;lsloader.load("prettify_theme","/css/prettify/tomorrow-night-eighties.min.css?2LJQzURO+Kr8r/fl/T8oMA==",function(){if(typeof window.lsLoadCSSNums === "undefined")window.lsLoadCSSNums = 0;window.lsLoadCSSNums++;if(window.lsLoadCSSNums == window.lsLoadCSSMaxNums)document.documentElement.style.display="";}, false)</script>
             
         
 
@@ -219,7 +222,7 @@
     <!-- WebAPP Icons -->
     <meta name="mobile-web-app-capable" content="yes">
     <meta name="application-name" content="Zmus">
-    <meta name="msapplication-starturl" content="https://blog.nokky.net/archives/2019/">
+    <meta name="msapplication-starturl" content="https://blog.nokky.net/2019/06/09/add-digits/">
     <meta name="msapplication-navbutton-color" content="#0097A7">
     <meta name="apple-mobile-web-app-capable" content="yes">
     <meta name="apple-mobile-web-app-title" content="Zmus">
@@ -234,13 +237,16 @@
     
 
     <!-- The Open Graph protocol -->
-    <meta property="og:url" content="https://blog.nokky.net/archives/2019/">
+    <meta property="og:url" content="https://blog.nokky.net/2019/06/09/add-digits/">
     <meta property="og:type" content="blog">
-    <meta property="og:title" content="Archives: 2019 | Zmus">
+    <meta property="og:title" content="Leetcode - Add Digits - 同余数 | Zmus">
     <meta property="og:image" content="/img/favicon.png">
     <meta property="og:description" content="陈诺米个人博客">
     
 
+    
+        <meta property="article:published_time" content="Sun Jun 09 2019 15:53:43 GMT+0800">
+        <meta property="article:modified_time" content="Sun Jun 09 2019 17:21:38 GMT+0800">
     
 
     <!-- The Twitter Card protocol -->
@@ -248,13 +254,43 @@
 
     <!-- Add canonical link for SEO -->
     
-        <link rel="canonical" href="https://blog.nokky.net/archives/2019/index.html" />
+        <link rel="canonical" href="https://blog.nokky.net/2019/06/09/add-digits/index.html" />
     
 
     <!-- Structured-data for SEO -->
     
         
 
+
+<script type="application/ld+json">
+{
+    "@context": "https://schema.org",
+    "@type": "BlogPosting",
+    "mainEntityOfPage": "https://blog.nokky.net/2019/06/09/add-digits/index.html",
+    "headline": "Leetcode - Add Digits - 同余数",
+    "datePublished": "Sun Jun 09 2019 15:53:43 GMT+0800",
+    "dateModified": "Sun Jun 09 2019 17:21:38 GMT+0800",
+    "author": {
+        "@type": "Person",
+        "name": "Kim Chan",
+        "image": {
+            "@type": "ImageObject",
+            "url": "/img/avatar.png"
+        },
+        "description": "Debug.WriteLine("Oops, bugs!");"
+    },
+    "publisher": {
+        "@type": "Organization",
+        "name": "Zmus",
+        "logo": {
+            "@type":"ImageObject",
+            "url": "/img/favicon.png"
+        }
+    },
+    "keywords": "Technology,Programming,Microsoft,.NET,Mathematic,dotnet,Kotlin",
+    "description": "陈诺米个人博客",
+}
+</script>
 
 
     
@@ -292,154 +328,273 @@
                         </button>
                     
 
-                    <!-- Index Module -->
-<div class="material-index mdl-grid">
-    
-    <div class="locate-thumbnail-symbol"></div>
+                    <!-- Post TOC -->
 
-    <!-- Pin on top -->
+    
+    <!-- Back Button -->
+    <!--
+    <div class="material-back" id="backhome-div" tabindex="0">
+        <a class="mdl-button mdl-js-button mdl-js-ripple-effect mdl-button--icon"
+           href="#" onclick="window.history.back();return false;"
+           target="_self"
+           role="button"
+           data-upgraded=",MaterialButton,MaterialRipple">
+            <i class="material-icons" role="presentation">arrow_back</i>
+            <span class="mdl-button__ripple-container">
+                <span class="mdl-ripple"></span>
+            </span>
+        </a>
+    </div>
+    -->
+
+
+    <!-- Left aligned menu below button -->
+    
+    
+    <button id="post-toc-trigger-btn"
+        class="mdl-button mdl-js-button mdl-button--icon">
+        <i class="material-icons">format_list_numbered</i>
+    </button>
+
+    <ul class="post-toc-wrap mdl-menu mdl-menu--bottom-left mdl-js-menu mdl-js-ripple-effect" for="post-toc-trigger-btn" style="max-height:80vh; overflow-y:scroll;">
+        <ol class="post-toc"><li class="post-toc-item post-toc-level-2"><a class="post-toc-link" href="#题目"><span class="post-toc-number">1.</span> <span class="post-toc-text">题目</span></a></li><li class="post-toc-item post-toc-level-2"><a class="post-toc-link" href="#Solution"><span class="post-toc-number">2.</span> <span class="post-toc-text">Solution</span></a><ol class="post-toc-child"><li class="post-toc-item post-toc-level-3"><a class="post-toc-link" href="#取值"><span class="post-toc-number">2.1.</span> <span class="post-toc-text">取值</span></a></li><li class="post-toc-item post-toc-level-3"><a class="post-toc-link" href="#同余数"><span class="post-toc-number">2.2.</span> <span class="post-toc-text">同余数</span></a></li></ol></li><li class="post-toc-item post-toc-level-2"><a class="post-toc-link" href="#代码"><span class="post-toc-number">3.</span> <span class="post-toc-text">代码</span></a></li></ol>
+    </ul>
     
 
-    <!-- Normal Post -->
-    
-        
-            
-                <!-- Paradox Thumbnail -->
-                <div class="post_entry-module mdl-card mdl-shadow--2dp mdl-cell mdl-cell--12-col fade out">
-    <!-- Post Thumbnail -->
+
+
+
+<!-- Layouts -->
+
+    <!-- Post Module -->
+    <div class="material-post_container">
+
+        <div class="material-post mdl-grid">
+            <div class="mdl-card mdl-shadow--4dp mdl-cell mdl-cell--12-col">
+
+                <!-- Post Header(Thumbnail & Title) -->
+                
+    <!-- Paradox Post Header -->
     
         
             <!-- Random Thumbnail -->
             <div class="post_thumbnail-random mdl-card__media mdl-color-text--grey-50">
-        
-    
+            <script type="text/ls-javascript" id="post-thumbnail-script">
+    var randomNum = Math.floor(Math.random() * 19 + 1);
 
-        <!-- Post Title -->
-        <p class="article-headline-p"><a href="/2019/06/09/add-digits/">Leetcode - Add Digits - 同余数</a></p>
-    </div>
-
-    <!-- Post Excerpt -->
-    <div class="mdl-color-text--grey-600 mdl-card__supporting-text post_entry-content">
-        
-            今天刷到一道Leetcode简单题
-        
-        &nbsp;&nbsp;&nbsp;
-        <span>
-            <a href="/2019/06/09/add-digits/" target="_self">Read more</a>
-        </span>
-    </div>
-    <!-- Post_entry Info-->
-    <div id="post_entry-info">
-        <div id="post_entry-left-info" class="mdl-card__supporting-text meta mdl-color-text--grey-600 ">
-            <!-- Author Avatar -->
-            <div id="author-avatar">
-                <img src="/img/avatar.png" width="44px" height="44px" alt="Kim Chan's avatar">
-            </div>
-            <div>
-                <strong>Kim Chan</strong>
-                <span>Jun 09, 2019</span>
-            </div>
-        </div>
-        <div id="post_entry-right-info">
-          
-
-            
-
-            
-
-            <!-- Post Views -->
-            <span class="post_entry-views">
-            </span>
-        </div>
-    </div>
-</div>
-
-            
-            
-        
-    
-        
-            
-                <!-- Paradox Thumbnail -->
-                <div class="post_entry-module mdl-card mdl-shadow--2dp mdl-cell mdl-cell--12-col fade out">
-    <!-- Post Thumbnail -->
-    
-        
-            <!-- Random Thumbnail -->
-            <div class="post_thumbnail-random mdl-card__media mdl-color-text--grey-50">
-        
-    
-
-        <!-- Post Title -->
-        <p class="article-headline-p"><a href="/2019/01/12/synchronizationcontext/">SynchronizationContext - 同步上下文</a></p>
-    </div>
-
-    <!-- Post Excerpt -->
-    <div class="mdl-color-text--grey-600 mdl-card__supporting-text post_entry-content">
-        
-            SynchronizationContext是一个极其重要的东西，尤其是涉及到多线程和UI有牵扯的时候。从它可以展开两个话题：异步和线程通信，我们来...
-        
-        &nbsp;&nbsp;&nbsp;
-        <span>
-            <a href="/2019/01/12/synchronizationcontext/" target="_self">Read more</a>
-        </span>
-    </div>
-    <!-- Post_entry Info-->
-    <div id="post_entry-info">
-        <div id="post_entry-left-info" class="mdl-card__supporting-text meta mdl-color-text--grey-600 ">
-            <!-- Author Avatar -->
-            <div id="author-avatar">
-                <img src="/img/avatar.png" width="44px" height="44px" alt="Kim Chan's avatar">
-            </div>
-            <div>
-                <strong>Kim Chan</strong>
-                <span>Jan 12, 2019</span>
-            </div>
-        </div>
-        <div id="post_entry-right-info">
-          
-              <!-- Category -->
-              <span class="post_entry-category">
-                  <a class="post_category-link" href="/categories/Programming/">Programming</a>
-              </span>
-            
-
-            
-
-            
-
-            <!-- Post Views -->
-            <span class="post_entry-views">
-            </span>
-        </div>
-    </div>
-</div>
-
-            
-            
-        
-    
-
-    
-
-    
-        <script type="text/ls-javascript" id="thumbnail-script">
-    var randomNum;
-
-    var locatePost = $('.locate-thumbnail-symbol').next();
-    for(var i = 0; i < 10; i++) {
-        randomNum = Math.floor(Math.random() * 19 + 1);
-
-        locatePost.children('.post_thumbnail-random').attr('id', 'random_thumbnail-'+randomNum);
-        locatePost.children('.post_thumbnail-random').attr('data-original', '/img/random/material-' + randomNum + '.png');
+    $('.post_thumbnail-random').attr('data-original', '/img/random/material-' + randomNum + '.png');
     $('.post_thumbnail-random').addClass('lazy');
-
-        locatePost = locatePost.next();
-    }
 </script>
 
+        
+    
+            <p class="article-headline-p">
+                Leetcode - Add Digits - 同余数
+            </p>
+        </div>
+
+
+
+
+
+                
+                    <!-- Paradox Post Info -->
+                    <div class="mdl-color-text--grey-700 mdl-card__supporting-text meta">
+
+    <!-- Author Avatar -->
+    <div id="author-avatar">
+        <img src="/img/avatar.png" width="44px" height="44px" alt="Author Avatar"/>
+    </div>
+    <!-- Author Name & Date -->
+    <div>
+        <strong>Kim Chan</strong>
+        <span>Jun 09, 2019</span>
+    </div>
+
+    <div class="section-spacer"></div>
+
+    <!-- Favorite -->
+    <!--
+        <button id="article-functions-like-button" class="mdl-button mdl-js-button mdl-js-ripple-effect mdl-button--icon btn-like">
+            <i class="material-icons" role="presentation">favorite</i>
+            <span class="visuallyhidden">favorites</span>
+        </button>
+    -->
+
+    <!-- Qrcode -->
+    
+        <button id="article-functions-qrcode-button" class="mdl-button mdl-js-button mdl-js-ripple-effect mdl-button--icon">
+    <i class="material-icons" role="presentation">devices other</i>
+    <span class="visuallyhidden">devices other</span>
+</button>
+<ul class="mdl-menu mdl-menu--bottom-right mdl-js-menu mdl-js-ripple-effect" for="article-functions-qrcode-button">
+    <li class="mdl-menu__item">Read this article on other devices</li>
+    
+        <img src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAN4AAADeCAAAAAB3DOFrAAACWElEQVR42u3aS5LbMAwEUN//0skBJvF0AxL9qceVS2VLfFqQdAOPP189Hnh4eHh4eHh4eG/Ge8TjHzcqr/984vNfzeaGh4eHd4b3y1IbTGWGzD8Xc8PDw8M7yPvfgrv5Tv6s9vt4eHh4n8hrMXe/Vjw8PLzP5T2/z/PXgYeHh/dZvDY4yCPaWWzxgqwFDw8PL+blRabzn4/W9/Dw8PACXjs2bQR5JLGaIR4eHt7NvHwhniFnha52Pnh4eHgnedcW/p+zZzFucgUPDw/vJG9T1J9tA5sNJoqS8fDw8G7mJYv4Vcfl1UE534Tw8PDwbua1N51Ft3mYm29OF3RG4OHh4Y14s5LVvtm0RRahCR4eHt4RXnt0zpsM2khiVirDw8PDO8lLSlbJ9Tai3RTDVik1Hh4e3pqXR675NrBf7vM21uIfAx4eHt4NvDzebUtZbVNXvj3g4eHhvYqXt6LOxlWH76hoh4eHh3eQ1x5eNwt9cgTPNwM8PDy8k7zkkfm02sBiH2Tg4eHhvYrXxhDtQXwYyI4aCPDw8PBO8vLtoX01bcNWO0M8PDy8V/Fa5KwVtT1M538A8PDw8M7z2scnG0DeWNAW0ob7Hh4eHt6atzng5uFFu/RvDtZ4eHh4d/P2i/Ls2N2W1oZNV3h4eHi38WZB6uZKcuf2deDh4eGd5+ULdBv1ttHtphEBDw8P7z15+yaqtsng6MaAh4eHdzPv2raAnFqHEXh4eHg38PKi12wSRRFrtKng4eHhneS1EUBb2r8qgIiaDPDw8PBu5n3fwMPDw8PDw8PDe4PxF5E3fLila8vTAAAAAElFTkSuQmCC">
+    
+</ul>
+
+    
+
+    <!-- Tags (bookmark) -->
+    
+
+    <!-- Share -->
+    
+        <button id="article-fuctions-share-button" class="mdl-button mdl-js-button mdl-js-ripple-effect mdl-button--icon">
+    <i class="material-icons" role="presentation">share</i>
+    <span class="visuallyhidden">share</span>
+</button>
+<ul class="mdl-menu mdl-menu--bottom-right mdl-js-menu mdl-js-ripple-effect" for="article-fuctions-share-button">
+    
+    <!-- Leancloud Views -->
+        <a class="post_share-link" href="#">
+            <li class="mdl-menu__item">
+                <span id="/2019/06/09/add-digits/" class="leancloud-views_num" data-flag-title="Leetcode - Add Digits - 同余数">
+     &nbsp;Views
+</span>
+
+            </li>
+        </a>
+    
+
+    
+
+    <!-- Share Weibo -->
+    
+        <a class="post_share-link" href="http://service.weibo.com/share/share.php?appkey=&title=Leetcode - Add Digits - 同余数&url=https://blog.nokky.net/2019/06/09/add-digits/index.html&pic=https://blog.nokky.net/img/favicon.png&searchPic=false&style=simple" target="_blank">
+            <li class="mdl-menu__item">
+                Share to Weibo
+            </li>
+        </a>
+    
+
+    <!-- Share Twitter -->
+    
+        <a class="post_share-link" href="https://twitter.com/intent/tweet?text=Leetcode - Add Digits - 同余数&url=https://blog.nokky.net/2019/06/09/add-digits/index.html&via=Kim Chan" target="_blank">
+            <li class="mdl-menu__item">
+                Share to Twitter
+            </li>
+        </a>
+    
+
+    <!-- Share Facebook -->
+    
+        <a class="post_share-link" href="https://www.facebook.com/sharer/sharer.php?u=https://blog.nokky.net/2019/06/09/add-digits/index.html" target="_blank">
+            <li class="mdl-menu__item">
+                Share to Facebook
+            </li>
+        </a>
+    
+
+    <!-- Share Google+ -->
+    
+        <a class="post_share-link" href="https://plus.google.com/share?url=https://blog.nokky.net/2019/06/09/add-digits/index.html" target="_blank">
+            <li class="mdl-menu__item">
+                Share to Google+
+            </li>
+        </a>
+    
+
+    <!-- Share LinkedIn -->
+    
+
+    <!-- Share QQ -->
+    
+
+    <!-- Share Telegram -->
+    
+</ul>
+
     
 </div>
+
+                
+
+                <!-- Post Content -->
+                <div id="post-content" class="mdl-color-text--grey-700 mdl-card__supporting-text fade out">
+    
+        <p>今天刷到一道Leetcode简单题<a href="https://leetcode.com/problems/add-digits/" target="_blank" rel="external">戳这里</a>，虽然我一看到题目没怎么想就猜出结果了，但想着还挺有意思的就想试着去证明一下。</p>
+<h2 id="题目"><a href="#题目" class="headerlink" title="题目"></a>题目</h2><p>我先把题目转换一下成为比较传统的数学题：</p>
+<p>给定一个非负数，<u>对每一位上的数求和</u><sup>①</sup>，不断重复①直到结果小于10。试证明这样得到的最终结果和直接用给定的数对9取余是一样的（如果取余的结果是0则为9）。</p>
+<blockquote>
+<p>注意我把Leetcode上的题目的0的取值去掉了，因为这是特殊情况。</p>
+</blockquote>
+<h2 id="Solution"><a href="#Solution" class="headerlink" title="Solution"></a>Solution</h2><h3 id="取值"><a href="#取值" class="headerlink" title="取值"></a>取值</h3><p>因为结果的取值范围是[0,9]这十个数字，而0这个取值只有在给定的数为0的时候才能取到，而我修改的题目已经去掉0这个定义域了，因此最终的值域为[1,9]这9个数字，因此要使得结果落到这9个连续数字里，那么就要对9取余，特殊的，当模的结果为0的时候结果是9。为什么模的结果为0的时候是9？取余为0的数字要么是0，要么是9的倍数，前者已经被排除了，所以只剩下9的倍数。</p>
+<h3 id="同余数"><a href="#同余数" class="headerlink" title="同余数"></a>同余数</h3><p>这个方法能work的基本原理是同余数。以38这个数字为例。</p>
+<p>首先应用同余数的地方是：</p>
+<blockquote>
+<p>30 % 9 = 3 % 9</p>
+</blockquote>
+<p>也就是说乘以10<sup>x</sup>没有影响。可以简单证明一下</p>
+<blockquote>
+<p>30 % 9 = (3 × 10) % 9 = ((3 % 9) × (10 % 9)) % 9</p>
+</blockquote>
+<p>因为10<sup>x</sup> % 9 = 1 % 9，x ∈ [0, +∞]，因此可以得到</p>
+<blockquote>
+<p>30 % 9 = (3 × 10) % 9 = ((3 % 9) × 1) % 9 = 3 % 9</p>
+</blockquote>
+<p>所以我们可以得到的结论是<strong>对9取余，就是对每一位求和的结果取余。</strong>太棒了是不是，这正是我们题目计算的过程的逆过程，因为模运算是互逆的，所以上式的逆过程也是成立的。也就是说</p>
+<blockquote>
+<p>(3 + 8) % 9 = (30 + 8) % 9 = 38 % 9</p>
+</blockquote>
+<p>上式就是我们Solution的关键，有了这个，我们和结果只有一步之遥了。</p>
+<blockquote>
+<p>38 % 9= (30 + 8) % 9 = (3 + 8) % 9 = 11 % 9 = (1 + 1) % 9 = 2 % 9 = 2</p>
+</blockquote>
+<p>嘿嘿嘿(●ˇ∀ˇ●)</p>
+<h2 id="代码"><a href="#代码" class="headerlink" title="代码"></a>代码</h2><p>Julia</p>
+<pre><code class="julia">AddDigits(x::Int64) = x == 0 ? 0 : (x % 9 == 0 ? 9 : x % 9)
+</code></pre>
+
+        
+                <blockquote style="margin: 2em 0 0;padding: 0.5em 1em;border-left: 3px solid #F44336;background-color: #F5F5F5;list-style: none;">
+                    <p><strong>
+                         
+                            This blog is under a <a href="https://creativecommons.org/licenses/by-nc-sa/4.0/deed.zh" target="_blank">CC BY-NC-SA 4.0 Unported License</a>
+                        </strong>
+                        <br>
+                        <strong>Link to this article: </strong><a href="https://blog.nokky.net/2019/06/09/add-digits/">https://blog.nokky.net/2019/06/09/add-digits/</a>
+                    </p>
+                </blockquote>
+        
+    
+
+    
+</div>
+
+
+                
+
+                <!-- Post Comments -->
+                
+                    
+                
+            </div>
+
+            <!-- Post Prev & Next Nav -->
+            <nav class="material-nav mdl-color-text--grey-50 mdl-cell mdl-cell--12-col">
+    <!-- Prev Nav -->
+    
+
+    <!-- Section Spacer -->
+    <div class="section-spacer"></div>
+
+    <!-- Next Nav -->
+    
+        <a href="/2019/01/12/synchronizationcontext/" id="post_nav-older" class="next-content">
+            Older
+            &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+            <button class="mdl-button mdl-js-button mdl-js-ripple-effect mdl-button--icon mdl-color--white mdl-color-text--grey-900" role="presentation">
+                <i class="material-icons">arrow_forward</i>
+            </button>
+        </a>
+    
+</nav>
+
+        </div>
+    </div>
+
 
 
                     
@@ -906,6 +1061,10 @@ It will not impact the appearance and can give developers a lot of support :)
 <!-- Import prettify js  -->
 
     
+        
+            <script>lsloader.load("prettify_js","/js/prettify.min.js?WN07fivHQSMKWy7BmHBB6w==", true)</script>
+        
+    
 
 
 
@@ -918,6 +1077,11 @@ It will not impact the appearance and can give developers a lot of support :)
     });
 
     
+        
+            $(function() {
+                $('pre').addClass('prettyprint linenums').attr('style', 'overflow:auto;');
+                prettyPrint();
+                })
         
     
     
