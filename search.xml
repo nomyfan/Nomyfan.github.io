@@ -8,9 +8,6 @@
       <content type="html"><![CDATA[<p>今天刷到一道Leetcode简单题<a href="https://leetcode.com/problems/add-digits/" target="_blank" rel="external">戳这里</a>，虽然我一看到题目没怎么想就猜出结果了，但想着还挺有意思的就想试着去证明一下。</p>
 <h2 id="题目"><a href="#题目" class="headerlink" title="题目"></a>题目</h2><p>我先把题目转换一下成为比较传统的数学题：</p>
 <p>给定一个非负数，<u>对每一位上的数求和</u><sup>①</sup>，不断重复①直到结果小于10。试证明这样得到的最终结果和直接用给定的数对9取余是一样的（如果取余的结果是0则为9）。</p>
-<blockquote>
-<p>注意我把Leetcode上的题目的0的取值去掉了，因为这是特殊情况。</p>
-</blockquote>
 <h2 id="Solution"><a href="#Solution" class="headerlink" title="Solution"></a>Solution</h2><h3 id="取值"><a href="#取值" class="headerlink" title="取值"></a>取值</h3><p>因为结果的取值范围是[0,9]这十个数字，而0这个取值只有在给定的数为0的时候才能取到，而我修改的题目已经去掉0这个定义域了，因此最终的值域为[1,9]这9个数字，因此要使得结果落到这9个连续数字里，那么就要对9取余，特殊的，当模的结果为0的时候结果是9。为什么模的结果为0的时候是9？取余为0的数字要么是0，要么是9的倍数，前者已经被排除了，所以只剩下9的倍数。</p>
 <h3 id="同余数"><a href="#同余数" class="headerlink" title="同余数"></a>同余数</h3><p>这个方法能work的基本原理是同余数。以38这个数字为例。</p>
 <p>首先应用同余数的地方是：</p>
@@ -981,9 +978,9 @@ fi
         
         <tags>
             
-            <tag> ArchLinux </tag>
-            
             <tag> Linux </tag>
+            
+            <tag> ArchLinux </tag>
             
         </tags>
         
@@ -1062,11 +1059,11 @@ fi
         
         <tags>
             
-            <tag> C# </tag>
-            
             <tag> .NET </tag>
             
             <tag> 爬虫 </tag>
+            
+            <tag> C# </tag>
             
         </tags>
         
@@ -1145,9 +1142,9 @@ string speed = (string)token.SelectToken(&quot;wind&quot;).SelectToken(&quot;spe
         
         <tags>
             
-            <tag> C# </tag>
-            
             <tag> .NET </tag>
+            
+            <tag> C# </tag>
             
             <tag> JSON </tag>
             
@@ -1479,9 +1476,9 @@ RewriteRule . /index.php [L]
         
         <tags>
             
-            <tag> Linux </tag>
-            
             <tag> VPS </tag>
+            
+            <tag> Linux </tag>
             
         </tags>
         
@@ -1542,9 +1539,9 @@ WantedBy=multi-user.target
         
         <tags>
             
-            <tag> Linux </tag>
-            
             <tag> VPS </tag>
+            
+            <tag> Linux </tag>
             
         </tags>
         
@@ -1843,12 +1840,6 @@ WantedBy=multi-user.target
   
     
     <entry>
-      <title><![CDATA[Categories]]></title>
-      <url>/categories/index.html</url>
-      <content type="html"></content>
-    </entry>
-    
-    <entry>
       <title><![CDATA[Talking]]></title>
       <url>/Talking/index.html</url>
       <content type="html"></content>
@@ -1862,8 +1853,8 @@ WantedBy=multi-user.target
     </entry>
     
     <entry>
-      <title><![CDATA[Photograph]]></title>
-      <url>/photograph/index.html</url>
+      <title><![CDATA[Categories]]></title>
+      <url>/categories/index.html</url>
       <content type="html"></content>
     </entry>
     
@@ -1881,15 +1872,10 @@ WantedBy=multi-user.target
     </entry>
     
     <entry>
-      <title><![CDATA[Articles]]></title>
-      <url>/articles/index.html</url>
-      <content type="html"></content>
-    </entry>
-    
-    <entry>
-      <title><![CDATA[Friends]]></title>
-      <url>/friends/index.html</url>
-      <content type="html"></content>
+      <title><![CDATA[Contact]]></title>
+      <url>/feeback/index.html</url>
+      <content type="html"><![CDATA[<p>Contact me with<br><strong><a href="mailto:Myers.Chan@outlook.com?subject=FeebackFromBlog" target="_blank" rel="external">E-mail</a></strong>.<br><strong><a href="http://weibo.com/Nomyfan" target="_blank" rel="external">Weibo</a></strong><br><strong><a href="https://twitter.com/Myers__Chan" target="_blank" rel="external">Twitter</a></strong><br><strong><a href="https://facebook.com/myers.n.chan" target="_blank" rel="external">Facebook</a></strong></p>
+]]></content>
     </entry>
     
     <entry>
@@ -1899,10 +1885,21 @@ WantedBy=multi-user.target
     </entry>
     
     <entry>
-      <title><![CDATA[Contact]]></title>
-      <url>/feeback/index.html</url>
-      <content type="html"><![CDATA[<p>Contact me with<br><strong><a href="mailto:Myers.Chan@outlook.com?subject=FeebackFromBlog" target="_blank" rel="external">E-mail</a></strong>.<br><strong><a href="http://weibo.com/Nomyfan" target="_blank" rel="external">Weibo</a></strong><br><strong><a href="https://twitter.com/Myers__Chan" target="_blank" rel="external">Twitter</a></strong><br><strong><a href="https://facebook.com/myers.n.chan" target="_blank" rel="external">Facebook</a></strong></p>
-]]></content>
+      <title><![CDATA[Photograph]]></title>
+      <url>/photograph/index.html</url>
+      <content type="html"></content>
+    </entry>
+    
+    <entry>
+      <title><![CDATA[Articles]]></title>
+      <url>/articles/index.html</url>
+      <content type="html"></content>
+    </entry>
+    
+    <entry>
+      <title><![CDATA[Friends]]></title>
+      <url>/friends/index.html</url>
+      <content type="html"></content>
     </entry>
     
   
