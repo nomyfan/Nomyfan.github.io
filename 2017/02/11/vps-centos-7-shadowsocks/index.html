@@ -1,6 +1,6 @@
 <!DOCTYPE html>
 <html style="display: none;" lang="en">
-    <head>
+    <head><meta name="generator" content="Hexo 3.9.0">
     <meta charset="utf-8">
     <!--
         © Material Theme
@@ -22,7 +22,7 @@
     <meta http-equiv="x-dns-prefetch-control" content="on">
 
 
-    <link rel="dns-prefetch" href="https://cdn1.lncld.net"/>
+    <link rel="dns-prefetch" href="https://cdn1.lncld.net">
 
 
 
@@ -54,14 +54,14 @@
     <link rel="icon shortcut" type="image/ico" href="/img/favicon.png">
     <link rel="icon" href="/img/favicon.png">
 
-    <meta name="format-detection" content="telephone=no"/>
+    <meta name="format-detection" content="telephone=no">
     <meta name="description" itemprop="description" content="陈诺米个人博客">
     <meta name="keywords" content="Technology,Programming,Microsoft,.NET,Mathematic,dotnet,Kotlin,VPS,Linux">
     <meta name="theme-color" content="#0097A7">
 
     <!-- Disable Fucking Bloody Baidu Tranformation -->
-    <meta http-equiv="Cache-Control" content="no-transform" />
-    <meta http-equiv="Cache-Control" content="no-siteapp" />
+    <meta http-equiv="Cache-Control" content="no-transform">
+    <meta http-equiv="Cache-Control" content="no-siteapp">
 
     <!--[if lte IE 9]>
         <link rel="stylesheet" href="/css/ie-blocker.css">
@@ -254,7 +254,7 @@
 
     <!-- Add canonical link for SEO -->
     
-        <link rel="canonical" href="https://blog.nokky.net/2017/02/11/vps-centos-7-shadowsocks/index.html" />
+        <link rel="canonical" href="https://blog.nokky.net/2017/02/11/vps-centos-7-shadowsocks/index.html">
     
 
     <!-- Structured-data for SEO -->
@@ -296,6 +296,14 @@
     
 
     <!-- Analytics -->
+    
+        <script>
+    (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+    (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+    m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+    })(window,document,'script','https://www.google-analytics.com/analytics.js','ga');
+    ga('create', 'UA-112028701-2', 'auto');ga('send', 'pageview');
+</script>
     
     
     
@@ -562,7 +570,7 @@ ExecStart=/usr/bin/ssserver -c /etc/shadowsocks.json
 
 [Install]
 WantedBy=multi-user.target
-</code></pre><p>然后开启服务，并让服务开机启动<br><code># systemctl enable shadowsocks</code><br><code># systemctl start shadowsocks</code><br>这时候可以检查一下服务是否正确开启<br><code># systemctl status shadowsocks</code><br>如果Active那里显示的是绿色的active(running)则说明服务正确开启了。如图：<br><a href="/img/2017/02/sp170211_224944.png"><img src="/img/2017/02/sp170211_224944.png" alt=""></a></p>
+</code></pre><p>然后开启服务，并让服务开机启动<br><code># systemctl enable shadowsocks</code><br><code># systemctl start shadowsocks</code><br>这时候可以检查一下服务是否正确开启<br><code># systemctl status shadowsocks</code><br>如果Active那里显示的是绿色的active(running)则说明服务正确开启了。如图：<br><a href="/img/2017/02/sp170211_224944.png"><img src="/img/2017/02/sp170211_224944.png" alt></a></p>
 <p>最后，千万记得防火墙开启刚才配置里写的端口，我的例子里写的只有一个8900，防火墙没开的请自动忽略。<br><code># firewall-cmd --add-port=8900/tcp</code><br>查看端口是否正确开启<br><code># firewall-cmd --query-port=8900/tcp</code><br>返回success则正确开启了，Enjoy it！</p>
 
         
@@ -985,7 +993,7 @@ It will not impact the appearance and can give developers a lot of support :)
     <!-- Leancloud -->
     <script src="https://cdn1.lncld.net/static/js/av-core-mini-0.6.1.js"></script>
     <script>
-        AV.initialize('xIpxmzf2uDFfLsnbbjFE3mJD-gzGzoHsz', 'so0UrTtNcycuT3TN9XDNytqn');
+        AV.initialize('NiS0U59ef0UdhNNmJrlJg7NG-MdYXbMMI', 'XXLGRp95S16HSNK4C0DBMped');
     </script>
     <script type="text/ls-javascript" id="leancloud-views-script">
     function showTime(Counter) {

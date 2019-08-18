@@ -1,6 +1,6 @@
 <!DOCTYPE html>
 <html style="display: none;" lang="en">
-    <head>
+    <head><meta name="generator" content="Hexo 3.9.0">
     <meta charset="utf-8">
     <!--
         © Material Theme
@@ -22,7 +22,7 @@
     <meta http-equiv="x-dns-prefetch-control" content="on">
 
 
-    <link rel="dns-prefetch" href="https://cdn1.lncld.net"/>
+    <link rel="dns-prefetch" href="https://cdn1.lncld.net">
 
 
 
@@ -54,14 +54,14 @@
     <link rel="icon shortcut" type="image/ico" href="/img/favicon.png">
     <link rel="icon" href="/img/favicon.png">
 
-    <meta name="format-detection" content="telephone=no"/>
+    <meta name="format-detection" content="telephone=no">
     <meta name="description" itemprop="description" content="陈诺米个人博客">
     <meta name="keywords" content="Technology,Programming,Microsoft,.NET,Mathematic,dotnet,Kotlin,Windows 10,Windows">
     <meta name="theme-color" content="#0097A7">
 
     <!-- Disable Fucking Bloody Baidu Tranformation -->
-    <meta http-equiv="Cache-Control" content="no-transform" />
-    <meta http-equiv="Cache-Control" content="no-siteapp" />
+    <meta http-equiv="Cache-Control" content="no-transform">
+    <meta http-equiv="Cache-Control" content="no-siteapp">
 
     <!--[if lte IE 9]>
         <link rel="stylesheet" href="/css/ie-blocker.css">
@@ -254,7 +254,7 @@
 
     <!-- Add canonical link for SEO -->
     
-        <link rel="canonical" href="https://blog.nokky.net/2017/07/17/add-right-click-menu/index.html" />
+        <link rel="canonical" href="https://blog.nokky.net/2017/07/17/add-right-click-menu/index.html">
     
 
     <!-- Structured-data for SEO -->
@@ -296,6 +296,14 @@
     
 
     <!-- Analytics -->
+    
+        <script>
+    (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+    (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+    m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+    })(window,document,'script','https://www.google-analytics.com/analytics.js','ga');
+    ga('create', 'UA-112028701-2', 'auto');ga('send', 'pageview');
+</script>
     
     
     
@@ -524,33 +532,33 @@
                 <div id="post-content" class="mdl-color-text--grey-700 mdl-card__supporting-text fade out">
     
         <p>Windows中，除了系统自带的一些右键菜单项之外，在一些时候我们安装软件后可以发现在右键菜单新增了一些软件的相关右键菜单项，就像这样</p>
-<p><a href="/img/2017/07/snipaste_20170717_223144.png"><img src="/img/2017/07/snipaste_20170717_223144.png" alt=""></a></p>
+<p><a href="/img/2017/07/snipaste_20170717_223144.png"><img src="/img/2017/07/snipaste_20170717_223144.png" alt></a></p>
 <p>Ok，那么我们想自己也弄一个怎么办呢？下面开始正片，<span style="font-weight: bold; color: #d14;">友情提醒：本文会涉及到修改注册表，请备份好原注册表后再修改。</span></p>
 <h2 id="打开注册表"><a href="#打开注册表" class="headerlink" title="打开注册表"></a>打开注册表</h2><p>Win+R运行regedit</p>
-<p><a href="/img/2017/07/snipaste_20170717_224739.png"><img src="/img/2017/07/snipaste_20170717_224739.png" alt=""></a></p>
+<p><a href="/img/2017/07/snipaste_20170717_224739.png"><img src="/img/2017/07/snipaste_20170717_224739.png" alt></a></p>
 <p>找到该路径：<br><code>HKEY_CLASSES_ROOT\Directory\Background\shell</code></p>
 <h2 id="增添新项"><a href="#增添新项" class="headerlink" title="增添新项"></a>增添新项</h2><p>选中<code>shell</code>然后右键<code>New</code>-&gt;<code>Key</code>新建一个项，如图</p>
-<p><a href="/img/2017/07/snipaste_20170717_225314.png"><img src="/img/2017/07/snipaste_20170717_225314.png" alt=""></a></p>
+<p><a href="/img/2017/07/snipaste_20170717_225314.png"><img src="/img/2017/07/snipaste_20170717_225314.png" alt></a></p>
 <p>我命名为Cmder，在新建的<code>Cmder</code>项下在新建一个项，命名为<code>command</code>，然后修改其下默认键的值为要运行程序的路径。比如我的</p>
-<p><a href="/img/2017/07/snipaste_20170717_230121.png"><img src="/img/2017/07/snipaste_20170717_230121.png" alt=""></a></p>
+<p><a href="/img/2017/07/snipaste_20170717_230121.png"><img src="/img/2017/07/snipaste_20170717_230121.png" alt></a></p>
 <p>然后在资源管理器空白处点击右键时就会发现了这个选项，但是有点丑陋，我们来稍微地美化一下，给添加的右键菜单增加图标和描述信息。</p>
 <h2 id="美化"><a href="#美化" class="headerlink" title="美化"></a>美化</h2><p>选中<code>Cmder</code>，接着在右侧中新建几个<code>string</code>类型的值。</p>
-<p><a href="/img/2017/07/snipaste_20170717_230807.png"><img src="/img/2017/07/snipaste_20170717_230807.png" alt=""></a></p>
+<p><a href="/img/2017/07/snipaste_20170717_230807.png"><img src="/img/2017/07/snipaste_20170717_230807.png" alt></a></p>
 <p>新增两个值，分别为</p>
-<p><a href="/img/2017/07/snipaste_20170717_230940.png"><img src="/img/2017/07/snipaste_20170717_230940.png" alt=""></a></p>
+<p><a href="/img/2017/07/snipaste_20170717_230940.png"><img src="/img/2017/07/snipaste_20170717_230940.png" alt></a></p>
 <p><code>Icon</code>用来给菜单添加一个小图标，<code>MUIVerb</code>用来给菜单添加描述信息。完成后再查看一下就会是这个效果</p>
-<p><a href="/img/2017/07/snipaste_20170717_231530.png"><img src="/img/2017/07/snipaste_20170717_231530.png" alt=""></a></p>
+<p><a href="/img/2017/07/snipaste_20170717_231530.png"><img src="/img/2017/07/snipaste_20170717_231530.png" alt></a></p>
 <p>测试一下，完美运行。</p>
 <h2 id="增加子菜单项"><a href="#增加子菜单项" class="headerlink" title="增加子菜单项"></a>增加子菜单项</h2><p>正如第一张图所示，还应该有子菜单项才足够满足一些需求，这都不是事。</p>
 <p>首先，我们回到<code>Cmder</code>项下，再添加一个<code>string</code>类型的值，名字为<code>SubCommands</code>，然后值的内容填写你想要添加的命令的名字（千万避免重复），每个命令之间用半角分号<code>;</code>隔开，就像这样</p>
-<p><a href="/img/2017/07/snipaste_20170717_232103.png"><img src="/img/2017/07/snipaste_20170717_232103.png" alt=""></a></p>
+<p><a href="/img/2017/07/snipaste_20170717_232103.png"><img src="/img/2017/07/snipaste_20170717_232103.png" alt></a></p>
 <p>还没完，这时候你可以再查看右键菜单的时候可以看到刚才添加的菜单项已经有个右尖括号了，但是因为具体的子命令还没实现，所以不会显现出来。这个时候我们定位到<code>Computer\HKEY_LOCAL_MACHINE\SOFTWARE\Microsoft\Windows\CurrentVersion\Explorer\CommandStore\shell</code>下，然后再新建新项，名字为刚才加入的子命令名字，比如我的</p>
-<p><a href="/img/2017/07/snipaste_20170717_232828.png"><img src="/img/2017/07/snipaste_20170717_232828.png" alt=""></a></p>
+<p><a href="/img/2017/07/snipaste_20170717_232828.png"><img src="/img/2017/07/snipaste_20170717_232828.png" alt></a></p>
 <p>接下来的操作就和上边的一毛一样了。</p>
 <p>最后的效果就是这样</p>
-<p><a href="/img/2017/07/snipaste_20170717_222321.png"><img src="/img/2017/07/snipaste_20170717_222321.png" alt=""></a></p>
+<p><a href="/img/2017/07/snipaste_20170717_222321.png"><img src="/img/2017/07/snipaste_20170717_222321.png" alt></a></p>
 <h2 id="Shift-右键"><a href="#Shift-右键" class="headerlink" title="Shift+右键"></a>Shift+右键</h2><p>还有一些菜单项是通过Shift+鼠标右组合键才会显现出来的，要实现这个也很简单，只需要添加一个新值<code>Extended</code>即可。</p>
-<p><a href="/img/2017/07/snipaste_20170817_115734.png"><img src="/img/2017/07/snipaste_20170817_115734.png" alt=""></a></p>
+<p><a href="/img/2017/07/snipaste_20170817_115734.png"><img src="/img/2017/07/snipaste_20170817_115734.png" alt></a></p>
 
         
                 <blockquote style="margin: 2em 0 0;padding: 0.5em 1em;border-left: 3px solid #F44336;background-color: #F5F5F5;list-style: none;">
@@ -972,7 +980,7 @@ It will not impact the appearance and can give developers a lot of support :)
     <!-- Leancloud -->
     <script src="https://cdn1.lncld.net/static/js/av-core-mini-0.6.1.js"></script>
     <script>
-        AV.initialize('xIpxmzf2uDFfLsnbbjFE3mJD-gzGzoHsz', 'so0UrTtNcycuT3TN9XDNytqn');
+        AV.initialize('NiS0U59ef0UdhNNmJrlJg7NG-MdYXbMMI', 'XXLGRp95S16HSNK4C0DBMped');
     </script>
     <script type="text/ls-javascript" id="leancloud-views-script">
     function showTime(Counter) {

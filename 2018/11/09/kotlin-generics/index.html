@@ -1,6 +1,6 @@
 <!DOCTYPE html>
 <html style="display: none;" lang="en">
-    <head>
+    <head><meta name="generator" content="Hexo 3.9.0">
     <meta charset="utf-8">
     <!--
         © Material Theme
@@ -22,7 +22,7 @@
     <meta http-equiv="x-dns-prefetch-control" content="on">
 
 
-    <link rel="dns-prefetch" href="https://cdn1.lncld.net"/>
+    <link rel="dns-prefetch" href="https://cdn1.lncld.net">
 
 
 
@@ -54,14 +54,14 @@
     <link rel="icon shortcut" type="image/ico" href="/img/favicon.png">
     <link rel="icon" href="/img/favicon.png">
 
-    <meta name="format-detection" content="telephone=no"/>
+    <meta name="format-detection" content="telephone=no">
     <meta name="description" itemprop="description" content="陈诺米个人博客">
     <meta name="keywords" content="Technology,Programming,Microsoft,.NET,Mathematic,dotnet,Kotlin,C#,Kotlin,Generics">
     <meta name="theme-color" content="#0097A7">
 
     <!-- Disable Fucking Bloody Baidu Tranformation -->
-    <meta http-equiv="Cache-Control" content="no-transform" />
-    <meta http-equiv="Cache-Control" content="no-siteapp" />
+    <meta http-equiv="Cache-Control" content="no-transform">
+    <meta http-equiv="Cache-Control" content="no-siteapp">
 
     <!--[if lte IE 9]>
         <link rel="stylesheet" href="/css/ie-blocker.css">
@@ -254,7 +254,7 @@
 
     <!-- Add canonical link for SEO -->
     
-        <link rel="canonical" href="https://blog.nokky.net/2018/11/09/kotlin-generics/index.html" />
+        <link rel="canonical" href="https://blog.nokky.net/2018/11/09/kotlin-generics/index.html">
     
 
     <!-- Structured-data for SEO -->
@@ -296,6 +296,14 @@
     
 
     <!-- Analytics -->
+    
+        <script>
+    (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+    (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+    m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+    })(window,document,'script','https://www.google-analytics.com/analytics.js','ga');
+    ga('create', 'UA-112028701-2', 'auto');ga('send', 'pageview');
+</script>
     
     
     
@@ -523,7 +531,7 @@
                 <!-- Post Content -->
                 <div id="post-content" class="mdl-color-text--grey-700 mdl-card__supporting-text fade out">
     
-        <h2 id="理解泛型"><a href="#理解泛型" class="headerlink" title="理解泛型"></a>理解泛型</h2><p>Kotlin如何<a href="https://kotlinlang.org/docs/reference/generics.html" target="_blank" rel="external">声明泛型类和泛型方法</a>这里就省略了，本篇文章着重要讲的是 <em>in</em> 和 <em>out</em>，也就是协/逆变。开始的时候可能会有点混淆，甚至觉得违反了多态的<em>向上转型</em>规则（其实这么说是错的），为什么呢？先看C#的例子</p>
+        <h2 id="理解泛型"><a href="#理解泛型" class="headerlink" title="理解泛型"></a>理解泛型</h2><p>Kotlin如何<a href="https://kotlinlang.org/docs/reference/generics.html" target="_blank" rel="noopener">声明泛型类和泛型方法</a>这里就省略了，本篇文章着重要讲的是 <em>in</em> 和 <em>out</em>，也就是协/逆变。开始的时候可能会有点混淆，甚至觉得违反了多态的<em>向上转型</em>规则（其实这么说是错的），为什么呢？先看C#的例子</p>
 <pre><code class="csharp">// Contravariant interface.
 interface IContravariant&lt;in A&gt; { }
 
@@ -575,9 +583,9 @@ class Program
 </blockquote>
 <h2 id="记忆out和in"><a href="#记忆out和in" class="headerlink" title="记忆out和in"></a>记忆out和in</h2><p><em>out</em>和<em>in</em>两个词好像和协变，逆变之间没什么关系。其实就和上边引用的文档的那句话所说的，<em>out</em>和<em>in</em>其实很好记忆，因为它们描述的是泛型参数在方法的位置。<em>in</em> 的泛型参数只能出现在方法的参数列表中，描述的是如果T的具体类型是约束的子类那么都可以传进来，<em>out</em> 的泛型参数则是只能出现在方法返回值，描述的是如果T的具体类型是约束的子类都可以返回。</p>
 <h2 id="C-和Kotlin的差异"><a href="#C-和Kotlin的差异" class="headerlink" title="C#和Kotlin的差异"></a>C#和Kotlin的差异</h2><p>虽然两者在泛型上很相似，还是有点差别的。</p>
-<p>其一， C#在实现协变/逆变上只支持引用类型作为泛型参数（<a href="https://blogs.msdn.microsoft.com/ericlippert/2009/03/19/representation-and-identity/" target="_blank" rel="external">为什么？</a>）</p>
+<p>其一， C#在实现协变/逆变上只支持引用类型作为泛型参数（<a href="https://blogs.msdn.microsoft.com/ericlippert/2009/03/19/representation-and-identity/" target="_blank" rel="noopener">为什么？</a>）</p>
 <blockquote>
-<p>Covariance and contravariance in generic type parameters are supported for reference types, but they are not supported for value types. <a href="https://docs.microsoft.com/en-us/dotnet/csharp/language-reference/keywords/in-generic-modifier" target="_blank" rel="external">in (Generic Modifier)</a></p>
+<p>Covariance and contravariance in generic type parameters are supported for reference types, but they are not supported for value types. <a href="https://docs.microsoft.com/en-us/dotnet/csharp/language-reference/keywords/in-generic-modifier" target="_blank" rel="noopener">in (Generic Modifier)</a></p>
 </blockquote>
 <p>而Kotlin数值类型也可以，因为Kotlin只有引用类型。</p>
 <pre><code class="kotlin">interface Comparable&lt;in T&gt; {
@@ -592,7 +600,7 @@ fun demo(x: Comparable&lt;Number&gt;) {
 </code></pre>
 <p>其二，Kotlin编译完了之后会丢失泛型参数信息，文档描述</p>
 <blockquote>
-<p>The type safety checks that Kotlin performs for generic declaration usages are only done at compile time. At runtime, the instances of generic types do not hold any information about their actual type arguments. The type information is said to be erased. For example, the instances of Foo<bar> and Foo<baz?> are erased to just Foo&lt;*&gt;.</baz?></bar></p>
+<p>The type safety checks that Kotlin performs for generic declaration usages are only done at compile time. At runtime, the instances of generic types do not hold any information about their actual type arguments. The type information is said to be erased. For example, the instances of Foo<bar> and Foo&lt;Baz?&gt; are erased to just Foo&lt;*&gt;.</bar></p>
 </blockquote>
 <p>所以说如果在main方法里做这样的判断会出现编译错误</p>
 <pre><code class="kotlin">println(son is Son&lt;Beef&gt;)
@@ -602,7 +610,7 @@ fun demo(x: Comparable&lt;Number&gt;) {
 <pre><code class="csharp">Console.WriteLine(son is Son&lt;Beef&gt;); 
 // The given expression is never of the provided (&#39;Son&lt;Beef&gt;&#39;) type [GenericsInCSharpe]
 </code></pre>
-<p>其三，Kotlin中不能对in参数进行赋值，这是因为被in修饰的为val的，不允许再次赋值。感觉Kotlin的in是C#的<a href="https://docs.microsoft.com/en-us/dotnet/csharp/language-reference/keywords/in-generic-modifier" target="_blank" rel="external">in修饰符</a>和<a href="https://dotnetcoretutorials.com/2018/01/08/new-keyword-c-7-2/" target="_blank" rel="external">in关键字</a>的结合。</p>
+<p>其三，Kotlin中不能对in参数进行赋值，这是因为被in修饰的为val的，不允许再次赋值。感觉Kotlin的in是C#的<a href="https://docs.microsoft.com/en-us/dotnet/csharp/language-reference/keywords/in-generic-modifier" target="_blank" rel="noopener">in修饰符</a>和<a href="https://dotnetcoretutorials.com/2018/01/08/new-keyword-c-7-2/" target="_blank" rel="noopener">in关键字</a>的结合。</p>
 
         
                 <blockquote style="margin: 2em 0 0;padding: 0.5em 1em;border-left: 3px solid #F44336;background-color: #F5F5F5;list-style: none;">
@@ -1024,7 +1032,7 @@ It will not impact the appearance and can give developers a lot of support :)
     <!-- Leancloud -->
     <script src="https://cdn1.lncld.net/static/js/av-core-mini-0.6.1.js"></script>
     <script>
-        AV.initialize('xIpxmzf2uDFfLsnbbjFE3mJD-gzGzoHsz', 'so0UrTtNcycuT3TN9XDNytqn');
+        AV.initialize('NiS0U59ef0UdhNNmJrlJg7NG-MdYXbMMI', 'XXLGRp95S16HSNK4C0DBMped');
     </script>
     <script type="text/ls-javascript" id="leancloud-views-script">
     function showTime(Counter) {

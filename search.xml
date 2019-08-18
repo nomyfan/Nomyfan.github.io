@@ -1,231 +1,36 @@
 <?xml version="1.0" encoding="utf-8"?>
 <search> 
   
+  
     
     <entry>
-      <title><![CDATA[Leetcode - Add Digits - 同余数]]></title>
+      <title>Leetcode - Add Digits - 同余数</title>
+      <link href="/2019/06/09/add-digits/"/>
       <url>/2019/06/09/add-digits/</url>
-      <content type="html"><![CDATA[<p>今天刷到一道Leetcode简单题<a href="https://leetcode.com/problems/add-digits/" target="_blank" rel="external">戳这里</a>，虽然我一看到题目没怎么想就猜出结果了，但想着还挺有意思的就想试着去证明一下。</p>
-<h2 id="题目"><a href="#题目" class="headerlink" title="题目"></a>题目</h2><p>我先把题目转换一下成为比较传统的数学题：</p>
-<p>给定一个非负数，<u>对每一位上的数求和</u><sup>①</sup>，不断重复①直到结果小于10。试证明这样得到的最终结果和直接用给定的数对9取余是一样的（如果取余的结果是0则为9）。</p>
-<h2 id="Solution"><a href="#Solution" class="headerlink" title="Solution"></a>Solution</h2><h3 id="取值"><a href="#取值" class="headerlink" title="取值"></a>取值</h3><p>因为结果的取值范围是[0,9]这十个数字，而0这个取值只有在给定的数为0的时候才能取到，而我修改的题目已经去掉0这个定义域了，因此最终的值域为[1,9]这9个数字，因此要使得结果落到这9个连续数字里，那么就要对9取余，特殊的，当模的结果为0的时候结果是9。为什么模的结果为0的时候是9？取余为0的数字要么是0，要么是9的倍数，前者已经被排除了，所以只剩下9的倍数。</p>
-<h3 id="同余数"><a href="#同余数" class="headerlink" title="同余数"></a>同余数</h3><p>这个方法能work的基本原理是同余数。以38这个数字为例。</p>
-<p>首先应用同余数的地方是：</p>
-<blockquote>
-<p>30 % 9 = 3 % 9</p>
-</blockquote>
-<p>也就是说乘以10<sup>x</sup>没有影响。可以简单证明一下</p>
-<blockquote>
-<p>30 % 9 = (3 × 10) % 9 = ((3 % 9) × (10 % 9)) % 9</p>
-</blockquote>
-<p>因为10<sup>x</sup> % 9 = 1 % 9，x ∈ [0, +∞]，因此可以得到</p>
-<blockquote>
-<p>30 % 9 = (3 × 10) % 9 = ((3 % 9) × 1) % 9 = 3 % 9</p>
-</blockquote>
-<p>所以我们可以得到的结论是<strong>对9取余，就是对每一位求和的结果取余。</strong>太棒了是不是，这正是我们题目计算的过程的逆过程，因为模运算是互逆的，所以上式的逆过程也是成立的。也就是说</p>
-<blockquote>
-<p>(3 + 8) % 9 = (30 + 8) % 9 = 38 % 9</p>
-</blockquote>
-<p>上式就是我们Solution的关键，有了这个，我们和结果只有一步之遥了。</p>
-<blockquote>
-<p>38 % 9= (30 + 8) % 9 = (3 + 8) % 9 = 11 % 9 = (1 + 1) % 9 = 2 % 9 = 2</p>
-</blockquote>
-<p>嘿嘿嘿(●ˇ∀ˇ●)</p>
-<h2 id="代码"><a href="#代码" class="headerlink" title="代码"></a>代码</h2><p>Julia</p>
-<pre><code class="julia">AddDigits(x::Int64) = x == 0 ? 0 : (x % 9 == 0 ? 9 : x % 9)
-</code></pre>
-]]></content>
       
-        
+        <content type="html"><![CDATA[<p>今天刷到一道Leetcode简单题<a href="https://leetcode.com/problems/add-digits/" target="_blank" rel="noopener">戳这里</a>，虽然我一看到题目没怎么想就猜出结果了，但想着还挺有意思的就想试着去证明一下。</p><h2 id="题目"><a href="#题目" class="headerlink" title="题目"></a>题目</h2><p>我先把题目转换一下成为比较传统的数学题：</p><p>给定一个非负数，<u>对每一位上的数求和</u><sup>①</sup>，不断重复①直到结果小于10。试证明这样得到的最终结果和直接用给定的数对9取余是一样的（如果取余的结果是0则为9）。</p><h2 id="Solution"><a href="#Solution" class="headerlink" title="Solution"></a>Solution</h2><h3 id="取值"><a href="#取值" class="headerlink" title="取值"></a>取值</h3><p>因为结果的取值范围是[0,9]这十个数字，而0这个取值只有在给定的数为0的时候才能取到，而我修改的题目已经去掉0这个定义域了，因此最终的值域为[1,9]这9个数字，因此要使得结果落到这9个连续数字里，那么就要对9取余，特殊的，当模的结果为0的时候结果是9。为什么模的结果为0的时候是9？取余为0的数字要么是0，要么是9的倍数，前者已经被排除了，所以只剩下9的倍数。</p><h3 id="同余数"><a href="#同余数" class="headerlink" title="同余数"></a>同余数</h3><p>这个方法能work的基本原理是同余数。以38这个数字为例。</p><p>首先应用同余数的地方是：</p><blockquote><p>30 % 9 = 3 % 9</p></blockquote><p>也就是说乘以10<sup>x</sup>没有影响。可以简单证明一下</p><blockquote><p>30 % 9 = (3 × 10) % 9 = ((3 % 9) × (10 % 9)) % 9</p></blockquote><p>因为10<sup>x</sup> % 9 = 1 % 9，x ∈ [0, +∞]，因此可以得到</p><blockquote><p>30 % 9 = (3 × 10) % 9 = ((3 % 9) × 1) % 9 = 3 % 9</p></blockquote><p>所以我们可以得到的结论是<strong>对9取余，就是对每一位求和的结果取余。</strong>太棒了是不是，这正是我们题目计算的过程的逆过程，因为模运算是互逆的，所以上式的逆过程也是成立的。也就是说</p><blockquote><p>(3 + 8) % 9 = (30 + 8) % 9 = 38 % 9</p></blockquote><p>上式就是我们Solution的关键，有了这个，我们和结果只有一步之遥了。</p><blockquote><p>38 % 9= (30 + 8) % 9 = (3 + 8) % 9 = 11 % 9 = (1 + 1) % 9 = 2 % 9 = 2</p></blockquote><p>嘿嘿嘿(●ˇ∀ˇ●)</p><h2 id="代码"><a href="#代码" class="headerlink" title="代码"></a>代码</h2><p>Julia</p><pre><code class="julia">AddDigits(x::Int64) = x == 0 ? 0 : (x % 9 == 0 ? 9 : x % 9)</code></pre>]]></content>
+      
+      
+      
     </entry>
     
+    
+    
     <entry>
-      <title><![CDATA[SynchronizationContext - 同步上下文]]></title>
+      <title>SynchronizationContext - 同步上下文</title>
+      <link href="/2019/01/12/synchronizationcontext/"/>
       <url>/2019/01/12/synchronizationcontext/</url>
-      <content type="html"><![CDATA[<p>SynchronizationContext是一个极其重要的东西，尤其是涉及到多线程和UI有牵扯的时候。从它可以展开两个话题：异步和线程通信，我们来简单看看这两个玩意。</p>
-<h1 id="异步"><a href="#异步" class="headerlink" title="异步"></a>异步</h1><p>我们先来看看异步。在C#中，我们可以很轻松地写用书写同步代码的习惯书写异步代码，功劳归于await关键字。我们先来看看await为我们做了什么工作，以及为什么异步和SynchronizationContext有关系。<br>一个Button的Click事件处理函数里边</p>
-<pre><code class="csharp">private async void Button_Click(object sender, RoutedEventArgs e)
-{
-    Console.WriteLine(&quot;Event handler starts...&quot;);
-    await FooAsync();
-    Console.WriteLine(&quot;Event handler ends...&quot;);
-}
-</code></pre>
-<p>它的等效代码为</p>
-<pre><code class="csharp">private void Button_Click2(object sender, RoutedEventArgs e)
-{
-    Console.WriteLine(&quot;Event handler starts...&quot;);
-    var t = FooAsync();
-    var context = SynchronizationContext.Current;
-    t.ContinueWith((_) =&gt;
-    {
-        if (context == null)
-        {
-            RestOfMethod();
-        }
-        else
-        {
-            context.Post((o) =&gt; RestOfMethod(), null); // Important!!!
-        }
-    }, TaskScheduler.Current);
-}
-
-private void RestOfMethod()
-{
-    Console.WriteLine(&quot;Event handler ends...&quot;);
-}
-</code></pre>
-<p>可以看到，实际上，await是把之后的代码提取成一个方法（这里我们演示把这个方法命名为RestOfMethod），然后生成一个委托放入SynchronizationContext的Post方法里边去去执行。在两三年前JS的异步代码还是普遍如此来实现的，现在也都采用了await的形式。这里的关键是是Post方法的执行，在WPF等有UI线程的程序中，会有一个很有意思的现象，就是如果在代码用了Task的Wait方法，就一定会产生死锁，本质上就是因为Post方法得不到执行。那么问题来了，为什么不能执行呢？首先，在WPF这里UI程序中，SynchronizationContext都是同一个且在UI线程上，所有UI的更新都要通过UI线程来完成，不能跨线程更新UI。其次，Wait和await是两种不同的实现，Wait会导致当前线程阻塞等待任务的完成，当任务完成之后就会调用ContinueWith里边的委托，也就是要执行Post方法，可是要知道SynchronizationContext.Current获得的同步上下文是UI线程上的，此时UI线程在阻塞，所以它会等待UI线程变为就绪态，两者相互等待，所以就进入了死锁的状态。所以一般情况下，是不建议用Wait方法，正确的姿势应该是<em>async/await all the way up</em>，但是这就会导致一个问题，异步代码会向上如同病毒般地进行传播，称为<em>zombie virus</em>。一般情况下，这种传播会到达一个事件处理函数，也就像上边的Button的Click事件的处理函数。那么有没有什么手段来阻止这种病毒式的传播，在普通的同步方法内调用异步方法且不会阻塞UI线程呢？还是有的，只要我们提供一个非UI线程的SynchronizationContext来执行Post即可。默认的SynchronizationContext的Post方法会在线程池中申请线程执行，因此多个ContinueWith的委托会在不同的线程中被执行。这里我们希望所有的委托都能在一个线程中执行，避免线程切换带来的性能损耗，那么我们要手动编写一个自己的SynchronizationContext类，来管理所有的委托的执行。</p>
-<h2 id="手撸SynchronizationContext"><a href="#手撸SynchronizationContext" class="headerlink" title="手撸SynchronizationContext"></a>手撸SynchronizationContext</h2><p>首先，我们先来明确一下任务。SynchronizationContext主要就是实现Post和Send方法，前者是异步的，后者则是同步的，我们这里就实现Post方法就好了，Send不作为可被调用的。其次，两个方法的参数都是一个SendOrPostCallback加一个object类型，我们要把这两个参数保存起来，因此要用到集合类。再来，考虑到线程安全性，因此要用到线程安全的集合类，当然，自己手动加锁也是可以的，这里简化就直接用自带的就好了。</p>
-<pre><code class="csharp">private class SingleThreadSynchronizationContext : SynchronizationContext, IDisposable
-{
-    private bool done;
-    public Exception InnerException { get; set; }
-    private readonly AutoResetEvent mux = new AutoResetEvent(false);
-    private readonly ConcurrentQueue&lt;Tuple&lt;SendOrPostCallback, object&gt;&gt; tasks =
-        new ConcurrentQueue&lt;Tuple&lt;SendOrPostCallback, object&gt;&gt;();
-
-    public override void Send(SendOrPostCallback d, object state)
-    {
-        throw new NotSupportedException(&quot;Use Post instead.&quot;);
-    }
-
-    public override void Post(SendOrPostCallback d, object state)
-    {
-        tasks.Enqueue(Tuple.Create(d, state));
-        mux.Set();
-    }
-
-    public void Complete()
-    {
-        Post(_ =&gt; done = true, null);
-    }
-
-    public void Start()
-    {
-        while (!done)
-        {
-            if (tasks.TryDequeue(out var task))
-            {
-                task.Item1(task.Item2);
-                if (InnerException != null)
-                {
-                    throw new AggregateException(InnerException);
-                }
-            }
-            else
-            {
-                mux.WaitOne();
-            }
-        }
-    }
-
-    public override SynchronizationContext CreateCopy()
-    {
-        return this;
-    }
-
-    public void Dispose()
-    {
-        if (mux != null)
-        {
-            mux.Dispose();
-        }
-    }
-}
-</code></pre>
-<h2 id="化异步为同步"><a href="#化异步为同步" class="headerlink" title="化异步为同步"></a>化异步为同步</h2><p>准备把异步代码在单线程上同步执行的方法，两个差别只有返回值类型。关键部分是保存原来的同步上下文，设置新的手动实现的为当前的同步上下文，这样await就会调用我们实现的同步上下文的Post方法了，最后在结束返回的时候设回原来的。</p>
-<pre><code class="csharp">public static void RunSync(Func&lt;Task&gt; task, object p)
-{
-    var oldContext = SynchronizationContext.Current;
-    var synch = new SingleThreadSynchronizationContext();
-    SynchronizationContext.SetSynchronizationContext(synch); // 关键
-    synch.Post(async _ =&gt;
-    {
-        try
-        {
-            await task();
-        }
-        catch (Exception e)
-        {
-            synch.InnerException = e;
-            throw;
-        }
-        finally
-        {
-            synch.Complete();
-        }
-    }, null);
-    synch.Start();
-
-    SynchronizationContext.SetSynchronizationContext(oldContext); // 设回上下文
-}
-
-public static T RunSync&lt;T&gt;(Func&lt;Task&lt;T&gt;&gt; task)
-{
-    var oldContext = SynchronizationContext.Current;
-    var synch = new SingleThreadSynchronizationContext();
-    SynchronizationContext.SetSynchronizationContext(synch);
-    T ret = default(T);
-    synch.Post(async _ =&gt;
-    {
-        try
-        {
-            ret = await task();
-        }
-        catch (Exception e)
-        {
-            synch.InnerException = e;
-            throw;
-        }
-        finally
-        {
-            synch.Complete();
-        }
-    }, null);
-    synch.Start();
-    SynchronizationContext.SetSynchronizationContext(oldContext);
-    return ret;
-}
-</code></pre>
-<p>调用的时候，我们可以这样子来用</p>
-<pre><code class="csharp">public Stream ReadStream =&gt; AsyncHelper.RunSync(async () =&gt;
-    await file.OpenStreamForReadAsync());
-</code></pre>
-<h1 id="线程通信"><a href="#线程通信" class="headerlink" title="线程通信"></a>线程通信</h1><p>讲完异步部分，我们再来谈谈线程通信问题。这里举其他线程要更新UI元素为例。上边我们明确过了，其他线程是不能直接更新UI元素的，需要通过UI线程来完成。可是，现实确实需要在其他线程进行一些计算，然后把结果在UI元素上呈现，那么还有什么办法呢？在WPF中，有两种方法，第一是用Control类的Dispatcher的Invoke方法；另外一种就是用到同步上下文了。后者会比前者好点，因为在用前者的时候我们必须要有一个控件的引用，这意味和UI牵扯性太高。后者大可以把更新UI的方法作为委托传进去，那么就不用care到底如何更新UI，和UI进行脱离了。</p>
-<p>举个栗子</p>
-<pre><code class="csharp">private void TrackPlayingProgress(SynchronizationContext context, CancellationToken token)
-{
-    while (MainPage.MediaPlayer.PlaybackSession.PlaybackState != MediaPlaybackState.Playing)
-    {
-        Thread.Sleep(100);
-    }
-    while (!token.IsCancellationRequested &amp;&amp; MainPage.MediaPlayer.PlaybackSession.PlaybackState == MediaPlaybackState.Playing)
-    {
-        var p = MainPage.MediaPlayer.PlaybackSession.Position;
-        var whole = MainPage.MediaPlayer.PlaybackSession.NaturalDuration;
-        if (p == whole)
-        {
-            break;
-        }
-        context.Post((o) =&gt; UpdateProgressbarValue(p, whole), null); // UpdateProgressbarValue为更新UI的方法
-        Thread.Sleep(1000);
-    }
-}
-</code></pre>
-<p>这里的context给的是UI线程的，而且UpdateProgressbarValue也在这个上下文内，因此这个更新完全是没问题的。实际上运行的时候，我们会把这个方法放在其他线程上运行，因此不用担心Thread.Sleep阻塞UI。</p>
-<p>先酱紫，我先去拍照吃饭了，以上。</p>
-<h1 id="参考"><a href="#参考" class="headerlink" title="参考"></a>参考</h1><p><a href="https://msdn.microsoft.com/en-us/magazine/jj991977.aspx" target="_blank" rel="external">1.Async/Await - Best Practices in Asynchronous Programming</a></p>
-<p><a href="https://blogs.msdn.microsoft.com/pfxteam/2012/01/20/await-synchronizationcontext-and-console-apps/" target="_blank" rel="external">2.Await, SynchronizationContext, and Console Apps</a></p>
-]]></content>
       
-        <categories>
-            
-            <category> Programming </category>
-            
-        </categories>
-        
-        
+        <content type="html"><![CDATA[<p>SynchronizationContext是一个极其重要的东西，尤其是涉及到多线程和UI有牵扯的时候。从它可以展开两个话题：异步和线程通信，我们来简单看看这两个玩意。</p><h1 id="异步"><a href="#异步" class="headerlink" title="异步"></a>异步</h1><p>我们先来看看异步。在C#中，我们可以很轻松地写用书写同步代码的习惯书写异步代码，功劳归于await关键字。我们先来看看await为我们做了什么工作，以及为什么异步和SynchronizationContext有关系。<br>一个Button的Click事件处理函数里边</p><pre><code class="csharp">private async void Button_Click(object sender, RoutedEventArgs e){    Console.WriteLine(&quot;Event handler starts...&quot;);    await FooAsync();    Console.WriteLine(&quot;Event handler ends...&quot;);}</code></pre><p>它的等效代码为</p><pre><code class="csharp">private void Button_Click2(object sender, RoutedEventArgs e){    Console.WriteLine(&quot;Event handler starts...&quot;);    var t = FooAsync();    var context = SynchronizationContext.Current;    t.ContinueWith((_) =&gt;    {        if (context == null)        {            RestOfMethod();        }        else        {            context.Post((o) =&gt; RestOfMethod(), null); // Important!!!        }    }, TaskScheduler.Current);}private void RestOfMethod(){    Console.WriteLine(&quot;Event handler ends...&quot;);}</code></pre><p>可以看到，实际上，await是把之后的代码提取成一个方法（这里我们演示把这个方法命名为RestOfMethod），然后生成一个委托放入SynchronizationContext的Post方法里边去去执行。在两三年前JS的异步代码还是普遍如此来实现的，现在也都采用了await的形式。这里的关键是是Post方法的执行，在WPF等有UI线程的程序中，会有一个很有意思的现象，就是如果在代码用了Task的Wait方法，就一定会产生死锁，本质上就是因为Post方法得不到执行。那么问题来了，为什么不能执行呢？首先，在WPF这里UI程序中，SynchronizationContext都是同一个且在UI线程上，所有UI的更新都要通过UI线程来完成，不能跨线程更新UI。其次，Wait和await是两种不同的实现，Wait会导致当前线程阻塞等待任务的完成，当任务完成之后就会调用ContinueWith里边的委托，也就是要执行Post方法，可是要知道SynchronizationContext.Current获得的同步上下文是UI线程上的，此时UI线程在阻塞，所以它会等待UI线程变为就绪态，两者相互等待，所以就进入了死锁的状态。所以一般情况下，是不建议用Wait方法，正确的姿势应该是<em>async/await all the way up</em>，但是这就会导致一个问题，异步代码会向上如同病毒般地进行传播，称为<em>zombie virus</em>。一般情况下，这种传播会到达一个事件处理函数，也就像上边的Button的Click事件的处理函数。那么有没有什么手段来阻止这种病毒式的传播，在普通的同步方法内调用异步方法且不会阻塞UI线程呢？还是有的，只要我们提供一个非UI线程的SynchronizationContext来执行Post即可。默认的SynchronizationContext的Post方法会在线程池中申请线程执行，因此多个ContinueWith的委托会在不同的线程中被执行。这里我们希望所有的委托都能在一个线程中执行，避免线程切换带来的性能损耗，那么我们要手动编写一个自己的SynchronizationContext类，来管理所有的委托的执行。</p><h2 id="手撸SynchronizationContext"><a href="#手撸SynchronizationContext" class="headerlink" title="手撸SynchronizationContext"></a>手撸SynchronizationContext</h2><p>首先，我们先来明确一下任务。SynchronizationContext主要就是实现Post和Send方法，前者是异步的，后者则是同步的，我们这里就实现Post方法就好了，Send不作为可被调用的。其次，两个方法的参数都是一个SendOrPostCallback加一个object类型，我们要把这两个参数保存起来，因此要用到集合类。再来，考虑到线程安全性，因此要用到线程安全的集合类，当然，自己手动加锁也是可以的，这里简化就直接用自带的就好了。</p><pre><code class="csharp">private class SingleThreadSynchronizationContext : SynchronizationContext, IDisposable{    private bool done;    public Exception InnerException { get; set; }    private readonly AutoResetEvent mux = new AutoResetEvent(false);    private readonly ConcurrentQueue&lt;Tuple&lt;SendOrPostCallback, object&gt;&gt; tasks =        new ConcurrentQueue&lt;Tuple&lt;SendOrPostCallback, object&gt;&gt;();    public override void Send(SendOrPostCallback d, object state)    {        throw new NotSupportedException(&quot;Use Post instead.&quot;);    }    public override void Post(SendOrPostCallback d, object state)    {        tasks.Enqueue(Tuple.Create(d, state));        mux.Set();    }    public void Complete()    {        Post(_ =&gt; done = true, null);    }    public void Start()    {        while (!done)        {            if (tasks.TryDequeue(out var task))            {                task.Item1(task.Item2);                if (InnerException != null)                {                    throw new AggregateException(InnerException);                }            }            else            {                mux.WaitOne();            }        }    }    public override SynchronizationContext CreateCopy()    {        return this;    }    public void Dispose()    {        if (mux != null)        {            mux.Dispose();        }    }}</code></pre><h2 id="化异步为同步"><a href="#化异步为同步" class="headerlink" title="化异步为同步"></a>化异步为同步</h2><p>准备把异步代码在单线程上同步执行的方法，两个差别只有返回值类型。关键部分是保存原来的同步上下文，设置新的手动实现的为当前的同步上下文，这样await就会调用我们实现的同步上下文的Post方法了，最后在结束返回的时候设回原来的。</p><pre><code class="csharp">public static void RunSync(Func&lt;Task&gt; task, object p){    var oldContext = SynchronizationContext.Current;    var synch = new SingleThreadSynchronizationContext();    SynchronizationContext.SetSynchronizationContext(synch); // 关键    synch.Post(async _ =&gt;    {        try        {            await task();        }        catch (Exception e)        {            synch.InnerException = e;            throw;        }        finally        {            synch.Complete();        }    }, null);    synch.Start();    SynchronizationContext.SetSynchronizationContext(oldContext); // 设回上下文}public static T RunSync&lt;T&gt;(Func&lt;Task&lt;T&gt;&gt; task){    var oldContext = SynchronizationContext.Current;    var synch = new SingleThreadSynchronizationContext();    SynchronizationContext.SetSynchronizationContext(synch);    T ret = default(T);    synch.Post(async _ =&gt;    {        try        {            ret = await task();        }        catch (Exception e)        {            synch.InnerException = e;            throw;        }        finally        {            synch.Complete();        }    }, null);    synch.Start();    SynchronizationContext.SetSynchronizationContext(oldContext);    return ret;}</code></pre><p>调用的时候，我们可以这样子来用</p><pre><code class="csharp">public Stream ReadStream =&gt; AsyncHelper.RunSync(async () =&gt;    await file.OpenStreamForReadAsync());</code></pre><h1 id="线程通信"><a href="#线程通信" class="headerlink" title="线程通信"></a>线程通信</h1><p>讲完异步部分，我们再来谈谈线程通信问题。这里举其他线程要更新UI元素为例。上边我们明确过了，其他线程是不能直接更新UI元素的，需要通过UI线程来完成。可是，现实确实需要在其他线程进行一些计算，然后把结果在UI元素上呈现，那么还有什么办法呢？在WPF中，有两种方法，第一是用Control类的Dispatcher的Invoke方法；另外一种就是用到同步上下文了。后者会比前者好点，因为在用前者的时候我们必须要有一个控件的引用，这意味和UI牵扯性太高。后者大可以把更新UI的方法作为委托传进去，那么就不用care到底如何更新UI，和UI进行脱离了。</p><p>举个栗子</p><pre><code class="csharp">private void TrackPlayingProgress(SynchronizationContext context, CancellationToken token){    while (MainPage.MediaPlayer.PlaybackSession.PlaybackState != MediaPlaybackState.Playing)    {        Thread.Sleep(100);    }    while (!token.IsCancellationRequested &amp;&amp; MainPage.MediaPlayer.PlaybackSession.PlaybackState == MediaPlaybackState.Playing)    {        var p = MainPage.MediaPlayer.PlaybackSession.Position;        var whole = MainPage.MediaPlayer.PlaybackSession.NaturalDuration;        if (p == whole)        {            break;        }        context.Post((o) =&gt; UpdateProgressbarValue(p, whole), null); // UpdateProgressbarValue为更新UI的方法        Thread.Sleep(1000);    }}</code></pre><p>这里的context给的是UI线程的，而且UpdateProgressbarValue也在这个上下文内，因此这个更新完全是没问题的。实际上运行的时候，我们会把这个方法放在其他线程上运行，因此不用担心Thread.Sleep阻塞UI。</p><p>先酱紫，我先去拍照吃饭了，以上。</p><h1 id="参考"><a href="#参考" class="headerlink" title="参考"></a>参考</h1><p><a href="https://msdn.microsoft.com/en-us/magazine/jj991977.aspx" target="_blank" rel="noopener">1.Async/Await - Best Practices in Asynchronous Programming</a></p><p><a href="https://blogs.msdn.microsoft.com/pfxteam/2012/01/20/await-synchronizationcontext-and-console-apps/" target="_blank" rel="noopener">2.Await, SynchronizationContext, and Console Apps</a></p>]]></content>
+      
+      
+      <categories>
+          
+          <category> Programming </category>
+          
+      </categories>
+      
+      
         <tags>
             
             <tag> C# </tag>
@@ -235,101 +40,26 @@ public static T RunSync&lt;T&gt;(Func&lt;Task&lt;T&gt;&gt; task)
             <tag> MultiThread </tag>
             
         </tags>
-        
+      
     </entry>
     
+    
+    
     <entry>
-      <title><![CDATA[泛型协变和逆变]]></title>
+      <title>泛型协变和逆变</title>
+      <link href="/2018/11/09/kotlin-generics/"/>
       <url>/2018/11/09/kotlin-generics/</url>
-      <content type="html"><![CDATA[<h2 id="理解泛型"><a href="#理解泛型" class="headerlink" title="理解泛型"></a>理解泛型</h2><p>Kotlin如何<a href="https://kotlinlang.org/docs/reference/generics.html" target="_blank" rel="external">声明泛型类和泛型方法</a>这里就省略了，本篇文章着重要讲的是 <em>in</em> 和 <em>out</em>，也就是协/逆变。开始的时候可能会有点混淆，甚至觉得违反了多态的<em>向上转型</em>规则（其实这么说是错的），为什么呢？先看C#的例子</p>
-<pre><code class="csharp">// Contravariant interface.
-interface IContravariant&lt;in A&gt; { }
-
-// Extending contravariant interface.
-interface IExtContravariant&lt;in A&gt; : IContravariant&lt;A&gt; { }
-
-// Implementing contravariant interface.
-class Sample&lt;A&gt; : IContravariant&lt;A&gt; { }
-
-class Program
-{
-    static void Test()
-    {
-        IContravariant&lt;Object&gt; iobj = new Sample&lt;Object&gt;();
-        IContravariant&lt;String&gt; istr = new Sample&lt;String&gt;();
-
-        // You can assign iobj to istr because
-        // the IContravariant interface is contravariant.
-        istr = iobj;
-    }
-}
-</code></pre>
-<p>我们知道String类是派生自Object类的，那么我们熟知的 <em>向上转型</em> 的规则是用父类的引用去引用子类对象，那么<code>istr = iobj;</code>就有点逆 <em>向上转型</em> 规则了，初看之下好像是这么一种感觉。但是要知道，在泛型世界中，这是不对的。这是因为，<em>向上转型</em> 成立的前提条件都没有，<code>IContravariant&lt;Object&gt;</code>和<code>IContravariant&lt;String&gt;</code>是两个类型，它们之间不存在继承关系，即使泛型参数的类型构成了继承关系。上边的例子可以实现复制的原因是在泛型声明的时候用了 <em>in</em> 修饰符修饰，那么可以构成逆变，而用 <em>out</em> 就能构成协变。下边就是协变的例子：</p>
-<pre><code class="csharp">// Covariant interface.
-interface ICovariant&lt;out R&gt; { }
-
-// Extending covariant interface.
-interface IExtCovariant&lt;out R&gt; : ICovariant&lt;R&gt; { }
-
-// Implementing covariant interface.
-class Sample&lt;R&gt; : ICovariant&lt;R&gt; { }
-
-class Program
-{
-    static void Test()
-    {
-        ICovariant&lt;Object&gt; iobj = new Sample&lt;Object&gt;();
-        ICovariant&lt;String&gt; istr = new Sample&lt;String&gt;();
-
-        // You can assign istr to iobj because
-        // the ICovariant interface is covariant.
-        iobj = istr;
-    }
-}
-</code></pre>
-<p>可以看到通过协变/逆变能够实现泛型参数有继承关系的泛型类型之间相互引用的效果。Java中也有这样的实现，但是不是通过这两个修饰符来实现的，而是通过<code>? extends Object</code>和<code>? super String</code>通配符这样的形式。而在Kotlin中则采用了和C#相同的规则来实现，在文档中可以找到这样一句话</p>
-<blockquote>
-<p>We believe that the words in and out are self-explaining (as they were successfully used in C# for quite some time already), thus the mnemonic mentioned above is not really needed, and one can rephrase it for a higher purpose</p>
-</blockquote>
-<h2 id="记忆out和in"><a href="#记忆out和in" class="headerlink" title="记忆out和in"></a>记忆out和in</h2><p><em>out</em>和<em>in</em>两个词好像和协变，逆变之间没什么关系。其实就和上边引用的文档的那句话所说的，<em>out</em>和<em>in</em>其实很好记忆，因为它们描述的是泛型参数在方法的位置。<em>in</em> 的泛型参数只能出现在方法的参数列表中，描述的是如果T的具体类型是约束的子类那么都可以传进来，<em>out</em> 的泛型参数则是只能出现在方法返回值，描述的是如果T的具体类型是约束的子类都可以返回。</p>
-<h2 id="C-和Kotlin的差异"><a href="#C-和Kotlin的差异" class="headerlink" title="C#和Kotlin的差异"></a>C#和Kotlin的差异</h2><p>虽然两者在泛型上很相似，还是有点差别的。</p>
-<p>其一， C#在实现协变/逆变上只支持引用类型作为泛型参数（<a href="https://blogs.msdn.microsoft.com/ericlippert/2009/03/19/representation-and-identity/" target="_blank" rel="external">为什么？</a>）</p>
-<blockquote>
-<p>Covariance and contravariance in generic type parameters are supported for reference types, but they are not supported for value types. <a href="https://docs.microsoft.com/en-us/dotnet/csharp/language-reference/keywords/in-generic-modifier" target="_blank" rel="external">in (Generic Modifier)</a></p>
-</blockquote>
-<p>而Kotlin数值类型也可以，因为Kotlin只有引用类型。</p>
-<pre><code class="kotlin">interface Comparable&lt;in T&gt; {
-    operator fun compareTo(other: T): Int
-}
-
-fun demo(x: Comparable&lt;Number&gt;) {
-    x.compareTo(1.0) // 1.0 has type Double, which is a subtype of Number
-    // Thus, we can assign x to a variable of type Comparable&lt;Double&gt;
-    val y: Comparable&lt;Double&gt; = x // OK!
-}
-</code></pre>
-<p>其二，Kotlin编译完了之后会丢失泛型参数信息，文档描述</p>
-<blockquote>
-<p>The type safety checks that Kotlin performs for generic declaration usages are only done at compile time. At runtime, the instances of generic types do not hold any information about their actual type arguments. The type information is said to be erased. For example, the instances of Foo<bar> and Foo<baz?> are erased to just Foo&lt;*&gt;.</baz?></bar></p>
-</blockquote>
-<p>所以说如果在main方法里做这样的判断会出现编译错误</p>
-<pre><code class="kotlin">println(son is Son&lt;Beef&gt;)
-// Error:(5, 20) Kotlin: Cannot check for instance of erased type: Son&lt;Beef&gt;
-</code></pre>
-<p>看看C#这边只是给出一个警告说son永远不会为Son&lt;Beef&gt;类型，叫我们不要做无所谓的判定，但是可以正常编译运行。</p>
-<pre><code class="csharp">Console.WriteLine(son is Son&lt;Beef&gt;); 
-// The given expression is never of the provided (&#39;Son&lt;Beef&gt;&#39;) type [GenericsInCSharpe]
-</code></pre>
-<p>其三，Kotlin中不能对in参数进行赋值，这是因为被in修饰的为val的，不允许再次赋值。感觉Kotlin的in是C#的<a href="https://docs.microsoft.com/en-us/dotnet/csharp/language-reference/keywords/in-generic-modifier" target="_blank" rel="external">in修饰符</a>和<a href="https://dotnetcoretutorials.com/2018/01/08/new-keyword-c-7-2/" target="_blank" rel="external">in关键字</a>的结合。</p>
-]]></content>
       
-        <categories>
-            
-            <category> Programming </category>
-            
-        </categories>
-        
-        
+        <content type="html"><![CDATA[<h2 id="理解泛型"><a href="#理解泛型" class="headerlink" title="理解泛型"></a>理解泛型</h2><p>Kotlin如何<a href="https://kotlinlang.org/docs/reference/generics.html" target="_blank" rel="noopener">声明泛型类和泛型方法</a>这里就省略了，本篇文章着重要讲的是 <em>in</em> 和 <em>out</em>，也就是协/逆变。开始的时候可能会有点混淆，甚至觉得违反了多态的<em>向上转型</em>规则（其实这么说是错的），为什么呢？先看C#的例子</p><pre><code class="csharp">// Contravariant interface.interface IContravariant&lt;in A&gt; { }// Extending contravariant interface.interface IExtContravariant&lt;in A&gt; : IContravariant&lt;A&gt; { }// Implementing contravariant interface.class Sample&lt;A&gt; : IContravariant&lt;A&gt; { }class Program{    static void Test()    {        IContravariant&lt;Object&gt; iobj = new Sample&lt;Object&gt;();        IContravariant&lt;String&gt; istr = new Sample&lt;String&gt;();        // You can assign iobj to istr because        // the IContravariant interface is contravariant.        istr = iobj;    }}</code></pre><p>我们知道String类是派生自Object类的，那么我们熟知的 <em>向上转型</em> 的规则是用父类的引用去引用子类对象，那么<code>istr = iobj;</code>就有点逆 <em>向上转型</em> 规则了，初看之下好像是这么一种感觉。但是要知道，在泛型世界中，这是不对的。这是因为，<em>向上转型</em> 成立的前提条件都没有，<code>IContravariant&lt;Object&gt;</code>和<code>IContravariant&lt;String&gt;</code>是两个类型，它们之间不存在继承关系，即使泛型参数的类型构成了继承关系。上边的例子可以实现复制的原因是在泛型声明的时候用了 <em>in</em> 修饰符修饰，那么可以构成逆变，而用 <em>out</em> 就能构成协变。下边就是协变的例子：</p><pre><code class="csharp">// Covariant interface.interface ICovariant&lt;out R&gt; { }// Extending covariant interface.interface IExtCovariant&lt;out R&gt; : ICovariant&lt;R&gt; { }// Implementing covariant interface.class Sample&lt;R&gt; : ICovariant&lt;R&gt; { }class Program{    static void Test()    {        ICovariant&lt;Object&gt; iobj = new Sample&lt;Object&gt;();        ICovariant&lt;String&gt; istr = new Sample&lt;String&gt;();        // You can assign istr to iobj because        // the ICovariant interface is covariant.        iobj = istr;    }}</code></pre><p>可以看到通过协变/逆变能够实现泛型参数有继承关系的泛型类型之间相互引用的效果。Java中也有这样的实现，但是不是通过这两个修饰符来实现的，而是通过<code>? extends Object</code>和<code>? super String</code>通配符这样的形式。而在Kotlin中则采用了和C#相同的规则来实现，在文档中可以找到这样一句话</p><blockquote><p>We believe that the words in and out are self-explaining (as they were successfully used in C# for quite some time already), thus the mnemonic mentioned above is not really needed, and one can rephrase it for a higher purpose</p></blockquote><h2 id="记忆out和in"><a href="#记忆out和in" class="headerlink" title="记忆out和in"></a>记忆out和in</h2><p><em>out</em>和<em>in</em>两个词好像和协变，逆变之间没什么关系。其实就和上边引用的文档的那句话所说的，<em>out</em>和<em>in</em>其实很好记忆，因为它们描述的是泛型参数在方法的位置。<em>in</em> 的泛型参数只能出现在方法的参数列表中，描述的是如果T的具体类型是约束的子类那么都可以传进来，<em>out</em> 的泛型参数则是只能出现在方法返回值，描述的是如果T的具体类型是约束的子类都可以返回。</p><h2 id="C-和Kotlin的差异"><a href="#C-和Kotlin的差异" class="headerlink" title="C#和Kotlin的差异"></a>C#和Kotlin的差异</h2><p>虽然两者在泛型上很相似，还是有点差别的。</p><p>其一， C#在实现协变/逆变上只支持引用类型作为泛型参数（<a href="https://blogs.msdn.microsoft.com/ericlippert/2009/03/19/representation-and-identity/" target="_blank" rel="noopener">为什么？</a>）</p><blockquote><p>Covariance and contravariance in generic type parameters are supported for reference types, but they are not supported for value types. <a href="https://docs.microsoft.com/en-us/dotnet/csharp/language-reference/keywords/in-generic-modifier" target="_blank" rel="noopener">in (Generic Modifier)</a></p></blockquote><p>而Kotlin数值类型也可以，因为Kotlin只有引用类型。</p><pre><code class="kotlin">interface Comparable&lt;in T&gt; {    operator fun compareTo(other: T): Int}fun demo(x: Comparable&lt;Number&gt;) {    x.compareTo(1.0) // 1.0 has type Double, which is a subtype of Number    // Thus, we can assign x to a variable of type Comparable&lt;Double&gt;    val y: Comparable&lt;Double&gt; = x // OK!}</code></pre><p>其二，Kotlin编译完了之后会丢失泛型参数信息，文档描述</p><blockquote><p>The type safety checks that Kotlin performs for generic declaration usages are only done at compile time. At runtime, the instances of generic types do not hold any information about their actual type arguments. The type information is said to be erased. For example, the instances of Foo<bar> and Foo&lt;Baz?&gt; are erased to just Foo&lt;*&gt;.</bar></p></blockquote><p>所以说如果在main方法里做这样的判断会出现编译错误</p><pre><code class="kotlin">println(son is Son&lt;Beef&gt;)// Error:(5, 20) Kotlin: Cannot check for instance of erased type: Son&lt;Beef&gt;</code></pre><p>看看C#这边只是给出一个警告说son永远不会为Son&lt;Beef&gt;类型，叫我们不要做无所谓的判定，但是可以正常编译运行。</p><pre><code class="csharp">Console.WriteLine(son is Son&lt;Beef&gt;); // The given expression is never of the provided (&#39;Son&lt;Beef&gt;&#39;) type [GenericsInCSharpe]</code></pre><p>其三，Kotlin中不能对in参数进行赋值，这是因为被in修饰的为val的，不允许再次赋值。感觉Kotlin的in是C#的<a href="https://docs.microsoft.com/en-us/dotnet/csharp/language-reference/keywords/in-generic-modifier" target="_blank" rel="noopener">in修饰符</a>和<a href="https://dotnetcoretutorials.com/2018/01/08/new-keyword-c-7-2/" target="_blank" rel="noopener">in关键字</a>的结合。</p>]]></content>
+      
+      
+      <categories>
+          
+          <category> Programming </category>
+          
+      </categories>
+      
+      
         <tags>
             
             <tag> C# </tag>
@@ -339,49 +69,26 @@ fun demo(x: Comparable&lt;Number&gt;) {
             <tag> Generics </tag>
             
         </tags>
-        
+      
     </entry>
     
+    
+    
     <entry>
-      <title><![CDATA[无损ROOT掉XPERIA]]></title>
+      <title>无损ROOT掉XPERIA</title>
+      <link href="/2018/08/29/root-xperiaxp/"/>
       <url>/2018/08/29/root-xperiaxp/</url>
-      <content type="html"><![CDATA[<p>大概一个月前捡了个垃圾–Xperia X Performance，坑爹的索尼香港，没给港版XP推送Oreo的更新，无奈之下只能刷了台版，感觉食用良好。有个问题困扰了我很久，就是冰箱和AppOps每次重启都要adb一下才能工作很麻烦，于是有想ROOT掉手机的想法，之前是顾虑到会丢失算法，但当我了解到可以通过备份TA然后作为补丁修到内核里去完美实现“无损”解锁之后就毫无顾忌了，于是开始以下的折腾。所需的东西我分享到了以下地方</p>
-<ul>
-<li><a href="https://1drv.ms/f/s!AtE_8sdzNgS-hJEie2jOwJ17UBFZzA" target="_blank" rel="external">工具 - OneDrive</a></li>
-<li><a href="https://pan.baidu.com/s/1OaOK_90I1P6ht8tHCAsoCA" target="_blank" rel="external">FTF - 百度云</a>，密码：a6kc</li>
-</ul>
-<p>注：如果你的手机没有备份到TA就解锁了，那么可以直接跳到制作内核镜像那部分。</p>
-<h2 id="备份TA"><a href="#备份TA" class="headerlink" title="备份TA"></a>备份TA</h2><p>最先我们要备份TA，在这之前要先装<a href="http://www.flashtool.net/downloads.php" target="_blank" rel="external">flashtool</a>，具体如何安装略过。确保系统是6.0，不然要先降级，用flashtool刷FTF即可。然后将<strong>backupTA_v2</strong>解压出来，开启USB调试，连接手机，命令行切换到解压目录下运行<code>backupTA.cmd</code>，完成之后会得到一个大小刚好是2,097,152 bytes的镜像文件。这个镜像文件要好好保管，以后想养老回锁也用得到/_ \</p>
-<h2 id="解锁"><a href="#解锁" class="headerlink" title="解锁"></a>解锁</h2><p>备份好TA之后手机就可以随意折腾了，前提是我们要将手机解锁，在<a href="https://developer.sony.com/develop/open-devices/get-started/unlock-bootloader/" target="_blank" rel="external">索尼开发者中心</a>的这个页面选择机型然后获取解锁码，根据官方的指示操作即可。<br><a href="/img/2018/08/snipaste_20180829_201131.png"><img src="/img/2018/08/snipaste_20180829_201131.png" alt=""></a></p>
-<h2 id="制作内核镜像"><a href="#制作内核镜像" class="headerlink" title="制作内核镜像"></a>制作内核镜像</h2><p>把rootkernel压缩包解压，在<strong>filesystem_files</strong>里有个txt文件，内容是</p>
-<pre><code>adb pull /system/vendor/etc/fstab.qcom
-adb pull /system/vendor/etc/init/hw/init.qcom.rc
-adb pull /system/vendor/etc/init/hw/init.target.rc
-</code></pre><p>明显，需要用到这三个文件，因此用adb取出来，运行上边的命令即可（确保3个文件在<strong>filesystem_files</strong>下）。<br>取出8.0 FTF包里的kernel.sin，在flashtool的工具栏中选择Tools-&gt;Sin Editor，选择内核，然后点击<strong>Extract data</strong>，然后我们就可以得到一个名为<strong>kernel.elf</strong>的镜像文件，接下来我们对它进行加工。<br><a href="/img/2018/08/snipaste_20180829_202753.png"><img src="/img/2018/08/snipaste_20180829_202753.png" alt=""></a></p>
-<p>将kernel.elf和TA镜像放入rootkernel文件夹下，并把TA镜像命名为<strong>TA.img</strong>，这里注意<strong>大小写敏感</strong>。然后在这个目录下运行命令行，敲入命令<code>rootkernel.cmd kernel.elf boot.img</code>。提问全部敲入Y，如果没有TA镜像，那么在问<strong>Install DRM fix? [Y/n]</strong>的时候敲入n。</p>
-<h2 id="刷机"><a href="#刷机" class="headerlink" title="刷机"></a>刷机</h2><p>遵循以下步骤进行刷机</p>
-<ol>
-<li>备份数据</li>
-<li>将Magisk和DRM-Fix_System_Mode（如果你的手机没备份TA就刷这个）放入手机内部存储不会被刷掉的地方（外部SD卡或者带MicroUSB口的U盘最好）</li>
-<li>用flashtool刷入官方Oreo的FTF，Wipe掉所有，<strong>exclude里选择fotakernel</strong></li>
-<li>刷完之后不要开机</li>
-<li>进入fastboot模式。进入姿势：按住音量加，然后连接USB。看到呼吸灯变成蓝色</li>
-<li>运行命令，<code>fastboot flash boot boot.img</code></li>
-<li>刷入rec，<code>fastboot flash recovery twrp-3.2.3-0-dora.img</code></li>
-<li>拔掉USB，进入twrp，进入姿势：音量减+电源键，屏幕亮起松开电源键，保持音量减。</li>
-<li>在twrp里刷入DRM-Fix_System_Mode（如果没有备份TA）</li>
-<li>刷入Magisk</li>
-</ol>
-<h2 id="修改-system分区应用"><a href="#修改-system分区应用" class="headerlink" title="修改/system分区应用"></a>修改/system分区应用</h2><p>刷了Magisk后我们就有ROOT权限了，可以将系统一些用不着的东西从系统分区里去掉，比如谷歌全家桶的大部分，也可以放些应用进去。在分享的资源的<strong>addons</strong>里有些apk，其中有个谷歌的电话可以放入，比自带的多了一点东西（比如：“来电显示和骚扰电话”这个功能）。还有XZ2里自带的主题和桌面，这个桌面其中一个特性是会将图标统一成圆形，不过没有双击锁屏很可惜，不然我就用它了。后续发现有不错的会继续放入OneDrive。</p>
-]]></content>
       
-        <categories>
-            
-            <category> Android </category>
-            
-        </categories>
-        
-        
+        <content type="html"><![CDATA[<p>大概一个月前捡了个垃圾–Xperia X Performance，坑爹的索尼香港，没给港版XP推送Oreo的更新，无奈之下只能刷了台版，感觉食用良好。有个问题困扰了我很久，就是冰箱和AppOps每次重启都要adb一下才能工作很麻烦，于是有想ROOT掉手机的想法，之前是顾虑到会丢失算法，但当我了解到可以通过备份TA然后作为补丁修到内核里去完美实现“无损”解锁之后就毫无顾忌了，于是开始以下的折腾。所需的东西我分享到了以下地方</p><ul><li><a href="https://1drv.ms/f/s!AtE_8sdzNgS-hJEie2jOwJ17UBFZzA" target="_blank" rel="noopener">工具 - OneDrive</a></li><li><a href="https://pan.baidu.com/s/1OaOK_90I1P6ht8tHCAsoCA" target="_blank" rel="noopener">FTF - 百度云</a>，密码：a6kc</li></ul><p>注：如果你的手机没有备份到TA就解锁了，那么可以直接跳到制作内核镜像那部分。</p><h2 id="备份TA"><a href="#备份TA" class="headerlink" title="备份TA"></a>备份TA</h2><p>最先我们要备份TA，在这之前要先装<a href="http://www.flashtool.net/downloads.php" target="_blank" rel="noopener">flashtool</a>，具体如何安装略过。确保系统是6.0，不然要先降级，用flashtool刷FTF即可。然后将<strong>backupTA_v2</strong>解压出来，开启USB调试，连接手机，命令行切换到解压目录下运行<code>backupTA.cmd</code>，完成之后会得到一个大小刚好是2,097,152 bytes的镜像文件。这个镜像文件要好好保管，以后想养老回锁也用得到/_ \</p><h2 id="解锁"><a href="#解锁" class="headerlink" title="解锁"></a>解锁</h2><p>备份好TA之后手机就可以随意折腾了，前提是我们要将手机解锁，在<a href="https://developer.sony.com/develop/open-devices/get-started/unlock-bootloader/" target="_blank" rel="noopener">索尼开发者中心</a>的这个页面选择机型然后获取解锁码，根据官方的指示操作即可。<br><a href="/img/2018/08/snipaste_20180829_201131.png"><img src="/img/2018/08/snipaste_20180829_201131.png" alt></a></p><h2 id="制作内核镜像"><a href="#制作内核镜像" class="headerlink" title="制作内核镜像"></a>制作内核镜像</h2><p>把rootkernel压缩包解压，在<strong>filesystem_files</strong>里有个txt文件，内容是</p><pre><code>adb pull /system/vendor/etc/fstab.qcomadb pull /system/vendor/etc/init/hw/init.qcom.rcadb pull /system/vendor/etc/init/hw/init.target.rc</code></pre><p>明显，需要用到这三个文件，因此用adb取出来，运行上边的命令即可（确保3个文件在<strong>filesystem_files</strong>下）。<br>取出8.0 FTF包里的kernel.sin，在flashtool的工具栏中选择Tools-&gt;Sin Editor，选择内核，然后点击<strong>Extract data</strong>，然后我们就可以得到一个名为<strong>kernel.elf</strong>的镜像文件，接下来我们对它进行加工。<br><a href="/img/2018/08/snipaste_20180829_202753.png"><img src="/img/2018/08/snipaste_20180829_202753.png" alt></a></p><p>将kernel.elf和TA镜像放入rootkernel文件夹下，并把TA镜像命名为<strong>TA.img</strong>，这里注意<strong>大小写敏感</strong>。然后在这个目录下运行命令行，敲入命令<code>rootkernel.cmd kernel.elf boot.img</code>。提问全部敲入Y，如果没有TA镜像，那么在问<strong>Install DRM fix? [Y/n]</strong>的时候敲入n。</p><h2 id="刷机"><a href="#刷机" class="headerlink" title="刷机"></a>刷机</h2><p>遵循以下步骤进行刷机</p><ol><li>备份数据</li><li>将Magisk和DRM-Fix_System_Mode（如果你的手机没备份TA就刷这个）放入手机内部存储不会被刷掉的地方（外部SD卡或者带MicroUSB口的U盘最好）</li><li>用flashtool刷入官方Oreo的FTF，Wipe掉所有，<strong>exclude里选择fotakernel</strong></li><li>刷完之后不要开机</li><li>进入fastboot模式。进入姿势：按住音量加，然后连接USB。看到呼吸灯变成蓝色</li><li>运行命令，<code>fastboot flash boot boot.img</code></li><li>刷入rec，<code>fastboot flash recovery twrp-3.2.3-0-dora.img</code></li><li>拔掉USB，进入twrp，进入姿势：音量减+电源键，屏幕亮起松开电源键，保持音量减。</li><li>在twrp里刷入DRM-Fix_System_Mode（如果没有备份TA）</li><li>刷入Magisk</li></ol><h2 id="修改-system分区应用"><a href="#修改-system分区应用" class="headerlink" title="修改/system分区应用"></a>修改/system分区应用</h2><p>刷了Magisk后我们就有ROOT权限了，可以将系统一些用不着的东西从系统分区里去掉，比如谷歌全家桶的大部分，也可以放些应用进去。在分享的资源的<strong>addons</strong>里有些apk，其中有个谷歌的电话可以放入，比自带的多了一点东西（比如：“来电显示和骚扰电话”这个功能）。还有XZ2里自带的主题和桌面，这个桌面其中一个特性是会将图标统一成圆形，不过没有双击锁屏很可惜，不然我就用它了。后续发现有不错的会继续放入OneDrive。</p>]]></content>
+      
+      
+      <categories>
+          
+          <category> Android </category>
+          
+      </categories>
+      
+      
         <tags>
             
             <tag> Root </tag>
@@ -389,255 +96,101 @@ adb pull /system/vendor/etc/init/hw/init.target.rc
             <tag> Xperia </tag>
             
         </tags>
-        
+      
     </entry>
     
+    
+    
     <entry>
-      <title><![CDATA[C语言指针数组和数组指针]]></title>
+      <title>C语言指针数组和数组指针</title>
+      <link href="/2018/07/31/array-ptr/"/>
       <url>/2018/07/31/array-ptr/</url>
-      <content type="html"><![CDATA[<p>为什么要讨论这个话题呢？这个话题起源于我今天打开Leetcode之后看到的两行代码。</p>
-<pre><code class="c">int a[5] = {0, 1, 2, 3, 4};
-vector&lt;int&gt; v4(a, *(&amp;a + 1));
-</code></pre>
-<p>我就好奇了这个用的是哪个构造函数。<code>*(&amp;a + 1)</code>究竟指的是什么，这是令我费解的，调试了一下发现它指的是数组的最后，所以用的是<em>range constructor</em>。那么就往我们一层一层的剥开，深入理解一下吧。</p>
-<p>要理解这个主要理解<code>a</code>和<code>&amp;a</code>即可，而理解这两个我们主要从它们的类型入手，所以，它们类型都是什么？<br>其实<code>a</code>的类型是<code>int*</code>，而<code>&amp;a</code>的类型是<code>int(*)[5]</code>。</p>
-<pre><code class="c">int(*p1)[5] = &amp;a;
-int* p2 = a;
-</code></pre>
-<p>我们都很熟悉的是<code>int*</code>类型的指针偏移一位就是一维数组的下一个元素，本例中的<code>p2</code>偏移一位也就是<code>p2+1</code>指向的元素是1。那么我们做个扩展，<code>int(*)[5]</code>类型的指针偏移一位的下一个元素是什么？对于这个问题，我们主要理解加1的操作偏移的长度是多少即可。对于<code>int*</code>类型加1移动了<code>sizeof(int)</code>的长度，这是我们知道的。那么<code>int(*)[5]</code>实际上原理是一样的，因为它的类型是5个长度的数组，因此它的加1操作偏移的长度是<code>sizeof(int)*5</code>，因此<code>&amp;a+1</code>实际上指向了<code>a</code>这个数组的末尾，因为这是指向数组的指针的缘故，我们再对它取值<code>*(&amp;a+1)</code>就得到了数组<code>a</code>最后的地址。</p>
-<p>测试代码：</p>
-<pre><code class="c">int* p3 = *(&amp;a + 1);
-
-cout &lt;&lt; *a &lt;&lt; endl;
-cout &lt;&lt; *(&amp;a) &lt;&lt; endl;
-cout &lt;&lt; a &lt;&lt; endl;
-cout &lt;&lt; &amp;a[0] &lt;&lt; endl;
-
-cout &lt;&lt; &quot;============&quot; &lt;&lt; endl;
-cout &lt;&lt; p3 &lt;&lt; endl;
-cout &lt;&lt; &amp;a[4] + 1 &lt;&lt; endl;
-</code></pre>
-<p>结果</p>
-<pre><code>0
-0133FDF8
-0133FDF8
-0133FDF8
-============
-0133FE0C
-0133FE0C
-</code></pre>]]></content>
       
-        <categories>
-            
-            <category> Programming </category>
-            
-        </categories>
-        
-        
+        <content type="html"><![CDATA[<p>为什么要讨论这个话题呢？这个话题起源于我今天打开Leetcode之后看到的两行代码。</p><pre><code class="c">int a[5] = {0, 1, 2, 3, 4};vector&lt;int&gt; v4(a, *(&amp;a + 1));</code></pre><p>我就好奇了这个用的是哪个构造函数。<code>*(&amp;a + 1)</code>究竟指的是什么，这是令我费解的，调试了一下发现它指的是数组的最后，所以用的是<em>range constructor</em>。那么就往我们一层一层的剥开，深入理解一下吧。</p><p>要理解这个主要理解<code>a</code>和<code>&amp;a</code>即可，而理解这两个我们主要从它们的类型入手，所以，它们类型都是什么？<br>其实<code>a</code>的类型是<code>int*</code>，而<code>&amp;a</code>的类型是<code>int(*)[5]</code>。</p><pre><code class="c">int(*p1)[5] = &amp;a;int* p2 = a;</code></pre><p>我们都很熟悉的是<code>int*</code>类型的指针偏移一位就是一维数组的下一个元素，本例中的<code>p2</code>偏移一位也就是<code>p2+1</code>指向的元素是1。那么我们做个扩展，<code>int(*)[5]</code>类型的指针偏移一位的下一个元素是什么？对于这个问题，我们主要理解加1的操作偏移的长度是多少即可。对于<code>int*</code>类型加1移动了<code>sizeof(int)</code>的长度，这是我们知道的。那么<code>int(*)[5]</code>实际上原理是一样的，因为它的类型是5个长度的数组，因此它的加1操作偏移的长度是<code>sizeof(int)*5</code>，因此<code>&amp;a+1</code>实际上指向了<code>a</code>这个数组的末尾，因为这是指向数组的指针的缘故，我们再对它取值<code>*(&amp;a+1)</code>就得到了数组<code>a</code>最后的地址。</p><p>测试代码：</p><pre><code class="c">int* p3 = *(&amp;a + 1);cout &lt;&lt; *a &lt;&lt; endl;cout &lt;&lt; *(&amp;a) &lt;&lt; endl;cout &lt;&lt; a &lt;&lt; endl;cout &lt;&lt; &amp;a[0] &lt;&lt; endl;cout &lt;&lt; &quot;============&quot; &lt;&lt; endl;cout &lt;&lt; p3 &lt;&lt; endl;cout &lt;&lt; &amp;a[4] + 1 &lt;&lt; endl;</code></pre><p>结果</p><pre><code>00133FDF80133FDF80133FDF8============0133FE0C0133FE0C</code></pre>]]></content>
+      
+      
+      <categories>
+          
+          <category> Programming </category>
+          
+      </categories>
+      
+      
         <tags>
             
             <tag> C/C++ </tag>
             
         </tags>
-        
+      
     </entry>
     
+    
+    
     <entry>
-      <title><![CDATA[Python装饰器]]></title>
+      <title>Python装饰器</title>
+      <link href="/2018/07/18/decorator/"/>
       <url>/2018/07/18/decorator/</url>
-      <content type="html"><![CDATA[<p>本文会涉及到的内容有：</p>
-<ul>
-<li>高阶函数</li>
-<li>闭包</li>
-<li>装饰器</li>
-</ul>
-<p>只要你懂了前两个，那么就可以往下继续阅读了。现在假设我们有这么一个需求，实现对两个虚数的加乘运算。实现方法当然很多，最直接能想到的应该就是写两个函数，然后完成各自的逻辑。这样是可以的，但是没有扩展性。想象一下定义一个通用运算方法，然后把一个函数（即一种运算规则）传入，然后使用这个函数完成运算后返回。这样使用者就可以完全在后期自定义自己的运算规则，这样的好处是可以使用<em>lambda</em>表达式，避免一次性函数在代码中定义。用过C++的标准库里的sort()函数一眼就知道我说什么了。</p>
-<p>首先我们先准备一个类</p>
-<pre><code class="Py">class Complex:
-    def __init__(self,x,y):
-        self.x = x
-        self.y = y   
-    def __repr__(self):
-        return str(self.x) + &#39;i&#39; + (&#39;+&#39; if self.y &gt; 0 else &#39;&#39;) + str(self.y)
-</code></pre>
-<p>到此我们就完成了对Complex类的定义。</p>
-<p>接下来定义一个通用的计算方法</p>
-<pre><code class="Py">def com_cal(func):
-    def run(a,b):
-        return func(a,b)
-    return run
-</code></pre>
-<p>这个函数接收一个函数作为参数（运算规则）（高阶函数特性），函数内部定义一个run()方法，在这个方法里使用了传入的运算规则，最后com_cal()将run()方法返回（闭包特性）。</p>
-<p>到此为止，接下来我们就可以定义具体的运算规则了</p>
-<pre><code class="py">def com_add(a,b):
-    return Complex(a.x+b.x, a.y+b.y)
-</code></pre>
-<p>假设我们直接用闭包，那么可以写下边的代码</p>
-<pre><code class="py"># Closure
-com_cal(com_add)(a,b) # 3i+4
-</code></pre>
-<p>但是这样的问题是要写两个括号，换句话来说就是不够优雅。这时候就可以使用装饰器了！装饰器的本质其实就是<strong>闭包的语法糖</strong>。</p>
-<p>首先修改一下com_add()</p>
-<pre><code class="py"># Decorator
-@com_cal
-def com_add(a,b):
-    return Complex(a.x+b.x, a.y+b.y)
-</code></pre>
-<p>然后就可以这样使用</p>
-<pre><code class="py">com_add(a,b) # 3i+4
-</code></pre>
-<p>这样的代码是不是更加直观可读性更好？装饰器的作用就是将被装饰的函数作为参数传入用于装饰的函数中，在这里例子中，com_cal()就是装饰函数，com_add()就是被装饰的函数，会作为com_cal()的实参，这样完全符合com_cal()的参数要求。在调用的时候可以把com_add()当作已经传入了com_add()的run()方法，因此给它两个Complex实例是完全符合的。</p>
-<p>全部代码如下</p>
-<pre><code class="py">class Complex:
-    def __init__(self,x,y):
-        self.x = x
-        self.y = y   
-    def __repr__(self):
-        return str(self.x) + &#39;i&#39; + (&#39;+&#39; if self.y &gt; 0 else &#39;&#39;) + str(self.y)
-
-def com_cal(func):
-    def run(a,b):
-        return func(a,b)
-    return run
-
-# Decorator
-@com_cal
-def com_add(a,b):
-    return Complex(a.x+b.x, a.y+b.y)
-
-a = Complex(1,1)
-b = Complex(2,3)
-
-print(com_add(a,b)) # 3i+4
-</code></pre>
-<h2 id="额外话题"><a href="#额外话题" class="headerlink" title="额外话题"></a>额外话题</h2><p>这篇文章达到了讲解Python装饰器的目的，但是对于所选的例子来说并不是最好的，有点强行的感觉。因为我完全可以使用更好的实现，代码也更少。</p>
-<pre><code class="py">class Complex:
-    def __init__(self,x,y):
-        self.x = x
-        self.y = y   
-    def __repr__(self):
-        return str(self.x) + &#39;i&#39; + (&#39;+&#39; if self.y &gt; 0 else &#39;&#39;) + str(self.y)
-    def calc(self,func,another):
-        return func(self, another)
-
-a = Complex(1,1)
-b = Complex(2,3)
-
-print(a.calc(lambda a,b: Complex(a.x+b.x, a.y+b.y),b)) # 3i+4
-</code></pre>
-<p>而且就数学运算来说，完全还可以使用运算符重载来实现。下次选个好例子(/▽＼)</p>
-]]></content>
       
-        <categories>
-            
-            <category> Programming </category>
-            
-        </categories>
-        
-        
+        <content type="html"><![CDATA[<p>本文会涉及到的内容有：</p><ul><li>高阶函数</li><li>闭包</li><li>装饰器</li></ul><p>只要你懂了前两个，那么就可以往下继续阅读了。现在假设我们有这么一个需求，实现对两个虚数的加乘运算。实现方法当然很多，最直接能想到的应该就是写两个函数，然后完成各自的逻辑。这样是可以的，但是没有扩展性。想象一下定义一个通用运算方法，然后把一个函数（即一种运算规则）传入，然后使用这个函数完成运算后返回。这样使用者就可以完全在后期自定义自己的运算规则，这样的好处是可以使用<em>lambda</em>表达式，避免一次性函数在代码中定义。用过C++的标准库里的sort()函数一眼就知道我说什么了。</p><p>首先我们先准备一个类</p><pre><code class="Py">class Complex:    def __init__(self,x,y):        self.x = x        self.y = y       def __repr__(self):        return str(self.x) + &#39;i&#39; + (&#39;+&#39; if self.y &gt; 0 else &#39;&#39;) + str(self.y)</code></pre><p>到此我们就完成了对Complex类的定义。</p><p>接下来定义一个通用的计算方法</p><pre><code class="Py">def com_cal(func):    def run(a,b):        return func(a,b)    return run</code></pre><p>这个函数接收一个函数作为参数（运算规则）（高阶函数特性），函数内部定义一个run()方法，在这个方法里使用了传入的运算规则，最后com_cal()将run()方法返回（闭包特性）。</p><p>到此为止，接下来我们就可以定义具体的运算规则了</p><pre><code class="py">def com_add(a,b):    return Complex(a.x+b.x, a.y+b.y)</code></pre><p>假设我们直接用闭包，那么可以写下边的代码</p><pre><code class="py"># Closurecom_cal(com_add)(a,b) # 3i+4</code></pre><p>但是这样的问题是要写两个括号，换句话来说就是不够优雅。这时候就可以使用装饰器了！装饰器的本质其实就是<strong>闭包的语法糖</strong>。</p><p>首先修改一下com_add()</p><pre><code class="py"># Decorator@com_caldef com_add(a,b):    return Complex(a.x+b.x, a.y+b.y)</code></pre><p>然后就可以这样使用</p><pre><code class="py">com_add(a,b) # 3i+4</code></pre><p>这样的代码是不是更加直观可读性更好？装饰器的作用就是将被装饰的函数作为参数传入用于装饰的函数中，在这里例子中，com_cal()就是装饰函数，com_add()就是被装饰的函数，会作为com_cal()的实参，这样完全符合com_cal()的参数要求。在调用的时候可以把com_add()当作已经传入了com_add()的run()方法，因此给它两个Complex实例是完全符合的。</p><p>全部代码如下</p><pre><code class="py">class Complex:    def __init__(self,x,y):        self.x = x        self.y = y       def __repr__(self):        return str(self.x) + &#39;i&#39; + (&#39;+&#39; if self.y &gt; 0 else &#39;&#39;) + str(self.y)def com_cal(func):    def run(a,b):        return func(a,b)    return run# Decorator@com_caldef com_add(a,b):    return Complex(a.x+b.x, a.y+b.y)a = Complex(1,1)b = Complex(2,3)print(com_add(a,b)) # 3i+4</code></pre><h2 id="额外话题"><a href="#额外话题" class="headerlink" title="额外话题"></a>额外话题</h2><p>这篇文章达到了讲解Python装饰器的目的，但是对于所选的例子来说并不是最好的，有点强行的感觉。因为我完全可以使用更好的实现，代码也更少。</p><pre><code class="py">class Complex:    def __init__(self,x,y):        self.x = x        self.y = y       def __repr__(self):        return str(self.x) + &#39;i&#39; + (&#39;+&#39; if self.y &gt; 0 else &#39;&#39;) + str(self.y)    def calc(self,func,another):        return func(self, another)a = Complex(1,1)b = Complex(2,3)print(a.calc(lambda a,b: Complex(a.x+b.x, a.y+b.y),b)) # 3i+4</code></pre><p>而且就数学运算来说，完全还可以使用运算符重载来实现。下次选个好例子(/▽＼)</p>]]></content>
+      
+      
+      <categories>
+          
+          <category> Programming </category>
+          
+      </categories>
+      
+      
         <tags>
             
             <tag> Python </tag>
             
         </tags>
-        
+      
     </entry>
     
+    
+    
     <entry>
-      <title><![CDATA[魔术师的数字游戏]]></title>
+      <title>魔术师的数字游戏</title>
+      <link href="/2018/07/12/magician-math-game/"/>
       <url>/2018/07/12/magician-math-game/</url>
-      <content type="html"><![CDATA[<p>这个问题的名称是我自己想的XD，摘取自《陶哲轩教你学数学》里的习题2.1，原问题如下：</p>
-<blockquote>
-<p>在一个室内游戏中，“魔术师”请一位参与者先想出一个三位数abc<sub>10</sub>。然后，魔术师让该参与者把5个数acb<sub>10</sub>, bac<sub>10</sub>,  bca<sub>10</sub>, cab<sub>10</sub>, cba<sub>10</sub>加起来，并告诉大家它们的和是多少。如果它们的和等于3194，那么最初的abc<sub>10</sub>是多少？  </p>
-</blockquote>
-<p>我们先将题目转化为符号简单表示出来：</p>
-<blockquote>
-<ul>
-<li>取一个数，abc<sub>10</sub>  </li>
-<li>acb<sub>10</sub> + bac<sub>10</sub> + bca<sub>10</sub> + cab<sub>10</sub> + cba<sub>10</sub> = ?  </li>
-<li>abc<sub>10</sub> = ?时，acb<sub>10</sub> + bac<sub>10</sub> + bca<sub>10</sub> + cab<sub>10</sub> + cba<sub>10</sub> = 3194</li>
-</ul>
-</blockquote>
-<p>先解决第一个问题，这五个数的和为</p>
-<blockquote>
-<p>(a + 2b + 2c) x 100 + (2a + b + 2c) x 10 + (2a + 2b + c) = 122a + 212b + 221c</p>
-</blockquote>
-<p>第二个问题。我们可以知道这六个数的和为</p>
-<blockquote>
-<p>sum = (a + b + c) x 222 </p>
-</blockquote>
-<p>那么就是说</p>
-<blockquote>
-<p>222 | sum</p>
-</blockquote>
-<p>其中我们知道了5个数的和为3194，那么</p>
-<blockquote>
-<p>222 | (3194 + abc<sub>10</sub>)</p>
-</blockquote>
-<p>则我们就可以这样求得abc<sub>10</sub></p>
-<blockquote>
-<p>abc<sub>10</sub> % 222 = 222 - 3194 % 222 = 222 - 86 = 136</p>
-<p>abc<sub>10</sub> = 136, 358, 580, 802  </p>
-</blockquote>
-<p>又因为</p>
-<blockquote>
-<p>3194 = 14 x 222 + 86</p>
-</blockquote>
-<p>所以</p>
-<blockquote>
-<p>a + b + c &gt; 14</p>
-</blockquote>
-<p>那么abc<sub>10</sub>只能为358。</p>
-]]></content>
       
-        <categories>
-            
-            <category> Mathematic </category>
-            
-        </categories>
-        
-        
+        <content type="html"><![CDATA[<p>这个问题的名称是我自己想的XD，摘取自《陶哲轩教你学数学》里的习题2.1，原问题如下：</p><blockquote><p>在一个室内游戏中，“魔术师”请一位参与者先想出一个三位数abc<sub>10</sub>。然后，魔术师让该参与者把5个数acb<sub>10</sub>, bac<sub>10</sub>,  bca<sub>10</sub>, cab<sub>10</sub>, cba<sub>10</sub>加起来，并告诉大家它们的和是多少。如果它们的和等于3194，那么最初的abc<sub>10</sub>是多少？  </p></blockquote><p>我们先将题目转化为符号简单表示出来：</p><blockquote><ul><li>取一个数，abc<sub>10</sub>  </li><li>acb<sub>10</sub> + bac<sub>10</sub> + bca<sub>10</sub> + cab<sub>10</sub> + cba<sub>10</sub> = ?  </li><li>abc<sub>10</sub> = ?时，acb<sub>10</sub> + bac<sub>10</sub> + bca<sub>10</sub> + cab<sub>10</sub> + cba<sub>10</sub> = 3194</li></ul></blockquote><p>先解决第一个问题，这五个数的和为</p><blockquote><p>(a + 2b + 2c) x 100 + (2a + b + 2c) x 10 + (2a + 2b + c) = 122a + 212b + 221c</p></blockquote><p>第二个问题。我们可以知道这六个数的和为</p><blockquote><p>sum = (a + b + c) x 222 </p></blockquote><p>那么就是说</p><blockquote><p>222 | sum</p></blockquote><p>其中我们知道了5个数的和为3194，那么</p><blockquote><p>222 | (3194 + abc<sub>10</sub>)</p></blockquote><p>则我们就可以这样求得abc<sub>10</sub></p><blockquote><p>abc<sub>10</sub> % 222 = 222 - 3194 % 222 = 222 - 86 = 136</p></blockquote><blockquote><p>abc<sub>10</sub> = 136, 358, 580, 802  </p></blockquote><p>又因为</p><blockquote><p>3194 = 14 x 222 + 86</p></blockquote><p>所以</p><blockquote><p>a + b + c &gt; 14</p></blockquote><p>那么abc<sub>10</sub>只能为358。</p>]]></content>
+      
+      
+      <categories>
+          
+          <category> Mathematic </category>
+          
+      </categories>
+      
+      
         <tags>
             
             <tag> Mathematic </tag>
             
         </tags>
-        
+      
     </entry>
     
+    
+    
     <entry>
-      <title><![CDATA[禁止Windows10的功能更新]]></title>
+      <title>禁止Windows10的功能更新</title>
+      <link href="/2018/07/04/disable-windows10-featureupdate/"/>
       <url>/2018/07/04/disable-windows10-featureupdate/</url>
-      <content type="html"><![CDATA[<h2 id="什么是功能更新？"><a href="#什么是功能更新？" class="headerlink" title="什么是功能更新？"></a>什么是功能更新？</h2><p>所谓的功能更新就是现在Windows10每半年推出的较大的版本更新。</p>
-<h2 id="为什么要禁止功能更新"><a href="#为什么要禁止功能更新" class="headerlink" title="为什么要禁止功能更新?"></a>为什么要禁止功能更新?</h2><p>一般来说我都会第一时间去更新的，但是1803这个版本我翻车了，使用体验巨差。无奈之下，还是回到了1709。那么问题来了，我要如何将1803的更新禁止掉但是不会影响到其他的更新正常运行呢？比如驱动更新和补丁更新？Let’s figure out!</p>
-<h2 id="使用组策略"><a href="#使用组策略" class="headerlink" title="使用组策略"></a>使用组策略</h2><p>对于Pro及更高级的Windows 10版本，可以很方便地使用组策略来进行配置，只需要鼠标点点，键盘敲几个数字即可搞定。</p>
-<ol>
-<li>打开组策略</li>
-<li><p>找到路径<br><code>Computer Configuration\Administrative Templates\Windows Component\Windows Update\Windows Upate for Business</code>  </p>
-<p><a href="/img/2018/06/snipaste_20180704_005409.png"><img src="/img/2018/06/snipaste_20180704_005409.png" alt=""></a></p>
-</li>
-<li><p>点开右侧的<code>Select when Preview Builds and Feature Updates are received</code>  </p>
-<p><a href="snipaste_20180704_010428.png"><img src="/img/2018/06/snipaste_20180704_010428.png" alt=""></a>  </p>
-<p>先设置为<strong>Enabled</strong>，然后在下拉框选择<strong>Semi-Annual Channel</strong>。剩下的两个选项按照图中的中文提示填写就好了。</p>
-</li>
-<li>让组策略生效<br>最简单的方法就是在命令行里敲<code>gpupdate /force</code>即可。</li>
-</ol>
-<h2 id="使用注册表"><a href="#使用注册表" class="headerlink" title="使用注册表"></a>使用注册表</h2><p>因为低于Pro版Windows 10没有组策略的缘故，那么就要祭出注册表了。</p>
-<ol>
-<li>打开注册表  </li>
-<li>找到路径<br><code>Computer\HKEY_LOCAL_MACHINE\SOFTWARE\Microsoft\WindowsUpdate\UpdatePolicy\PolicyState</code><br>直接Copy到路径框里回车即可定位到目标位置。</li>
-<li>修改项<br><a href="/img/2018/06/snipaste_20180704_011254.png"><img src="/img/2018/06/snipaste_20180704_011254.png" alt=""></a><br>图中框起来的是要修改或者新建的项，然后值填图中的（都是十进制），<strong>FeatureUpdatesDeferralInDays</strong>这个值为要推迟接受更新的天数。</li>
-<li>重启一个吧</li>
-</ol>
-]]></content>
       
-        <categories>
-            
-            <category> Windows </category>
-            
-        </categories>
-        
-        
+        <content type="html"><![CDATA[<h2 id="什么是功能更新？"><a href="#什么是功能更新？" class="headerlink" title="什么是功能更新？"></a>什么是功能更新？</h2><p>所谓的功能更新就是现在Windows10每半年推出的较大的版本更新。</p><h2 id="为什么要禁止功能更新"><a href="#为什么要禁止功能更新" class="headerlink" title="为什么要禁止功能更新?"></a>为什么要禁止功能更新?</h2><p>一般来说我都会第一时间去更新的，但是1803这个版本我翻车了，使用体验巨差。无奈之下，还是回到了1709。那么问题来了，我要如何将1803的更新禁止掉但是不会影响到其他的更新正常运行呢？比如驱动更新和补丁更新？Let’s figure out!</p><h2 id="使用组策略"><a href="#使用组策略" class="headerlink" title="使用组策略"></a>使用组策略</h2><p>对于Pro及更高级的Windows 10版本，可以很方便地使用组策略来进行配置，只需要鼠标点点，键盘敲几个数字即可搞定。</p><ol><li>打开组策略</li><li><p>找到路径<br><code>Computer Configuration\Administrative Templates\Windows Component\Windows Update\Windows Upate for Business</code>  </p><p><a href="/img/2018/06/snipaste_20180704_005409.png"><img src="/img/2018/06/snipaste_20180704_005409.png" alt></a></p></li><li><p>点开右侧的<code>Select when Preview Builds and Feature Updates are received</code>  </p><p><a href="snipaste_20180704_010428.png"><img src="/img/2018/06/snipaste_20180704_010428.png" alt></a>  </p><p>先设置为<strong>Enabled</strong>，然后在下拉框选择<strong>Semi-Annual Channel</strong>。剩下的两个选项按照图中的中文提示填写就好了。</p></li><li>让组策略生效<br>最简单的方法就是在命令行里敲<code>gpupdate /force</code>即可。</li></ol><h2 id="使用注册表"><a href="#使用注册表" class="headerlink" title="使用注册表"></a>使用注册表</h2><p>因为低于Pro版Windows 10没有组策略的缘故，那么就要祭出注册表了。</p><ol><li>打开注册表  </li><li>找到路径<br><code>Computer\HKEY_LOCAL_MACHINE\SOFTWARE\Microsoft\WindowsUpdate\UpdatePolicy\PolicyState</code><br>直接Copy到路径框里回车即可定位到目标位置。</li><li>修改项<br><a href="/img/2018/06/snipaste_20180704_011254.png"><img src="/img/2018/06/snipaste_20180704_011254.png" alt></a><br>图中框起来的是要修改或者新建的项，然后值填图中的（都是十进制），<strong>FeatureUpdatesDeferralInDays</strong>这个值为要推迟接受更新的天数。</li><li>重启一个吧</li></ol>]]></content>
+      
+      
+      <categories>
+          
+          <category> Windows </category>
+          
+      </categories>
+      
+      
         <tags>
             
             <tag> Windows 10 </tag>
@@ -645,43 +198,26 @@ print(a.calc(lambda a,b: Complex(a.x+b.x, a.y+b.y),b)) # 3i+4
             <tag> Windows </tag>
             
         </tags>
-        
+      
     </entry>
     
+    
+    
     <entry>
-      <title><![CDATA[部署Hexo到Azure]]></title>
+      <title>部署Hexo到Azure</title>
+      <link href="/2018/05/03/hexo-host-on-azure/"/>
       <url>/2018/05/03/hexo-host-on-azure/</url>
-      <content type="html"><![CDATA[<h2 id="残血版Azure-for-Students"><a href="#残血版Azure-for-Students" class="headerlink" title="残血版Azure for Students"></a>残血版Azure for Students</h2><p>本来是打算用EDU邮箱弄个Azure for Students订阅的，结果只能弄个Azure for Students Starter，完全是残血版，很多东西都没有，也没有$100额度。不过考虑到可以免费挂博客，还是可以用用的，之前博客挂在美国的VPS，访问速度一般般，尤其是我的相册加载很慢。这里就记录一下如何将Hexo架构的博客部署到Azure上。</p>
-<h2 id="新建Web-App"><a href="#新建Web-App" class="headerlink" title="新建Web App"></a>新建Web App</h2><p>在左侧的面板里选择<em>App Services</em>，然后新建一个Web App，选择一个Location，我选了东亚，访问速度会好点。  </p>
-<p><a href="/img/2018/02/snipaste_20180503_210508.png"><img src="/img/2018/05/snipaste_20180503_210508.png" alt="Location"></a>  </p>
-<p>然后填入App name和其他信息点击确定等待一下创建好了。之后就可以通过连接访问默认的Web了  </p>
-<p><a href="/img/2018/05/snipaste_20180503_174920.png"><img src="/img/2018/05/snipaste_20180503_174920.png" alt="DefalutWeb"></a></p>
-<h2 id="设置部署方式"><a href="#设置部署方式" class="headerlink" title="设置部署方式"></a>设置部署方式</h2><p>选中刚刚建好的App，找到<em>Deployment options</em>  </p>
-<p><a href="/img/2018/05/snipaste_20180503_174332.png"><img src="/img/2018/05/snipaste_20180503_174332.png" alt="Deployment"></a>  </p>
-<p>然后选择Git  </p>
-<p><a href="/img/2018/05/snipaste_20180503_174355.png"><img src="/img/2018/05/snipaste_20180503_174355.png" alt="Git"></a>  </p>
-<p>这里设置好了之后就可以在<em>Overview</em>里看到用于push的链接了，也可以在<em>Property</em>里看，这里可以查看到更多的其他链接。</p>
-<h2 id="设置Hexo的repo"><a href="#设置Hexo的repo" class="headerlink" title="设置Hexo的repo"></a>设置Hexo的repo</h2><p>编辑<em>_config.yml</em>，填写新的repo  </p>
-<p><a href="/img/2018/05/snipaste_20180503_212712.png"><img src="/img/2018/05/snipaste_20180503_212712.png" alt="Config"></a>  </p>
-<p>上边都做好了之后就可以在Hexo里push过去了  </p>
-<p><a href="/img/2018/05/snipaste_20180503_192137.png"><img src="/img/2018/05/snipaste_20180503_192137.png" alt="Push"></a>  </p>
-<p>再重新访问就可以看到自己的博客啦！</p>
-<h2 id="其他设置"><a href="#其他设置" class="headerlink" title="其他设置"></a>其他设置</h2><h3 id="修改git用户名和密码"><a href="#修改git用户名和密码" class="headerlink" title="修改git用户名和密码"></a>修改git用户名和密码</h3><p>想改用于git的用户名和密码可以在<em>Deployment Credentials</em>里设置</p>
-<h3 id="修改TSL版本"><a href="#修改TSL版本" class="headerlink" title="修改TSL版本"></a>修改TSL版本</h3><p>可以在<em>SSL Settings</em>里设置</p>
-<h3 id="HTTPS-only"><a href="#HTTPS-only" class="headerlink" title="HTTPS only"></a>HTTPS only</h3><p>想让网站只能通过HTTPS访问，只要在<em>Custom domains</em>里打开就好了  </p>
-<p><a href="/img/2018/05/snipaste_20180503_215003.png"><img src="/img/2018/05/snipaste_20180503_215003.png" alt="HTTPSOnly"></a> </p>
-<h3 id="自定义域名"><a href="#自定义域名" class="headerlink" title="自定义域名"></a>自定义域名</h3><p>默认的域名很长，不过残血版没有额度，我就不修改域名了，你也别想用其他的DNS解析把自己的域名解析过去，微软直接给你禁止访问。看了下最便宜的相比Free Plan只加了Custom domains的D1也要$9.67/month/app，太贵了，放弃，告辞。Azure盈利这么多不是没道理的。  </p>
-<p><a href="/img/2018/05/snipaste_20180503_214257.png"><img src="/img/2018/05/snipaste_20180503_214257.png" alt="CustomDomains"></a></p>
-<h2 id="最后"><a href="#最后" class="headerlink" title="最后"></a>最后</h2><p>我的博客当然没有搬迁，没错，就是因为域名的问题，国内朋友觉得访问速度慢可以访问<a href="https://nokky.azuresites.net" target="_blank" rel="external">这里</a>。这个是在Azure里的，算作备胎吧。 </p>
-]]></content>
       
-        <categories>
-            
-            <category> Linux </category>
-            
-        </categories>
-        
-        
+        <content type="html"><![CDATA[<h2 id="残血版Azure-for-Students"><a href="#残血版Azure-for-Students" class="headerlink" title="残血版Azure for Students"></a>残血版Azure for Students</h2><p>本来是打算用EDU邮箱弄个Azure for Students订阅的，结果只能弄个Azure for Students Starter，完全是残血版，很多东西都没有，也没有$100额度。不过考虑到可以免费挂博客，还是可以用用的，之前博客挂在美国的VPS，访问速度一般般，尤其是我的相册加载很慢。这里就记录一下如何将Hexo架构的博客部署到Azure上。</p><h2 id="新建Web-App"><a href="#新建Web-App" class="headerlink" title="新建Web App"></a>新建Web App</h2><p>在左侧的面板里选择<em>App Services</em>，然后新建一个Web App，选择一个Location，我选了东亚，访问速度会好点。  </p><p><a href="/img/2018/02/snipaste_20180503_210508.png"><img src="/img/2018/05/snipaste_20180503_210508.png" alt="Location"></a>  </p><p>然后填入App name和其他信息点击确定等待一下创建好了。之后就可以通过连接访问默认的Web了  </p><p><a href="/img/2018/05/snipaste_20180503_174920.png"><img src="/img/2018/05/snipaste_20180503_174920.png" alt="DefalutWeb"></a></p><h2 id="设置部署方式"><a href="#设置部署方式" class="headerlink" title="设置部署方式"></a>设置部署方式</h2><p>选中刚刚建好的App，找到<em>Deployment options</em>  </p><p><a href="/img/2018/05/snipaste_20180503_174332.png"><img src="/img/2018/05/snipaste_20180503_174332.png" alt="Deployment"></a>  </p><p>然后选择Git  </p><p><a href="/img/2018/05/snipaste_20180503_174355.png"><img src="/img/2018/05/snipaste_20180503_174355.png" alt="Git"></a>  </p><p>这里设置好了之后就可以在<em>Overview</em>里看到用于push的链接了，也可以在<em>Property</em>里看，这里可以查看到更多的其他链接。</p><h2 id="设置Hexo的repo"><a href="#设置Hexo的repo" class="headerlink" title="设置Hexo的repo"></a>设置Hexo的repo</h2><p>编辑<em>_config.yml</em>，填写新的repo  </p><p><a href="/img/2018/05/snipaste_20180503_212712.png"><img src="/img/2018/05/snipaste_20180503_212712.png" alt="Config"></a>  </p><p>上边都做好了之后就可以在Hexo里push过去了  </p><p><a href="/img/2018/05/snipaste_20180503_192137.png"><img src="/img/2018/05/snipaste_20180503_192137.png" alt="Push"></a>  </p><p>再重新访问就可以看到自己的博客啦！</p><h2 id="其他设置"><a href="#其他设置" class="headerlink" title="其他设置"></a>其他设置</h2><h3 id="修改git用户名和密码"><a href="#修改git用户名和密码" class="headerlink" title="修改git用户名和密码"></a>修改git用户名和密码</h3><p>想改用于git的用户名和密码可以在<em>Deployment Credentials</em>里设置</p><h3 id="修改TSL版本"><a href="#修改TSL版本" class="headerlink" title="修改TSL版本"></a>修改TSL版本</h3><p>可以在<em>SSL Settings</em>里设置</p><h3 id="HTTPS-only"><a href="#HTTPS-only" class="headerlink" title="HTTPS only"></a>HTTPS only</h3><p>想让网站只能通过HTTPS访问，只要在<em>Custom domains</em>里打开就好了  </p><p><a href="/img/2018/05/snipaste_20180503_215003.png"><img src="/img/2018/05/snipaste_20180503_215003.png" alt="HTTPSOnly"></a> </p><h3 id="自定义域名"><a href="#自定义域名" class="headerlink" title="自定义域名"></a>自定义域名</h3><p>默认的域名很长，不过残血版没有额度，我就不修改域名了，你也别想用其他的DNS解析把自己的域名解析过去，微软直接给你禁止访问。看了下最便宜的相比Free Plan只加了Custom domains的D1也要$9.67/month/app，太贵了，放弃，告辞。Azure盈利这么多不是没道理的。  </p><p><a href="/img/2018/05/snipaste_20180503_214257.png"><img src="/img/2018/05/snipaste_20180503_214257.png" alt="CustomDomains"></a></p><h2 id="最后"><a href="#最后" class="headerlink" title="最后"></a>最后</h2><p>我的博客当然没有搬迁，没错，就是因为域名的问题，国内朋友觉得访问速度慢可以访问<a href="https://nokky.azuresites.net" target="_blank" rel="noopener">这里</a>。这个是在Azure里的，算作备胎吧。 </p>]]></content>
+      
+      
+      <categories>
+          
+          <category> Linux </category>
+          
+      </categories>
+      
+      
         <tags>
             
             <tag> Azure </tag>
@@ -689,171 +225,26 @@ print(a.calc(lambda a,b: Complex(a.x+b.x, a.y+b.y),b)) # 3i+4
             <tag> VPS </tag>
             
         </tags>
-        
+      
     </entry>
     
+    
+    
     <entry>
-      <title><![CDATA[在VSC里编写调试C/C++程序]]></title>
+      <title>在VSC里编写调试C/C++程序</title>
+      <link href="/2018/02/06/cpp-vsc/"/>
       <url>/2018/02/06/cpp-vsc/</url>
-      <content type="html"><![CDATA[<h2 id="Changlogs"><a href="#Changlogs" class="headerlink" title="Changlogs"></a>Changlogs</h2><ul>
-<li>2018.12.25<ul>
-<li>利用CMake构建</li>
-</ul>
-</li>
-<li>2018.02.06<ul>
-<li>初版</li>
-</ul>
-</li>
-</ul>
-<hr>
-<p>刚重装完系统，VS里只装了C#，想到可能会用到C/C++，于是乎就用MinGW+CMake+VSC搭建一下开发环境。</p>
-<h2 id="安装MinGW"><a href="#安装MinGW" class="headerlink" title="安装MinGW"></a>安装MinGW</h2><p>现在<a href="http://www.mingw.org/" target="_blank" rel="external">这里</a>找到下载器，然后下载进行安装。安装完成后打开勾选需要安装的选项。这里需要选择三个，分别是：</p>
-<ul>
-<li>mingw32-gcc</li>
-<li>mingw32-gcc-g++</li>
-<li>mingw-gdb<br>需要注意的是，要选择<code>class</code>为<code>bin</code>的。如下图为例：<br><a href="/img/2018/02/snipaste_20180206_163843.png"><img src="/img/2018/02/snipaste_20180206_163843.png" alt="MinGW"></a><br>选完之后安装，过程可能会很慢或者直接下载失败，科学上网即可。安装结束之后要配置一下环境变量，添加<code>gdb.exe</code>，<code>mingw32-make.exe</code>等工具的路径，默认是<code>C:\MinGW\bin</code>。如图：<br><a href="/img/2018/02/snipaste_20180206_163807.png"><img src="/img/2018/02/snipaste_20180206_163807.png" alt="EditEnvironmentVariable"></a></li>
-</ul>
-<h2 id="安装CMake"><a href="#安装CMake" class="headerlink" title="安装CMake"></a>安装CMake</h2><p>这里借助CMake来生成Makefile，移步<a href="https://cmake.org/" target="_blank" rel="external">CMake官网</a></p>
-<h2 id="生成Makefile"><a href="#生成Makefile" class="headerlink" title="生成Makefile"></a>生成Makefile</h2><p>先编写CMakelists.txt</p>
-<pre><code class="cmake">cmake_minimum_required(VERSION 3.12)
-project(CppCmake)
-
-set(CMAKE_CXX_STANDARD 11)
-set(CMAKE_MAKE_PROGRAM cmd cmake)
-set(PROJECT_VERSION 0.0.0.1)
-set(CMAKE_CXX_FLAGS_DEBUG &quot;${CMAKE_CXX_FLAGS_DEBUG} -Wall&quot;)
-set(CMAKE_CXX_FLAGS_RELEASE &quot;${CMAKE_CXX_FLAGS_RELEASE} -Wall&quot;)
-
-include_directories(C:/MinGW/lib/gcc/mingw32/6.3.0/include/c++)
-include_directories(./Headers)
-
-add_executable(Main ./Src/Main.cxx)
-</code></pre>
-<p>然后运行命令</p>
-<p><code>cmake -S ./ -B ./GNU -G &quot;MinGW Makefiles&quot; -Wdev -Werror=dev -DCMAKE_BUILD_TYPE=Debug</code></p>
-<h2 id="安装C-C-插件"><a href="#安装C-C-插件" class="headerlink" title="安装C/C++插件"></a>安装C/C++插件</h2><p>在VSC里搜索<code>C/C++</code>然后安装这个插件。<br><a href="/img/2018/02/snipaste_20180206_181253.png"><img src="/img/2018/02/snipaste_20180206_181253.png" alt="C/C++"></a></p>
-<h2 id="配置C-C-项目"><a href="#配置C-C-项目" class="headerlink" title="配置C/C++项目"></a>配置C/C++项目</h2><p>一个C/C++项目会的配置文件包含在<code>.vscode</code>文件夹里，里面包含了3个文件，分别是：  </p>
-<ul>
-<li>c_cpp_properties.json</li>
-<li>launch.json</li>
-<li>task.json<br>只要把这些文件配置信息写好了我们的Console项目就能运行起来了，这些文件都不需要我们手动创建，下面就讲讲如何创建和填写这些文件的信息。</li>
-</ul>
-<h3 id="c-cpp-properties-json"><a href="#c-cpp-properties-json" class="headerlink" title="c_cpp_properties.json"></a>c_cpp_properties.json</h3><p>键盘按住<code>Ctrl+Shift+P</code>，然后输入<code>C/Cpp</code>，然后从中选择<code>Edit Configurations...</code><br><a href="/img/2018/02/snipaste_20180206_164042.png"><img src="/img/2018/02/snipaste_20180206_164042.png" alt="Configurations"></a><br>参考插件<a href="https://github.com/Microsoft/vscode-cpptools/blob/master/Documentation/LanguageServer/MinGW.md" target="_blank" rel="external">官方配置</a>做了些修改，官方的<code>includePath</code>和<code>path</code>这两个属性填写得不够完整。这里给出了我修改后的：</p>
-<pre><code>{
-    &quot;configurations&quot;: [
-        {
-            &quot;name&quot;: &quot;Win32&quot;,
-            &quot;includePath&quot;: [
-                &quot;${workspaceFolder}/**&quot;,
-                &quot;C:/MinGW/lib/gcc/mingw32/6.3.0/include/c++/**&quot;
-            ],
-            &quot;defines&quot;: [
-                &quot;_DEBUG&quot;,
-                &quot;UNICODE&quot;,
-                &quot;_UNICODE&quot;
-            ],
-            &quot;compilerPath&quot;: &quot;g++.exe&quot;,
-            &quot;cStandard&quot;: &quot;c11&quot;,
-            &quot;cppStandard&quot;: &quot;c++17&quot;,
-            &quot;intelliSenseMode&quot;: &quot;gcc-x64&quot;
-        }
-    ],
-    &quot;version&quot;: 4
-}
-</code></pre><p>如果你的VSC提示你找不到头文件，将鼠标放在上边然后就会提示你应该添加什么路径到<code>includePath</code>里了。</p>
-<h3 id="launch-json"><a href="#launch-json" class="headerlink" title="launch.json"></a>launch.json</h3><p>添加左侧的虫子图标的<code>Debug</code>Button（或者<code>Ctrl+Shift+D</code>），然后添加配置。<br><a href="/img/2018/02/snipaste_20180206_163956.png"><img src="/img/2018/02/snipaste_20180206_163956.png" alt="Launch"></a><br>选择<code>GDB</code>的。完整文件内容：  </p>
-<pre><code>{
-    // Use IntelliSense to learn about possible attributes.
-    // Hover to view descriptions of existing attributes.
-    // For more information, visit: https://go.microsoft.com/fwlink/?linkid=830387
-    &quot;version&quot;: &quot;0.2.0&quot;,
-    &quot;configurations&quot;: [
-        {
-            &quot;name&quot;: &quot;(gdb) Launch&quot;,
-            &quot;type&quot;: &quot;cppdbg&quot;,
-            &quot;request&quot;: &quot;launch&quot;,
-            &quot;program&quot;: &quot;${workspaceFolder}/GNU/Main.exe&quot;,
-            &quot;args&quot;: [],
-            &quot;stopAtEntry&quot;: false,
-            &quot;cwd&quot;: &quot;${workspaceFolder}&quot;,
-            &quot;environment&quot;: [],
-            &quot;externalConsole&quot;: true,
-            &quot;MIMode&quot;: &quot;gdb&quot;,
-            &quot;miDebuggerPath&quot;: &quot;C:/MinGW/bin/gdb.exe&quot;,
-            &quot;setupCommands&quot;: [
-                {
-                    &quot;description&quot;: &quot;Enable pretty-printing for gdb&quot;,
-                    &quot;text&quot;: &quot;-enable-pretty-printing&quot;,
-                    &quot;ignoreFailures&quot;: true
-                }
-            ],
-            &quot;preLaunchTask&quot;: &quot;GnuBuild&quot;
-        }
-    ]
-}
-</code></pre><h3 id="task-json"><a href="#task-json" class="headerlink" title="task.json"></a>task.json</h3><p><code>Ctrl+Shift+P</code>输入<code>tasks</code>，选择<code>Configure Task</code><br><a href="/img/2018/02/snipaste_20180206_175001.png"><img src="/img/2018/02/snipaste_20180206_175001.png" alt="Task"></a><br>文件完整内容：</p>
-<pre><code>{
-    // See https://go.microsoft.com/fwlink/?LinkId=733558
-    // for the documentation about the tasks.json format
-    &quot;version&quot;: &quot;2.0.0&quot;,
-    &quot;tasks&quot;: [
-        {
-            &quot;label&quot;: &quot;GnuBuild&quot;,
-            &quot;type&quot;: &quot;shell&quot;,
-            &quot;command&quot;: &quot;powershell ./GNUBuild.ps1&quot;,
-            &quot;problemMatcher&quot;: {
-                &quot;owner&quot;: &quot;cpp&quot;,
-                &quot;fileLocation&quot;: [
-                    &quot;relative&quot;,
-                    &quot;${workspaceFolder}&quot;
-                ],
-                &quot;pattern&quot;: {
-                    &quot;regexp&quot;: &quot;^(.*):(\\d+):(\\d+):\\s+(warning|error):\\s+(.*)$&quot;,
-                    &quot;file&quot;: 1,
-                    &quot;line&quot;: 2,
-                    &quot;column&quot;: 3,
-                    &quot;severity&quot;: 4,
-                    &quot;message&quot;: 5
-                }
-            }
-        }
-    ]
-}
-</code></pre><p>GNUBuild.ps1的内容如下</p>
-<pre><code class="powershell">Set-Location .\GNU
-mingw32-make.exe
-</code></pre>
-<h2 id="启动"><a href="#启动" class="headerlink" title="启动"></a>启动</h2><p>编写简单的HelloWorld程序测试一下</p>
-<pre><code class="cpp">#include &lt;iostream&gt;
-#include &quot;Math.hxx&quot;
-
-using std::cout;
-using std::endl;
-using Zmus::Math;
-
-int main()
-{
-    int v1 = 10;
-    int v2 = 20;
-
-    int ans = Math::Add&lt;int&gt;(v1, v2);
-    cout &lt;&lt; ans &lt;&lt; endl;
-    cout &lt;&lt; &quot;CMake&quot; &lt;&lt; endl;
-
-    return 0;
-}
-</code></pre>
-<p>按F5运行，正常。<br><a href="/img/2018/12/snipaste_20181226_120309.png"><img src="/img/2018/12/snipaste_20181226_120309.png" alt="Run"></a></p>
-<h2 id="附"><a href="#附" class="headerlink" title="附"></a>附</h2><p>项目目录结构<br><a href="/img/2018/12/snipaste_20181226_120947.png"><img src="/img/2018/12/snipaste_20181226_120947.png" alt="FileTree"></a></p>
-]]></content>
       
-        <categories>
-            
-            <category> Programming </category>
-            
-        </categories>
-        
-        
+        <content type="html"><![CDATA[<h2 id="Changlogs"><a href="#Changlogs" class="headerlink" title="Changlogs"></a>Changlogs</h2><ul><li>2018.12.25<ul><li>利用CMake构建</li></ul></li><li>2018.02.06<ul><li>初版</li></ul></li></ul><hr><p>刚重装完系统，VS里只装了C#，想到可能会用到C/C++，于是乎就用MinGW+CMake+VSC搭建一下开发环境。</p><h2 id="安装MinGW"><a href="#安装MinGW" class="headerlink" title="安装MinGW"></a>安装MinGW</h2><p>现在<a href="http://www.mingw.org/" target="_blank" rel="noopener">这里</a>找到下载器，然后下载进行安装。安装完成后打开勾选需要安装的选项。这里需要选择三个，分别是：</p><ul><li>mingw32-gcc</li><li>mingw32-gcc-g++</li><li>mingw-gdb<br>需要注意的是，要选择<code>class</code>为<code>bin</code>的。如下图为例：<br><a href="/img/2018/02/snipaste_20180206_163843.png"><img src="/img/2018/02/snipaste_20180206_163843.png" alt="MinGW"></a><br>选完之后安装，过程可能会很慢或者直接下载失败，科学上网即可。安装结束之后要配置一下环境变量，添加<code>gdb.exe</code>，<code>mingw32-make.exe</code>等工具的路径，默认是<code>C:\MinGW\bin</code>。如图：<br><a href="/img/2018/02/snipaste_20180206_163807.png"><img src="/img/2018/02/snipaste_20180206_163807.png" alt="EditEnvironmentVariable"></a></li></ul><h2 id="安装CMake"><a href="#安装CMake" class="headerlink" title="安装CMake"></a>安装CMake</h2><p>这里借助CMake来生成Makefile，移步<a href="https://cmake.org/" target="_blank" rel="noopener">CMake官网</a></p><h2 id="生成Makefile"><a href="#生成Makefile" class="headerlink" title="生成Makefile"></a>生成Makefile</h2><p>先编写CMakelists.txt</p><pre><code class="cmake">cmake_minimum_required(VERSION 3.12)project(CppCmake)set(CMAKE_CXX_STANDARD 11)set(CMAKE_MAKE_PROGRAM cmd cmake)set(PROJECT_VERSION 0.0.0.1)set(CMAKE_CXX_FLAGS_DEBUG &quot;${CMAKE_CXX_FLAGS_DEBUG} -Wall&quot;)set(CMAKE_CXX_FLAGS_RELEASE &quot;${CMAKE_CXX_FLAGS_RELEASE} -Wall&quot;)include_directories(C:/MinGW/lib/gcc/mingw32/6.3.0/include/c++)include_directories(./Headers)add_executable(Main ./Src/Main.cxx)</code></pre><p>然后运行命令</p><p><code>cmake -S ./ -B ./GNU -G &quot;MinGW Makefiles&quot; -Wdev -Werror=dev -DCMAKE_BUILD_TYPE=Debug</code></p><h2 id="安装C-C-插件"><a href="#安装C-C-插件" class="headerlink" title="安装C/C++插件"></a>安装C/C++插件</h2><p>在VSC里搜索<code>C/C++</code>然后安装这个插件。<br><a href="/img/2018/02/snipaste_20180206_181253.png"><img src="/img/2018/02/snipaste_20180206_181253.png" alt="C/C++"></a></p><h2 id="配置C-C-项目"><a href="#配置C-C-项目" class="headerlink" title="配置C/C++项目"></a>配置C/C++项目</h2><p>一个C/C++项目会的配置文件包含在<code>.vscode</code>文件夹里，里面包含了3个文件，分别是：  </p><ul><li>c_cpp_properties.json</li><li>launch.json</li><li>task.json<br>只要把这些文件配置信息写好了我们的Console项目就能运行起来了，这些文件都不需要我们手动创建，下面就讲讲如何创建和填写这些文件的信息。</li></ul><h3 id="c-cpp-properties-json"><a href="#c-cpp-properties-json" class="headerlink" title="c_cpp_properties.json"></a>c_cpp_properties.json</h3><p>键盘按住<code>Ctrl+Shift+P</code>，然后输入<code>C/Cpp</code>，然后从中选择<code>Edit Configurations...</code><br><a href="/img/2018/02/snipaste_20180206_164042.png"><img src="/img/2018/02/snipaste_20180206_164042.png" alt="Configurations"></a><br>参考插件<a href="https://github.com/Microsoft/vscode-cpptools/blob/master/Documentation/LanguageServer/MinGW.md" target="_blank" rel="noopener">官方配置</a>做了些修改，官方的<code>includePath</code>和<code>path</code>这两个属性填写得不够完整。这里给出了我修改后的：</p><pre><code>{    &quot;configurations&quot;: [        {            &quot;name&quot;: &quot;Win32&quot;,            &quot;includePath&quot;: [                &quot;${workspaceFolder}/**&quot;,                &quot;C:/MinGW/lib/gcc/mingw32/6.3.0/include/c++/**&quot;            ],            &quot;defines&quot;: [                &quot;_DEBUG&quot;,                &quot;UNICODE&quot;,                &quot;_UNICODE&quot;            ],            &quot;compilerPath&quot;: &quot;g++.exe&quot;,            &quot;cStandard&quot;: &quot;c11&quot;,            &quot;cppStandard&quot;: &quot;c++17&quot;,            &quot;intelliSenseMode&quot;: &quot;gcc-x64&quot;        }    ],    &quot;version&quot;: 4}</code></pre><p>如果你的VSC提示你找不到头文件，将鼠标放在上边然后就会提示你应该添加什么路径到<code>includePath</code>里了。</p><h3 id="launch-json"><a href="#launch-json" class="headerlink" title="launch.json"></a>launch.json</h3><p>添加左侧的虫子图标的<code>Debug</code>Button（或者<code>Ctrl+Shift+D</code>），然后添加配置。<br><a href="/img/2018/02/snipaste_20180206_163956.png"><img src="/img/2018/02/snipaste_20180206_163956.png" alt="Launch"></a><br>选择<code>GDB</code>的。完整文件内容：  </p><pre><code>{    // Use IntelliSense to learn about possible attributes.    // Hover to view descriptions of existing attributes.    // For more information, visit: https://go.microsoft.com/fwlink/?linkid=830387    &quot;version&quot;: &quot;0.2.0&quot;,    &quot;configurations&quot;: [        {            &quot;name&quot;: &quot;(gdb) Launch&quot;,            &quot;type&quot;: &quot;cppdbg&quot;,            &quot;request&quot;: &quot;launch&quot;,            &quot;program&quot;: &quot;${workspaceFolder}/GNU/Main.exe&quot;,            &quot;args&quot;: [],            &quot;stopAtEntry&quot;: false,            &quot;cwd&quot;: &quot;${workspaceFolder}&quot;,            &quot;environment&quot;: [],            &quot;externalConsole&quot;: true,            &quot;MIMode&quot;: &quot;gdb&quot;,            &quot;miDebuggerPath&quot;: &quot;C:/MinGW/bin/gdb.exe&quot;,            &quot;setupCommands&quot;: [                {                    &quot;description&quot;: &quot;Enable pretty-printing for gdb&quot;,                    &quot;text&quot;: &quot;-enable-pretty-printing&quot;,                    &quot;ignoreFailures&quot;: true                }            ],            &quot;preLaunchTask&quot;: &quot;GnuBuild&quot;        }    ]}</code></pre><h3 id="task-json"><a href="#task-json" class="headerlink" title="task.json"></a>task.json</h3><p><code>Ctrl+Shift+P</code>输入<code>tasks</code>，选择<code>Configure Task</code><br><a href="/img/2018/02/snipaste_20180206_175001.png"><img src="/img/2018/02/snipaste_20180206_175001.png" alt="Task"></a><br>文件完整内容：</p><pre><code>{    // See https://go.microsoft.com/fwlink/?LinkId=733558    // for the documentation about the tasks.json format    &quot;version&quot;: &quot;2.0.0&quot;,    &quot;tasks&quot;: [        {            &quot;label&quot;: &quot;GnuBuild&quot;,            &quot;type&quot;: &quot;shell&quot;,            &quot;command&quot;: &quot;powershell ./GNUBuild.ps1&quot;,            &quot;problemMatcher&quot;: {                &quot;owner&quot;: &quot;cpp&quot;,                &quot;fileLocation&quot;: [                    &quot;relative&quot;,                    &quot;${workspaceFolder}&quot;                ],                &quot;pattern&quot;: {                    &quot;regexp&quot;: &quot;^(.*):(\\d+):(\\d+):\\s+(warning|error):\\s+(.*)$&quot;,                    &quot;file&quot;: 1,                    &quot;line&quot;: 2,                    &quot;column&quot;: 3,                    &quot;severity&quot;: 4,                    &quot;message&quot;: 5                }            }        }    ]}</code></pre><p>GNUBuild.ps1的内容如下</p><pre><code class="powershell">Set-Location .\GNUmingw32-make.exe</code></pre><h2 id="启动"><a href="#启动" class="headerlink" title="启动"></a>启动</h2><p>编写简单的HelloWorld程序测试一下</p><pre><code class="cpp">#include &lt;iostream&gt;#include &quot;Math.hxx&quot;using std::cout;using std::endl;using Zmus::Math;int main(){    int v1 = 10;    int v2 = 20;    int ans = Math::Add&lt;int&gt;(v1, v2);    cout &lt;&lt; ans &lt;&lt; endl;    cout &lt;&lt; &quot;CMake&quot; &lt;&lt; endl;    return 0;}</code></pre><p>按F5运行，正常。<br><a href="/img/2018/12/snipaste_20181226_120309.png"><img src="/img/2018/12/snipaste_20181226_120309.png" alt="Run"></a></p><h2 id="附"><a href="#附" class="headerlink" title="附"></a>附</h2><p>项目目录结构<br><a href="/img/2018/12/snipaste_20181226_120947.png"><img src="/img/2018/12/snipaste_20181226_120947.png" alt="FileTree"></a></p>]]></content>
+      
+      
+      <categories>
+          
+          <category> Programming </category>
+          
+      </categories>
+      
+      
         <tags>
             
             <tag> C/C++ </tag>
@@ -863,119 +254,26 @@ int main()
             <tag> CMake </tag>
             
         </tags>
-        
+      
     </entry>
     
+    
+    
     <entry>
-      <title><![CDATA[安装ArchLinux系统]]></title>
+      <title>安装ArchLinux系统</title>
+      <link href="/2018/01/31/archlinux-install/"/>
       <url>/2018/01/31/archlinux-install/</url>
-      <content type="html"><![CDATA[<p>本来不想写这篇文章的，但是想到我花了挺多的时间在Arch上导致没做到其他什么事情，不写的话觉得对不起自己的产出，也同时方便自己日后重装。<br>本文章主要是针对UEFI启动的，MBR的话有稍许不同，可参考这篇<a href="http://www.viseator.com/2017/05/17/arch_install/" target="_blank" rel="external">文章</a>。</p>
-<h2 id="前期准备"><a href="#前期准备" class="headerlink" title="前期准备"></a>前期准备</h2><ul>
-<li>话说Arch的Wiki真是丰富，查Wiki能解决挺多问题了，建议看。</li>
-<li>官方的安装Wiki：<a href="https://wiki.archlinux.org/index.php/installation_guide" target="_blank" rel="external">Installation guide</a></li>
-<li>制作一个启动U盘，用<a href="https://sourceforge.net/projects/usbwriter/" target="_blank" rel="external">USBWritter</a>即可。</li>
-<li>在Windows的磁盘管理中划分出一块磁盘空间出来，无需格式化。</li>
-<li>假设你懂得了如何设置启动顺序/快速启动选择，这里忽略。</li>
-<li>vim的基本使用方法</li>
-<li>每条命令前都有提示符，<code>#</code>表示root用户下执行，<code>$</code>表示普通用户下执行。</li>
-</ul>
-<p>启动进入U盘的安装引导后，开始进行下面的安装步骤。</p>
-<h2 id="联网"><a href="#联网" class="headerlink" title="联网"></a>联网</h2><p>有线网<br><code># dhcpcd</code><br>无线网<br><code># wifi-menu</code><br>网络连接好了之后可以进行一次网络通畅测试<br><code># ping baidu.com</code><br>确认可以后进行下一步。</p>
-<h2 id="更新系统时间"><a href="#更新系统时间" class="headerlink" title="更新系统时间"></a>更新系统时间</h2><p><code># timedatectl set-ntp true</code>  </p>
-<h2 id="分区"><a href="#分区" class="headerlink" title="分区"></a>分区</h2><p>分区用<code>fdisk</code><br>首先<br><code># fdisk -l</code><br>查看一下当前磁盘情况（关注磁盘路径和EFI分区路径（非全新磁盘））。因为这里是建立在Windows已经安装好了的情况下进行的，所以肯定会有一个EFI分区，记住它的路径，或者想建立一个独立的EFI分区也是可以的。如果你的磁盘是新的，那么就还要建立一个GPT分区表。<br><code># fdisk /dev/xxx</code><br>（这里的xxx是指你的磁盘路径，不是分区路径）进入操作界面，然后进行下面的操作。</p>
-<h3 id="建立EFI分区"><a href="#建立EFI分区" class="headerlink" title="建立EFI分区"></a>建立EFI分区</h3><p>输入<code>g</code>建立GPT分区表（仅对于新磁盘）。然后输入<code>n</code>建立分区，然后会要求我们输入起止扇区，开始扇区默认就好，结束扇区可以输入一个大小，一般大于100M就好，所以我们输入<code>+200M</code>，这里就划分出来了一个200M大小的分区用作引导。输入<code>t</code>选择新建分区类型，输入<code>1</code>表示要建立EFI分区，输入<code>w</code>使刚才的分区操作生效。在这之前可以输入<code>p</code>来查看分区情况。最后格式化一下新建分区<br><code># mkfs.fat -F 32 /dev/xxxY</code><br>（这里的xxxY是指你的引导分区）。</p>
-<h3 id="建立根分区"><a href="#建立根分区" class="headerlink" title="建立根分区"></a>建立根分区</h3><p>这里没有建立其他分区而是直接一个根分区，要是想把Linux其他路径挂在到独立的分区（因为我的是双系统，磁盘空间本来就不够了，懒得再分，如果是要绝心装单系统，那么可以划出更多的分区），那么可以活用搜索引擎了解一下Linux的分区。分区操作是一样，只是在<code>fstab</code>记录分区表的时候会多一点记录。<br><code># fdisk /dev/xxx</code><br>选中磁盘，然后输入<code>n</code>新建分区，因为我想把剩下的空间全部利用上，所以输入起止扇区的时候都直接回车就好了。同样输入<code>w</code>生效，然后格式化分区<br><code># mkfs.ext4 -b 4096 /dev/xxxY</code><br>(这里的xxxY是刚新建的根分区，4096是确保4K对齐)。</p>
-<h3 id="挂载根分区"><a href="#挂载根分区" class="headerlink" title="挂载根分区"></a>挂载根分区</h3><p><code># mount /dev/xxxY /mnt（xxxY是根分区）</code><br><code># mkdir /mnt/boot</code><br><code># mount /dev/xxxY /mnt/boot（这里的xxxY是EFI分区）</code></p>
-<h2 id="更换软件源"><a href="#更换软件源" class="headerlink" title="更换软件源"></a>更换软件源</h2><p><code># vim /etc/pacman.d/mirrorlist</code>  </p>
-<p>在顶部添加速度会较快一点的源，这里添加了清华大学的源</p>
-<blockquote>
-<p>Server = <a href="https://mirrors.tuna.tsinghua.edu.cn/archlinux/$repo/os/$arch" target="_blank" rel="external">https://mirrors.tuna.tsinghua.edu.cn/archlinux/$repo/os/$arch</a>  </p>
-</blockquote>
-<p>保存退出。</p>
-<h2 id="安装基本系统"><a href="#安装基本系统" class="headerlink" title="安装基本系统"></a>安装基本系统</h2><p><code># pacstrap /mnt base base-devel</code><br>base-devel包含了基本的工具，如sudo，pacman等，具体包含了什么可以在<a href="https://www.archlinux.org/groups/x86_64/base-devel/" target="_blank" rel="external">这里</a>查看。</p>
-<h2 id="配置系统"><a href="#配置系统" class="headerlink" title="配置系统"></a>配置系统</h2><h3 id="生成fstab"><a href="#生成fstab" class="headerlink" title="生成fstab"></a>生成fstab</h3><p>这个是用来让系统挂载分区时候用的<br><code># genfstab -U /mnt &gt;&gt; /mnt/etc/fstab</code><br>这一步很重要，用<br><code># vim /mnt/etc/fstab</code><br>查看生成的文件，有误可以编辑它。</p>
-<h3 id="root切换到系统"><a href="#root切换到系统" class="headerlink" title="root切换到系统"></a>root切换到系统</h3><p><code># arch-chroot /mnt</code></p>
-<h3 id="设置时区"><a href="#设置时区" class="headerlink" title="设置时区"></a>设置时区</h3><p><code># ln -sf /usr/share/zoneinfo/Asia/Shanghai /etc/localtime</code><br><code># hwclock --systohc</code><br>第二条命令是同步硬件时钟为UTC。</p>
-<h3 id="安装会用到的软件"><a href="#安装会用到的软件" class="headerlink" title="安装会用到的软件"></a>安装会用到的软件</h3><p>比如vim等<br><code># pacman -S vim dialog wpa_supplicant ntfs-3g networkmanager</code></p>
-<h3 id="设置Locale"><a href="#设置Locale" class="headerlink" title="设置Locale"></a>设置Locale</h3><p><code># vim /etc/locale.gen</code><br>然后找到</p>
-<blockquote>
-<p>zh_CN.UTF-8 UTF-8<br>  zh_HK.UTF-8 UTF-8<br>  zh_TW.UTF-8 UTF-8<br>en_US.UTF-8 UTF-8  </p>
-</blockquote>
-<p>这四行，去掉注释。接下来运行这条命令<br><code># locale-gen</code><br>然后<br><code># vim /etc/locale.conf</code></p>
-<p>在第一行写入  </p>
-<blockquote>
-<p>LANG=en_US.UTF-8</p>
-</blockquote>
-<h3 id="设置主机名"><a href="#设置主机名" class="headerlink" title="设置主机名"></a>设置主机名</h3><p><code># vim /etc/hostname</code></p>
-<p>输入你喜欢的主机名（比如我的mcarch）。然后编辑一下hosts文件<br><code># vim /etc/hosts</code></p>
-<p>然后在里边输入</p>
-<blockquote>
-<p>127.0.0.1    localhost<br>::1        localhost<br>127.0.1.1    mcarch.localdomain    mcarch</p>
-</blockquote>
-<h3 id="设置root密码"><a href="#设置root密码" class="headerlink" title="设置root密码"></a>设置root密码</h3><p><code># passwd</code></p>
-<h3 id="安装Intel-ucode（农企用户请忽视）"><a href="#安装Intel-ucode（农企用户请忽视）" class="headerlink" title="安装Intel-ucode（农企用户请忽视）"></a>安装Intel-ucode（农企用户请忽视）</h3><p><code># pacman -S intel-ucode</code></p>
-<h3 id="安装Bootloader"><a href="#安装Bootloader" class="headerlink" title="安装Bootloader"></a>安装Bootloader</h3><p><code># pacman -S os-prober //多系统需要</code><br><code># pacman -S grub efibootmgr</code></p>
-<p>部署grub<br><code># grub-install --target=x86_64-efi --efi-directory=/boot --bootloader-id=grub</code></p>
-<p>生成配置文件<br><code># grub-mkconfig -o /boot/grub/grub.cfg</code></p>
-<p>如果爆出</p>
-<blockquote>
-<p>warning failed to connect to lvmetad，falling back to device scanning.</p>
-</blockquote>
-<p>这个药（错）丸（误），简单解决方法是编辑</p>
-<blockquote>
-<p>/etc/lvm/lvm.conf</p>
-</blockquote>
-<p>这个文件，找到<code>use_lvmetad = 1</code>这一行，把<code>1</code>改成<code>0</code>即可。</p>
-<h3 id="配置Windows的启动入口"><a href="#配置Windows的启动入口" class="headerlink" title="配置Windows的启动入口"></a>配置Windows的启动入口</h3><p>参考<a href="https://wiki.archlinux.org/index.php/GRUB#Windows_installed_in_UEFI-GPT_Mode_menu_entry" target="_blank" rel="external">这里</a>，添加到<code>/boot/grub/grub.cfg</code>这个文件中，在<code>Arch Linux</code>这个<code>menuentry</code>前或后添加Windows的<code>menuentry</code></p>
-<pre><code>if [ &quot;${grub_platform}&quot; == &quot;efi&quot; ]; then
-    menuentry &quot;Windows 10&quot; {
-        fs_uuid=CEC0-7D1B
-        hints_string=--hint-bios,gpt1 --hint-efi=hd0,gpt1 --hint-baremetal=achi0,gpt1
-        insmod part_gpt
-        insmod fat
-        insmod search_fs_uuid
-        insmod chain
-        search --fs-uuid --set=root $hints_string $fs_uuid
-        chainloader /EFI/Microsoft/Boot/bootmgfw.efi
-    }
-fi
-</code></pre><p>fs_uuid这个值是通过这条命令得到的<br><code># grub-probe --target=fs_uuid $esp/EFI/Microsoft/Boot/bootmgfw.efi</code><br>hints_string的值是通过这条命令得到的<br><code># grub-probe --target=hints_string $esp/EFI/Microsoft/Boot/bootmgfw.efi</code><br>如果上边两条命令爆路径错误，直接切换到bootmgfw.efi的路径下<br><code># cd /boot/EFI/Microsoft/Boot</code><br>然后去掉bootmgfw.efi前边的路径执行。比如第一条命令<br><code># grub-probe --target=fs_uuid bootmgfw.efi</code><br>还有可能爆的错是获取hints_string的时候，因为我的SSD是NVMe的，然后爆出了这个错误</p>
-<blockquote>
-<p>grub-probe: warning: unknown device type nvme0n1.</p>
-</blockquote>
-<p>我Google了一下并没有找到解决方案[绝望脸.jpg]，于是自己臆测Wiki给出的大概那是单块磁盘的输出，所以我直接就copy了Wiki给出的值。</p>
-<blockquote>
-<p>–hint-bios=hd0,gpt1 –hint-efi=hd0,gpt1 –hint-baremetal=ahci0,gpt1</p>
-</blockquote>
-<p>我大概猜测一下<code>hd0</code>是指第1块磁盘，在<code>fdisk -l</code>的输出结果中，我的磁盘是<code>nvme0n1</code>，如果有第二块NVMe磁盘应该就是<code>nvme1n1</code>。如果你只有单块NVMe磁盘，那么这么写是没错的，亲测能正常启动Windows。而我测试了gpt后边的数字写什么都可以启动，如果你有多块磁盘，你也是可以测试一下。欢迎在评论区写下你的结果。;)</p>
-<blockquote>
-<p>根据网友tpob的说法是：BIOS里是第几块硬盘就是hd几。（看来和我猜想的一致）</p>
-</blockquote>
-<h3 id="添加新用户"><a href="#添加新用户" class="headerlink" title="添加新用户"></a>添加新用户</h3><p><code># adduser -m -G wheel [username]</code><br>设置密码<br><code># passwd [username]</code><br>添加sudo<br><code># vim /etc/sudoers</code><br>找到</p>
-<blockquote>
-<p># %wheel ALL=(ALL)ALL</p>
-</blockquote>
-<p>这行，把<code>#</code>去掉，保存退出。</p>
-<h3 id="安装yaourt"><a href="#安装yaourt" class="headerlink" title="安装yaourt"></a>安装yaourt</h3><p><code># vim /etc/pacman.conf</code><br>在末尾加上</p>
-<blockquote>
-<p>[archlinuxcn]<br>SigLevel = Optional TrustAll<br>Server = <a href="https://mirrors.tuna.tsinghua.edu.cn/archlinuxcn/$arch" target="_blank" rel="external">https://mirrors.tuna.tsinghua.edu.cn/archlinuxcn/$arch</a></p>
-</blockquote>
-<p>然后运行<br><code># pacman -Sy yaourt fakeroot</code></p>
-<h2 id="重启"><a href="#重启" class="headerlink" title="重启"></a>重启</h2><p><code># exit</code><br><code># reboot</code><br>ALL DONE！重启后可以用新建的用户登陆，然后联网进行后序的<a href="../archlinux-gnome-install/">桌面安装</a>。</p>
-<h2 id="安装桌面"><a href="#安装桌面" class="headerlink" title="安装桌面"></a>安装桌面</h2><h3 id="安装显卡驱动"><a href="#安装显卡驱动" class="headerlink" title="安装显卡驱动"></a>安装显卡驱动</h3><p>在<a href="https://wiki.archlinux.org/index.php/xorg#Driver_installation" target="_blank" rel="external">这里</a>可以找到你的显卡对应的包。我的是Intel的集显，所以我执行这条命令<br><code>$ sudo pacman -S xf86-video-intel</code></p>
-<h3 id="安装X"><a href="#安装X" class="headerlink" title="安装X"></a>安装X</h3><p><code>$ sudo pacman -S xorg xorg-xinit xterm xorg-xeyes xorg-xclock</code></p>
-<h3 id="安装gnome桌面"><a href="#安装gnome桌面" class="headerlink" title="安装gnome桌面"></a>安装gnome桌面</h3><p>其他桌面请活用搜索引擎。<br><code>$ sudo pacman -S gnome</code><br>因为桌面是用NetworkManager，因此要让它启动并开启自启<br><code>$ sudo systemctl enable NetworkManager</code><br><code>$ sudo systemctl start NetworkManager</code></p>
-<h3 id="安装工具栏网络图标"><a href="#安装工具栏网络图标" class="headerlink" title="安装工具栏网络图标"></a>安装工具栏网络图标</h3><p><code>$ sudo pacman -S network-manager-applet</code><br>之后让gdm开启自动然后启动它，这时候就可以看到桌面了<br><code>$ sudo systemctl enable gdm</code><br><code>$ sudo systemctl start gdm</code></p>
-<p>桌面安装完了之后可以进行一些<a href="">软件安装(不写了就这样发布吧=。=)</a></p>
-]]></content>
       
-        <categories>
-            
-            <category> Linux </category>
-            
-        </categories>
-        
-        
+        <content type="html"><![CDATA[<p>本来不想写这篇文章的，但是想到我花了挺多的时间在Arch上导致没做到其他什么事情，不写的话觉得对不起自己的产出，也同时方便自己日后重装。<br>本文章主要是针对UEFI启动的，MBR的话有稍许不同，可参考这篇<a href="http://www.viseator.com/2017/05/17/arch_install/" target="_blank" rel="noopener">文章</a>。</p><h2 id="前期准备"><a href="#前期准备" class="headerlink" title="前期准备"></a>前期准备</h2><ul><li>话说Arch的Wiki真是丰富，查Wiki能解决挺多问题了，建议看。</li><li>官方的安装Wiki：<a href="https://wiki.archlinux.org/index.php/installation_guide" target="_blank" rel="noopener">Installation guide</a></li><li>制作一个启动U盘，用<a href="https://sourceforge.net/projects/usbwriter/" target="_blank" rel="noopener">USBWritter</a>即可。</li><li>在Windows的磁盘管理中划分出一块磁盘空间出来，无需格式化。</li><li>假设你懂得了如何设置启动顺序/快速启动选择，这里忽略。</li><li>vim的基本使用方法</li><li>每条命令前都有提示符，<code>#</code>表示root用户下执行，<code>$</code>表示普通用户下执行。</li></ul><p>启动进入U盘的安装引导后，开始进行下面的安装步骤。</p><h2 id="联网"><a href="#联网" class="headerlink" title="联网"></a>联网</h2><p>有线网<br><code># dhcpcd</code><br>无线网<br><code># wifi-menu</code><br>网络连接好了之后可以进行一次网络通畅测试<br><code># ping baidu.com</code><br>确认可以后进行下一步。</p><h2 id="更新系统时间"><a href="#更新系统时间" class="headerlink" title="更新系统时间"></a>更新系统时间</h2><p><code># timedatectl set-ntp true</code>  </p><h2 id="分区"><a href="#分区" class="headerlink" title="分区"></a>分区</h2><p>分区用<code>fdisk</code><br>首先<br><code># fdisk -l</code><br>查看一下当前磁盘情况（关注磁盘路径和EFI分区路径（非全新磁盘））。因为这里是建立在Windows已经安装好了的情况下进行的，所以肯定会有一个EFI分区，记住它的路径，或者想建立一个独立的EFI分区也是可以的。如果你的磁盘是新的，那么就还要建立一个GPT分区表。<br><code># fdisk /dev/xxx</code><br>（这里的xxx是指你的磁盘路径，不是分区路径）进入操作界面，然后进行下面的操作。</p><h3 id="建立EFI分区"><a href="#建立EFI分区" class="headerlink" title="建立EFI分区"></a>建立EFI分区</h3><p>输入<code>g</code>建立GPT分区表（仅对于新磁盘）。然后输入<code>n</code>建立分区，然后会要求我们输入起止扇区，开始扇区默认就好，结束扇区可以输入一个大小，一般大于100M就好，所以我们输入<code>+200M</code>，这里就划分出来了一个200M大小的分区用作引导。输入<code>t</code>选择新建分区类型，输入<code>1</code>表示要建立EFI分区，输入<code>w</code>使刚才的分区操作生效。在这之前可以输入<code>p</code>来查看分区情况。最后格式化一下新建分区<br><code># mkfs.fat -F 32 /dev/xxxY</code><br>（这里的xxxY是指你的引导分区）。</p><h3 id="建立根分区"><a href="#建立根分区" class="headerlink" title="建立根分区"></a>建立根分区</h3><p>这里没有建立其他分区而是直接一个根分区，要是想把Linux其他路径挂在到独立的分区（因为我的是双系统，磁盘空间本来就不够了，懒得再分，如果是要绝心装单系统，那么可以划出更多的分区），那么可以活用搜索引擎了解一下Linux的分区。分区操作是一样，只是在<code>fstab</code>记录分区表的时候会多一点记录。<br><code># fdisk /dev/xxx</code><br>选中磁盘，然后输入<code>n</code>新建分区，因为我想把剩下的空间全部利用上，所以输入起止扇区的时候都直接回车就好了。同样输入<code>w</code>生效，然后格式化分区<br><code># mkfs.ext4 -b 4096 /dev/xxxY</code><br>(这里的xxxY是刚新建的根分区，4096是确保4K对齐)。</p><h3 id="挂载根分区"><a href="#挂载根分区" class="headerlink" title="挂载根分区"></a>挂载根分区</h3><p><code># mount /dev/xxxY /mnt（xxxY是根分区）</code><br><code># mkdir /mnt/boot</code><br><code># mount /dev/xxxY /mnt/boot（这里的xxxY是EFI分区）</code></p><h2 id="更换软件源"><a href="#更换软件源" class="headerlink" title="更换软件源"></a>更换软件源</h2><p><code># vim /etc/pacman.d/mirrorlist</code>  </p><p>在顶部添加速度会较快一点的源，这里添加了清华大学的源</p><blockquote><p>Server = <a href="https://mirrors.tuna.tsinghua.edu.cn/archlinux/$repo/os/$arch" target="_blank" rel="noopener">https://mirrors.tuna.tsinghua.edu.cn/archlinux/$repo/os/$arch</a>  </p></blockquote><p>保存退出。</p><h2 id="安装基本系统"><a href="#安装基本系统" class="headerlink" title="安装基本系统"></a>安装基本系统</h2><p><code># pacstrap /mnt base base-devel</code><br>base-devel包含了基本的工具，如sudo，pacman等，具体包含了什么可以在<a href="https://www.archlinux.org/groups/x86_64/base-devel/" target="_blank" rel="noopener">这里</a>查看。</p><h2 id="配置系统"><a href="#配置系统" class="headerlink" title="配置系统"></a>配置系统</h2><h3 id="生成fstab"><a href="#生成fstab" class="headerlink" title="生成fstab"></a>生成fstab</h3><p>这个是用来让系统挂载分区时候用的<br><code># genfstab -U /mnt &gt;&gt; /mnt/etc/fstab</code><br>这一步很重要，用<br><code># vim /mnt/etc/fstab</code><br>查看生成的文件，有误可以编辑它。</p><h3 id="root切换到系统"><a href="#root切换到系统" class="headerlink" title="root切换到系统"></a>root切换到系统</h3><p><code># arch-chroot /mnt</code></p><h3 id="设置时区"><a href="#设置时区" class="headerlink" title="设置时区"></a>设置时区</h3><p><code># ln -sf /usr/share/zoneinfo/Asia/Shanghai /etc/localtime</code><br><code># hwclock --systohc</code><br>第二条命令是同步硬件时钟为UTC。</p><h3 id="安装会用到的软件"><a href="#安装会用到的软件" class="headerlink" title="安装会用到的软件"></a>安装会用到的软件</h3><p>比如vim等<br><code># pacman -S vim dialog wpa_supplicant ntfs-3g networkmanager</code></p><h3 id="设置Locale"><a href="#设置Locale" class="headerlink" title="设置Locale"></a>设置Locale</h3><p><code># vim /etc/locale.gen</code><br>然后找到</p><blockquote><p>zh_CN.UTF-8 UTF-8<br>  zh_HK.UTF-8 UTF-8<br>  zh_TW.UTF-8 UTF-8<br>en_US.UTF-8 UTF-8  </p></blockquote><p>这四行，去掉注释。接下来运行这条命令<br><code># locale-gen</code><br>然后<br><code># vim /etc/locale.conf</code></p><p>在第一行写入  </p><blockquote><p>LANG=en_US.UTF-8</p></blockquote><h3 id="设置主机名"><a href="#设置主机名" class="headerlink" title="设置主机名"></a>设置主机名</h3><p><code># vim /etc/hostname</code></p><p>输入你喜欢的主机名（比如我的mcarch）。然后编辑一下hosts文件<br><code># vim /etc/hosts</code></p><p>然后在里边输入</p><blockquote><p>127.0.0.1    localhost<br>::1        localhost<br>127.0.1.1    mcarch.localdomain    mcarch</p></blockquote><h3 id="设置root密码"><a href="#设置root密码" class="headerlink" title="设置root密码"></a>设置root密码</h3><p><code># passwd</code></p><h3 id="安装Intel-ucode（农企用户请忽视）"><a href="#安装Intel-ucode（农企用户请忽视）" class="headerlink" title="安装Intel-ucode（农企用户请忽视）"></a>安装Intel-ucode（农企用户请忽视）</h3><p><code># pacman -S intel-ucode</code></p><h3 id="安装Bootloader"><a href="#安装Bootloader" class="headerlink" title="安装Bootloader"></a>安装Bootloader</h3><p><code># pacman -S os-prober //多系统需要</code><br><code># pacman -S grub efibootmgr</code></p><p>部署grub<br><code># grub-install --target=x86_64-efi --efi-directory=/boot --bootloader-id=grub</code></p><p>生成配置文件<br><code># grub-mkconfig -o /boot/grub/grub.cfg</code></p><p>如果爆出</p><blockquote><p>warning failed to connect to lvmetad，falling back to device scanning.</p></blockquote><p>这个药（错）丸（误），简单解决方法是编辑</p><blockquote><p>/etc/lvm/lvm.conf</p></blockquote><p>这个文件，找到<code>use_lvmetad = 1</code>这一行，把<code>1</code>改成<code>0</code>即可。</p><h3 id="配置Windows的启动入口"><a href="#配置Windows的启动入口" class="headerlink" title="配置Windows的启动入口"></a>配置Windows的启动入口</h3><p>参考<a href="https://wiki.archlinux.org/index.php/GRUB#Windows_installed_in_UEFI-GPT_Mode_menu_entry" target="_blank" rel="noopener">这里</a>，添加到<code>/boot/grub/grub.cfg</code>这个文件中，在<code>Arch Linux</code>这个<code>menuentry</code>前或后添加Windows的<code>menuentry</code></p><pre><code>if [ &quot;${grub_platform}&quot; == &quot;efi&quot; ]; then    menuentry &quot;Windows 10&quot; {        fs_uuid=CEC0-7D1B        hints_string=--hint-bios,gpt1 --hint-efi=hd0,gpt1 --hint-baremetal=achi0,gpt1        insmod part_gpt        insmod fat        insmod search_fs_uuid        insmod chain        search --fs-uuid --set=root $hints_string $fs_uuid        chainloader /EFI/Microsoft/Boot/bootmgfw.efi    }fi</code></pre><p>fs_uuid这个值是通过这条命令得到的<br><code># grub-probe --target=fs_uuid $esp/EFI/Microsoft/Boot/bootmgfw.efi</code><br>hints_string的值是通过这条命令得到的<br><code># grub-probe --target=hints_string $esp/EFI/Microsoft/Boot/bootmgfw.efi</code><br>如果上边两条命令爆路径错误，直接切换到bootmgfw.efi的路径下<br><code># cd /boot/EFI/Microsoft/Boot</code><br>然后去掉bootmgfw.efi前边的路径执行。比如第一条命令<br><code># grub-probe --target=fs_uuid bootmgfw.efi</code><br>还有可能爆的错是获取hints_string的时候，因为我的SSD是NVMe的，然后爆出了这个错误</p><blockquote><p>grub-probe: warning: unknown device type nvme0n1.</p></blockquote><p>我Google了一下并没有找到解决方案[绝望脸.jpg]，于是自己臆测Wiki给出的大概那是单块磁盘的输出，所以我直接就copy了Wiki给出的值。</p><blockquote><p>–hint-bios=hd0,gpt1 –hint-efi=hd0,gpt1 –hint-baremetal=ahci0,gpt1</p></blockquote><p>我大概猜测一下<code>hd0</code>是指第1块磁盘，在<code>fdisk -l</code>的输出结果中，我的磁盘是<code>nvme0n1</code>，如果有第二块NVMe磁盘应该就是<code>nvme1n1</code>。如果你只有单块NVMe磁盘，那么这么写是没错的，亲测能正常启动Windows。而我测试了gpt后边的数字写什么都可以启动，如果你有多块磁盘，你也是可以测试一下。欢迎在评论区写下你的结果。;)</p><blockquote><p>根据网友tpob的说法是：BIOS里是第几块硬盘就是hd几。（看来和我猜想的一致）</p></blockquote><h3 id="添加新用户"><a href="#添加新用户" class="headerlink" title="添加新用户"></a>添加新用户</h3><p><code># adduser -m -G wheel [username]</code><br>设置密码<br><code># passwd [username]</code><br>添加sudo<br><code># vim /etc/sudoers</code><br>找到</p><blockquote><p># %wheel ALL=(ALL)ALL</p></blockquote><p>这行，把<code>#</code>去掉，保存退出。</p><h3 id="安装yaourt"><a href="#安装yaourt" class="headerlink" title="安装yaourt"></a>安装yaourt</h3><p><code># vim /etc/pacman.conf</code><br>在末尾加上</p><blockquote><p>[archlinuxcn]<br>SigLevel = Optional TrustAll<br>Server = <a href="https://mirrors.tuna.tsinghua.edu.cn/archlinuxcn/$arch" target="_blank" rel="noopener">https://mirrors.tuna.tsinghua.edu.cn/archlinuxcn/$arch</a></p></blockquote><p>然后运行<br><code># pacman -Sy yaourt fakeroot</code></p><h2 id="重启"><a href="#重启" class="headerlink" title="重启"></a>重启</h2><p><code># exit</code><br><code># reboot</code><br>ALL DONE！重启后可以用新建的用户登陆，然后联网进行后序的<a href="../archlinux-gnome-install/">桌面安装</a>。</p><h2 id="安装桌面"><a href="#安装桌面" class="headerlink" title="安装桌面"></a>安装桌面</h2><h3 id="安装显卡驱动"><a href="#安装显卡驱动" class="headerlink" title="安装显卡驱动"></a>安装显卡驱动</h3><p>在<a href="https://wiki.archlinux.org/index.php/xorg#Driver_installation" target="_blank" rel="noopener">这里</a>可以找到你的显卡对应的包。我的是Intel的集显，所以我执行这条命令<br><code>$ sudo pacman -S xf86-video-intel</code></p><h3 id="安装X"><a href="#安装X" class="headerlink" title="安装X"></a>安装X</h3><p><code>$ sudo pacman -S xorg xorg-xinit xterm xorg-xeyes xorg-xclock</code></p><h3 id="安装gnome桌面"><a href="#安装gnome桌面" class="headerlink" title="安装gnome桌面"></a>安装gnome桌面</h3><p>其他桌面请活用搜索引擎。<br><code>$ sudo pacman -S gnome</code><br>因为桌面是用NetworkManager，因此要让它启动并开启自启<br><code>$ sudo systemctl enable NetworkManager</code><br><code>$ sudo systemctl start NetworkManager</code></p><h3 id="安装工具栏网络图标"><a href="#安装工具栏网络图标" class="headerlink" title="安装工具栏网络图标"></a>安装工具栏网络图标</h3><p><code>$ sudo pacman -S network-manager-applet</code><br>之后让gdm开启自动然后启动它，这时候就可以看到桌面了<br><code>$ sudo systemctl enable gdm</code><br><code>$ sudo systemctl start gdm</code></p><p>桌面安装完了之后可以进行一些<a href>软件安装(不写了就这样发布吧=。=)</a></p>]]></content>
+      
+      
+      <categories>
+          
+          <category> Linux </category>
+          
+      </categories>
+      
+      
         <tags>
             
             <tag> Linux </tag>
@@ -983,215 +281,84 @@ fi
             <tag> ArchLinux </tag>
             
         </tags>
-        
+      
     </entry>
     
+    
+    
     <entry>
-      <title><![CDATA[记一次C#爬虫经历]]></title>
+      <title>记一次C#爬虫经历</title>
+      <link href="/2018/01/06/crawler/"/>
       <url>/2018/01/06/crawler/</url>
-      <content type="html"><![CDATA[<p>这几天都在写C++，感觉都要吐了（原谅我太渣(/▽＼)），适当写写C#转换一下心情。既然要转换心情，那么就应该有点乐趣，那就把我们学院的所有人的人头照都爬了吧！<br>我校的人头照很好爬，连认证都不用就可以用直链Get到。</p>
-<h1 id="准备工作"><a href="#准备工作" class="headerlink" title="准备工作"></a>准备工作</h1><p>当然要准备一下所有人的花名册，这个不难get到，这学期分专业的时候有excel文件公示，copy，paste，完工。</p>
-<h1 id="敲代码"><a href="#敲代码" class="headerlink" title="敲代码"></a>敲代码</h1><p>这里一共准备两个方法即可，一个用来读取文件，获得所有人的学号和姓名，另一个方法负责把这些照片download下来。</p>
-<h2 id="文件读取"><a href="#文件读取" class="headerlink" title="文件读取"></a>文件读取</h2><pre><code class="CSharp">static Dictionary&lt;string, string&gt; GetInfo()
-{
-    Dictionary&lt;string, string&gt; dictionary = new Dictionary&lt;string, string&gt;();
-
-    using (StreamReader sr = new StreamReader(&quot;id_names.txt&quot;))
-    {
-        string line = null;
-        while ((line = sr.ReadLine()) != null)
-        {
-            var words = line.Split(&#39; &#39;);
-            dictionary.Add(words[0], words[1]);
-        }
-    }
-    return dictionary;
-}
-</code></pre>
-<p>函数返回一个以学号为Key，姓名为Value的字典，有了这个字典，我们就可以遍历所有的元素然后爬图了。</p>
-<h2 id="爬图"><a href="#爬图" class="headerlink" title="爬图"></a>爬图</h2><pre><code class="CSharp">static void PullImage(string url, string id, string name)
-{
-    string _url = url + id + &quot;.jpg&quot;;
-    HttpWebRequest webRequest = WebRequest.Create(_url) as HttpWebRequest;
-
-    Image img = null;
-    try
-    {
-        var webResponse = webRequest.GetResponse();
-        var stream = webResponse.GetResponseStream();
-        img = Image.FromStream(stream);
-        img.Save($&quot;pics/{id} {name}.jpg&quot;);
-    }
-    catch (Exception e)
-    {
-        Console.WriteLine($&quot;Get {name}&#39;s pic with error.&quot;);
-        Console.WriteLine(e.Message);
-    }
-}
-</code></pre>
-<p>添加异常捕获，不然会因为某个图片获取过程出现错误而导致程序奔掉，后续学生的照片获取中断。  </p>
-<h2 id="执行"><a href="#执行" class="headerlink" title="执行"></a>执行</h2><p>两个函数都准备好了，那么就开始实验吧！</p>
-<pre><code class="CSharp">static void Main(string[] args)
-{
-    string url = &quot;http://xxx/xxx/photo/student/&quot;; //这里把链接抹掉了
-
-    var ret = GetInfo();
-    foreach (var r in ret)
-    {
-        PullImage(url, r.Key, r.Value);
-        Thread.Sleep(1300); //暂停1.3秒，不然可能会因为频繁发送请求服务器方面出现问题（毕竟土豆服务器）
-    }
-
-    Console.WriteLine(&quot;Done&quot;);
-    Console.ReadLine();
-
-}
-</code></pre>
-<h1 id="运行结果"><a href="#运行结果" class="headerlink" title="运行结果"></a>运行结果</h1><p>最后的运行结果如下图，一个学生的照片获取超时了，还行。<br><a href="/img/2018/01/snipaste_20180106_203755.png"><img src="/img/2018/01/snipaste_20180106_203755.png" alt=""></a><br>这下我可以认识认识本学院所有人了，嘻嘻嘻(ಥ _ ಥ)</p>
-]]></content>
       
-        <categories>
-            
-            <category> Programming </category>
-            
-        </categories>
-        
-        
+        <content type="html"><![CDATA[<p>这几天都在写C++，感觉都要吐了（原谅我太渣(/▽＼)），适当写写C#转换一下心情。既然要转换心情，那么就应该有点乐趣，那就把我们学院的所有人的人头照都爬了吧！<br>我校的人头照很好爬，连认证都不用就可以用直链Get到。</p><h1 id="准备工作"><a href="#准备工作" class="headerlink" title="准备工作"></a>准备工作</h1><p>当然要准备一下所有人的花名册，这个不难get到，这学期分专业的时候有excel文件公示，copy，paste，完工。</p><h1 id="敲代码"><a href="#敲代码" class="headerlink" title="敲代码"></a>敲代码</h1><p>这里一共准备两个方法即可，一个用来读取文件，获得所有人的学号和姓名，另一个方法负责把这些照片download下来。</p><h2 id="文件读取"><a href="#文件读取" class="headerlink" title="文件读取"></a>文件读取</h2><pre><code class="CSharp">static Dictionary&lt;string, string&gt; GetInfo(){    Dictionary&lt;string, string&gt; dictionary = new Dictionary&lt;string, string&gt;();    using (StreamReader sr = new StreamReader(&quot;id_names.txt&quot;))    {        string line = null;        while ((line = sr.ReadLine()) != null)        {            var words = line.Split(&#39; &#39;);            dictionary.Add(words[0], words[1]);        }    }    return dictionary;}</code></pre><p>函数返回一个以学号为Key，姓名为Value的字典，有了这个字典，我们就可以遍历所有的元素然后爬图了。</p><h2 id="爬图"><a href="#爬图" class="headerlink" title="爬图"></a>爬图</h2><pre><code class="CSharp">static void PullImage(string url, string id, string name){    string _url = url + id + &quot;.jpg&quot;;    HttpWebRequest webRequest = WebRequest.Create(_url) as HttpWebRequest;    Image img = null;    try    {        var webResponse = webRequest.GetResponse();        var stream = webResponse.GetResponseStream();        img = Image.FromStream(stream);        img.Save($&quot;pics/{id} {name}.jpg&quot;);    }    catch (Exception e)    {        Console.WriteLine($&quot;Get {name}&#39;s pic with error.&quot;);        Console.WriteLine(e.Message);    }}</code></pre><p>添加异常捕获，不然会因为某个图片获取过程出现错误而导致程序奔掉，后续学生的照片获取中断。  </p><h2 id="执行"><a href="#执行" class="headerlink" title="执行"></a>执行</h2><p>两个函数都准备好了，那么就开始实验吧！</p><pre><code class="CSharp">static void Main(string[] args){    string url = &quot;http://xxx/xxx/photo/student/&quot;; //这里把链接抹掉了    var ret = GetInfo();    foreach (var r in ret)    {        PullImage(url, r.Key, r.Value);        Thread.Sleep(1300); //暂停1.3秒，不然可能会因为频繁发送请求服务器方面出现问题（毕竟土豆服务器）    }    Console.WriteLine(&quot;Done&quot;);    Console.ReadLine();}</code></pre><h1 id="运行结果"><a href="#运行结果" class="headerlink" title="运行结果"></a>运行结果</h1><p>最后的运行结果如下图，一个学生的照片获取超时了，还行。<br><a href="/img/2018/01/snipaste_20180106_203755.png"><img src="/img/2018/01/snipaste_20180106_203755.png" alt></a><br>这下我可以认识认识本学院所有人了，嘻嘻嘻(ಥ _ ಥ)</p>]]></content>
+      
+      
+      <categories>
+          
+          <category> Programming </category>
+          
+      </categories>
+      
+      
         <tags>
+            
+            <tag> C# </tag>
             
             <tag> .NET </tag>
             
             <tag> 爬虫 </tag>
             
-            <tag> C# </tag>
-            
         </tags>
-        
+      
     </entry>
     
+    
+    
     <entry>
-      <title><![CDATA[Json.NET]]></title>
+      <title>Json.NET</title>
+      <link href="/2017/09/20/json-in-dotnet/"/>
       <url>/2017/09/20/json-in-dotnet/</url>
-      <content type="html"><![CDATA[<p>JSON(JavaScript Object Notation) is popularly used nowadays. For JavaScript, it’s easy to convert a object to json. How about C#? How do we get some properties we need from a json typed object? And how do we convert our object into json formatted text? This article aims to solve the problems. You will see it can be convenient to solve the problems<strong><em>.(●’◡’●)</em></strong></p>
-<h1 id="Preparation"><a href="#Preparation" class="headerlink" title="Preparation"></a>Preparation</h1><p>There is one thing we need to do before start. That is installing the a NuGet package named <em><strong>JSON.NET</strong></em>. In Visual Studio, we can search any package and install it easily. Search <em><strong>JSON.NET</strong></em>, then install it to you project.</p>
-<p><a href="/img/2017/09/snipaste_20170920_201049.png"><img src="/img/2017/09/snipaste_20170920_201049.png" alt="snipaste_20170920_201049"></a></p>
-<h1 id="Serialization-and-Deserialization"><a href="#Serialization-and-Deserialization" class="headerlink" title="Serialization and Deserialization"></a>Serialization and Deserialization</h1><p>These operations are suitable for the definitive type we know or define. For example, we now have a class named <strong>Rectangle.</strong></p>
-<pre><code class="CSharp">class Rectangle
-{
-    public int Height { get; set; }
-    public int Width { get; set; }
-    private Rectangle() { }
-    public Rectangle(int height,int width)
-    {
-        Height = height;
-        Width = width;
-    }
-}
-</code></pre>
-<p>Then we need to refer one namespace.</p>
-<p><code>using Newtonsoft.Json;</code></p>
-<p>After that, we can use class <strong>JsonConvert</strong> to serialize a Rectangle typed object or a list of Rectangle typed objects. Code as follow.</p>
-<pre><code class="CSharp">List list = new List();
-list.Add(new Rectangle(1, 2));
-list.Add(new Rectangle(45, 23));
-string json = JsonConvert.SerializeObject(list);
-</code></pre>
-<p>If we print variable <code>json</code> to the console window, we can see the result as this.</p>
-<p><a href="/img/2017/09/snipaste_20170920_204618.png"><img src="/img/2017/09/snipaste_20170920_204618.png" alt="snipaste_20170920_204618"></a></p>
-<p>How about deserialize object(s) from a json formatted text? Much easy! Only one line code!</p>
-<pre><code class="CSharp">var objs = JsonConvert.DeserializeObject&lt;List&lt;Rectangle&gt;&gt;(json);
-</code></pre>
-<p>You may doubt whether it’s correct. Well, let’s verify that. Write some code as follow.</p>
-<pre><code class="CSharp">for (int i = 0; i &amp;lt; objs.Count; i++)
-{
-    Console.WriteLine($&quot;{i + 1}th object info:&quot;
-        + $&quot;Height:{objs[i].Height} Width:{objs[i].Width}&quot;);
-}
-</code></pre>
-<p>We will get the result.</p>
-<p><a href="/img/2017/09/snipaste_20170920_205856.png"><img src="/img/2017/09/snipaste_20170920_205856.png" alt="snipaste_20170920_205856"></a></p>
-<p><strong>Correct! Congratulation!</strong></p>
-<h1 id="Pick-Properties-from-JSON"><a href="#Pick-Properties-from-JSON" class="headerlink" title="Pick Properties from JSON"></a>Pick Properties from JSON</h1><p>Consider one situation, we get some JSON typed text from any way like API. One problem we will face is that we don’t have a exact type for that. Thus, we can’t deserialize it to a exact typed object. Thanks to JSON.NET this powerful library, we can continue to work in such situation without too much code. Let’s figure out!</p>
-<p>Firstly, get json formatted text via API.</p>
-<pre><code class="CSharp">HttpWebRequest request = (HttpWebRequest)WebRequest.Create(@&quot;http://samples.openweathermap.org/data/2.5/weather?q=London,uk&amp;amp;appid=b1b15e88fa797225412429c1c50c122a1&quot;);
-request.Method = &quot;GET&quot;;
-request.ContentType = &quot;text/json&quot;;
-var response = request.GetResponse();
-string json = string.Empty;
-using (StreamReader sr = new StreamReader(response.GetResponseStream()))
-{
-    json = sr.ReadToEnd();
-}
-</code></pre>
-<p>If we print variable <code>json</code> out, we will see this.</p>
-<p><a href="/img/2017/09/snipaste_20170920_210725.png"><img src="/img/2017/09/snipaste_20170920_210725.png" alt="snipaste_20170920_210725"></a></p>
-<p>If we want to get wind speed, we can write this code.</p>
-<pre><code class="CSharp">JToken token = JObject.Parse(json);
-string speed = (string)token.SelectToken(&quot;wind&quot;).SelectToken(&quot;speed&quot;);
-</code></pre>
-<p>The variable speed is the result we want. Not complicated.</p>
-<h1 id="End"><a href="#End" class="headerlink" title="End"></a>End</h1><p><a href="https://www.newtonsoft.com/json/help/html/Introduction.htm" target="_blank" rel="external">Docs</a><br>(￣y▽￣)╭ Ohohoho…..</p>
-]]></content>
       
-        <categories>
-            
-            <category> Programming </category>
-            
-        </categories>
-        
-        
+        <content type="html"><![CDATA[<p>JSON(JavaScript Object Notation) is popularly used nowadays. For JavaScript, it’s easy to convert a object to json. How about C#? How do we get some properties we need from a json typed object? And how do we convert our object into json formatted text? This article aims to solve the problems. You will see it can be convenient to solve the problems<strong><em>.(●’◡’●)</em></strong></p><h1 id="Preparation"><a href="#Preparation" class="headerlink" title="Preparation"></a>Preparation</h1><p>There is one thing we need to do before start. That is installing the a NuGet package named <em><strong>JSON.NET</strong></em>. In Visual Studio, we can search any package and install it easily. Search <em><strong>JSON.NET</strong></em>, then install it to you project.</p><p><a href="/img/2017/09/snipaste_20170920_201049.png"><img src="/img/2017/09/snipaste_20170920_201049.png" alt="snipaste_20170920_201049"></a></p><h1 id="Serialization-and-Deserialization"><a href="#Serialization-and-Deserialization" class="headerlink" title="Serialization and Deserialization"></a>Serialization and Deserialization</h1><p>These operations are suitable for the definitive type we know or define. For example, we now have a class named <strong>Rectangle.</strong></p><pre><code class="CSharp">class Rectangle{    public int Height { get; set; }    public int Width { get; set; }    private Rectangle() { }    public Rectangle(int height,int width)    {        Height = height;        Width = width;    }}</code></pre><p>Then we need to refer one namespace.</p><p><code>using Newtonsoft.Json;</code></p><p>After that, we can use class <strong>JsonConvert</strong> to serialize a Rectangle typed object or a list of Rectangle typed objects. Code as follow.</p><pre><code class="CSharp">List list = new List();list.Add(new Rectangle(1, 2));list.Add(new Rectangle(45, 23));string json = JsonConvert.SerializeObject(list);</code></pre><p>If we print variable <code>json</code> to the console window, we can see the result as this.</p><p><a href="/img/2017/09/snipaste_20170920_204618.png"><img src="/img/2017/09/snipaste_20170920_204618.png" alt="snipaste_20170920_204618"></a></p><p>How about deserialize object(s) from a json formatted text? Much easy! Only one line code!</p><pre><code class="CSharp">var objs = JsonConvert.DeserializeObject&lt;List&lt;Rectangle&gt;&gt;(json);</code></pre><p>You may doubt whether it’s correct. Well, let’s verify that. Write some code as follow.</p><pre><code class="CSharp">for (int i = 0; i &amp;lt; objs.Count; i++){    Console.WriteLine($&quot;{i + 1}th object info:&quot;        + $&quot;Height:{objs[i].Height} Width:{objs[i].Width}&quot;);}</code></pre><p>We will get the result.</p><p><a href="/img/2017/09/snipaste_20170920_205856.png"><img src="/img/2017/09/snipaste_20170920_205856.png" alt="snipaste_20170920_205856"></a></p><p><strong>Correct! Congratulation!</strong></p><h1 id="Pick-Properties-from-JSON"><a href="#Pick-Properties-from-JSON" class="headerlink" title="Pick Properties from JSON"></a>Pick Properties from JSON</h1><p>Consider one situation, we get some JSON typed text from any way like API. One problem we will face is that we don’t have a exact type for that. Thus, we can’t deserialize it to a exact typed object. Thanks to JSON.NET this powerful library, we can continue to work in such situation without too much code. Let’s figure out!</p><p>Firstly, get json formatted text via API.</p><pre><code class="CSharp">HttpWebRequest request = (HttpWebRequest)WebRequest.Create(@&quot;http://samples.openweathermap.org/data/2.5/weather?q=London,uk&amp;amp;appid=b1b15e88fa797225412429c1c50c122a1&quot;);request.Method = &quot;GET&quot;;request.ContentType = &quot;text/json&quot;;var response = request.GetResponse();string json = string.Empty;using (StreamReader sr = new StreamReader(response.GetResponseStream())){    json = sr.ReadToEnd();}</code></pre><p>If we print variable <code>json</code> out, we will see this.</p><p><a href="/img/2017/09/snipaste_20170920_210725.png"><img src="/img/2017/09/snipaste_20170920_210725.png" alt="snipaste_20170920_210725"></a></p><p>If we want to get wind speed, we can write this code.</p><pre><code class="CSharp">JToken token = JObject.Parse(json);string speed = (string)token.SelectToken(&quot;wind&quot;).SelectToken(&quot;speed&quot;);</code></pre><p>The variable speed is the result we want. Not complicated.</p><h1 id="End"><a href="#End" class="headerlink" title="End"></a>End</h1><p><a href="https://www.newtonsoft.com/json/help/html/Introduction.htm" target="_blank" rel="noopener">Docs</a><br>(￣y▽￣)╭ Ohohoho…..</p>]]></content>
+      
+      
+      <categories>
+          
+          <category> Programming </category>
+          
+      </categories>
+      
+      
         <tags>
             
-            <tag> .NET </tag>
-            
             <tag> C# </tag>
+            
+            <tag> .NET </tag>
             
             <tag> JSON </tag>
             
         </tags>
-        
+      
     </entry>
     
+    
+    
     <entry>
-      <title><![CDATA[为Windows新增右键菜单项]]></title>
+      <title>为Windows新增右键菜单项</title>
+      <link href="/2017/07/17/add-right-click-menu/"/>
       <url>/2017/07/17/add-right-click-menu/</url>
-      <content type="html"><![CDATA[<p>Windows中，除了系统自带的一些右键菜单项之外，在一些时候我们安装软件后可以发现在右键菜单新增了一些软件的相关右键菜单项，就像这样</p>
-<p><a href="/img/2017/07/snipaste_20170717_223144.png"><img src="/img/2017/07/snipaste_20170717_223144.png" alt=""></a></p>
-<p>Ok，那么我们想自己也弄一个怎么办呢？下面开始正片，<span style="font-weight: bold; color: #d14;">友情提醒：本文会涉及到修改注册表，请备份好原注册表后再修改。</span></p>
-<h2 id="打开注册表"><a href="#打开注册表" class="headerlink" title="打开注册表"></a>打开注册表</h2><p>Win+R运行regedit</p>
-<p><a href="/img/2017/07/snipaste_20170717_224739.png"><img src="/img/2017/07/snipaste_20170717_224739.png" alt=""></a></p>
-<p>找到该路径：<br><code>HKEY_CLASSES_ROOT\Directory\Background\shell</code></p>
-<h2 id="增添新项"><a href="#增添新项" class="headerlink" title="增添新项"></a>增添新项</h2><p>选中<code>shell</code>然后右键<code>New</code>-&gt;<code>Key</code>新建一个项，如图</p>
-<p><a href="/img/2017/07/snipaste_20170717_225314.png"><img src="/img/2017/07/snipaste_20170717_225314.png" alt=""></a></p>
-<p>我命名为Cmder，在新建的<code>Cmder</code>项下在新建一个项，命名为<code>command</code>，然后修改其下默认键的值为要运行程序的路径。比如我的</p>
-<p><a href="/img/2017/07/snipaste_20170717_230121.png"><img src="/img/2017/07/snipaste_20170717_230121.png" alt=""></a></p>
-<p>然后在资源管理器空白处点击右键时就会发现了这个选项，但是有点丑陋，我们来稍微地美化一下，给添加的右键菜单增加图标和描述信息。</p>
-<h2 id="美化"><a href="#美化" class="headerlink" title="美化"></a>美化</h2><p>选中<code>Cmder</code>，接着在右侧中新建几个<code>string</code>类型的值。</p>
-<p><a href="/img/2017/07/snipaste_20170717_230807.png"><img src="/img/2017/07/snipaste_20170717_230807.png" alt=""></a></p>
-<p>新增两个值，分别为</p>
-<p><a href="/img/2017/07/snipaste_20170717_230940.png"><img src="/img/2017/07/snipaste_20170717_230940.png" alt=""></a></p>
-<p><code>Icon</code>用来给菜单添加一个小图标，<code>MUIVerb</code>用来给菜单添加描述信息。完成后再查看一下就会是这个效果</p>
-<p><a href="/img/2017/07/snipaste_20170717_231530.png"><img src="/img/2017/07/snipaste_20170717_231530.png" alt=""></a></p>
-<p>测试一下，完美运行。</p>
-<h2 id="增加子菜单项"><a href="#增加子菜单项" class="headerlink" title="增加子菜单项"></a>增加子菜单项</h2><p>正如第一张图所示，还应该有子菜单项才足够满足一些需求，这都不是事。</p>
-<p>首先，我们回到<code>Cmder</code>项下，再添加一个<code>string</code>类型的值，名字为<code>SubCommands</code>，然后值的内容填写你想要添加的命令的名字（千万避免重复），每个命令之间用半角分号<code>;</code>隔开，就像这样</p>
-<p><a href="/img/2017/07/snipaste_20170717_232103.png"><img src="/img/2017/07/snipaste_20170717_232103.png" alt=""></a></p>
-<p>还没完，这时候你可以再查看右键菜单的时候可以看到刚才添加的菜单项已经有个右尖括号了，但是因为具体的子命令还没实现，所以不会显现出来。这个时候我们定位到<code>Computer\HKEY_LOCAL_MACHINE\SOFTWARE\Microsoft\Windows\CurrentVersion\Explorer\CommandStore\shell</code>下，然后再新建新项，名字为刚才加入的子命令名字，比如我的</p>
-<p><a href="/img/2017/07/snipaste_20170717_232828.png"><img src="/img/2017/07/snipaste_20170717_232828.png" alt=""></a></p>
-<p>接下来的操作就和上边的一毛一样了。</p>
-<p>最后的效果就是这样</p>
-<p><a href="/img/2017/07/snipaste_20170717_222321.png"><img src="/img/2017/07/snipaste_20170717_222321.png" alt=""></a></p>
-<h2 id="Shift-右键"><a href="#Shift-右键" class="headerlink" title="Shift+右键"></a>Shift+右键</h2><p>还有一些菜单项是通过Shift+鼠标右组合键才会显现出来的，要实现这个也很简单，只需要添加一个新值<code>Extended</code>即可。</p>
-<p><a href="/img/2017/07/snipaste_20170817_115734.png"><img src="/img/2017/07/snipaste_20170817_115734.png" alt=""></a></p>
-]]></content>
       
-        <categories>
-            
-            <category> Windows </category>
-            
-        </categories>
-        
-        
+        <content type="html"><![CDATA[<p>Windows中，除了系统自带的一些右键菜单项之外，在一些时候我们安装软件后可以发现在右键菜单新增了一些软件的相关右键菜单项，就像这样</p><p><a href="/img/2017/07/snipaste_20170717_223144.png"><img src="/img/2017/07/snipaste_20170717_223144.png" alt></a></p><p>Ok，那么我们想自己也弄一个怎么办呢？下面开始正片，<span style="font-weight: bold; color: #d14;">友情提醒：本文会涉及到修改注册表，请备份好原注册表后再修改。</span></p><h2 id="打开注册表"><a href="#打开注册表" class="headerlink" title="打开注册表"></a>打开注册表</h2><p>Win+R运行regedit</p><p><a href="/img/2017/07/snipaste_20170717_224739.png"><img src="/img/2017/07/snipaste_20170717_224739.png" alt></a></p><p>找到该路径：<br><code>HKEY_CLASSES_ROOT\Directory\Background\shell</code></p><h2 id="增添新项"><a href="#增添新项" class="headerlink" title="增添新项"></a>增添新项</h2><p>选中<code>shell</code>然后右键<code>New</code>-&gt;<code>Key</code>新建一个项，如图</p><p><a href="/img/2017/07/snipaste_20170717_225314.png"><img src="/img/2017/07/snipaste_20170717_225314.png" alt></a></p><p>我命名为Cmder，在新建的<code>Cmder</code>项下在新建一个项，命名为<code>command</code>，然后修改其下默认键的值为要运行程序的路径。比如我的</p><p><a href="/img/2017/07/snipaste_20170717_230121.png"><img src="/img/2017/07/snipaste_20170717_230121.png" alt></a></p><p>然后在资源管理器空白处点击右键时就会发现了这个选项，但是有点丑陋，我们来稍微地美化一下，给添加的右键菜单增加图标和描述信息。</p><h2 id="美化"><a href="#美化" class="headerlink" title="美化"></a>美化</h2><p>选中<code>Cmder</code>，接着在右侧中新建几个<code>string</code>类型的值。</p><p><a href="/img/2017/07/snipaste_20170717_230807.png"><img src="/img/2017/07/snipaste_20170717_230807.png" alt></a></p><p>新增两个值，分别为</p><p><a href="/img/2017/07/snipaste_20170717_230940.png"><img src="/img/2017/07/snipaste_20170717_230940.png" alt></a></p><p><code>Icon</code>用来给菜单添加一个小图标，<code>MUIVerb</code>用来给菜单添加描述信息。完成后再查看一下就会是这个效果</p><p><a href="/img/2017/07/snipaste_20170717_231530.png"><img src="/img/2017/07/snipaste_20170717_231530.png" alt></a></p><p>测试一下，完美运行。</p><h2 id="增加子菜单项"><a href="#增加子菜单项" class="headerlink" title="增加子菜单项"></a>增加子菜单项</h2><p>正如第一张图所示，还应该有子菜单项才足够满足一些需求，这都不是事。</p><p>首先，我们回到<code>Cmder</code>项下，再添加一个<code>string</code>类型的值，名字为<code>SubCommands</code>，然后值的内容填写你想要添加的命令的名字（千万避免重复），每个命令之间用半角分号<code>;</code>隔开，就像这样</p><p><a href="/img/2017/07/snipaste_20170717_232103.png"><img src="/img/2017/07/snipaste_20170717_232103.png" alt></a></p><p>还没完，这时候你可以再查看右键菜单的时候可以看到刚才添加的菜单项已经有个右尖括号了，但是因为具体的子命令还没实现，所以不会显现出来。这个时候我们定位到<code>Computer\HKEY_LOCAL_MACHINE\SOFTWARE\Microsoft\Windows\CurrentVersion\Explorer\CommandStore\shell</code>下，然后再新建新项，名字为刚才加入的子命令名字，比如我的</p><p><a href="/img/2017/07/snipaste_20170717_232828.png"><img src="/img/2017/07/snipaste_20170717_232828.png" alt></a></p><p>接下来的操作就和上边的一毛一样了。</p><p>最后的效果就是这样</p><p><a href="/img/2017/07/snipaste_20170717_222321.png"><img src="/img/2017/07/snipaste_20170717_222321.png" alt></a></p><h2 id="Shift-右键"><a href="#Shift-右键" class="headerlink" title="Shift+右键"></a>Shift+右键</h2><p>还有一些菜单项是通过Shift+鼠标右组合键才会显现出来的，要实现这个也很简单，只需要添加一个新值<code>Extended</code>即可。</p><p><a href="/img/2017/07/snipaste_20170817_115734.png"><img src="/img/2017/07/snipaste_20170817_115734.png" alt></a></p>]]></content>
+      
+      
+      <categories>
+          
+          <category> Windows </category>
+          
+      </categories>
+      
+      
         <tags>
             
             <tag> Windows 10 </tag>
@@ -1199,281 +366,101 @@ string speed = (string)token.SelectToken(&quot;wind&quot;).SelectToken(&quot;spe
             <tag> Windows </tag>
             
         </tags>
-        
+      
     </entry>
     
+    
+    
     <entry>
-      <title><![CDATA[自定义run命令]]></title>
+      <title>自定义run命令</title>
+      <link href="/2017/06/11/runplus/"/>
       <url>/2017/06/11/runplus/</url>
-      <content type="html"><![CDATA[<p>相信各位都会有过这样的操作，Win+R-&gt;输入要运行的程序-&gt;确定。 譬如经常会用到的命令行</p>
-<p><a href="/img/2017/06/snipaste_20170611_181819.png"><img src="/img/2017/06/snipaste_20170611_181819.png" alt=""></a></p>
-<p>现在我想自己添加一个，怎么办呢？我们知道，运行这个程序是在环境变量查找符合名称的程序然后运行它的，依照这个思路笔者在这里介绍一种解决方案。</p>
-<p>首先，在随便一个目录下新建一个文件夹，你喜欢就好。</p>
-<p><a href="/img/2017/06/snipaste_20170611_181750.png"><img src="/img/2017/06/snipaste_20170611_181750.png" alt=""></a></p>
-<p>然后在控制面板中设置一下环境变量。</p>
-<p><a href="/img/2017/06/Untitled.png"><img src="/img/2017/06/Untitled.png" alt=""></a></p>
-<p>新建一个环境变量，然后把刚才新建的目录路径复制进去。</p>
-<p>我们把需要运行的程序新建一个快捷方式，名称你喜欢，方便你自己就好，丢到目录下。</p>
-<p><a href="/img/2017/06/snipaste_20170611_184550.png"><img src="/img/2017/06/snipaste_20170611_184550.png" alt=""></a></p>
-<p>最后你在运行里输入对应的快捷方式的名称，然后就是见证奇迹的时刻。</p>
-<p><a href="/img/2017/06/snipaste_20170611_194951.png"><img src="/img/2017/06/snipaste_20170611_194951.png" alt=""></a></p>
-]]></content>
       
-        <categories>
-            
-            <category> Windows </category>
-            
-        </categories>
-        
-        
+        <content type="html"><![CDATA[<p>相信各位都会有过这样的操作，Win+R-&gt;输入要运行的程序-&gt;确定。 譬如经常会用到的命令行</p><p><a href="/img/2017/06/snipaste_20170611_181819.png"><img src="/img/2017/06/snipaste_20170611_181819.png" alt></a></p><p>现在我想自己添加一个，怎么办呢？我们知道，运行这个程序是在环境变量查找符合名称的程序然后运行它的，依照这个思路笔者在这里介绍一种解决方案。</p><p>首先，在随便一个目录下新建一个文件夹，你喜欢就好。</p><p><a href="/img/2017/06/snipaste_20170611_181750.png"><img src="/img/2017/06/snipaste_20170611_181750.png" alt></a></p><p>然后在控制面板中设置一下环境变量。</p><p><a href="/img/2017/06/Untitled.png"><img src="/img/2017/06/Untitled.png" alt></a></p><p>新建一个环境变量，然后把刚才新建的目录路径复制进去。</p><p>我们把需要运行的程序新建一个快捷方式，名称你喜欢，方便你自己就好，丢到目录下。</p><p><a href="/img/2017/06/snipaste_20170611_184550.png"><img src="/img/2017/06/snipaste_20170611_184550.png" alt></a></p><p>最后你在运行里输入对应的快捷方式的名称，然后就是见证奇迹的时刻。</p><p><a href="/img/2017/06/snipaste_20170611_194951.png"><img src="/img/2017/06/snipaste_20170611_194951.png" alt></a></p>]]></content>
+      
+      
+      <categories>
+          
+          <category> Windows </category>
+          
+      </categories>
+      
+      
         <tags>
             
             <tag> Windows </tag>
             
         </tags>
-        
+      
     </entry>
     
+    
+    
     <entry>
-      <title><![CDATA[揪出Windows Spotlight壁纸]]></title>
+      <title>揪出Windows Spotlight壁纸</title>
+      <link href="/2017/04/06/get-windows-spotlight-wallpaper/"/>
       <url>/2017/04/06/get-windows-spotlight-wallpaper/</url>
-      <content type="html"><![CDATA[<!-- # <span style="color: #ff6600;">**这是一篇无聊的水文！**</span>
-
-# <span style="color: #ff6600;">**这是一篇无聊的水文！**</span>
-
-# <span style="color: #ff6600;">**这是一篇无聊的水文！**</span> -->
-<p>Windows 10的Spotlight偶尔会推荐个人比较喜欢的锁屏壁纸，这时候如果我们想得到图片文件该怎么办？比如这张，笔者个人觉得挺魔幻的。</p>
-<p><a href="/img/2017/04/sp170406_120203.png"><img src="/img/2017/04/sp170406_120203.png" alt=""></a></p>
-<h2 id="Step1"><a href="#Step1" class="headerlink" title="Step1"></a>Step1</h2><p>在Windows Explorer进入该路径</p>
-<pre><code>C:\Users\[User Name]\AppData\Local\Packages\Microsoft.Windows.ContentDeliveryManager_cw5n1h2txyewy\LocalState\Assets
-</code></pre><p>在该目录下可以看到一些没有扩展名的文件，这些其实就是图片文件，如图</p>
-<p><a href="/img/2017/04/sp170406_121024.png"><img src="/img/2017/04/sp170406_121024.png" alt=""></a></p>
-<h2 id="Step2"><a href="#Step2" class="headerlink" title="Step2"></a>Step2</h2><p>将上图目录下的所有文件复制到任意目录下，我在桌面上新建了一个名为New Folder的文件夹然后全部丢进去。</p>
-<h2 id="Step3"><a href="#Step3" class="headerlink" title="Step3"></a>Step3</h2><p>然后正片开始，网上很多都是直接用cmd修改文件名添加扩展名，这里装逼地用了PowerShell。我会给每个图片一个位宽为3的序号并添加扩展名。</p>
-<p>先定义一个序号的变量</p>
-<pre><code class="PowerShell">$index=1
-</code></pre>
-<p>然后修改图片文件文件名</p>
-<pre><code class="PowerShell">Get-ChildItem|foreach{Rename-Item -Path $_.FullName -NewName (&#39;pic_{0:d3}.jpg&#39; -f $index);$index++}
-</code></pre>
-<p><a href="/img/2017/04/sp170406_121955-1.png"><img src="/img/2017/04/sp170406_121955-1.png" alt=""></a><br>这时候再看看文件夹，所有文件都已经显示为图片格式文件了。ALL DONE！</p>
-<p><a href="/img/2017/04/sp170406_182143.png"><img src="/img/2017/04/sp170406_182143.png" alt=""></a></p>
-<p>这里准备了整个脚本（图片保存在桌面的spotlight文件夹内），保存为ps1直接运行即可（记得修改PowerShell的ExecutionPolicy）：<a href="/static/spotlight.ps1">点这里</a></p>
-]]></content>
       
-        <categories>
-            
-            <category> Windows </category>
-            
-        </categories>
-        
-        
+        <content type="html"><![CDATA[<!-- # <span style="color: #ff6600;">**这是一篇无聊的水文！**</span># <span style="color: #ff6600;">**这是一篇无聊的水文！**</span># <span style="color: #ff6600;">**这是一篇无聊的水文！**</span> --><p>Windows 10的Spotlight偶尔会推荐个人比较喜欢的锁屏壁纸，这时候如果我们想得到图片文件该怎么办？比如这张，笔者个人觉得挺魔幻的。</p><p><a href="/img/2017/04/sp170406_120203.png"><img src="/img/2017/04/sp170406_120203.png" alt></a></p><h2 id="Step1"><a href="#Step1" class="headerlink" title="Step1"></a>Step1</h2><p>在Windows Explorer进入该路径</p><pre><code>C:\Users\[User Name]\AppData\Local\Packages\Microsoft.Windows.ContentDeliveryManager_cw5n1h2txyewy\LocalState\Assets</code></pre><p>在该目录下可以看到一些没有扩展名的文件，这些其实就是图片文件，如图</p><p><a href="/img/2017/04/sp170406_121024.png"><img src="/img/2017/04/sp170406_121024.png" alt></a></p><h2 id="Step2"><a href="#Step2" class="headerlink" title="Step2"></a>Step2</h2><p>将上图目录下的所有文件复制到任意目录下，我在桌面上新建了一个名为New Folder的文件夹然后全部丢进去。</p><h2 id="Step3"><a href="#Step3" class="headerlink" title="Step3"></a>Step3</h2><p>然后正片开始，网上很多都是直接用cmd修改文件名添加扩展名，这里装逼地用了PowerShell。我会给每个图片一个位宽为3的序号并添加扩展名。</p><p>先定义一个序号的变量</p><pre><code class="PowerShell">$index=1</code></pre><p>然后修改图片文件文件名</p><pre><code class="PowerShell">Get-ChildItem|foreach{Rename-Item -Path $_.FullName -NewName (&#39;pic_{0:d3}.jpg&#39; -f $index);$index++}</code></pre><p><a href="/img/2017/04/sp170406_121955-1.png"><img src="/img/2017/04/sp170406_121955-1.png" alt></a><br>这时候再看看文件夹，所有文件都已经显示为图片格式文件了。ALL DONE！</p><p><a href="/img/2017/04/sp170406_182143.png"><img src="/img/2017/04/sp170406_182143.png" alt></a></p><p>这里准备了整个脚本（图片保存在桌面的spotlight文件夹内），保存为ps1直接运行即可（记得修改PowerShell的ExecutionPolicy）：<a href="/static/spotlight.ps1">点这里</a></p>]]></content>
+      
+      
+      <categories>
+          
+          <category> Windows </category>
+          
+      </categories>
+      
+      
         <tags>
             
             <tag> Windows 10 </tag>
             
         </tags>
-        
+      
     </entry>
     
+    
+    
     <entry>
-      <title><![CDATA[Binding[3]=MultiBinding]]></title>
+      <title>Binding[3]=MultiBinding</title>
+      <link href="/2017/02/14/binding-multibinding/"/>
       <url>/2017/02/14/binding-multibinding/</url>
-      <content type="html"><![CDATA[<p>有时候，我们会遇到这样的需求，UI的要显示的信息由多个数据源来决定，比如注册界面会验证两次输入的密码是否一致来决定是否可以注册，这时候就要用到MultiBinding了。因为Binding和MultiBinding的基类都是BindingBase，所以，能用Binding的场合都能用MultiBinding。MultiBinding通过一个Bindings的属性（类型为Collection<bindingbase>）把多个Binding对象集合起来，其中每个Binding对象可以有自己的数据校验和数据转换机制。</bindingbase></p>
-<h2 id="实现"><a href="#实现" class="headerlink" title="实现"></a>实现</h2><p>现在我们就以注册界面为例，需求是，用户名和密码都不会为空，且两次输入的密码要一致，这时候确认信息的Button可用。XAML代码如下，加入了一些部分美化的代码，默认的太难看了受不了- -，主要的就是三个TextBox。</p>
-<pre><code class="XML">&lt;StackPanel HorizontalAlignment=&quot;Center&quot; VerticalAlignment=&quot;Center&quot;&gt;
-    &lt;TextBlock Text=&quot;Sign up&quot; FontSize=&quot;30&quot; Foreground=&quot;#00a2e8&quot; Margin=&quot;3&quot;/&gt;
-    &lt;TextBlock Text=&quot;User&quot; FontSize=&quot;13&quot; Margin=&quot;3&quot;/&gt;
-    &lt;TextBox x:Name=&quot;textBox&quot; Height=&quot;23&quot; Width=&quot;150&quot; Margin=&quot;3&quot;/&gt;
-    &lt;TextBlock Text=&quot;Password&quot; Margin=&quot;5&quot;/&gt;
-    &lt;TextBox x:Name=&quot;textBox1&quot; Height=&quot;23&quot; Width=&quot;150&quot; Margin=&quot;3&quot;/&gt;
-    &lt;TextBlock Text=&quot;Verify Password&quot; Margin=&quot;5&quot;/&gt;
-    &lt;TextBox x:Name=&quot;textBox2&quot; Height=&quot;23&quot; Width=&quot;150&quot; Margin=&quot;3&quot;/&gt;
-    &lt;Button x:Name=&quot;button&quot; Height=&quot;23&quot; Margin=&quot;3&quot;&gt;
-        &lt;Button.Style&gt;
-            &lt;Style TargetType=&quot;Button&quot;&gt;
-                &lt;Setter Property=&quot;Template&quot;&gt;
-                    &lt;Setter.Value&gt;
-                        &lt;ControlTemplate TargetType=&quot;Button&quot;&gt;
-                            &lt;Border x:Name=&quot;border&quot; Background=&quot;#00a2e8&quot;&gt;
-                                &lt;TextBlock x:Name=&quot;textBlock&quot; Text=&quot;OK&quot; TextAlignment=&quot;Center&quot; VerticalAlignment=&quot;Center&quot; Foreground=&quot;White&quot;/&gt;
-                            &lt;/Border&gt;
-                            &lt;ControlTemplate.Triggers&gt;
-                                &lt;Trigger Property=&quot;IsEnabled&quot; Value=&quot;False&quot;&gt;
-                                    &lt;Setter TargetName=&quot;border&quot; Property=&quot;Background&quot; Value=&quot;LightGray&quot;/&gt;
-                                &lt;/Trigger&gt;
-                            &lt;/ControlTemplate.Triggers&gt;
-                        &lt;/ControlTemplate&gt;
-                    &lt;/Setter.Value&gt;
-                &lt;/Setter&gt;
-            &lt;/Style&gt;
-        &lt;/Button.Style&gt;
-    &lt;/Button&gt;
-&lt;/StackPanel&gt;
-</code></pre>
-<p>三个TextBox会各自作为三个Binding对象的Source，最终把三个Binding对象加入MultiBinding的Bindings属性中。</p>
-<pre><code class="CSharp">public partial class MainWindow : Window
-{
-    public MainWindow()
-    {
-        InitializeComponent();
-        this.SetMultiBinding();
-    }
-
-    private void SetMultiBinding()
-    {
-        Binding b0 = new Binding(&quot;Text&quot;) { Source = this.textBox };
-        Binding b1 = new Binding(&quot;Text&quot;) { Source = this.textBox1 };
-        Binding b2 = new Binding(&quot;Text&quot;) { Source = this.textBox2 };
-
-        MultiBinding mb = new MultiBinding();
-        mb.Bindings.Add(b0);
-        mb.Bindings.Add(b1);
-        mb.Bindings.Add(b2);
-        mb.Converter = new MultiBindingConverter();
-
-        this.button.SetBinding(Button.IsEnabledProperty, mb);
-    }
-}
-</code></pre>
-<p>因为Text和IsEnabled两个属性类型不同，因此我们要给MutilBinding准备一个转换器，这个类继承于IMultiValueConverter接口。</p>
-<pre><code class="CSharp">class MultiBindingConverter : IMultiValueConverter
-{
-    public object Convert(object[] values, Type targetType, object parameter, CultureInfo culture)
-    {
-        if (!values.Cast&lt;string&gt;().Any(text =&gt; string.IsNullOrWhiteSpace(text)) 
-            &amp;&amp; values[1].ToString() == values[2].ToString())
-        {
-            return true;
-        }
-        return false;
-    }
-
-    public object[] ConvertBack(object value, Type[] targetTypes, object parameter, CultureInfo culture)
-    {
-        throw new NotImplementedException();
-    }
-}
-</code></pre>
-<p>运行的效果</p>
-<table>
-<thead>
-<tr>
-<th style="text-align:center">Not OK</th>
-<th style="text-align:center">OK</th>
-</tr>
-</thead>
-<tbody>
-<tr>
-<td style="text-align:center"><a href="/img/2017/02/sp170214_210649.png"><img src="/img/2017/02/sp170214_210649.png" alt=""></a></td>
-<td style="text-align:center"><a href="/img/2017/02/sp170214_210735.png"><img src="/img/2017/02/sp170214_210735.png" alt=""></a></td>
-</tr>
-</tbody>
-</table>
-<h2 id="分析"><a href="#分析" class="headerlink" title="分析"></a>分析</h2><p>Q：看了下转换器的代码，其中的values参数应该是指多个Binding对象的Path属性值，那么怎样知道哪个value是哪个Binding对象的呢？</p>
-<p>A：我们说过，Bindings属性是个集合，在把Binding对象丢进去的时候是按顺序递增索引的，因此只要记住顺序，就可以通过索引得到对应的value。</p>
-]]></content>
       
-        <categories>
-            
-            <category> Programming </category>
-            
-        </categories>
-        
-        
+        <content type="html"><![CDATA[<p>有时候，我们会遇到这样的需求，UI的要显示的信息由多个数据源来决定，比如注册界面会验证两次输入的密码是否一致来决定是否可以注册，这时候就要用到MultiBinding了。因为Binding和MultiBinding的基类都是BindingBase，所以，能用Binding的场合都能用MultiBinding。MultiBinding通过一个Bindings的属性（类型为Collection<bindingbase>）把多个Binding对象集合起来，其中每个Binding对象可以有自己的数据校验和数据转换机制。</bindingbase></p><h2 id="实现"><a href="#实现" class="headerlink" title="实现"></a>实现</h2><p>现在我们就以注册界面为例，需求是，用户名和密码都不会为空，且两次输入的密码要一致，这时候确认信息的Button可用。XAML代码如下，加入了一些部分美化的代码，默认的太难看了受不了- -，主要的就是三个TextBox。</p><pre><code class="XML">&lt;StackPanel HorizontalAlignment=&quot;Center&quot; VerticalAlignment=&quot;Center&quot;&gt;    &lt;TextBlock Text=&quot;Sign up&quot; FontSize=&quot;30&quot; Foreground=&quot;#00a2e8&quot; Margin=&quot;3&quot;/&gt;    &lt;TextBlock Text=&quot;User&quot; FontSize=&quot;13&quot; Margin=&quot;3&quot;/&gt;    &lt;TextBox x:Name=&quot;textBox&quot; Height=&quot;23&quot; Width=&quot;150&quot; Margin=&quot;3&quot;/&gt;    &lt;TextBlock Text=&quot;Password&quot; Margin=&quot;5&quot;/&gt;    &lt;TextBox x:Name=&quot;textBox1&quot; Height=&quot;23&quot; Width=&quot;150&quot; Margin=&quot;3&quot;/&gt;    &lt;TextBlock Text=&quot;Verify Password&quot; Margin=&quot;5&quot;/&gt;    &lt;TextBox x:Name=&quot;textBox2&quot; Height=&quot;23&quot; Width=&quot;150&quot; Margin=&quot;3&quot;/&gt;    &lt;Button x:Name=&quot;button&quot; Height=&quot;23&quot; Margin=&quot;3&quot;&gt;        &lt;Button.Style&gt;            &lt;Style TargetType=&quot;Button&quot;&gt;                &lt;Setter Property=&quot;Template&quot;&gt;                    &lt;Setter.Value&gt;                        &lt;ControlTemplate TargetType=&quot;Button&quot;&gt;                            &lt;Border x:Name=&quot;border&quot; Background=&quot;#00a2e8&quot;&gt;                                &lt;TextBlock x:Name=&quot;textBlock&quot; Text=&quot;OK&quot; TextAlignment=&quot;Center&quot; VerticalAlignment=&quot;Center&quot; Foreground=&quot;White&quot;/&gt;                            &lt;/Border&gt;                            &lt;ControlTemplate.Triggers&gt;                                &lt;Trigger Property=&quot;IsEnabled&quot; Value=&quot;False&quot;&gt;                                    &lt;Setter TargetName=&quot;border&quot; Property=&quot;Background&quot; Value=&quot;LightGray&quot;/&gt;                                &lt;/Trigger&gt;                            &lt;/ControlTemplate.Triggers&gt;                        &lt;/ControlTemplate&gt;                    &lt;/Setter.Value&gt;                &lt;/Setter&gt;            &lt;/Style&gt;        &lt;/Button.Style&gt;    &lt;/Button&gt;&lt;/StackPanel&gt;</code></pre><p>三个TextBox会各自作为三个Binding对象的Source，最终把三个Binding对象加入MultiBinding的Bindings属性中。</p><pre><code class="CSharp">public partial class MainWindow : Window{    public MainWindow()    {        InitializeComponent();        this.SetMultiBinding();    }    private void SetMultiBinding()    {        Binding b0 = new Binding(&quot;Text&quot;) { Source = this.textBox };        Binding b1 = new Binding(&quot;Text&quot;) { Source = this.textBox1 };        Binding b2 = new Binding(&quot;Text&quot;) { Source = this.textBox2 };        MultiBinding mb = new MultiBinding();        mb.Bindings.Add(b0);        mb.Bindings.Add(b1);        mb.Bindings.Add(b2);        mb.Converter = new MultiBindingConverter();        this.button.SetBinding(Button.IsEnabledProperty, mb);    }}</code></pre><p>因为Text和IsEnabled两个属性类型不同，因此我们要给MutilBinding准备一个转换器，这个类继承于IMultiValueConverter接口。</p><pre><code class="CSharp">class MultiBindingConverter : IMultiValueConverter{    public object Convert(object[] values, Type targetType, object parameter, CultureInfo culture)    {        if (!values.Cast&lt;string&gt;().Any(text =&gt; string.IsNullOrWhiteSpace(text))             &amp;&amp; values[1].ToString() == values[2].ToString())        {            return true;        }        return false;    }    public object[] ConvertBack(object value, Type[] targetTypes, object parameter, CultureInfo culture)    {        throw new NotImplementedException();    }}</code></pre><p>运行的效果</p><table><thead><tr><th style="text-align:center">Not OK</th><th style="text-align:center">OK</th></tr></thead><tbody><tr><td style="text-align:center"><a href="/img/2017/02/sp170214_210649.png"><img src="/img/2017/02/sp170214_210649.png" alt></a></td><td style="text-align:center"><a href="/img/2017/02/sp170214_210735.png"><img src="/img/2017/02/sp170214_210735.png" alt></a></td></tr></tbody></table><h2 id="分析"><a href="#分析" class="headerlink" title="分析"></a>分析</h2><p>Q：看了下转换器的代码，其中的values参数应该是指多个Binding对象的Path属性值，那么怎样知道哪个value是哪个Binding对象的呢？</p><p>A：我们说过，Bindings属性是个集合，在把Binding对象丢进去的时候是按顺序递增索引的，因此只要记住顺序，就可以通过索引得到对应的value。</p>]]></content>
+      
+      
+      <categories>
+          
+          <category> Programming </category>
+          
+      </categories>
+      
+      
         <tags>
             
             <tag> WPF </tag>
             
         </tags>
-        
+      
     </entry>
     
+    
+    
     <entry>
-      <title><![CDATA[WordPress迁移-Windows Server 2012到Centos 7]]></title>
+      <title>WordPress迁移-Windows Server 2012到Centos 7</title>
+      <link href="/2017/02/13/wordpress-migration/"/>
       <url>/2017/02/13/wordpress-migration/</url>
-      <content type="html"><![CDATA[<p>买了VPS顺便试着把博客迁移到国外去，实际操作了过后自我感觉WordPress的迁移其实不难。</p>
-<h2 id="准备工作-环境搭建"><a href="#准备工作-环境搭建" class="headerlink" title="准备工作-环境搭建"></a>准备工作-环境搭建</h2><p>在Centos服务器端，我们要先把运行环境搭建好。我选择的是LAMP（Linux+Apache+MySQL+PHP）</p>
-<h3 id="安装Apache"><a href="#安装Apache" class="headerlink" title="安装Apache"></a>安装Apache</h3><p><code># yum install httpd</code><br>这样我们就算安装好啦，然后我们就可以将其启动<br><code># systemctl start httpd</code><br>接下来可以在浏览器中输入服务器的IP来检查Apache是否正常开启和运行<br><a href="/img/2017/02/sp170212_132228.png"><img src="/img/2017/02/sp170212_132228.png" alt=""></a><br>这是正常运行的结果，然后我们把Apache设置为开机自启<br><code># systemctl enable httpd</code></p>
-<h3 id="安装MySQL-MariaDB"><a href="#安装MySQL-MariaDB" class="headerlink" title="安装MySQL(MariaDB)"></a>安装MySQL(MariaDB)</h3><p><code># yum install mariadb-server mariadb</code><br>安装完成后启动数据库<br><code># systemctl start mariadb</code><br>然后安装一个数据库安全脚本，去掉一些危险的默认设置<br><code># mysql_secure_installation</code><br>接下来会提示你是新安装的，直接按下Enter键，然后设置数据库密码。把MariaDB也设置为开机自启<br><code># systemctl enable mariadb</code></p>
-<h3 id="安装PHP"><a href="#安装PHP" class="headerlink" title="安装PHP"></a>安装PHP</h3><p>运行以下命令安装PHP<br><code># yum install php php-mysql</code><br>安装完成之后我们再把Apahce重启一下<br><code># systemctl restart httpd</code><br>接下来我们检查一下PHP是否正常运行，在/var/www/html目录下新建一个info.php文件<br><code># vim /var/www/html/info.php</code><br>内容写入IP<br><code>&lt;?php phpinfo();?&gt;</code><br>然后在浏览器中输入<br><code>xxx.xxx.xxx.xxx/info.php</code><br>xxx代表你的IP地址<br><a href="/img/2017/02/sp170212_133114.png"><img src="/img/2017/02/sp170212_133114.png" alt=""></a></p>
-<h3 id="安装phpMyAdmin（可选）"><a href="#安装phpMyAdmin（可选）" class="headerlink" title="安装phpMyAdmin（可选）"></a>安装phpMyAdmin（可选）</h3><p>这是一个数据库管理的Web界面程序，有时候图形化操作还是方便一点的。首先，我们要先安装epel库<br><code># yum install epel-release</code><br>然后我们就可以安装phpMyAdmin了<br><code># yum install phpmyadmin</code><br>安装完成后我们要设置一下权限，不然访问会返回403错误<br><code># vim /etc/httpd/conf.d/phpMyAdmin.conf</code><br>找到这部分并修改为如下  </p>
-<pre><code class="XML"> &lt;Directory /usr/share/phpMyAdmin/&gt;
-   AddDefaultCharset UTF-8
-   &lt;IfModule mod_authz_core.c&gt;
-     # Apache 2.4
-     &lt;RequireAny&gt;
-       #Require ip 127.0.0.1
-       #Require ip ::1
-        Require all granted
-      &lt;/RequireAny&gt;;
-   &lt;/IfModule&gt;;
-   &lt;IfModule !mod_authz_core.c&gt;;
-     # Apache 2.2
-     Order Deny,Allow
-    # Deny from All
-    # Allow from 127.0.0.1
-    # Allow from ::1
-      Allow from All
-   &lt;/IfModule&gt;;
- &lt;/Directory&gt;;
-</code></pre>
-<p>完了之后再一次重启Apache，然后我们可以在浏览器中输入：<br><code>xxx.xxx.xxx.xxx/phpmyadmin</code><br>来管理数据库<br><a href="/img/2017/02/sp170212_133728.png"><img src="/img/2017/02/sp170212_133728.png" alt=""></a></p>
-<h2 id="迁移"><a href="#迁移" class="headerlink" title="迁移"></a>迁移</h2><h3 id="Windows端"><a href="#Windows端" class="headerlink" title="Windows端"></a>Windows端</h3><p>如果还记得数据库的名称就直接导出，如果不记得了可以先查看一下所有的数据库。<br><code>show databases;</code><br>注意别忘了最后那里有个分号！<br><a href="/img/2017/02/sp170213_110716.png"><img src="/img/2017/02/sp170213_110716.png" alt=""></a><br>找到MySQL的安装目录，找到mysqldump.exe，然后管理员运行cmd，切换到所在目录，执行这个命令<br><code>mysqldump -uroot -p databaseName&gt;outputFileName.sql</code><br>在所在目录下找到生成的数据库，再把wordpress整个文件夹打包一起运回本地就可以了，Windows端的工作完成！</p>
-<h3 id="Centos端"><a href="#Centos端" class="headerlink" title="Centos端"></a>Centos端</h3><p>用SSH客户端连接上服务器，用FTP工具把数据库文件和打包文件上传，我都丢到了/var/www/html目录下</p>
-<p><a href="/img/2017/02/sp170213_111845.png"><img src="/img/2017/02/sp170213_111845.png" alt=""></a></p>
-<p>然后我们就开始着手把数据库导入了，运行<br><code>mysql -uroot -p</code><br>然后输入密码，新建一个数据库<br><code>create database databaseName</code><br>选中新建的数据库<br><code>use databaseName</code><br>导入数据，以我的数据库文件所在目录为例<br><code>source /var/www/html/wordpress_db.sql</code><br>数据库迁移成功后输入exit退出，接下来我们把wordpress实体迁移，直接把压缩文件的内容解压到default目录下即可<br><a href="/img/2017/02/sp170213_113104.png"><img src="/img/2017/02/sp170213_113104.png" alt=""></a></p>
-<p>如果你的数据库密码不一样了，修改一下wp-config文件。<br>这时候在浏览器中输入IP/域名试着访问博客，如果之前没有域名的小伙伴就会遇到问题了，比如我- -，那是因为之前的IP地址和现在不同了，数据库中的数据还没更新<br><a href="/img/2017/02/sp170213_113354.png"><img src="/img/2017/02/sp170213_113354.png" alt=""></a><br>就是这里的设置的问题！解决方法就是在数据库中修改这两个值，指向新的IP地址或者你的域名，还记得安装的phpMyAdmin嘛，现在排上用场了<br><a href="/img/2017/02/sp170213_113944.png"><img src="/img/2017/02/sp170213_113944.png" alt=""></a><br>修改两个值就可以了，这时候就可以正常登陆了。<br>然后我们在主页点开文章会出现403错误，调整一下Apache配置文件<br><code># vim /etc/httpd/conf/httpd.conf</code><br>在文件中加入<br><code>LoadModule rewrite_module modules/mod_rewrite.so</code><br>位置随意，下图作为参考<br><a href="/img/2017/02/sp170213_114433.png"><img src="/img/2017/02/sp170213_114433.png" alt=""></a></p>
-<p>然后我们再修改一点内容</p>
-<pre><code class="XML">&lt;VirtualHost *:80&gt;
-
-ServerName localhost
-
-DocumentRoot /var/www/html/default
-
-&lt;Directory “/var/www/html/default”&gt;
-
-Options FollowSymLinks
-
-AllowOverride ALL
-
-Order allow,deny
-
-Allow from all
-
-&lt;/Directory&gt;
-
-&lt;/VirtualHost&gt;
-</code></pre>
-<p>把<em>AllowOverride</em>的值换成了<em>ALL，</em>位置如下<br><a href="/img/2017/02/sp170213_114405.png"><img src="/img/2017/02/sp170213_114405.png" alt=""></a><br>保存文件退出，重启Apache。最后再新建一个.htaccess文件，丢到博客根目录下就行了，由于这个文件的文件名有点特殊，要借助其他编辑工具生成，比如笔者用的Visual Studio Code。文件内容如下</p>
-<pre><code class="XML">&lt;IfModule mod_rewrite.c&gt;
-
-RewriteEngine On
-
-RewriteBase /
-
-RewriteRule ^index.php$ - [L]
-
-RewriteCond %{REQUEST_FILENAME} !-f
-
-RewriteCond %{REQUEST_FILENAME} !-d
-
-RewriteRule . /index.php [L]
-
-&lt;/IfModule&gt;
-</code></pre>
-<p>这时候再点击文章就可以正常访问了。</p>
-<h2 id="结束"><a href="#结束" class="headerlink" title="结束"></a>结束</h2><p>自此，迁移工作算是完成了，不过还有些小问题，不如文件的上传，下篇文章再讲啦！</p>
-<p>本文参考了两位dalao的文章，特别感谢！<br><a href="http://blog.gclxry.com/install-wordpress-on-centos7/" target="_blank" rel="external">Centos 7上安装Wordpress</a><br><a href="https://www.yanning.wang/archives/192.html" target="_blank" rel="external">WordPress跨平台迁移实战</a></p>
-]]></content>
       
-        <categories>
-            
-            <category> Linux </category>
-            
-        </categories>
-        
-        
+        <content type="html"><![CDATA[<p>买了VPS顺便试着把博客迁移到国外去，实际操作了过后自我感觉WordPress的迁移其实不难。</p><h2 id="准备工作-环境搭建"><a href="#准备工作-环境搭建" class="headerlink" title="准备工作-环境搭建"></a>准备工作-环境搭建</h2><p>在Centos服务器端，我们要先把运行环境搭建好。我选择的是LAMP（Linux+Apache+MySQL+PHP）</p><h3 id="安装Apache"><a href="#安装Apache" class="headerlink" title="安装Apache"></a>安装Apache</h3><p><code># yum install httpd</code><br>这样我们就算安装好啦，然后我们就可以将其启动<br><code># systemctl start httpd</code><br>接下来可以在浏览器中输入服务器的IP来检查Apache是否正常开启和运行<br><a href="/img/2017/02/sp170212_132228.png"><img src="/img/2017/02/sp170212_132228.png" alt></a><br>这是正常运行的结果，然后我们把Apache设置为开机自启<br><code># systemctl enable httpd</code></p><h3 id="安装MySQL-MariaDB"><a href="#安装MySQL-MariaDB" class="headerlink" title="安装MySQL(MariaDB)"></a>安装MySQL(MariaDB)</h3><p><code># yum install mariadb-server mariadb</code><br>安装完成后启动数据库<br><code># systemctl start mariadb</code><br>然后安装一个数据库安全脚本，去掉一些危险的默认设置<br><code># mysql_secure_installation</code><br>接下来会提示你是新安装的，直接按下Enter键，然后设置数据库密码。把MariaDB也设置为开机自启<br><code># systemctl enable mariadb</code></p><h3 id="安装PHP"><a href="#安装PHP" class="headerlink" title="安装PHP"></a>安装PHP</h3><p>运行以下命令安装PHP<br><code># yum install php php-mysql</code><br>安装完成之后我们再把Apahce重启一下<br><code># systemctl restart httpd</code><br>接下来我们检查一下PHP是否正常运行，在/var/www/html目录下新建一个info.php文件<br><code># vim /var/www/html/info.php</code><br>内容写入IP<br><code>&lt;?php phpinfo();?&gt;</code><br>然后在浏览器中输入<br><code>xxx.xxx.xxx.xxx/info.php</code><br>xxx代表你的IP地址<br><a href="/img/2017/02/sp170212_133114.png"><img src="/img/2017/02/sp170212_133114.png" alt></a></p><h3 id="安装phpMyAdmin（可选）"><a href="#安装phpMyAdmin（可选）" class="headerlink" title="安装phpMyAdmin（可选）"></a>安装phpMyAdmin（可选）</h3><p>这是一个数据库管理的Web界面程序，有时候图形化操作还是方便一点的。首先，我们要先安装epel库<br><code># yum install epel-release</code><br>然后我们就可以安装phpMyAdmin了<br><code># yum install phpmyadmin</code><br>安装完成后我们要设置一下权限，不然访问会返回403错误<br><code># vim /etc/httpd/conf.d/phpMyAdmin.conf</code><br>找到这部分并修改为如下  </p><pre><code class="XML"> &lt;Directory /usr/share/phpMyAdmin/&gt;   AddDefaultCharset UTF-8   &lt;IfModule mod_authz_core.c&gt;     # Apache 2.4     &lt;RequireAny&gt;       #Require ip 127.0.0.1       #Require ip ::1        Require all granted      &lt;/RequireAny&gt;;   &lt;/IfModule&gt;;   &lt;IfModule !mod_authz_core.c&gt;;     # Apache 2.2     Order Deny,Allow    # Deny from All    # Allow from 127.0.0.1    # Allow from ::1      Allow from All   &lt;/IfModule&gt;; &lt;/Directory&gt;;</code></pre><p>完了之后再一次重启Apache，然后我们可以在浏览器中输入：<br><code>xxx.xxx.xxx.xxx/phpmyadmin</code><br>来管理数据库<br><a href="/img/2017/02/sp170212_133728.png"><img src="/img/2017/02/sp170212_133728.png" alt></a></p><h2 id="迁移"><a href="#迁移" class="headerlink" title="迁移"></a>迁移</h2><h3 id="Windows端"><a href="#Windows端" class="headerlink" title="Windows端"></a>Windows端</h3><p>如果还记得数据库的名称就直接导出，如果不记得了可以先查看一下所有的数据库。<br><code>show databases;</code><br>注意别忘了最后那里有个分号！<br><a href="/img/2017/02/sp170213_110716.png"><img src="/img/2017/02/sp170213_110716.png" alt></a><br>找到MySQL的安装目录，找到mysqldump.exe，然后管理员运行cmd，切换到所在目录，执行这个命令<br><code>mysqldump -uroot -p databaseName&gt;outputFileName.sql</code><br>在所在目录下找到生成的数据库，再把wordpress整个文件夹打包一起运回本地就可以了，Windows端的工作完成！</p><h3 id="Centos端"><a href="#Centos端" class="headerlink" title="Centos端"></a>Centos端</h3><p>用SSH客户端连接上服务器，用FTP工具把数据库文件和打包文件上传，我都丢到了/var/www/html目录下</p><p><a href="/img/2017/02/sp170213_111845.png"><img src="/img/2017/02/sp170213_111845.png" alt></a></p><p>然后我们就开始着手把数据库导入了，运行<br><code>mysql -uroot -p</code><br>然后输入密码，新建一个数据库<br><code>create database databaseName</code><br>选中新建的数据库<br><code>use databaseName</code><br>导入数据，以我的数据库文件所在目录为例<br><code>source /var/www/html/wordpress_db.sql</code><br>数据库迁移成功后输入exit退出，接下来我们把wordpress实体迁移，直接把压缩文件的内容解压到default目录下即可<br><a href="/img/2017/02/sp170213_113104.png"><img src="/img/2017/02/sp170213_113104.png" alt></a></p><p>如果你的数据库密码不一样了，修改一下wp-config文件。<br>这时候在浏览器中输入IP/域名试着访问博客，如果之前没有域名的小伙伴就会遇到问题了，比如我- -，那是因为之前的IP地址和现在不同了，数据库中的数据还没更新<br><a href="/img/2017/02/sp170213_113354.png"><img src="/img/2017/02/sp170213_113354.png" alt></a><br>就是这里的设置的问题！解决方法就是在数据库中修改这两个值，指向新的IP地址或者你的域名，还记得安装的phpMyAdmin嘛，现在排上用场了<br><a href="/img/2017/02/sp170213_113944.png"><img src="/img/2017/02/sp170213_113944.png" alt></a><br>修改两个值就可以了，这时候就可以正常登陆了。<br>然后我们在主页点开文章会出现403错误，调整一下Apache配置文件<br><code># vim /etc/httpd/conf/httpd.conf</code><br>在文件中加入<br><code>LoadModule rewrite_module modules/mod_rewrite.so</code><br>位置随意，下图作为参考<br><a href="/img/2017/02/sp170213_114433.png"><img src="/img/2017/02/sp170213_114433.png" alt></a></p><p>然后我们再修改一点内容</p><pre><code class="XML">&lt;VirtualHost *:80&gt;ServerName localhostDocumentRoot /var/www/html/default&lt;Directory “/var/www/html/default”&gt;Options FollowSymLinksAllowOverride ALLOrder allow,denyAllow from all&lt;/Directory&gt;&lt;/VirtualHost&gt;</code></pre><p>把<em>AllowOverride</em>的值换成了<em>ALL，</em>位置如下<br><a href="/img/2017/02/sp170213_114405.png"><img src="/img/2017/02/sp170213_114405.png" alt></a><br>保存文件退出，重启Apache。最后再新建一个.htaccess文件，丢到博客根目录下就行了，由于这个文件的文件名有点特殊，要借助其他编辑工具生成，比如笔者用的Visual Studio Code。文件内容如下</p><pre><code class="XML">&lt;IfModule mod_rewrite.c&gt;RewriteEngine OnRewriteBase /RewriteRule ^index.php$ - [L]RewriteCond %{REQUEST_FILENAME} !-fRewriteCond %{REQUEST_FILENAME} !-dRewriteRule . /index.php [L]&lt;/IfModule&gt;</code></pre><p>这时候再点击文章就可以正常访问了。</p><h2 id="结束"><a href="#结束" class="headerlink" title="结束"></a>结束</h2><p>自此，迁移工作算是完成了，不过还有些小问题，不如文件的上传，下篇文章再讲啦！</p><p>本文参考了两位dalao的文章，特别感谢！<br><a href="http://blog.gclxry.com/install-wordpress-on-centos7/" target="_blank" rel="noopener">Centos 7上安装Wordpress</a><br><a href="https://www.yanning.wang/archives/192.html" target="_blank" rel="noopener">WordPress跨平台迁移实战</a></p>]]></content>
+      
+      
+      <categories>
+          
+          <category> Linux </category>
+          
+      </categories>
+      
+      
         <tags>
             
             <tag> VPS </tag>
@@ -1481,62 +468,26 @@ RewriteRule . /index.php [L]
             <tag> Linux </tag>
             
         </tags>
-        
+      
     </entry>
     
+    
+    
     <entry>
-      <title><![CDATA[VPS-Centos 7搭建配置Shadowsocks科学上网]]></title>
+      <title>VPS-Centos 7搭建配置Shadowsocks科学上网</title>
+      <link href="/2017/02/11/vps-centos-7-shadowsocks/"/>
       <url>/2017/02/11/vps-centos-7-shadowsocks/</url>
-      <content type="html"><![CDATA[<p>刚刚入手了一个VPS，拿来练手Linux类系统，最重要的还是顺便自己搭建SS科学上网。我这里的是Centos 7 64位。</p>
-<h2 id="安装"><a href="#安装" class="headerlink" title="安装"></a>安装</h2><p><code># yum install python-setuptools &amp;&amp; easy_install pip</code><br><code># pip install shadowsocks</code><br>这样SS就安装好啦，然后我们要配置一下。</p>
-<h2 id="配置"><a href="#配置" class="headerlink" title="配置"></a>配置</h2><p>新建一个json文件<br><code># vim /etc/shadowsocks.json</code><br>然后写入配置，端口和密码自己自定义。</p>
-<pre><code class="JSON">{
-    &quot;server&quot;:&quot;0.0.0.0&quot;,
-    &quot;server_port&quot;:8900,
-    &quot;local_address&quot;: &quot;127.0.0.1&quot;,
-    &quot;local_port&quot;:1080,
-    &quot;password&quot;:&quot;passwd&quot;,
-    &quot;timeout&quot;:300,
-    &quot;method&quot;:&quot;aes-256-cfb&quot;,
-}
-</code></pre>
-<p>如果要多用户登陆，那么就把password改成port_password然后加入多个端口和密码，例如：  </p>
-<pre><code class="JSON">{
-    &quot;server&quot;:&quot;0.0.0.0&quot;,
-    &quot;local_address&quot;:&quot;127.0.0.1&quot;,
-    &quot;local_port&quot;:1080,
-    &quot;port_password&quot;:{
-         &quot;8900&quot;:&quot;passwd0&quot;,
-         &quot;8901&quot;:&quot;passwd1&quot;,
-         &quot;8902&quot;:&quot;passwd2&quot;,
-         &quot;8903&quot;:&quot;passwd3&quot;,
-         &quot;8904&quot;:&quot;passwd4&quot;
-    },
-    &quot;timeout&quot;:300,
-    &quot;method&quot;:&quot;aes-256-cfb&quot;,
-&gt;
-</code></pre>
-<p>然后新建一个ss服务<br><code># vim /etc/systemd/system/shadowsocks.service</code><br>内容写入：  </p>
-<pre><code>[Unit]
-Description=Shadowsocks
-
-[Service]
-TimeoutStartSec=0
-ExecStart=/usr/bin/ssserver -c /etc/shadowsocks.json
-
-[Install]
-WantedBy=multi-user.target
-</code></pre><p>然后开启服务，并让服务开机启动<br><code># systemctl enable shadowsocks</code><br><code># systemctl start shadowsocks</code><br>这时候可以检查一下服务是否正确开启<br><code># systemctl status shadowsocks</code><br>如果Active那里显示的是绿色的active(running)则说明服务正确开启了。如图：<br><a href="/img/2017/02/sp170211_224944.png"><img src="/img/2017/02/sp170211_224944.png" alt=""></a></p>
-<p>最后，千万记得防火墙开启刚才配置里写的端口，我的例子里写的只有一个8900，防火墙没开的请自动忽略。<br><code># firewall-cmd --add-port=8900/tcp</code><br>查看端口是否正确开启<br><code># firewall-cmd --query-port=8900/tcp</code><br>返回success则正确开启了，Enjoy it！</p>
-]]></content>
       
-        <categories>
-            
-            <category> Linux </category>
-            
-        </categories>
-        
-        
+        <content type="html"><![CDATA[<p>刚刚入手了一个VPS，拿来练手Linux类系统，最重要的还是顺便自己搭建SS科学上网。我这里的是Centos 7 64位。</p><h2 id="安装"><a href="#安装" class="headerlink" title="安装"></a>安装</h2><p><code># yum install python-setuptools &amp;&amp; easy_install pip</code><br><code># pip install shadowsocks</code><br>这样SS就安装好啦，然后我们要配置一下。</p><h2 id="配置"><a href="#配置" class="headerlink" title="配置"></a>配置</h2><p>新建一个json文件<br><code># vim /etc/shadowsocks.json</code><br>然后写入配置，端口和密码自己自定义。</p><pre><code class="JSON">{    &quot;server&quot;:&quot;0.0.0.0&quot;,    &quot;server_port&quot;:8900,    &quot;local_address&quot;: &quot;127.0.0.1&quot;,    &quot;local_port&quot;:1080,    &quot;password&quot;:&quot;passwd&quot;,    &quot;timeout&quot;:300,    &quot;method&quot;:&quot;aes-256-cfb&quot;,}</code></pre><p>如果要多用户登陆，那么就把password改成port_password然后加入多个端口和密码，例如：  </p><pre><code class="JSON">{    &quot;server&quot;:&quot;0.0.0.0&quot;,    &quot;local_address&quot;:&quot;127.0.0.1&quot;,    &quot;local_port&quot;:1080,    &quot;port_password&quot;:{         &quot;8900&quot;:&quot;passwd0&quot;,         &quot;8901&quot;:&quot;passwd1&quot;,         &quot;8902&quot;:&quot;passwd2&quot;,         &quot;8903&quot;:&quot;passwd3&quot;,         &quot;8904&quot;:&quot;passwd4&quot;    },    &quot;timeout&quot;:300,    &quot;method&quot;:&quot;aes-256-cfb&quot;,&gt;</code></pre><p>然后新建一个ss服务<br><code># vim /etc/systemd/system/shadowsocks.service</code><br>内容写入：  </p><pre><code>[Unit]Description=Shadowsocks[Service]TimeoutStartSec=0ExecStart=/usr/bin/ssserver -c /etc/shadowsocks.json[Install]WantedBy=multi-user.target</code></pre><p>然后开启服务，并让服务开机启动<br><code># systemctl enable shadowsocks</code><br><code># systemctl start shadowsocks</code><br>这时候可以检查一下服务是否正确开启<br><code># systemctl status shadowsocks</code><br>如果Active那里显示的是绿色的active(running)则说明服务正确开启了。如图：<br><a href="/img/2017/02/sp170211_224944.png"><img src="/img/2017/02/sp170211_224944.png" alt></a></p><p>最后，千万记得防火墙开启刚才配置里写的端口，我的例子里写的只有一个8900，防火墙没开的请自动忽略。<br><code># firewall-cmd --add-port=8900/tcp</code><br>查看端口是否正确开启<br><code># firewall-cmd --query-port=8900/tcp</code><br>返回success则正确开启了，Enjoy it！</p>]]></content>
+      
+      
+      <categories>
+          
+          <category> Linux </category>
+          
+      </categories>
+      
+      
         <tags>
             
             <tag> VPS </tag>
@@ -1544,79 +495,26 @@ WantedBy=multi-user.target
             <tag> Linux </tag>
             
         </tags>
-        
+      
     </entry>
     
+    
+    
     <entry>
-      <title><![CDATA[Binding[2]=数据转换]]></title>
+      <title>Binding[2]=数据转换</title>
+      <link href="/2017/02/09/binding-dataconvert/"/>
       <url>/2017/02/09/binding-dataconvert/</url>
-      <content type="html"><![CDATA[<p>上一篇文章中我们了解了如何在Binding的过程中对数据进行校验，确保数据的有效性，并且提到了数据类型转换。我们都知道C#是强类型语言，在绑定的过程中，Target和Source的属性类型不同的情况经常遇到，这时候我们就需要手动进行数据类型的转换了。或许有的小伙伴会提出这样一个问题，上一篇文章中的Slider的Value属性是double类型的，TextBox的Text属性是string类型的，也不见对它们进行了数据转换啊！这个是因为，string和double之间的转换比较简单，WPF类库已经帮我们解决这个问题了，但是当我们遇到更加复杂的业务逻辑的时候，我们只能自己写代码了。要实现数据转换其实很简单，只要写一个类继承IValueConverter接口实现Convert和ConvertBack方法，然后在Binding对象中消费这个类就可以了。</p>
-<h2 id="实现"><a href="#实现" class="headerlink" title="实现"></a>实现</h2><p>现在我们的业务是，一个CheckBox并带有提示文字，问用户是不是小基佬，如果是就在下面显示一个动漫可爱女孩子的图片(●’◡’●)，如果不是就显示一个真叫人头大的图片。图片显示用一个Image对象，我们要让它显示出图片内容，就要为它的Source属性赋值，这是ImageSource类型，赋值的时候给一段图片的URI字符串就可以了，而CheckBox的IsChecked是bool类型，因此我们要手写一个转换器。</p>
-<pre><code class="CSharp">class CheckBoxStateToImageSourceConverter : IValueConverter
-{
-    public object Convert(object value, Type targetType, object paremeter, CultureInfo culture)
-    {
-        if ((bool)value)
-        {
-            return @&quot;/Assets/bigHead.jpg&quot;;
-        }
-        return @&quot;/Assets/milai.png&quot;;
-    }
-    public object ConvertBack(object value, Type targetType, object paremeter, CultureInfo culture)
-    {
-        throw new NotImplementedException();
-    }
-}
-</code></pre>
-<p>然后我们要消费这个转换器，只需要给Binding对象的Converter属性赋值一个我们刚刚写的转换器的实例就可以了，XAML代码如下：</p>
-<pre><code class="XML">&lt;StackPanel&gt;
-    &lt;StackPanel.Resources&gt;
-        &lt;local:CheckBoxStateToImageSourceConverter x:Key=&quot;converter&quot;&gt;
-    &lt;/StackPanel.Resources&gt;
-    &lt;Grid Margin=&quot;10&quot;&gt;
-        &lt;CheckBox x:Name=&quot;checkBox&quot;
-                HorizontalAlignment=&quot;Left&quot;
-                VerticalAlignment=&quot;Center&quot;&gt;;
-        &lt;TextBlock Text=&quot;你是基佬嘛？&quot;
-                FontSize=&quot;20&quot;
-                HorizontalAlignment=&quot;Left&quot;
-                Margin=&quot;20,0,0,0&quot;&gt;;
-    &lt;/Grid&gt;
-    &lt;Image Source=&quot;{Binding 
-        ElementName=checkBox
-        ,Path=IsChecked
-        ,Converter={StaticResource converter}
-        ,Mode=OneWay}&quot;&gt;;
-&lt;/StackPanel&gt;
-</code></pre>
-<p>运行效果如下</p>
-<table>
-<thead>
-<tr>
-<th style="text-align:center">False</th>
-<th style="text-align:center">True</th>
-</tr>
-</thead>
-<tbody>
-<tr>
-<td style="text-align:center"><a href="/img/2017/02/sp170209_131407.png"><img src="/img/2017/02/sp170209_131407.png" alt=""></a></td>
-<td style="text-align:center"><a href="/img/2017/02/sp170209_131440.png"><img src="/img/2017/02/sp170209_131440.png" alt=""></a></td>
-</tr>
-</tbody>
-</table>
-<h2 id="分析"><a href="#分析" class="headerlink" title="分析"></a>分析</h2><p>Q：为什么ConvertBack方法没有实际代码？</p>
-<p>A：Convert是指从Source到Target这个途径，ConvertBack显而易知是从Target到Source这个途径。这里我们是单向的，因此我们不需要给ConvertBack方法写具体的转换代码。如果你遇到的Binding是TwoWay的，那么毫无疑问你就要实现这部分的逻辑。</p>
-<p>Q：讲讲Convert方法的参数列表？</p>
-<p>A：第一个参数是object类型，最大限度地保证了Converter的重用性，我们可以在方法内部对它的类型进行判断；第二个是方法返回类型（命名有点奇怪就是了，target是指返回值）；第三个是用于把额外的信息传入方法，若需要传递多个信息则可以把信息放入一个集合对象里传入方法。</p>
-]]></content>
       
-        <categories>
-            
-            <category> Programming </category>
-            
-        </categories>
-        
-        
+        <content type="html"><![CDATA[<p>上一篇文章中我们了解了如何在Binding的过程中对数据进行校验，确保数据的有效性，并且提到了数据类型转换。我们都知道C#是强类型语言，在绑定的过程中，Target和Source的属性类型不同的情况经常遇到，这时候我们就需要手动进行数据类型的转换了。或许有的小伙伴会提出这样一个问题，上一篇文章中的Slider的Value属性是double类型的，TextBox的Text属性是string类型的，也不见对它们进行了数据转换啊！这个是因为，string和double之间的转换比较简单，WPF类库已经帮我们解决这个问题了，但是当我们遇到更加复杂的业务逻辑的时候，我们只能自己写代码了。要实现数据转换其实很简单，只要写一个类继承IValueConverter接口实现Convert和ConvertBack方法，然后在Binding对象中消费这个类就可以了。</p><h2 id="实现"><a href="#实现" class="headerlink" title="实现"></a>实现</h2><p>现在我们的业务是，一个CheckBox并带有提示文字，问用户是不是小基佬，如果是就在下面显示一个动漫可爱女孩子的图片(●’◡’●)，如果不是就显示一个真叫人头大的图片。图片显示用一个Image对象，我们要让它显示出图片内容，就要为它的Source属性赋值，这是ImageSource类型，赋值的时候给一段图片的URI字符串就可以了，而CheckBox的IsChecked是bool类型，因此我们要手写一个转换器。</p><pre><code class="CSharp">class CheckBoxStateToImageSourceConverter : IValueConverter{    public object Convert(object value, Type targetType, object paremeter, CultureInfo culture)    {        if ((bool)value)        {            return @&quot;/Assets/bigHead.jpg&quot;;        }        return @&quot;/Assets/milai.png&quot;;    }    public object ConvertBack(object value, Type targetType, object paremeter, CultureInfo culture)    {        throw new NotImplementedException();    }}</code></pre><p>然后我们要消费这个转换器，只需要给Binding对象的Converter属性赋值一个我们刚刚写的转换器的实例就可以了，XAML代码如下：</p><pre><code class="XML">&lt;StackPanel&gt;    &lt;StackPanel.Resources&gt;        &lt;local:CheckBoxStateToImageSourceConverter x:Key=&quot;converter&quot;&gt;    &lt;/StackPanel.Resources&gt;    &lt;Grid Margin=&quot;10&quot;&gt;        &lt;CheckBox x:Name=&quot;checkBox&quot;                HorizontalAlignment=&quot;Left&quot;                VerticalAlignment=&quot;Center&quot;&gt;;        &lt;TextBlock Text=&quot;你是基佬嘛？&quot;                FontSize=&quot;20&quot;                HorizontalAlignment=&quot;Left&quot;                Margin=&quot;20,0,0,0&quot;&gt;;    &lt;/Grid&gt;    &lt;Image Source=&quot;{Binding         ElementName=checkBox        ,Path=IsChecked        ,Converter={StaticResource converter}        ,Mode=OneWay}&quot;&gt;;&lt;/StackPanel&gt;</code></pre><p>运行效果如下</p><table><thead><tr><th style="text-align:center">False</th><th style="text-align:center">True</th></tr></thead><tbody><tr><td style="text-align:center"><a href="/img/2017/02/sp170209_131407.png"><img src="/img/2017/02/sp170209_131407.png" alt></a></td><td style="text-align:center"><a href="/img/2017/02/sp170209_131440.png"><img src="/img/2017/02/sp170209_131440.png" alt></a></td></tr></tbody></table><h2 id="分析"><a href="#分析" class="headerlink" title="分析"></a>分析</h2><p>Q：为什么ConvertBack方法没有实际代码？</p><p>A：Convert是指从Source到Target这个途径，ConvertBack显而易知是从Target到Source这个途径。这里我们是单向的，因此我们不需要给ConvertBack方法写具体的转换代码。如果你遇到的Binding是TwoWay的，那么毫无疑问你就要实现这部分的逻辑。</p><p>Q：讲讲Convert方法的参数列表？</p><p>A：第一个参数是object类型，最大限度地保证了Converter的重用性，我们可以在方法内部对它的类型进行判断；第二个是方法返回类型（命名有点奇怪就是了，target是指返回值）；第三个是用于把额外的信息传入方法，若需要传递多个信息则可以把信息放入一个集合对象里传入方法。</p>]]></content>
+      
+      
+      <categories>
+          
+          <category> Programming </category>
+          
+      </categories>
+      
+      
         <tags>
             
             <tag> WPF </tag>
@@ -1624,283 +522,197 @@ WantedBy=multi-user.target
             <tag> .NET </tag>
             
         </tags>
-        
+      
     </entry>
     
+    
+    
     <entry>
-      <title><![CDATA[Binding[1]=数据校验]]></title>
+      <title>Binding[1]=数据校验</title>
+      <link href="/2017/02/08/binding-validation/"/>
       <url>/2017/02/08/binding-validation/</url>
-      <content type="html"><![CDATA[<p>我们知道，属性的存在是为了解决数据有效性的问题，确保暴露出去的数据是合情合理的。在实际中，数据在目标流动过程中，我们一般都需要对其有效性进行验证。我们已经知道，Binding的作用实在Target和Source之间架起了一座数据流动的桥梁，因此我们需要对在这之间流动的数据进行校验。不仅如此，我们还可以进行数据类型的转换，这个在下一篇文章进行讲解，现在我们来看看如何在绑定的时候对数据进行有效性校验。</p>
-<h2 id="实现"><a href="#实现" class="headerlink" title="实现"></a>实现</h2><p>现在我们的任务是，将一个TextBox（Target）绑定到一个Slider（Source）上，在TextBox输入非Slider的Value的区间值（0到100）时，会显示错误。</p>
-<p>UI的XAML代码：</p>
-<pre><code class="XML">&lt;StackPanel&gt;
-    &lt;TextBox x:Name=&quot;textBox&quot; Margin=&quot;10&quot; Height=&quot;25&quot;/&gt;
-    &lt;Slider x:Name=&quot;slider&quot; Margin=&quot;10&quot; Minimum=&quot;-10&quot; Maximum=&quot;100&quot;/&gt;
-&lt;/StackPanel&gt;
-</code></pre>
-<p>看到上面的代码，小伙伴们应该很快发现了一个小细节，为什么Slider的最小值设为-10？这个是别有用意的，因为Binding在验证数据的时候，默认是把Source的数据认为是完全正确的，有问题的数据只可能出现在Target上，因此这里模拟了Source数据异常的情况，并且对Source的数据也进行了校验的步骤。</p>
-<p>实现数据的校验是在对Binding的ValidationRules属性赋值，看属性的命名便可知道，这是一个ValidationRule类的集合，准确的类型是Collection<validationrule>。ValidatinRule是一个抽象类，因此我们需要准备它的派生类，实现Validate方法，该方法的返回值是ValidationResult类型对象，如果检验通过，则设置ValidationResult对象的IsValid属性为True，反之为False并为ErrorContent属性设置一个合适的消息内容。现在我们来准备ValidationRule的派生类。</validationrule></p>
-<pre><code class="CSharp">class RangeValidationRule : ValidationRule
-{
-    public override ValidationResult Validate(object value, CultureInfo cultureInfo)
-    {
-        double data;
-        if (double.TryParse(value.ToString(), out data))
-        {
-            if (data &gt;= 0 &amp;&amp; data &lt;= 100)
-            {
-                return new ValidationResult(true, null);
-            }
-        }
-        return new ValidationResult(false, &quot;Validation Failed&quot;);
-    }
-}
-</code></pre>
-<p>有了这个派生类，我们就可以着手进行将TextBox绑定到Slider上了。</p>
-<pre><code class="CSharp">public MainWindow()
-{
-    InitializeComponent();
-
-    Binding binding = new Binding(&quot;Value&quot;) { Source = this.slider };
-    binding.UpdateSourceTrigger = UpdateSourceTrigger.PropertyChanged;
-    binding.ValidationRules.Add(new RangeValidationRule() { ValidatesOnTargetUpdated = true });
-    this.textBox.SetBinding(TextBox.TextProperty, binding);
-}
-</code></pre>
-<p>运行程序后，不论是我们把Slider手动拨到0以下的值还是直接在TextBox里输入小于0的数，TextBox都会显示红色的边框，提示用户数据有问题。运行效果如下：</p>
-<p><a href="/img/2017/02/sp170208_214114.png"><img src="/img/2017/02/sp170208_214114.png" alt=""></a></p>
-<h2 id="更进一步"><a href="#更进一步" class="headerlink" title="更进一步"></a>更进一步</h2><p>到此我们就已经完成了对数据的校验工作，接下来更进一步。我们刚才说了，ValidatinResult对象携带了一条错误消息，那么，我们如何让这条消息显示出来呢？这里用到了路由事件，我们来把后台代码写的更进一步。</p>
-<pre><code class="CSharp">public partial class MainWindow : Window
-{
-    public MainWindow()
-    {
-        InitializeComponent();
-
-        Binding binding = new Binding(&quot;Value&quot;) { Source = this.slider };
-        binding.UpdateSourceTrigger = UpdateSourceTrigger.PropertyChanged;
-        binding.ValidationRules.Add(new RangeValidationRule() { ValidatesOnTargetUpdated = true });
-        binding.NotifyOnValidationError = true;
-        this.textBox.SetBinding(TextBox.TextProperty, binding);
-        this.textBox.AddHandler(Validation.ErrorEvent, new RoutedEventHandler(
-            (sender, e) =&gt;;
-            {
-                if (Validation.GetErrors(this.textBox).Count &gt; 0)
-                {
-                    this.textBox.ToolTip = Validation.GetErrors(this.textBox)[0].ErrorContent.ToString();
-                    ToolTipService.SetIsEnabled(this.textBox, true);
-                }
-            }));
-    }
-}
-</code></pre>
-<p>运行效果如下，把鼠标悬停在TextBox上会有小提示出现，这个小提示就是我们在ValidationResult里设置的错误消息。</p>
-<p><a href="/img/2017/02/sp170208_214644.png"><img src="/img/2017/02/sp170208_214644.png" alt=""></a></p>
-<h2 id="分析"><a href="#分析" class="headerlink" title="分析"></a>分析</h2><p>又到了分析部分，仍然是问答的形式来进行。</p>
-<p>Q：后台代码的 ValidatesOnTargetUpdated = true 这句代码是什么意思？</p>
-<p>A：这个问题的答案其实在文章里了，我们说了Binding对象默认把来自Source的数据认定为绝对正确，因此我们特意模拟了Source的数据异常的情况，这句代码就是告诉Binding对象，对来自Source的数据也进行校验。</p>
-<p>Q：为什么要添加 binding.NotifyOnValidationError = true这句代码？</p>
-<p>A：简单的讲就是使得验证失败的时候会触发事件，并执行事件处理器，也就是使得错误消息通过TextBox的ToolTip显示出来。详细请了解路由事件。</p>
-]]></content>
       
-        <categories>
-            
-            <category> Programming </category>
-            
-        </categories>
-        
-        
+        <content type="html"><![CDATA[<p>我们知道，属性的存在是为了解决数据有效性的问题，确保暴露出去的数据是合情合理的。在实际中，数据在目标流动过程中，我们一般都需要对其有效性进行验证。我们已经知道，Binding的作用实在Target和Source之间架起了一座数据流动的桥梁，因此我们需要对在这之间流动的数据进行校验。不仅如此，我们还可以进行数据类型的转换，这个在下一篇文章进行讲解，现在我们来看看如何在绑定的时候对数据进行有效性校验。</p><h2 id="实现"><a href="#实现" class="headerlink" title="实现"></a>实现</h2><p>现在我们的任务是，将一个TextBox（Target）绑定到一个Slider（Source）上，在TextBox输入非Slider的Value的区间值（0到100）时，会显示错误。</p><p>UI的XAML代码：</p><pre><code class="XML">&lt;StackPanel&gt;    &lt;TextBox x:Name=&quot;textBox&quot; Margin=&quot;10&quot; Height=&quot;25&quot;/&gt;    &lt;Slider x:Name=&quot;slider&quot; Margin=&quot;10&quot; Minimum=&quot;-10&quot; Maximum=&quot;100&quot;/&gt;&lt;/StackPanel&gt;</code></pre><p>看到上面的代码，小伙伴们应该很快发现了一个小细节，为什么Slider的最小值设为-10？这个是别有用意的，因为Binding在验证数据的时候，默认是把Source的数据认为是完全正确的，有问题的数据只可能出现在Target上，因此这里模拟了Source数据异常的情况，并且对Source的数据也进行了校验的步骤。</p><p>实现数据的校验是在对Binding的ValidationRules属性赋值，看属性的命名便可知道，这是一个ValidationRule类的集合，准确的类型是Collection<validationrule>。ValidatinRule是一个抽象类，因此我们需要准备它的派生类，实现Validate方法，该方法的返回值是ValidationResult类型对象，如果检验通过，则设置ValidationResult对象的IsValid属性为True，反之为False并为ErrorContent属性设置一个合适的消息内容。现在我们来准备ValidationRule的派生类。</validationrule></p><pre><code class="CSharp">class RangeValidationRule : ValidationRule{    public override ValidationResult Validate(object value, CultureInfo cultureInfo)    {        double data;        if (double.TryParse(value.ToString(), out data))        {            if (data &gt;= 0 &amp;&amp; data &lt;= 100)            {                return new ValidationResult(true, null);            }        }        return new ValidationResult(false, &quot;Validation Failed&quot;);    }}</code></pre><p>有了这个派生类，我们就可以着手进行将TextBox绑定到Slider上了。</p><pre><code class="CSharp">public MainWindow(){    InitializeComponent();    Binding binding = new Binding(&quot;Value&quot;) { Source = this.slider };    binding.UpdateSourceTrigger = UpdateSourceTrigger.PropertyChanged;    binding.ValidationRules.Add(new RangeValidationRule() { ValidatesOnTargetUpdated = true });    this.textBox.SetBinding(TextBox.TextProperty, binding);}</code></pre><p>运行程序后，不论是我们把Slider手动拨到0以下的值还是直接在TextBox里输入小于0的数，TextBox都会显示红色的边框，提示用户数据有问题。运行效果如下：</p><p><a href="/img/2017/02/sp170208_214114.png"><img src="/img/2017/02/sp170208_214114.png" alt></a></p><h2 id="更进一步"><a href="#更进一步" class="headerlink" title="更进一步"></a>更进一步</h2><p>到此我们就已经完成了对数据的校验工作，接下来更进一步。我们刚才说了，ValidatinResult对象携带了一条错误消息，那么，我们如何让这条消息显示出来呢？这里用到了路由事件，我们来把后台代码写的更进一步。</p><pre><code class="CSharp">public partial class MainWindow : Window{    public MainWindow()    {        InitializeComponent();        Binding binding = new Binding(&quot;Value&quot;) { Source = this.slider };        binding.UpdateSourceTrigger = UpdateSourceTrigger.PropertyChanged;        binding.ValidationRules.Add(new RangeValidationRule() { ValidatesOnTargetUpdated = true });        binding.NotifyOnValidationError = true;        this.textBox.SetBinding(TextBox.TextProperty, binding);        this.textBox.AddHandler(Validation.ErrorEvent, new RoutedEventHandler(            (sender, e) =&gt;;            {                if (Validation.GetErrors(this.textBox).Count &gt; 0)                {                    this.textBox.ToolTip = Validation.GetErrors(this.textBox)[0].ErrorContent.ToString();                    ToolTipService.SetIsEnabled(this.textBox, true);                }            }));    }}</code></pre><p>运行效果如下，把鼠标悬停在TextBox上会有小提示出现，这个小提示就是我们在ValidationResult里设置的错误消息。</p><p><a href="/img/2017/02/sp170208_214644.png"><img src="/img/2017/02/sp170208_214644.png" alt></a></p><h2 id="分析"><a href="#分析" class="headerlink" title="分析"></a>分析</h2><p>又到了分析部分，仍然是问答的形式来进行。</p><p>Q：后台代码的 ValidatesOnTargetUpdated = true 这句代码是什么意思？</p><p>A：这个问题的答案其实在文章里了，我们说了Binding对象默认把来自Source的数据认定为绝对正确，因此我们特意模拟了Source的数据异常的情况，这句代码就是告诉Binding对象，对来自Source的数据也进行校验。</p><p>Q：为什么要添加 binding.NotifyOnValidationError = true这句代码？</p><p>A：简单的讲就是使得验证失败的时候会触发事件，并执行事件处理器，也就是使得错误消息通过TextBox的ToolTip显示出来。详细请了解路由事件。</p>]]></content>
+      
+      
+      <categories>
+          
+          <category> Programming </category>
+          
+      </categories>
+      
+      
         <tags>
             
             <tag> WPF </tag>
             
         </tags>
-        
+      
     </entry>
     
+    
+    
     <entry>
-      <title><![CDATA[Binding[0]=使用ObjectDataProvider对象作为Binding的Source]]></title>
+      <title>Binding[0]=使用ObjectDataProvider对象作为Binding的Source</title>
+      <link href="/2017/02/07/odp-as-binding-source/"/>
       <url>/2017/02/07/odp-as-binding-source/</url>
-      <content type="html"><![CDATA[<p>一般情况下，我们通常使用某个类的实例作为Binding的对象，实例中的某个属性作为Path来消费这些类。现在试想一下这样的情形，我们需要绑定的数据是方法的返回值，这时候我们应该怎么办呢？有小伙伴可能会提出，修改这个类，增加属性将需要的数据暴露出来使用。这样是一个解决方法，但是重新设计底层类的风险和成本比较高，而且在黑盒引用类库的时候我们就不可能这样做了。那么是不是就束手无策了？当然不是，我们可以使用ObjectDataProvider包装一个对象然后作为Binding的数据源。怎么来实现呢？</p>
-<h2 id="实现"><a href="#实现" class="headerlink" title="实现"></a>实现</h2><p>现在的情形是，我引用一个类库，里面有一个Calculator的类，里面有各种算法，其中一个是加法的算法：</p>
-<pre><code class="CSharp">class Calculator
-{
-    public string Add(string arg1, string arg2)
-    {
-        double x;
-        double y;
-        if (double.TryParse(arg1, out x) &amp;&amp; double.TryParse(arg2, out y))
-        {
-            return (x + y).ToString();
-        }
-        return @&quot;N/A&quot;;
-    }
-}
-</code></pre>
-<p>在界面上，准备了三个TextBox，第一个作为Add方法的第一个参数，第二个作为第二个参数，第三个作为Add方法返回值。XAML代码如下：</p>
-<pre><code class="CSharp">&lt;StackPanel&gt;
-    &lt;TextBox x:Name=&quot;tBArg1&quot; Margin=&quot;10&quot; Height=&quot;25&quot;/&gt;
-    &lt;TextBox x:Name=&quot;tBArg2&quot; Margin=&quot;10&quot; Height=&quot;25&quot;/&gt;
-    &lt;TextBox x:Name=&quot;tBResult&quot; Margin=&quot;10&quot; Height=&quot;25&quot;/&gt;
-&lt;/StackPanel&gt;
-</code></pre>
-<p>功能上，我要实现在前两个TextBox上输入实数后，在第三个TextBox实时显示出计算结果。过程代码写在一个SetBinding方法里，然后在窗体的构造函数中那个调用这个方法。</p>
-<pre><code class="CSharp">public partial class MainWindow : Window
-{
-    public MainWindow()
-    {
-        InitializeComponent();
-        this.SetBinding();
-    }
-
-    private void SetBinding()
-    {
-        //Create and initial ObjectDataProvider instance
-        ObjectDataProvider odp = new ObjectDataProvider();
-        odp.ObjectInstance = new Calculator();
-        odp.MethodName = &quot;Add&quot;;
-        odp.MethodParameters.Add(&quot;&quot;);
-        odp.MethodParameters.Add(&quot;&quot;);
-
-        //Create and initial Binding instance
-        Binding bindingToArg1 = new Binding(&quot;MethodParameters[0]&quot;)
-        {
-            Source = odp,
-            BindsDirectlyToSource = true,
-            UpdateSourceTrigger = UpdateSourceTrigger.PropertyChanged
-        };
-
-        Binding bindingToArg2 = new Binding(&quot;MethodParameters[1]&quot;)
-        {
-            Source = odp,
-            BindsDirectlyToSource = true,
-            UpdateSourceTrigger = UpdateSourceTrigger.PropertyChanged
-        };
-
-        Binding bindingToResult = new Binding(&quot;.&quot;) { Source = odp };
-
-        //Set binding
-        this.tBArg1.SetBinding(TextBox.TextProperty, bindingToArg1);
-        this.tBArg2.SetBinding(TextBox.TextProperty, bindingToArg2);
-        this.tBResult.SetBinding(TextBox.TextProperty, bindingToResult);
-    }
-}
-</code></pre>
-<p>最终的实现效果</p>
-<p><a href="/img/2017/02/sp170207_142045.png"><img src="/img/2017/02/sp170207_142045.png" alt=""></a></p>
-<h2 id="分析"><a href="#分析" class="headerlink" title="分析"></a>分析</h2><p>OK，现在我们的问题解决了。让我们以问答的形式具体分析一下这个实现过程。</p>
-<p>Q：ObjectDataProvider类的作用是什么？</p>
-<p>A：文章开头部分就提及到了，ObjectDataProvider类的作用就是将一个<strong>以方法形式暴露数据的对象</strong>包装起来。我们先是创建了一个ObjectDataProvider对象，然后new 一个Calculator实例赋值给它的ObjectInstance属性，这样就完成了将对象包装在ObjectDataProvider对象里的工作。注意这里的ObjectDataProvider对象本身就代表了数据，因此Path写“.”</p>
-<p>Q：BindsDirectlyToSource=true这句代码什么意思？</p>
-<p>A：这句代码的意思是告诉Binding对象，你把从UI元素采集到数据直接写入其直接Source（也就是ObjectDataProvider对象），而不是ObjectDataProvider对象包装着的Calculator对象里。</p>
-<p>Q：如果一个方法有多个重载ObjectDataProvider如何决策使用哪个方法？</p>
-<p>A：我们知道，各个重载方法的区别在于方法参数列表的不同。因此，ObjectDataProvider会根据我们传入的参数来决定使用哪个重载方法。这里可以得到的一个结论是：MethodParameters属性对类型是敏感的。</p>
-<p>Q：三个TextBox的数据源都是谁？</p>
-<p>A：三个TextBox的数据源都是ObjectDataProvider对象。这里体现了WPF的数据驱动UI的理念。</p>
-]]></content>
       
-        <categories>
-            
-            <category> Programming </category>
-            
-        </categories>
-        
-        
+        <content type="html"><![CDATA[<p>一般情况下，我们通常使用某个类的实例作为Binding的对象，实例中的某个属性作为Path来消费这些类。现在试想一下这样的情形，我们需要绑定的数据是方法的返回值，这时候我们应该怎么办呢？有小伙伴可能会提出，修改这个类，增加属性将需要的数据暴露出来使用。这样是一个解决方法，但是重新设计底层类的风险和成本比较高，而且在黑盒引用类库的时候我们就不可能这样做了。那么是不是就束手无策了？当然不是，我们可以使用ObjectDataProvider包装一个对象然后作为Binding的数据源。怎么来实现呢？</p><h2 id="实现"><a href="#实现" class="headerlink" title="实现"></a>实现</h2><p>现在的情形是，我引用一个类库，里面有一个Calculator的类，里面有各种算法，其中一个是加法的算法：</p><pre><code class="CSharp">class Calculator{    public string Add(string arg1, string arg2)    {        double x;        double y;        if (double.TryParse(arg1, out x) &amp;&amp; double.TryParse(arg2, out y))        {            return (x + y).ToString();        }        return @&quot;N/A&quot;;    }}</code></pre><p>在界面上，准备了三个TextBox，第一个作为Add方法的第一个参数，第二个作为第二个参数，第三个作为Add方法返回值。XAML代码如下：</p><pre><code class="CSharp">&lt;StackPanel&gt;    &lt;TextBox x:Name=&quot;tBArg1&quot; Margin=&quot;10&quot; Height=&quot;25&quot;/&gt;    &lt;TextBox x:Name=&quot;tBArg2&quot; Margin=&quot;10&quot; Height=&quot;25&quot;/&gt;    &lt;TextBox x:Name=&quot;tBResult&quot; Margin=&quot;10&quot; Height=&quot;25&quot;/&gt;&lt;/StackPanel&gt;</code></pre><p>功能上，我要实现在前两个TextBox上输入实数后，在第三个TextBox实时显示出计算结果。过程代码写在一个SetBinding方法里，然后在窗体的构造函数中那个调用这个方法。</p><pre><code class="CSharp">public partial class MainWindow : Window{    public MainWindow()    {        InitializeComponent();        this.SetBinding();    }    private void SetBinding()    {        //Create and initial ObjectDataProvider instance        ObjectDataProvider odp = new ObjectDataProvider();        odp.ObjectInstance = new Calculator();        odp.MethodName = &quot;Add&quot;;        odp.MethodParameters.Add(&quot;&quot;);        odp.MethodParameters.Add(&quot;&quot;);        //Create and initial Binding instance        Binding bindingToArg1 = new Binding(&quot;MethodParameters[0]&quot;)        {            Source = odp,            BindsDirectlyToSource = true,            UpdateSourceTrigger = UpdateSourceTrigger.PropertyChanged        };        Binding bindingToArg2 = new Binding(&quot;MethodParameters[1]&quot;)        {            Source = odp,            BindsDirectlyToSource = true,            UpdateSourceTrigger = UpdateSourceTrigger.PropertyChanged        };        Binding bindingToResult = new Binding(&quot;.&quot;) { Source = odp };        //Set binding        this.tBArg1.SetBinding(TextBox.TextProperty, bindingToArg1);        this.tBArg2.SetBinding(TextBox.TextProperty, bindingToArg2);        this.tBResult.SetBinding(TextBox.TextProperty, bindingToResult);    }}</code></pre><p>最终的实现效果</p><p><a href="/img/2017/02/sp170207_142045.png"><img src="/img/2017/02/sp170207_142045.png" alt></a></p><h2 id="分析"><a href="#分析" class="headerlink" title="分析"></a>分析</h2><p>OK，现在我们的问题解决了。让我们以问答的形式具体分析一下这个实现过程。</p><p>Q：ObjectDataProvider类的作用是什么？</p><p>A：文章开头部分就提及到了，ObjectDataProvider类的作用就是将一个<strong>以方法形式暴露数据的对象</strong>包装起来。我们先是创建了一个ObjectDataProvider对象，然后new 一个Calculator实例赋值给它的ObjectInstance属性，这样就完成了将对象包装在ObjectDataProvider对象里的工作。注意这里的ObjectDataProvider对象本身就代表了数据，因此Path写“.”</p><p>Q：BindsDirectlyToSource=true这句代码什么意思？</p><p>A：这句代码的意思是告诉Binding对象，你把从UI元素采集到数据直接写入其直接Source（也就是ObjectDataProvider对象），而不是ObjectDataProvider对象包装着的Calculator对象里。</p><p>Q：如果一个方法有多个重载ObjectDataProvider如何决策使用哪个方法？</p><p>A：我们知道，各个重载方法的区别在于方法参数列表的不同。因此，ObjectDataProvider会根据我们传入的参数来决定使用哪个重载方法。这里可以得到的一个结论是：MethodParameters属性对类型是敏感的。</p><p>Q：三个TextBox的数据源都是谁？</p><p>A：三个TextBox的数据源都是ObjectDataProvider对象。这里体现了WPF的数据驱动UI的理念。</p>]]></content>
+      
+      
+      <categories>
+          
+          <category> Programming </category>
+          
+      </categories>
+      
+      
         <tags>
             
             <tag> WPF </tag>
             
         </tags>
-        
+      
     </entry>
     
+    
+    
     <entry>
-      <title><![CDATA[提高Arduino编程体验]]></title>
+      <title>提高Arduino编程体验</title>
+      <link href="/2016/12/29/arduino-ide-for-visualstudio/"/>
       <url>/2016/12/29/arduino-ide-for-visualstudio/</url>
-      <content type="html"><![CDATA[<p>前阵子学校有个单片机比赛，受其影响突然很想玩板子。于是就买个一块Arduino UNO的国产版ZHONGBEST，就使用上来说和官方原版没有什么区别，最大的区别就是便宜！便宜！便宜！（重说三）</p>
-<p>拿到手后，当然迫不及待地上手一个Hello World程序，开始我用的是官方的IDE，试了没问题之后我尝试着去修改代码，然后我发现了什么？没有智能提示！没有智能提示！没有智能提示！或许我是被VS惯坏了，我实在受不了。搜索一波后发现有个扩展叫做 Arduino IDE For Visual Studio（传送门：<a href="https://marketplace.visualstudio.com/items?itemName=VisualMicro.ArduinoIDEforVisualStudio" target="_blank" rel="external">https://marketplace.visualstudio.com/items?itemName=VisualMicro.ArduinoIDEforVisualStudio</a>），安装好了之后打开VS后可以看到界面已经发生了少许的变化，再次尝试着去写代码的时候找回了那种愉悦感 balabala~</p>
-<p><a href="/img/2016/12/sp161229_125410.png"><img src="/img/2016/12/sp161229_125410.png" alt=""></a></p>
-]]></content>
       
-        <categories>
-            
-            <category> Arduino </category>
-            
-        </categories>
-        
-        
+        <content type="html"><![CDATA[<p>前阵子学校有个单片机比赛，受其影响突然很想玩板子。于是就买个一块Arduino UNO的国产版ZHONGBEST，就使用上来说和官方原版没有什么区别，最大的区别就是便宜！便宜！便宜！（重说三）</p><p>拿到手后，当然迫不及待地上手一个Hello World程序，开始我用的是官方的IDE，试了没问题之后我尝试着去修改代码，然后我发现了什么？没有智能提示！没有智能提示！没有智能提示！或许我是被VS惯坏了，我实在受不了。搜索一波后发现有个扩展叫做 Arduino IDE For Visual Studio（传送门：<a href="https://marketplace.visualstudio.com/items?itemName=VisualMicro.ArduinoIDEforVisualStudio" target="_blank" rel="noopener">https://marketplace.visualstudio.com/items?itemName=VisualMicro.ArduinoIDEforVisualStudio</a>），安装好了之后打开VS后可以看到界面已经发生了少许的变化，再次尝试着去写代码的时候找回了那种愉悦感 balabala~</p><p><a href="/img/2016/12/sp161229_125410.png"><img src="/img/2016/12/sp161229_125410.png" alt></a></p>]]></content>
+      
+      
+      <categories>
+          
+          <category> Arduino </category>
+          
+      </categories>
+      
+      
         <tags>
             
             <tag> C/C++ </tag>
             
         </tags>
-        
+      
     </entry>
     
+    
   
   
     
+    
     <entry>
-      <title><![CDATA[Talking]]></title>
+      <title>Talking</title>
+      <link href="/Talking/index.html"/>
       <url>/Talking/index.html</url>
-      <content type="html"></content>
+      
+        <content type="html"><![CDATA[]]></content>
+      
     </entry>
     
+    
+    
     <entry>
-      <title><![CDATA[关于我]]></title>
+      <title>关于我</title>
+      <link href="/about/index.html"/>
       <url>/about/index.html</url>
-      <content type="html"><![CDATA[<p>喜欢摄影主业写代码的工科男(/▽＼)</p>
-]]></content>
+      
+        <content type="html"><![CDATA[<p>喜欢摄影主业写代码的工科男(/▽＼)</p>]]></content>
+      
     </entry>
     
-    <entry>
-      <title><![CDATA[Categories]]></title>
-      <url>/categories/index.html</url>
-      <content type="html"></content>
-    </entry>
+    
     
     <entry>
-      <title><![CDATA[Contact]]></title>
-      <url>/contact/index.html</url>
-      <content type="html"><![CDATA[<p>Contact me with<br><strong><a href="mailto:Myers.Chan@outlook.com?subject=FeebackFromBlog" target="_blank" rel="external">E-mail</a></strong>.<br><strong><a href="http://weibo.com/Nomyfan" target="_blank" rel="external">Weibo</a></strong><br><strong><a href="https://twitter.com/Myers__Chan" target="_blank" rel="external">Twitter</a></strong><br><strong><a href="https://facebook.com/myers.n.chan" target="_blank" rel="external">Facebook</a></strong></p>
-]]></content>
-    </entry>
-    
-    <entry>
-      <title><![CDATA[Tags]]></title>
-      <url>/tags/index.html</url>
-      <content type="html"></content>
-    </entry>
-    
-    <entry>
-      <title><![CDATA[Contact]]></title>
-      <url>/feeback/index.html</url>
-      <content type="html"><![CDATA[<p>Contact me with<br><strong><a href="mailto:Myers.Chan@outlook.com?subject=FeebackFromBlog" target="_blank" rel="external">E-mail</a></strong>.<br><strong><a href="http://weibo.com/Nomyfan" target="_blank" rel="external">Weibo</a></strong><br><strong><a href="https://twitter.com/Myers__Chan" target="_blank" rel="external">Twitter</a></strong><br><strong><a href="https://facebook.com/myers.n.chan" target="_blank" rel="external">Facebook</a></strong></p>
-]]></content>
-    </entry>
-    
-    <entry>
-      <title><![CDATA[Timeline]]></title>
-      <url>/timeline/index.html</url>
-      <content type="html"></content>
-    </entry>
-    
-    <entry>
-      <title><![CDATA[Photograph]]></title>
-      <url>/photograph/index.html</url>
-      <content type="html"></content>
-    </entry>
-    
-    <entry>
-      <title><![CDATA[Articles]]></title>
+      <title>Articles</title>
+      <link href="/articles/index.html"/>
       <url>/articles/index.html</url>
-      <content type="html"></content>
+      
+        <content type="html"><![CDATA[]]></content>
+      
     </entry>
     
+    
+    
     <entry>
-      <title><![CDATA[Friends]]></title>
+      <title>Friends</title>
+      <link href="/friends/index.html"/>
       <url>/friends/index.html</url>
-      <content type="html"></content>
+      
+        <content type="html"><![CDATA[]]></content>
+      
     </entry>
+    
+    
+    
+    <entry>
+      <title>Contact</title>
+      <link href="/feeback/index.html"/>
+      <url>/feeback/index.html</url>
+      
+        <content type="html"><![CDATA[<p>Contact me with<br><strong><a href="mailto:Myers.Chan@outlook.com?subject=FeebackFromBlog" target="_blank" rel="noopener">E-mail</a></strong>.<br><strong><a href="http://weibo.com/Nomyfan" target="_blank" rel="noopener">Weibo</a></strong><br><strong><a href="https://twitter.com/Myers__Chan" target="_blank" rel="noopener">Twitter</a></strong><br><strong><a href="https://facebook.com/myers.n.chan" target="_blank" rel="noopener">Facebook</a></strong></p>]]></content>
+      
+    </entry>
+    
+    
+    
+    <entry>
+      <title>Photograph</title>
+      <link href="/photograph/index.html"/>
+      <url>/photograph/index.html</url>
+      
+        <content type="html"><![CDATA[]]></content>
+      
+    </entry>
+    
+    
+    
+    <entry>
+      <title>Categories</title>
+      <link href="/categories/index.html"/>
+      <url>/categories/index.html</url>
+      
+        <content type="html"><![CDATA[]]></content>
+      
+    </entry>
+    
+    
+    
+    <entry>
+      <title>Contact</title>
+      <link href="/contact/index.html"/>
+      <url>/contact/index.html</url>
+      
+        <content type="html"><![CDATA[<p>Contact me with<br><strong><a href="mailto:Myers.Chan@outlook.com?subject=FeebackFromBlog" target="_blank" rel="noopener">E-mail</a></strong>.<br><strong><a href="http://weibo.com/Nomyfan" target="_blank" rel="noopener">Weibo</a></strong><br><strong><a href="https://twitter.com/Myers__Chan" target="_blank" rel="noopener">Twitter</a></strong><br><strong><a href="https://facebook.com/myers.n.chan" target="_blank" rel="noopener">Facebook</a></strong></p>]]></content>
+      
+    </entry>
+    
+    
+    
+    <entry>
+      <title>Tags</title>
+      <link href="/tags/index.html"/>
+      <url>/tags/index.html</url>
+      
+        <content type="html"><![CDATA[]]></content>
+      
+    </entry>
+    
+    
+    
+    <entry>
+      <title>Timeline</title>
+      <link href="/timeline/index.html"/>
+      <url>/timeline/index.html</url>
+      
+        <content type="html"><![CDATA[]]></content>
+      
+    </entry>
+    
     
   
 </search>
