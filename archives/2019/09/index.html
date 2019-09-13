@@ -45,7 +45,7 @@
     
     <title>
         
-            Contact | 
+            Archives: 2019/9 | 
         
         Zmus
     </title>
@@ -219,7 +219,7 @@
     <!-- WebAPP Icons -->
     <meta name="mobile-web-app-capable" content="yes">
     <meta name="application-name" content="Zmus">
-    <meta name="msapplication-starturl" content="https://blog.nokky.dev/contact/">
+    <meta name="msapplication-starturl" content="https://blog.nokky.dev/archives/2019/09/">
     <meta name="msapplication-navbutton-color" content="#0097A7">
     <meta name="apple-mobile-web-app-capable" content="yes">
     <meta name="apple-mobile-web-app-title" content="Zmus">
@@ -234,9 +234,9 @@
     
 
     <!-- The Open Graph protocol -->
-    <meta property="og:url" content="https://blog.nokky.dev/contact/">
+    <meta property="og:url" content="https://blog.nokky.dev/archives/2019/09/">
     <meta property="og:type" content="blog">
-    <meta property="og:title" content="Contact | Zmus">
+    <meta property="og:title" content="Archives: 2019/9 | Zmus">
     <meta property="og:image" content="/img/favicon.png">
     <meta property="og:description" content="陈诺米个人博客">
     
@@ -248,7 +248,7 @@
 
     <!-- Add canonical link for SEO -->
     
-        <link rel="canonical" href="https://blog.nokky.dev/contact/index.html">
+        <link rel="canonical" href="https://blog.nokky.dev/archives/2019/09/index.html">
     
 
     <!-- Structured-data for SEO -->
@@ -300,199 +300,93 @@
                         </button>
                     
 
-                    <!-- Post TOC -->
+                    <!-- Index Module -->
+<div class="material-index mdl-grid">
+    
+    <div class="locate-thumbnail-symbol"></div>
 
+    <!-- Pin on top -->
+    
 
-<!-- Layouts -->
-
-    <!-- Post Module -->
-    <div class="material-post_container">
-
-        <div class="material-post mdl-grid">
-            <div class="mdl-card mdl-shadow--4dp mdl-cell mdl-cell--12-col">
-
-                <!-- Post Header(Thumbnail & Title) -->
-                
-    <!-- Paradox Post Header -->
+    <!-- Normal Post -->
+    
+        
+            
+                <!-- Paradox Thumbnail -->
+                <div class="post_entry-module mdl-card mdl-shadow--2dp mdl-cell mdl-cell--12-col fade out">
+    <!-- Post Thumbnail -->
     
         
             <!-- Random Thumbnail -->
             <div class="post_thumbnail-random mdl-card__media mdl-color-text--grey-50">
-            <script type="text/ls-javascript" id="post-thumbnail-script">
-    var randomNum = Math.floor(Math.random() * 19 + 1);
+        
+    
 
-    $('.post_thumbnail-random').attr('data-original', '/img/random/material-' + randomNum + '.png');
+        <!-- Post Title -->
+        <p class="article-headline-p"><a href="/2019/09/13/goasync/">GoAsync</a></p>
+    </div>
+
+    <!-- Post Excerpt -->
+    <div class="mdl-color-text--grey-600 mdl-card__supporting-text post_entry-content">
+        
+            Golang的最大特性之一就是异步并发性，在Golang中，能很简单地用关键字go开启一个goroutine，比如下面的例...
+        
+        &nbsp;&nbsp;&nbsp;
+        <span>
+            <a href="/2019/09/13/goasync/" target="_self">Read more</a>
+        </span>
+    </div>
+    <!-- Post_entry Info-->
+    <div id="post_entry-info">
+        <div id="post_entry-left-info" class="mdl-card__supporting-text meta mdl-color-text--grey-600 ">
+            <!-- Author Avatar -->
+            <div id="author-avatar">
+                <img src="/img/avatar.png" width="44px" height="44px" alt="Kim Chan's avatar">
+            </div>
+            <div>
+                <strong>Kim Chan</strong>
+                <span>Sep 13, 2019</span>
+            </div>
+        </div>
+        <div id="post_entry-right-info">
+          
+
+            
+
+            
+
+            <!-- Post Views -->
+            <span class="post_entry-views">
+            </span>
+        </div>
+    </div>
+</div>
+
+            
+            
+        
+    
+
+    
+
+    
+        <script type="text/ls-javascript" id="thumbnail-script">
+    var randomNum;
+
+    var locatePost = $('.locate-thumbnail-symbol').next();
+    for(var i = 0; i < 10; i++) {
+        randomNum = Math.floor(Math.random() * 19 + 1);
+
+        locatePost.children('.post_thumbnail-random').attr('id', 'random_thumbnail-'+randomNum);
+        locatePost.children('.post_thumbnail-random').attr('data-original', '/img/random/material-' + randomNum + '.png');
     $('.post_thumbnail-random').addClass('lazy');
+
+        locatePost = locatePost.next();
+    }
 </script>
 
-        
-    
-            <p class="article-headline-p">
-                Contact
-            </p>
-        </div>
-
-
-
-
-
-                
-                    <!-- Paradox Post Info -->
-                    <div class="mdl-color-text--grey-700 mdl-card__supporting-text meta">
-
-    <!-- Author Avatar -->
-    <div id="author-avatar">
-        <img src="/img/avatar.png" width="44px" height="44px" alt="Author Avatar"/>
-    </div>
-    <!-- Author Name & Date -->
-    <div>
-        <strong>Kim Chan</strong>
-        <span>Jun 25, 2017</span>
-    </div>
-
-    <div class="section-spacer"></div>
-
-    <!-- Favorite -->
-    <!--
-        <button id="article-functions-like-button" class="mdl-button mdl-js-button mdl-js-ripple-effect mdl-button--icon btn-like">
-            <i class="material-icons" role="presentation">favorite</i>
-            <span class="visuallyhidden">favorites</span>
-        </button>
-    -->
-
-    <!-- Qrcode -->
-    
-        <button id="article-functions-qrcode-button" class="mdl-button mdl-js-button mdl-js-ripple-effect mdl-button--icon">
-    <i class="material-icons" role="presentation">devices other</i>
-    <span class="visuallyhidden">devices other</span>
-</button>
-<ul class="mdl-menu mdl-menu--bottom-right mdl-js-menu mdl-js-ripple-effect" for="article-functions-qrcode-button">
-    <li class="mdl-menu__item">Read this article on other devices</li>
-    
-        <img src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAMYAAADGCAAAAACs8KCBAAAB7ElEQVR42u3aQXaDMAwFQO5/6fYAaeBLhiagYdVXUluThWpJ3n4e8WwYGBgYGBgYGF/D2OLnj4Ve3m7FZyUGDAyMaYyD1Pay5bvt3/GS3+cxYGBgTGbsh5VvXP3bZgwYGBgYcSj522R9DAwMjHVGkmpXjoYYGBgY60Vs0m6rlrIfqMUxMDBuyKg28a/4+V/nGxgYGLdiNC867KbgPLgP3xnBwMC4CaOaHK8oXPOxAQYGxkzG/mZJMq22yfbTcWHwiYGBMYZRbZDlKXW96da8wIqBgfE4xlnDy5UmWp7oMTAwZjLyo1v1sLiexA9WwMDAGMOoBl1Nmr2v6YRaHAMD49GMpB12dRF7QsLFwMB4EKPaPuu1+POjYWG0gIGBMYaRN+V711t7qXzp/wYGBsajGb2lr7s0djDgxMDAGMNYCbc64MwTfUTFwMAYw8iXS8LN22f5QfCEIhYDA+PmjPwiV6/Flr8tt/kwMDDGMHqHud7YoJrQD75KDAyMMYxq67/avs/HlvtHQwwMDIxeU+ys0HsJHQMDYyYjT4h5661aBl9Si2NgYAxj9ILojSrLRSwGBgZGcdh51iHy7b4YGBgjGXkR2xuC9lp75csWGBgYD2XkS+efaQ4mexdYMTAwHs2474OBgYGBgYGB8dHnFyfZ7gNbSbzmAAAAAElFTkSuQmCC">
-    
-</ul>
-
-    
-
-    <!-- Tags (bookmark) -->
-    
-
-    <!-- Share -->
-    
-        <button id="article-fuctions-share-button" class="mdl-button mdl-js-button mdl-js-ripple-effect mdl-button--icon">
-    <i class="material-icons" role="presentation">share</i>
-    <span class="visuallyhidden">share</span>
-</button>
-<ul class="mdl-menu mdl-menu--bottom-right mdl-js-menu mdl-js-ripple-effect" for="article-fuctions-share-button">
-    
-    <!-- Leancloud Views -->
-        <a class="post_share-link" href="#">
-            <li class="mdl-menu__item">
-                <span id="/contact/index.html" class="leancloud-views_num" data-flag-title="Contact">
-     &nbsp;Views
-</span>
-
-            </li>
-        </a>
-    
-
-    
-
-    <!-- Share Weibo -->
-    
-        <a class="post_share-link" href="http://service.weibo.com/share/share.php?appkey=&title=Contact&url=https://blog.nokky.dev/contact/index.html&pic=https://blog.nokky.dev/img/favicon.png&searchPic=false&style=simple" target="_blank">
-            <li class="mdl-menu__item">
-                Share to Weibo
-            </li>
-        </a>
-    
-
-    <!-- Share Twitter -->
-    
-        <a class="post_share-link" href="https://twitter.com/intent/tweet?text=Contact&url=https://blog.nokky.dev/contact/index.html&via=Kim Chan" target="_blank">
-            <li class="mdl-menu__item">
-                Share to Twitter
-            </li>
-        </a>
-    
-
-    <!-- Share Facebook -->
-    
-        <a class="post_share-link" href="https://www.facebook.com/sharer/sharer.php?u=https://blog.nokky.dev/contact/index.html" target="_blank">
-            <li class="mdl-menu__item">
-                Share to Facebook
-            </li>
-        </a>
-    
-
-    <!-- Share Google+ -->
-    
-        <a class="post_share-link" href="https://plus.google.com/share?url=https://blog.nokky.dev/contact/index.html" target="_blank">
-            <li class="mdl-menu__item">
-                Share to Google+
-            </li>
-        </a>
-    
-
-    <!-- Share LinkedIn -->
-    
-
-    <!-- Share QQ -->
-    
-
-    <!-- Share Telegram -->
-    
-</ul>
-
     
 </div>
-
-                
-
-                <!-- Post Content -->
-                <div id="post-content" class="mdl-color-text--grey-700 mdl-card__supporting-text fade out">
-    
-        <p>Contact me with<br><strong><a href="mailto:Myers.Chan@outlook.com?subject=FeebackFromBlog" target="_blank" rel="noopener">E-mail</a></strong>.<br><strong><a href="http://weibo.com/Nomyfan" target="_blank" rel="noopener">Weibo</a></strong><br><strong><a href="https://twitter.com/Myers__Chan" target="_blank" rel="noopener">Twitter</a></strong><br><strong><a href="https://facebook.com/myers.n.chan" target="_blank" rel="noopener">Facebook</a></strong></p>
-
-        
-                <blockquote style="margin: 2em 0 0;padding: 0.5em 1em;border-left: 3px solid #F44336;background-color: #F5F5F5;list-style: none;">
-                    <p><strong>
-                         
-                            This blog is under a <a href="https://creativecommons.org/licenses/by-nc-sa/4.0/deed.zh" target="_blank">CC BY-NC-SA 4.0 Unported License</a>
-                        </strong>
-                        <br>
-                        <strong>Link to this article: </strong><a href="https://blog.nokky.dev/contact/index.html">https://blog.nokky.dev/contact/index.html</a>
-                    </p>
-                </blockquote>
-        
-    
-
-    
-</div>
-
-
-                
-
-                <!-- Post Comments -->
-                
-            </div>
-
-            <!-- Post Prev & Next Nav -->
-            <nav class="material-nav mdl-color-text--grey-50 mdl-cell mdl-cell--12-col">
-    <!-- Prev Nav -->
-    
-
-    <!-- Section Spacer -->
-    <div class="section-spacer"></div>
-
-    <!-- Next Nav -->
-    
-</nav>
-
-        </div>
-    </div>
-
 
 
                     
@@ -706,6 +600,14 @@ It will not impact the appearance and can give developers a lot of support :)
 </aside>
 
                     
+
+                    
+                        <!-- Footer Top Button -->
+                        <div id="back-to-top" class="toTop-wrap">
+    <a href="#top" class="toTop">
+        <i class="material-icons footer_top-i">expand_less</i>
+    </a>
+</div>
 
                     
 

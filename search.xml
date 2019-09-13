@@ -4,11 +4,24 @@
   
     
     <entry>
+      <title>GoAsync</title>
+      <link href="/2019/09/13/goasync/"/>
+      <url>/2019/09/13/goasync/</url>
+      
+        <content type="html"><![CDATA[<p>Golang的最大特性之一就是异步并发性，在Golang中，能很简单地用关键字<code>go</code>开启一个goroutine，比如下面的例子</p><pre><code class="go">fmt.Println(&quot;enter main&quot;)go goAsync()fmt.Println(&quot;leave main&quot;)</code></pre><p>开启了一个协程，但是大多数的时候我们是需要等待一个协程结束的，以便确定一个任务的完成甚至获得任务完成的结果，Golang的协程和C#的Task的模型基本是一致的，不同在于C#在语言层面对协程进行的封装，增加了<code>await</code>关键字，而在Golang里要达到相似调用的效果，就要自己简单的包装一下。</p><p>首先我们先来看看如何让上面的例子达到等待的效果，答案是借助<code>channel</code>便可轻易实现。代码如下</p><pre><code class="go">fmt.Println(&quot;enter main&quot;)done := make(chan bool)go goAsync(done)doSth()&lt;-donefmt.Println(&quot;leave main&quot;)</code></pre><p>通过channel，在需要等待的地方等待消息队列进入消息即可。对应地，在goAsync方法里一定要往channel里推入一个元素。</p><pre><code class="go">done &lt;- true</code></pre><p>因此可以看到，我们是很容易忘记去做这样的事情的，因为这是我们的主要任务的额外工作。既然这么麻烦，那么我们就可以把这个经常要调用的语句包装起来，也可以避免忘记而导致线程完全阻塞。</p><h2 id="Task-based"><a href="#Task-based" class="headerlink" title="Task-based"></a>Task-based</h2><p>首先我们定义一个Task</p><pre><code class="go">type Task struct {    done   chan bool    todo   func()}</code></pre><p>创建一个Task</p><pre><code class="go">func NewTask(m func()) *Task {    done := make(chan bool)    task := Task{}    task.done = done    task.todo = func() {        m()        done &lt;- true    }    return &amp;task}</code></pre><p>调用执行</p><pre><code class="go">func (t *Task) InvokeAsync() {    go t.todo()}</code></pre><p>等待</p><pre><code class="go">func (t *Task) Await() {    &lt;-t.done}</code></pre><p>简单地包装一下之后，我们要实现C#那样的Task-based使用了，变得非常简单</p><pre><code class="go">func main() {    fmt.Println(&quot;enter main&quot;)    task := async.NewTask(goAsync)    task.InvokeAsync()    doSth()    task.Await()    fmt.Println(&quot;leave main&quot;)}</code></pre><h2 id="返回结果"><a href="#返回结果" class="headerlink" title="返回结果"></a>返回结果</h2><p>然而还没有结束，我们往往要获得方法执行之后的返回结果，对于这样的需求实现也不难，只要简单地修改一下即可，不过因为Golang里没有像C#那样的泛型支持，因此获得结果的时候稍微有点曲折。</p><p>修改后的Task模型</p><pre><code class="go">type Task struct {    done   chan bool    todo   func()    result interface{}}</code></pre><p>新的创建Task方法</p><pre><code class="go">func NewResultTask(m func() interface{}) *Task {    done := make(chan bool)    task := Task{}    task.done = done    task.todo = func() {        task.result = m()        done &lt;- true    }    return &amp;task}</code></pre><p>InvokeAsync不变，Await方法修改一下以及新增了一个获取结果的方法</p><pre><code class="go">func (t *Task) Await() {    if _, ok := &lt;-t.done; ok {        close(t.done)    }}func (t *Task) GetResult() interface{} {    t.Await()    return t.result}</code></pre><p>使用</p><pre><code class="go">func goGetXY() interface{} {    time.Sleep(3 * time.Second)    return time.Now().Nanosecond() % 1000}func main() {    taskX := async.NewResultTask(goGetXY)    taskY := async.NewResultTask(goGetXY)    start := time.Now()    taskX.InvokeAsync()    taskY.InvokeAsync()    // taskX.Await() // Useless call here    // taskY.Await() // Useless call here    x, _ := taskX.GetResult().(int)    y, _ := taskY.GetResult().(int)    elapsed := time.Now().Sub(start)    sum := x + y    fmt.Printf(&quot;sum of x and y is %d \n&quot;, sum)    fmt.Printf(&quot;Elapsed: %d ms\n&quot;, elapsed.Milliseconds())}</code></pre><p>完整代码 -&gt; <a href="https://github.com/Nomyfan/goasync" target="_blank" rel="noopener">goasync</a></p>]]></content>
+      
+      
+      
+    </entry>
+    
+    
+    
+    <entry>
       <title>Leetcode - Add Digits - 同余数</title>
       <link href="/2019/06/09/add-digits/"/>
       <url>/2019/06/09/add-digits/</url>
       
-        <content type="html"><![CDATA[<p>今天刷到一道Leetcode简单题<a href="https://leetcode.com/problems/add-digits/" target="_blank" rel="noopener">戳这里</a>，虽然我一看到题目没怎么想就猜出结果了，但想着还挺有意思的就想试着去证明一下。</p><h2 id="题目"><a href="#题目" class="headerlink" title="题目"></a>题目</h2><p>我先把题目转换一下成为比较传统的数学题：</p><p>给定一个非负数，<u>对每一位上的数求和</u><sup>①</sup>，不断重复①直到结果小于10。试证明这样得到的最终结果和直接用给定的数对9取余是一样的（如果取余的结果是0则为9）。</p><h2 id="Solution"><a href="#Solution" class="headerlink" title="Solution"></a>Solution</h2><h3 id="取值"><a href="#取值" class="headerlink" title="取值"></a>取值</h3><p>因为结果的取值范围是[0,9]这十个数字，而0这个取值只有在给定的数为0的时候才能取到，而我修改的题目已经去掉0这个定义域了，因此最终的值域为[1,9]这9个数字，因此要使得结果落到这9个连续数字里，那么就要对9取余，特殊的，当模的结果为0的时候结果是9。为什么模的结果为0的时候是9？取余为0的数字要么是0，要么是9的倍数，前者已经被排除了，所以只剩下9的倍数。</p><h3 id="同余数"><a href="#同余数" class="headerlink" title="同余数"></a>同余数</h3><p>这个方法能work的基本原理是同余数。以38这个数字为例。</p><p>首先应用同余数的地方是：</p><blockquote><p>30 % 9 = 3 % 9</p></blockquote><p>也就是说乘以10<sup>x</sup>没有影响。可以简单证明一下</p><blockquote><p>30 % 9 = (3 × 10) % 9 = ((3 % 9) × (10 % 9)) % 9</p></blockquote><p>因为10<sup>x</sup> % 9 = 1 % 9，x ∈ [0, +∞]，因此可以得到</p><blockquote><p>30 % 9 = (3 × 10) % 9 = ((3 % 9) × 1) % 9 = 3 % 9</p></blockquote><p>所以我们可以得到的结论是<strong>对9取余，就是对每一位求和的结果取余。</strong>太棒了是不是，这正是我们题目计算的过程的逆过程，因为模运算是互逆的，所以上式的逆过程也是成立的。也就是说</p><blockquote><p>(3 + 8) % 9 = (30 + 8) % 9 = 38 % 9</p></blockquote><p>上式就是我们Solution的关键，有了这个，我们和结果只有一步之遥了。</p><blockquote><p>38 % 9= (30 + 8) % 9 = (3 + 8) % 9 = 11 % 9 = (1 + 1) % 9 = 2 % 9 = 2</p></blockquote><p>嘿嘿嘿(●ˇ∀ˇ●)</p><h2 id="代码"><a href="#代码" class="headerlink" title="代码"></a>代码</h2><p>Julia</p><pre><code class="julia">AddDigits(x::Int64) = x == 0 ? 0 : (x % 9 == 0 ? 9 : x % 9)</code></pre>]]></content>
+        <content type="html"><![CDATA[<p>今天刷到一道Leetcode简单题<a href="https://leetcode.com/problems/add-digits/" target="_blank" rel="noopener">戳这里</a>，虽然我一看到题目没怎么想就猜出结果了，但想着还挺有意思的就想试着去证明一下。</p><h2 id="题目"><a href="#题目" class="headerlink" title="题目"></a>题目</h2><p>我先把题目转换一下成为比较传统的数学题：</p><p>给定一个非负数，<u>对每一位上的数求和</u><sup>①</sup>，不断重复①直到结果小于10。试证明这样得到的最终结果和直接用给定的数对9取余是一样的（如果取余的结果是0则为9）。</p><h2 id="Solution"><a href="#Solution" class="headerlink" title="Solution"></a>Solution</h2><h3 id="取值"><a href="#取值" class="headerlink" title="取值"></a>取值</h3><p>因为结果的取值范围是<code>[0,9]</code>这十个数字，而0这个取值只有在给定的数为0的时候才能取到，而我修改的题目已经去掉0这个定义域了，因此最终的值域为<code>[1,9]</code>这9个数字，因此要使得结果落到这9个连续数字里，那么就要对9取余，特殊的，当模的结果为0的时候结果是9。为什么模的结果为0的时候是9？取余为0的数字要么是0，要么是9的倍数，前者已经被排除了，所以只剩下9的倍数。</p><h3 id="同余数"><a href="#同余数" class="headerlink" title="同余数"></a>同余数</h3><p>这个方法能work的基本原理是同余数。以38这个数字为例。</p><p>首先应用同余数的地方是：</p><blockquote><p>30 % 9 = 3 % 9</p></blockquote><p>也就是说乘以10<sup>x</sup>没有影响。可以简单证明一下</p><blockquote><p>30 % 9 = (3 × 10) % 9 = ((3 % 9) × (10 % 9)) % 9</p></blockquote><p>因为10<sup>x</sup> % 9 = 1 % 9，x ∈ <code>[0, +∞]</code>，因此可以得到</p><blockquote><p>30 % 9 = (3 × 10) % 9 = ((3 % 9) × 1) % 9 = 3 % 9</p></blockquote><p>所以我们可以得到的结论是<strong>对9取余，就是对每一位求和的结果取余。</strong>太棒了是不是，这正是我们题目计算的过程的逆过程，因为模运算是互逆的，所以上式的逆过程也是成立的。也就是说</p><blockquote><p>(3 + 8) % 9 = (30 + 8) % 9 = 38 % 9</p></blockquote><p>上式就是我们Solution的关键，有了这个，我们和结果只有一步之遥了。</p><blockquote><p>38 % 9= (30 + 8) % 9 = (3 + 8) % 9 = 11 % 9 = (1 + 1) % 9 = 2 % 9 = 2</p></blockquote><p>嘿嘿嘿(●ˇ∀ˇ●)</p><h2 id="代码"><a href="#代码" class="headerlink" title="代码"></a>代码</h2><p>Julia</p><pre><code class="julia">AddDigits(x::Int64) = x == 0 ? 0 : (x % 9 == 0 ? 9 : x % 9)</code></pre>]]></content>
       
       
       
@@ -276,9 +289,9 @@
       
         <tags>
             
-            <tag> ArchLinux </tag>
-            
             <tag> Linux </tag>
+            
+            <tag> ArchLinux </tag>
             
         </tags>
       
@@ -303,11 +316,11 @@
       
         <tags>
             
-            <tag> C# </tag>
-            
             <tag> .NET </tag>
             
             <tag> 爬虫 </tag>
+            
+            <tag> C# </tag>
             
         </tags>
       
@@ -332,9 +345,9 @@
       
         <tags>
             
-            <tag> C# </tag>
-            
             <tag> .NET </tag>
+            
+            <tag> C# </tag>
             
             <tag> JSON </tag>
             
@@ -463,9 +476,9 @@
       
         <tags>
             
-            <tag> Linux </tag>
-            
             <tag> VPS </tag>
+            
+            <tag> Linux </tag>
             
         </tags>
       
@@ -490,9 +503,9 @@
       
         <tags>
             
-            <tag> Linux </tag>
-            
             <tag> VPS </tag>
+            
+            <tag> Linux </tag>
             
         </tags>
       
@@ -606,9 +619,9 @@
     
     
     <entry>
-      <title>Talking</title>
-      <link href="/Talking/index.html"/>
-      <url>/Talking/index.html</url>
+      <title>Articles</title>
+      <link href="/articles/index.html"/>
+      <url>/articles/index.html</url>
       
         <content type="html"><![CDATA[]]></content>
       
@@ -628,28 +641,6 @@
     
     
     <entry>
-      <title>Articles</title>
-      <link href="/articles/index.html"/>
-      <url>/articles/index.html</url>
-      
-        <content type="html"><![CDATA[]]></content>
-      
-    </entry>
-    
-    
-    
-    <entry>
-      <title>Categories</title>
-      <link href="/categories/index.html"/>
-      <url>/categories/index.html</url>
-      
-        <content type="html"><![CDATA[]]></content>
-      
-    </entry>
-    
-    
-    
-    <entry>
       <title>Contact</title>
       <link href="/contact/index.html"/>
       <url>/contact/index.html</url>
@@ -661,31 +652,9 @@
     
     
     <entry>
-      <title>Contact</title>
-      <link href="/feeback/index.html"/>
-      <url>/feeback/index.html</url>
-      
-        <content type="html"><![CDATA[<p>Contact me with<br><strong><a href="mailto:Myers.Chan@outlook.com?subject=FeebackFromBlog" target="_blank" rel="noopener">E-mail</a></strong>.<br><strong><a href="http://weibo.com/Nomyfan" target="_blank" rel="noopener">Weibo</a></strong><br><strong><a href="https://twitter.com/Myers__Chan" target="_blank" rel="noopener">Twitter</a></strong><br><strong><a href="https://facebook.com/myers.n.chan" target="_blank" rel="noopener">Facebook</a></strong></p>]]></content>
-      
-    </entry>
-    
-    
-    
-    <entry>
-      <title>Friends</title>
-      <link href="/friends/index.html"/>
-      <url>/friends/index.html</url>
-      
-        <content type="html"><![CDATA[]]></content>
-      
-    </entry>
-    
-    
-    
-    <entry>
-      <title>Photograph</title>
-      <link href="/photograph/index.html"/>
-      <url>/photograph/index.html</url>
+      <title>Talking</title>
+      <link href="/Talking/index.html"/>
+      <url>/Talking/index.html</url>
       
         <content type="html"><![CDATA[]]></content>
       
@@ -708,6 +677,50 @@
       <title>Timeline</title>
       <link href="/timeline/index.html"/>
       <url>/timeline/index.html</url>
+      
+        <content type="html"><![CDATA[]]></content>
+      
+    </entry>
+    
+    
+    
+    <entry>
+      <title>Photograph</title>
+      <link href="/photograph/index.html"/>
+      <url>/photograph/index.html</url>
+      
+        <content type="html"><![CDATA[]]></content>
+      
+    </entry>
+    
+    
+    
+    <entry>
+      <title>Categories</title>
+      <link href="/categories/index.html"/>
+      <url>/categories/index.html</url>
+      
+        <content type="html"><![CDATA[]]></content>
+      
+    </entry>
+    
+    
+    
+    <entry>
+      <title>Contact</title>
+      <link href="/feeback/index.html"/>
+      <url>/feeback/index.html</url>
+      
+        <content type="html"><![CDATA[<p>Contact me with<br><strong><a href="mailto:Myers.Chan@outlook.com?subject=FeebackFromBlog" target="_blank" rel="noopener">E-mail</a></strong>.<br><strong><a href="http://weibo.com/Nomyfan" target="_blank" rel="noopener">Weibo</a></strong><br><strong><a href="https://twitter.com/Myers__Chan" target="_blank" rel="noopener">Twitter</a></strong><br><strong><a href="https://facebook.com/myers.n.chan" target="_blank" rel="noopener">Facebook</a></strong></p>]]></content>
+      
+    </entry>
+    
+    
+    
+    <entry>
+      <title>Friends</title>
+      <link href="/friends/index.html"/>
+      <url>/friends/index.html</url>
       
         <content type="html"><![CDATA[]]></content>
       
