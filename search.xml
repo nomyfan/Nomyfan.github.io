@@ -4,33 +4,6 @@
   
     
     <entry>
-      <title>多层反向代理</title>
-      <link href="/2019/09/17/reverse-proxy/"/>
-      <url>/2019/09/17/reverse-proxy/</url>
-      
-        <content type="html"><![CDATA[<p>这两天要搭建个人博客的外网访问测试环境，遇到了一些问题。首先是家庭网络80端口被禁，好吧，找个VPS做代理，手里有一台腾讯云的机子，想着反正对带宽要求不高，而且机子在上海机房，访问响应上应该会好一点，结果直接被重定向要提示备案的页面，看来腾讯云的80端口也不能用了。那只能找国外的机子，正好每月续着墙外的VPS。因为特殊原因，这个VPS跑着CaddyServer而不是Nginx，我先是按照一般的反向代理编写了配置，能直接通过80端口连接到我住的房子的树莓派了，但是貌似分发有点问题。现在跑着三个服务，下面分别是一开始两边的配置文件内容：</p><p>国外的CaddyServer</p><pre><code>blog.xxx.sakura:80 {        proxy / http://xxx.xxx.xxx.xxx:8888 {            header_upstream Host {host}            header_upstream X-Real-IP {remote}            header_upstream X-Forwarded-For {remote}        }}img.xxx.sakura:80 {        proxy / http://xxx.xxx.xxx.xxx:8888 {            header_upstream Host {host}            header_upstream X-Real-IP {remote}            header_upstream X-Forwarded-For {remote}        }}api.xxx.sakura:80 {        proxy / http://xxx.xxx.xxx.xxx:8888 {            header_upstream Host {host}            header_upstream X-Real-IP {remote}            header_upstream X-Forwarded-For {remote}        }}</code></pre><p>树莓派的Nginx</p><pre><code>server {    listen 0.0.0.0:8888;    listen [::]:8888;    server_name blog.xxx.sakura;    location / {        proxy_pass http://127.0.0.1:8885;    }    proxy_set_header Host $host;    proxy_set_header X-Real-IP $remote_addr;    proxy_set_header X-Forward-For $proxy_add_x_forward_for;}server {    listen 0.0.0.0:8888;    listen [::]:8888;    server_name img.xxx.sakura;    location / {        proxy_pass http://127.0.0.1:8887;    }    proxy_set_header Host $host;    proxy_set_header X-Real-IP $remote_addr;    proxy_set_header X-Forward-For $proxy_add_x_forward_for;}server {    listen 0.0.0.0:8888;    listen [::]:8888;    server_name api.xxx.sakura;    location / {        proxy_pass http://127.0.0.1:8886;    }    proxy_set_header Host $host;    proxy_set_header X-Real-IP $remote_addr;    proxy_set_header X-Forward-For $proxy_add_x_forward_for;}</code></pre><p>瞅了一眼，大概是因为树莓派这边的Nginx没法根据server_name来做分发了，因为请求是从VPS里来的。想了想，可能可以根据HTTP头部信息来做分发，然后查了一下修改配置，添加了一个自定义的HTTP头部字段</p><p>国外的CaddyServer</p><pre><code>blog.xxx.sakura:80 {        proxy / http://xxx.xxx.xxx.xxx:8888 {                header_upstream Host {host}                header_upstream X-Real-IP {remote}                header_upstream X-Forwarded-For {remote}                header_upstream Server Web        }}img.xxx.sakura:80 {        proxy / http://xxx.xxx.xxx.xxx:8888 {                header_upstream Host {host}                header_upstream X-Real-IP {remote}                header_upstream X-Forwarded-For {remote}                header_upstream Server Image        }}api.xxx.sakura:80 {        proxy / http://xxx.xxx.xxx.xxx:8888 {                header_upstream Host {host}                header_upstream X-Real-IP {remote}                header_upstream X-Forwarded-For {remote}                header_upstream Server Api        }}</code></pre><p>树莓派的Nginx</p><pre><code>server {    listen 0.0.0.0:8888;    listen [::]:8888;    location / {        proxy_set_header Host $host;        proxy_set_header X-Real-IP $remote_addr;        proxy_set_header X-Forwarded-For $proxy_add_x_forwarded_for;        if ($http_server = &#39;Web&#39;) {                proxy_pass http://127.0.0.1:8885;        }        if ($http_server = &#39;Image&#39;) {                proxy_pass http://127.0.0.1:8887;        }        if ($http_server = &#39;Api&#39;) {                proxy_pass http://127.0.0.1:8886;        }    }}</code></pre><p>分发路径如下：<br><a href="/img/2019/09/snipaste_20190917_230923.png"><img src="/img/2019/09/snipaste_20190917_230923.png" alt></a></p><p>一切OK，正常的80端口访问，分发正常，除了访问速度有点捉急，用CloudFlare的IP代理又会出现代理失效的问题，原因应该和一开始一样，就先这样吧。</p>]]></content>
-      
-      
-      <categories>
-          
-          <category> Linux </category>
-          
-      </categories>
-      
-      
-        <tags>
-            
-            <tag> Nginx </tag>
-            
-            <tag> CaddyServer </tag>
-            
-        </tags>
-      
-    </entry>
-    
-    
-    
-    <entry>
       <title>GoAsync</title>
       <link href="/2019/09/13/goasync/"/>
       <url>/2019/09/13/goasync/</url>
@@ -646,20 +619,9 @@
     
     
     <entry>
-      <title>Contact</title>
-      <link href="/feeback/index.html"/>
-      <url>/feeback/index.html</url>
-      
-        <content type="html"><![CDATA[<p>Contact me with<br><strong><a href="mailto:Myers.Chan@outlook.com?subject=FeebackFromBlog" target="_blank" rel="noopener">E-mail</a></strong>.<br><strong><a href="http://weibo.com/Nomyfan" target="_blank" rel="noopener">Weibo</a></strong><br><strong><a href="https://twitter.com/Myers__Chan" target="_blank" rel="noopener">Twitter</a></strong><br><strong><a href="https://facebook.com/myers.n.chan" target="_blank" rel="noopener">Facebook</a></strong></p>]]></content>
-      
-    </entry>
-    
-    
-    
-    <entry>
-      <title>Friends</title>
-      <link href="/friends/index.html"/>
-      <url>/friends/index.html</url>
+      <title>Talking</title>
+      <link href="/Talking/index.html"/>
+      <url>/Talking/index.html</url>
       
         <content type="html"><![CDATA[]]></content>
       
@@ -668,31 +630,9 @@
     
     
     <entry>
-      <title>Contact</title>
-      <link href="/contact/index.html"/>
-      <url>/contact/index.html</url>
-      
-        <content type="html"><![CDATA[<p>Contact me with<br><strong><a href="mailto:Myers.Chan@outlook.com?subject=FeebackFromBlog" target="_blank" rel="noopener">E-mail</a></strong>.<br><strong><a href="http://weibo.com/Nomyfan" target="_blank" rel="noopener">Weibo</a></strong><br><strong><a href="https://twitter.com/Myers__Chan" target="_blank" rel="noopener">Twitter</a></strong><br><strong><a href="https://facebook.com/myers.n.chan" target="_blank" rel="noopener">Facebook</a></strong></p>]]></content>
-      
-    </entry>
-    
-    
-    
-    <entry>
-      <title>Tags</title>
-      <link href="/tags/index.html"/>
-      <url>/tags/index.html</url>
-      
-        <content type="html"><![CDATA[]]></content>
-      
-    </entry>
-    
-    
-    
-    <entry>
-      <title>Photograph</title>
-      <link href="/photograph/index.html"/>
-      <url>/photograph/index.html</url>
+      <title>Articles</title>
+      <link href="/articles/index.html"/>
+      <url>/articles/index.html</url>
       
         <content type="html"><![CDATA[]]></content>
       
@@ -712,17 +652,6 @@
     
     
     <entry>
-      <title>Timeline</title>
-      <link href="/timeline/index.html"/>
-      <url>/timeline/index.html</url>
-      
-        <content type="html"><![CDATA[]]></content>
-      
-    </entry>
-    
-    
-    
-    <entry>
       <title>关于我</title>
       <link href="/about/index.html"/>
       <url>/about/index.html</url>
@@ -734,9 +663,20 @@
     
     
     <entry>
-      <title>Articles</title>
-      <link href="/articles/index.html"/>
-      <url>/articles/index.html</url>
+      <title>Contact</title>
+      <link href="/contact/index.html"/>
+      <url>/contact/index.html</url>
+      
+        <content type="html"><![CDATA[<p>Contact me with<br><strong><a href="mailto:Myers.Chan@outlook.com?subject=FeebackFromBlog" target="_blank" rel="noopener">E-mail</a></strong>.<br><strong><a href="http://weibo.com/Nomyfan" target="_blank" rel="noopener">Weibo</a></strong><br><strong><a href="https://twitter.com/Myers__Chan" target="_blank" rel="noopener">Twitter</a></strong><br><strong><a href="https://facebook.com/myers.n.chan" target="_blank" rel="noopener">Facebook</a></strong></p>]]></content>
+      
+    </entry>
+    
+    
+    
+    <entry>
+      <title>Friends</title>
+      <link href="/friends/index.html"/>
+      <url>/friends/index.html</url>
       
         <content type="html"><![CDATA[]]></content>
       
@@ -745,11 +685,44 @@
     
     
     <entry>
-      <title>Talking</title>
-      <link href="/Talking/index.html"/>
-      <url>/Talking/index.html</url>
+      <title>Photograph</title>
+      <link href="/photograph/index.html"/>
+      <url>/photograph/index.html</url>
       
         <content type="html"><![CDATA[]]></content>
+      
+    </entry>
+    
+    
+    
+    <entry>
+      <title>Timeline</title>
+      <link href="/timeline/index.html"/>
+      <url>/timeline/index.html</url>
+      
+        <content type="html"><![CDATA[]]></content>
+      
+    </entry>
+    
+    
+    
+    <entry>
+      <title>Tags</title>
+      <link href="/tags/index.html"/>
+      <url>/tags/index.html</url>
+      
+        <content type="html"><![CDATA[]]></content>
+      
+    </entry>
+    
+    
+    
+    <entry>
+      <title>Contact</title>
+      <link href="/feeback/index.html"/>
+      <url>/feeback/index.html</url>
+      
+        <content type="html"><![CDATA[<p>Contact me with<br><strong><a href="mailto:Myers.Chan@outlook.com?subject=FeebackFromBlog" target="_blank" rel="noopener">E-mail</a></strong>.<br><strong><a href="http://weibo.com/Nomyfan" target="_blank" rel="noopener">Weibo</a></strong><br><strong><a href="https://twitter.com/Myers__Chan" target="_blank" rel="noopener">Twitter</a></strong><br><strong><a href="https://facebook.com/myers.n.chan" target="_blank" rel="noopener">Facebook</a></strong></p>]]></content>
       
     </entry>
     
