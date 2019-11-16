@@ -75,9 +75,9 @@
       
         <tags>
             
-            <tag> C# </tag>
-            
             <tag> Kotlin </tag>
+            
+            <tag> C# </tag>
             
             <tag> Generics </tag>
             
@@ -289,9 +289,9 @@
       
         <tags>
             
-            <tag> ArchLinux </tag>
-            
             <tag> Linux </tag>
+            
+            <tag> ArchLinux </tag>
             
         </tags>
       
@@ -316,11 +316,11 @@
       
         <tags>
             
+            <tag> .NET </tag>
+            
             <tag> C# </tag>
             
             <tag> 爬虫 </tag>
-            
-            <tag> .NET </tag>
             
         </tags>
       
@@ -345,9 +345,9 @@
       
         <tags>
             
-            <tag> C# </tag>
-            
             <tag> .NET </tag>
+            
+            <tag> C# </tag>
             
             <tag> JSON </tag>
             
@@ -476,9 +476,9 @@
       
         <tags>
             
-            <tag> Linux </tag>
-            
             <tag> VPS </tag>
+            
+            <tag> Linux </tag>
             
         </tags>
       
@@ -503,9 +503,9 @@
       
         <tags>
             
-            <tag> Linux </tag>
-            
             <tag> VPS </tag>
+            
+            <tag> Linux </tag>
             
         </tags>
       
@@ -663,28 +663,6 @@
     
     
     <entry>
-      <title>Friends</title>
-      <link href="/friends/index.html"/>
-      <url>/friends/index.html</url>
-      
-        <content type="html"><![CDATA[]]></content>
-      
-    </entry>
-    
-    
-    
-    <entry>
-      <title>Contact</title>
-      <link href="/feeback/index.html"/>
-      <url>/feeback/index.html</url>
-      
-        <content type="html"><![CDATA[<p>Contact me with<br><strong><a href="mailto:Myers.Chan@outlook.com?subject=FeebackFromBlog" target="_blank" rel="noopener">E-mail</a></strong>.<br><strong><a href="http://weibo.com/Nomyfan" target="_blank" rel="noopener">Weibo</a></strong><br><strong><a href="https://twitter.com/Myers__Chan" target="_blank" rel="noopener">Twitter</a></strong><br><strong><a href="https://facebook.com/myers.n.chan" target="_blank" rel="noopener">Facebook</a></strong></p>]]></content>
-      
-    </entry>
-    
-    
-    
-    <entry>
       <title>Contact</title>
       <link href="/contact/index.html"/>
       <url>/contact/index.html</url>
@@ -696,9 +674,9 @@
     
     
     <entry>
-      <title>Photograph</title>
-      <link href="/photograph/index.html"/>
-      <url>/photograph/index.html</url>
+      <title>Friends</title>
+      <link href="/friends/index.html"/>
+      <url>/friends/index.html</url>
       
         <content type="html"><![CDATA[]]></content>
       
@@ -718,11 +696,33 @@
     
     
     <entry>
+      <title>Photograph</title>
+      <link href="/photograph/index.html"/>
+      <url>/photograph/index.html</url>
+      
+        <content type="html"><![CDATA[]]></content>
+      
+    </entry>
+    
+    
+    
+    <entry>
       <title>Timeline</title>
       <link href="/timeline/index.html"/>
       <url>/timeline/index.html</url>
       
         <content type="html"><![CDATA[]]></content>
+      
+    </entry>
+    
+    
+    
+    <entry>
+      <title>Contact</title>
+      <link href="/feeback/index.html"/>
+      <url>/feeback/index.html</url>
+      
+        <content type="html"><![CDATA[<p>Contact me with<br><strong><a href="mailto:Myers.Chan@outlook.com?subject=FeebackFromBlog" target="_blank" rel="noopener">E-mail</a></strong>.<br><strong><a href="http://weibo.com/Nomyfan" target="_blank" rel="noopener">Weibo</a></strong><br><strong><a href="https://twitter.com/Myers__Chan" target="_blank" rel="noopener">Twitter</a></strong><br><strong><a href="https://facebook.com/myers.n.chan" target="_blank" rel="noopener">Facebook</a></strong></p>]]></content>
       
     </entry>
     
