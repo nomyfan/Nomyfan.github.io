@@ -75,9 +75,9 @@
       
         <tags>
             
-            <tag> C# </tag>
-            
             <tag> Kotlin </tag>
+            
+            <tag> C# </tag>
             
             <tag> Generics </tag>
             
@@ -318,9 +318,9 @@
             
             <tag> C# </tag>
             
-            <tag> 爬虫 </tag>
-            
             <tag> .NET </tag>
+            
+            <tag> 爬虫 </tag>
             
         </tags>
       
@@ -619,6 +619,17 @@
     
     
     <entry>
+      <title></title>
+      <link href="/README.html"/>
+      <url>/README.html</url>
+      
+        <content type="html"><![CDATA[<h2 id="个人博客"><a href="#个人博客" class="headerlink" title="个人博客"></a>个人博客</h2><p>GithubPage -&gt; <a href="http://blog.nokky.net">blog.nokky.net</a></p><p>个人开发版本 -&gt; <a href="https://blog.nokky.dev" target="_blank" rel="noopener">blog.nokky.dev</a></p>]]></content>
+      
+    </entry>
+    
+    
+    
+    <entry>
       <title>Talking</title>
       <link href="/Talking/index.html"/>
       <url>/Talking/index.html</url>
@@ -641,64 +652,9 @@
     
     
     <entry>
-      <title>Articles</title>
-      <link href="/articles/index.html"/>
-      <url>/articles/index.html</url>
-      
-        <content type="html"><![CDATA[]]></content>
-      
-    </entry>
-    
-    
-    
-    <entry>
       <title>Categories</title>
       <link href="/categories/index.html"/>
       <url>/categories/index.html</url>
-      
-        <content type="html"><![CDATA[]]></content>
-      
-    </entry>
-    
-    
-    
-    <entry>
-      <title>Friends</title>
-      <link href="/friends/index.html"/>
-      <url>/friends/index.html</url>
-      
-        <content type="html"><![CDATA[]]></content>
-      
-    </entry>
-    
-    
-    
-    <entry>
-      <title>Contact</title>
-      <link href="/feeback/index.html"/>
-      <url>/feeback/index.html</url>
-      
-        <content type="html"><![CDATA[<p>Contact me with<br><strong><a href="mailto:Myers.Chan@outlook.com?subject=FeebackFromBlog" target="_blank" rel="noopener">E-mail</a></strong>.<br><strong><a href="http://weibo.com/Nomyfan" target="_blank" rel="noopener">Weibo</a></strong><br><strong><a href="https://twitter.com/Myers__Chan" target="_blank" rel="noopener">Twitter</a></strong><br><strong><a href="https://facebook.com/myers.n.chan" target="_blank" rel="noopener">Facebook</a></strong></p>]]></content>
-      
-    </entry>
-    
-    
-    
-    <entry>
-      <title>Photograph</title>
-      <link href="/photograph/index.html"/>
-      <url>/photograph/index.html</url>
-      
-        <content type="html"><![CDATA[]]></content>
-      
-    </entry>
-    
-    
-    
-    <entry>
-      <title>Timeline</title>
-      <link href="/timeline/index.html"/>
-      <url>/timeline/index.html</url>
       
         <content type="html"><![CDATA[]]></content>
       
@@ -718,9 +674,64 @@
     
     
     <entry>
+      <title>Contact</title>
+      <link href="/feeback/index.html"/>
+      <url>/feeback/index.html</url>
+      
+        <content type="html"><![CDATA[<p>Contact me with<br><strong><a href="mailto:Myers.Chan@outlook.com?subject=FeebackFromBlog" target="_blank" rel="noopener">E-mail</a></strong>.<br><strong><a href="http://weibo.com/Nomyfan" target="_blank" rel="noopener">Weibo</a></strong><br><strong><a href="https://twitter.com/Myers__Chan" target="_blank" rel="noopener">Twitter</a></strong><br><strong><a href="https://facebook.com/myers.n.chan" target="_blank" rel="noopener">Facebook</a></strong></p>]]></content>
+      
+    </entry>
+    
+    
+    
+    <entry>
+      <title>Articles</title>
+      <link href="/articles/index.html"/>
+      <url>/articles/index.html</url>
+      
+        <content type="html"><![CDATA[]]></content>
+      
+    </entry>
+    
+    
+    
+    <entry>
+      <title>Photograph</title>
+      <link href="/photograph/index.html"/>
+      <url>/photograph/index.html</url>
+      
+        <content type="html"><![CDATA[]]></content>
+      
+    </entry>
+    
+    
+    
+    <entry>
       <title>Tags</title>
       <link href="/tags/index.html"/>
       <url>/tags/index.html</url>
+      
+        <content type="html"><![CDATA[]]></content>
+      
+    </entry>
+    
+    
+    
+    <entry>
+      <title>Friends</title>
+      <link href="/friends/index.html"/>
+      <url>/friends/index.html</url>
+      
+        <content type="html"><![CDATA[]]></content>
+      
+    </entry>
+    
+    
+    
+    <entry>
+      <title>Timeline</title>
+      <link href="/timeline/index.html"/>
+      <url>/timeline/index.html</url>
       
         <content type="html"><![CDATA[]]></content>
       
