@@ -45,7 +45,7 @@
     
     <title>
         
-            Contact | 
+            Scheme之continuation | 
         
         ZMUS
     </title>
@@ -56,7 +56,7 @@
 
     <meta name="format-detection" content="telephone=no">
     <meta name="description" itemprop="description" content="陈诺米个人博客">
-    <meta name="keywords" content="Technology,Programming,Microsoft,.NET,Mathematic,dotnet,Kotlin">
+    <meta name="keywords" content="Technology,Programming,Microsoft,.NET,Mathematic,dotnet,Kotlin,Scheme">
     <meta name="theme-color" content="#0097A7">
 
     <!-- Disable Fucking Bloody Baidu Tranformation -->
@@ -83,6 +83,9 @@
         <style id="style_css"></style><script>if(typeof window.lsLoadCSSMaxNums === "undefined")window.lsLoadCSSMaxNums = 0;window.lsLoadCSSMaxNums++;lsloader.load("style_css","/css/style.min.css?MKetZV3cUTfDxvMffaOezg==",function(){if(typeof window.lsLoadCSSNums === "undefined")window.lsLoadCSSNums = 0;window.lsLoadCSSNums++;if(window.lsLoadCSSNums == window.lsLoadCSSMaxNums)document.documentElement.style.display="";}, false)</script>
 
         
+            
+                <style id="prettify_css"></style><script>if(typeof window.lsLoadCSSMaxNums === "undefined")window.lsLoadCSSMaxNums = 0;window.lsLoadCSSMaxNums++;lsloader.load("prettify_css","/css/prettify.min.css?VbSuLZyOpxJuf3o2tYEOVg==",function(){if(typeof window.lsLoadCSSNums === "undefined")window.lsLoadCSSNums = 0;window.lsLoadCSSNums++;if(window.lsLoadCSSNums == window.lsLoadCSSMaxNums)document.documentElement.style.display="";}, false)</script>
+                <style id="prettify_theme"></style><script>if(typeof window.lsLoadCSSMaxNums === "undefined")window.lsLoadCSSMaxNums = 0;window.lsLoadCSSMaxNums++;lsloader.load("prettify_theme","/css/prettify/tomorrow-night-eighties.min.css?2LJQzURO+Kr8r/fl/T8oMA==",function(){if(typeof window.lsLoadCSSNums === "undefined")window.lsLoadCSSNums = 0;window.lsLoadCSSNums++;if(window.lsLoadCSSNums == window.lsLoadCSSMaxNums)document.documentElement.style.display="";}, false)</script>
             
         
 
@@ -219,7 +222,7 @@
     <!-- WebAPP Icons -->
     <meta name="mobile-web-app-capable" content="yes">
     <meta name="application-name" content="ZMUS">
-    <meta name="msapplication-starturl" content="https://blog.nokky.net/contact/">
+    <meta name="msapplication-starturl" content="https://blog.nokky.net/2019/12/22/scheme-continuation/">
     <meta name="msapplication-navbutton-color" content="#0097A7">
     <meta name="apple-mobile-web-app-capable" content="yes">
     <meta name="apple-mobile-web-app-title" content="ZMUS">
@@ -234,13 +237,16 @@
     
 
     <!-- The Open Graph protocol -->
-    <meta property="og:url" content="https://blog.nokky.net/contact/">
+    <meta property="og:url" content="https://blog.nokky.net/2019/12/22/scheme-continuation/">
     <meta property="og:type" content="blog">
-    <meta property="og:title" content="Contact | ZMUS">
+    <meta property="og:title" content="Scheme之continuation | ZMUS">
     <meta property="og:image" content="/img/favicon.png">
     <meta property="og:description" content="陈诺米个人博客">
-    
+    <meta property="og:article:tag" content="Scheme"> 
 
+    
+        <meta property="article:published_time" content="Sun Dec 22 2019 19:48:57 GMT+0800">
+        <meta property="article:modified_time" content="Sun Dec 22 2019 21:44:10 GMT+0800">
     
 
     <!-- The Twitter Card protocol -->
@@ -248,13 +254,43 @@
 
     <!-- Add canonical link for SEO -->
     
-        <link rel="canonical" href="https://blog.nokky.net/contact/index.html">
+        <link rel="canonical" href="https://blog.nokky.net/2019/12/22/scheme-continuation/index.html">
     
 
     <!-- Structured-data for SEO -->
     
         
 
+
+<script type="application/ld+json">
+{
+    "@context": "https://schema.org",
+    "@type": "BlogPosting",
+    "mainEntityOfPage": "https://blog.nokky.net/2019/12/22/scheme-continuation/index.html",
+    "headline": "Scheme之continuation",
+    "datePublished": "Sun Dec 22 2019 19:48:57 GMT+0800",
+    "dateModified": "Sun Dec 22 2019 21:44:10 GMT+0800",
+    "author": {
+        "@type": "Person",
+        "name": "nomyfan",
+        "image": {
+            "@type": "ImageObject",
+            "url": "/img/avatar.png"
+        },
+        "description": "Debug.WriteLine("Oops, bugs!");"
+    },
+    "publisher": {
+        "@type": "Organization",
+        "name": "ZMUS",
+        "logo": {
+            "@type":"ImageObject",
+            "url": "/img/favicon.png"
+        }
+    },
+    "keywords": ",SchemeTechnology,Programming,Microsoft,.NET,Mathematic,dotnet,Kotlin",
+    "description": "陈诺米个人博客",
+}
+</script>
 
 
     
@@ -302,6 +338,39 @@
 
                     <!-- Post TOC -->
 
+    
+    <!-- Back Button -->
+    <!--
+    <div class="material-back" id="backhome-div" tabindex="0">
+        <a class="mdl-button mdl-js-button mdl-js-ripple-effect mdl-button--icon"
+           href="#" onclick="window.history.back();return false;"
+           target="_self"
+           role="button"
+           data-upgraded=",MaterialButton,MaterialRipple">
+            <i class="material-icons" role="presentation">arrow_back</i>
+            <span class="mdl-button__ripple-container">
+                <span class="mdl-ripple"></span>
+            </span>
+        </a>
+    </div>
+    -->
+
+
+    <!-- Left aligned menu below button -->
+    
+    
+    <button id="post-toc-trigger-btn"
+        class="mdl-button mdl-js-button mdl-button--icon">
+        <i class="material-icons">format_list_numbered</i>
+    </button>
+
+    <ul class="post-toc-wrap mdl-menu mdl-menu--bottom-left mdl-js-menu mdl-js-ripple-effect" for="post-toc-trigger-btn" style="max-height:80vh; overflow-y:scroll;">
+        <ol class="post-toc"><li class="post-toc-item post-toc-level-2"><a class="post-toc-link" href="#概念"><span class="post-toc-number">1.</span> <span class="post-toc-text">概念</span></a></li><li class="post-toc-item post-toc-level-2"><a class="post-toc-link" href="#基本使用"><span class="post-toc-number">2.</span> <span class="post-toc-text">基本使用</span></a></li><li class="post-toc-item post-toc-level-2"><a class="post-toc-link" href="#例子"><span class="post-toc-number">3.</span> <span class="post-toc-text">例子</span></a><ol class="post-toc-child"><li class="post-toc-item post-toc-level-3"><a class="post-toc-link" href="#非本地退出（Non-local-exit）"><span class="post-toc-number">3.1.</span> <span class="post-toc-text">非本地退出（Non-local exit）</span></a></li><li class="post-toc-item post-toc-level-3"><a class="post-toc-link" href="#生成器"><span class="post-toc-number">3.2.</span> <span class="post-toc-text">生成器</span></a></li><li class="post-toc-item post-toc-level-3"><a class="post-toc-link" href="#生产者-消费者"><span class="post-toc-number">3.3.</span> <span class="post-toc-text">生产者 - 消费者</span></a></li><li class="post-toc-item post-toc-level-3"><a class="post-toc-link" href="#其他有意思的例子"><span class="post-toc-number">3.4.</span> <span class="post-toc-text">其他有意思的例子</span></a><ol class="post-toc-child"><li class="post-toc-item post-toc-level-4"><a class="post-toc-link" href="#1"><span class="post-toc-number">3.4.1.</span> <span class="post-toc-text">1</span></a></li><li class="post-toc-item post-toc-level-4"><a class="post-toc-link" href="#2"><span class="post-toc-number">3.4.2.</span> <span class="post-toc-text">2</span></a></li></ol></li></ol></li><li class="post-toc-item post-toc-level-2"><a class="post-toc-link" href="#总结"><span class="post-toc-number">4.</span> <span class="post-toc-text">总结</span></a></li></ol>
+    </ul>
+    
+
+
+
 
 <!-- Layouts -->
 
@@ -328,7 +397,7 @@
         
     
             <p class="article-headline-p">
-                Contact
+                Scheme之continuation
             </p>
         </div>
 
@@ -347,7 +416,7 @@
     <!-- Author Name & Date -->
     <div>
         <strong>nomyfan</strong>
-        <span>Jun 25, 2017</span>
+        <span>Dec 22, 2019</span>
     </div>
 
     <div class="section-spacer"></div>
@@ -369,13 +438,22 @@
 <ul class="mdl-menu mdl-menu--bottom-right mdl-js-menu mdl-js-ripple-effect" for="article-functions-qrcode-button">
     <li class="mdl-menu__item">Read this article on other devices</li>
     
-        <img src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAMYAAADGCAAAAACs8KCBAAAB6klEQVR42u3aQXKEMAwEwP3/p5NrDsGMbCAxak5bqV1wc5hIlj9fr7g+GBgYGBgYGBj/hvGJr/Gvfv79l0cW7xatAQMDoxnjJNqGixsvJXnK3BowMDB6MpJFjEMwX1z1/hgYGBhVxuGtD3579E0MDAyMZwI3ga0HOgYGBkbeQFYB1RB/qBfHwMDYkJFvyt/3+dH5BgYGxlaM8hGH4AHj9jUP2RvPjGBgYGzFyIMvWeLKCDN/QRgYGJ0Zc7F7bdmXBzQGBkYfRr5ZVmXMBe5ShYuBgdGMUd6mXygfJyMYAwOjJaMau0k7ujKwLDSxGBgYr2bkUZtvw83Fa3WQgIGB0YeRlHrPN7FL/zcwMDBex5g7DJEg54YE+UowMDD6MPImtlr85exHe3EMDIwNGeNAzL9ZbWuTV3Dy+jAwMFoy5rb4xy1oUvDNjRAwMDA6M6KyLC4Zq6/ssl4cAwPj1Yy8Qa1u/Vc33U6KTgwMjDaM6pWPLatNcrk9xsDAaMOYO6qVR2Te9OZUDAyMnoyrQrZ6pLV6yAMDAwNjvVmdw1zci2NgYGDEZWI+Fq1u82FgYGDkjOpxiup44OT+GBgYLRnVUi8P4mr4JsUoBgZGN8b6AYjqeCDfzrtlvoGBgbEVY98LAwMDAwMDA+NPr2/9SukW9ij40AAAAABJRU5ErkJggg==">
+        <img src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAPYAAAD2CAAAAADAeSUUAAAC0UlEQVR42u3aS27cQAwFQN//0skBbMjvkYNE6C6tjPFI6uLCND9ff668vrCxsbGxsbGxsbFfyf6Krx8e9PjN/AnPT/7+zdmZsbGxsc9m//Kn//sjHg+UsPMwPYegODM2Njb2BeznF+8T3vPhnkPTBhcbGxsb+wOvWaScJPlhY2NjY2/YCTUvXaKW0BsSGDY2Nvbr2bPUsh8wJJ/8514aNjY29uvZ+aHf8/M/nW9jY2Njv5hdrzCW6aRd62mXe4qTY2NjYx/KnrV4Zks5OWYWyl/uwsbGxj6UPWvlz46et/XzZlMRSmxsbOyj2Xl50H6St6iS0CflUNFUwsbGxj6CndywGfHO2kxJqVOnT2xsbOxD2bOCZJOo8mbTPlliY2Nj38Aublukq6Rh1BYtq6YSNjY29kHspHHTlgftck/79uGAARsbG/tQdvtPf1vA7BNPPpb45WzY2NjYh7LzR8/SWDtOzsuheryBjY2NfSh7lmDylZo8KO2p6pEwNjY29tHsTeMmL1HykW0S7vxd2NjY2Gez20e3jafZak6SMvNzYmNjY9/Dzldq2oFu/kmyADQcPGNjY2Nfw84TW7uUMyt72rSKjY2NfSe7LTnytk6e9vIxQN7wwsbGxr6B/dkUMlvKadc628BhY2Nj38CelQeztLdf92lTFzY2NvY97Hp0GoRs8839yAEbGxv7HnaeTvIAbdYrk/cmd2FjY2Pfxs6b/vlY91NBnJ0WGxsb+052nira1JUEazZsiJIxNjY29qHs9mrTSV6KtOkw+S02Njb2DezZSs3st0nqSkI8G0tjY2Njn82eJa18tDBrY80SWL1zio2NjX0QezZSzUn5u9pr1UvDxsbGvpidH3STGj9V3mBjY2Njt0PfzxYY+ydjY2Nj38BO0sy+2dTyZsUPNjY29m3sWeNm1k7Ki43NXdjY2Nj3sO+5sLGxsbGxsbGxsV9z/QXCsJEDJZzPygAAAABJRU5ErkJggg==">
     
 </ul>
 
     
 
     <!-- Tags (bookmark) -->
+    
+    <button id="article-functions-viewtags-button" class="mdl-button mdl-js-button mdl-js-ripple-effect mdl-button--icon">
+        <i class="material-icons" role="presentation">bookmark</i>
+        <span class="visuallyhidden">bookmark</span>
+    </button>
+    <ul class="mdl-menu mdl-menu--bottom-right mdl-js-menu mdl-js-ripple-effect" for="article-functions-viewtags-button">
+        <li class="mdl-menu__item">
+        <a class="post_tag-link" href="/tags/Scheme/">Scheme</a>
+    </ul>
     
 
     <!-- Share -->
@@ -389,7 +467,7 @@
     <!-- Leancloud Views -->
         <a class="post_share-link" href="#">
             <li class="mdl-menu__item">
-                <span id="/contact/index.html" class="leancloud-views_num" data-flag-title="Contact">
+                <span id="/2019/12/22/scheme-continuation/" class="leancloud-views_num" data-flag-title="Scheme之continuation">
      &nbsp;Views
 </span>
 
@@ -401,7 +479,7 @@
 
     <!-- Share Weibo -->
     
-        <a class="post_share-link" href="http://service.weibo.com/share/share.php?appkey=&title=Contact&url=https://blog.nokky.net/contact/index.html&pic=https://blog.nokky.net/img/favicon.png&searchPic=false&style=simple" target="_blank">
+        <a class="post_share-link" href="http://service.weibo.com/share/share.php?appkey=&title=Scheme之continuation&url=https://blog.nokky.net/2019/12/22/scheme-continuation/index.html&pic=https://blog.nokky.net/img/favicon.png&searchPic=false&style=simple" target="_blank">
             <li class="mdl-menu__item">
                 Share to Weibo
             </li>
@@ -410,7 +488,7 @@
 
     <!-- Share Twitter -->
     
-        <a class="post_share-link" href="https://twitter.com/intent/tweet?text=Contact&url=https://blog.nokky.net/contact/index.html&via=nomyfan" target="_blank">
+        <a class="post_share-link" href="https://twitter.com/intent/tweet?text=Scheme之continuation&url=https://blog.nokky.net/2019/12/22/scheme-continuation/index.html&via=nomyfan" target="_blank">
             <li class="mdl-menu__item">
                 Share to Twitter
             </li>
@@ -419,7 +497,7 @@
 
     <!-- Share Facebook -->
     
-        <a class="post_share-link" href="https://www.facebook.com/sharer/sharer.php?u=https://blog.nokky.net/contact/index.html" target="_blank">
+        <a class="post_share-link" href="https://www.facebook.com/sharer/sharer.php?u=https://blog.nokky.net/2019/12/22/scheme-continuation/index.html" target="_blank">
             <li class="mdl-menu__item">
                 Share to Facebook
             </li>
@@ -428,7 +506,7 @@
 
     <!-- Share Google+ -->
     
-        <a class="post_share-link" href="https://plus.google.com/share?url=https://blog.nokky.net/contact/index.html" target="_blank">
+        <a class="post_share-link" href="https://plus.google.com/share?url=https://blog.nokky.net/2019/12/22/scheme-continuation/index.html" target="_blank">
             <li class="mdl-menu__item">
                 Share to Google+
             </li>
@@ -453,7 +531,139 @@
                 <!-- Post Content -->
                 <div id="post-content" class="mdl-color-text--grey-700 mdl-card__supporting-text fade out">
     
-        <p>Contact me with<br><strong><a href="mailto:Myers.Chan@outlook.com?subject=FeebackFromBlog" target="_blank" rel="noopener">E-mail</a></strong>.<br><strong><a href="http://weibo.com/Nomyfan" target="_blank" rel="noopener">Weibo</a></strong><br><strong><a href="https://twitter.com/Myers__Chan" target="_blank" rel="noopener">Twitter</a></strong><br><strong><a href="https://facebook.com/myers.n.chan" target="_blank" rel="noopener">Facebook</a></strong></p>
+        <p>在Scheme中，continuation是一个非常强大的特性，利用它可以操纵控制流，它可以实现异步、返回、生成器等。</p>
+<h2 id="概念"><a href="#概念" class="headerlink" title="概念"></a>概念</h2><p>先来了解一下continuation是什么。这个概念其实覆盖了任何一种编程语言，只是我们在学习其他语言的时候并不会遇到这个概念。continuation就是<strong>下一个运算</strong>，然后<strong>运算必然会产生一个结果</strong>。先拿熟悉的代码举例，假设有这么一段简单的代码</p>
+<pre><code class="java">public static void main(String[] args) {
+
+    int a = 1;
+    int b = 2;
+    int c = a + b; 
+    // 加运算（结果是3）的continuation是赋值运算，
+    // 赋值运算（结果是c的值变成了3）的continuation是println（结果是在stdout输出3）
+    system.out.println(c);
+}
+</code></pre>
+<p>continuation捕获了上下文信息，说到上下文是不是很容易想到线程/异步？这样在概念上理解是十分容易的，我们来看看例子。</p>
+<h2 id="基本使用"><a href="#基本使用" class="headerlink" title="基本使用"></a>基本使用</h2><p>call/cc，这个函数会捕获当前位置的continuation，然后作为参数传给一个过程，也就是说，call/cc需要一个接受一个参数的过程。我们可以这样玩</p>
+<pre><code class="scheme">&gt; (call/cc (lambda (k) (k &#39;())))
+</code></pre>
+<p>这里的k就是continuation，<strong>对一个continuation进行调用就会回到原来的上下文，并把参数作为结果</strong>，所以这行代码的结果就是一个空列表。我们也可以对一个continuation调用call/cc，那么当前的continuation就会作为结果，然后控制流回到原来的上下文，这个会在后边看到例子。</p>
+<h2 id="例子"><a href="#例子" class="headerlink" title="例子"></a>例子</h2><h3 id="非本地退出（Non-local-exit）"><a href="#非本地退出（Non-local-exit）" class="headerlink" title="非本地退出（Non-local exit）"></a>非本地退出（Non-local exit）</h3><p>利用continuation的特性，我们可以实现其他语言的return，提前结束执行流程。</p>
+<pre><code class="scheme">(define (search-zero ls)
+  (call/cc (lambda (return) 
+    (for-each (lambda (ele) 
+      (if (zero? ele)
+        (return &#39;found-zero)
+        (begin 
+          (display ele)
+          (display &quot; &quot;))))
+    ls))))
+</code></pre>
+<p>这个遍历会在第一次遇到0的时候结束。</p>
+<pre><code class="scheme">&gt; (search-zero &#39;(1 2 3 0 2 1))
+&gt; 1 2 3 found-zero
+</code></pre>
+<h3 id="生成器"><a href="#生成器" class="headerlink" title="生成器"></a>生成器</h3><p>在例如Python、JS、C#这些语言中，都有生成器，语法都大同小异，yield关键字总是不会缺席。本质都是遍历集合每一个元素的时候就切换到原来的上下文中，然后下次再次调用获取元素的时候，再跳转回到遍历的控制流中，所以说遍历要脱离上下文的时候，我们要保护好现场，以便回来的时候和之前一致，保证遍历正常。</p>
+<pre><code class="scheme">; 生成器
+(define (generate-one-element-at-a-time ls)
+  (define (control-state return)
+    (for-each (lambda (ele)
+      (call/cc (lambda (resume-here) 
+        (set! control-state resume-here)
+        (return ele))))
+      ; control-state变成了continuation，然后下次再从这里继续，也就是for-each的下一个元素迭代
+    ls)
+  (set! control-state control-endpoint) ; 重置
+  (return &#39;end))
+
+  (define control-endpoint control-state) ; 保存原始的入点
+
+  ; return the generator
+  (lambda () (call/cc control-state)))
+</code></pre>
+<p>调用过程</p>
+<pre><code class="scheme">&gt; (define gen (generate-one-element-at-a-time &#39;(1 2 3)))
+&gt; (gen)
+&gt; 1
+&gt; (gen)
+&gt; 2
+&gt; (gen)
+&gt; 3
+&gt; (gen)
+&gt; end
+</code></pre>
+<p>返回的迭代器每次都会调用control-state这个过程，我们在for-each里调用call/cc，捕获到上下文，然后利用set!做破坏性的修改，control-state就由原来开始的一个普通procedure变成了一个continuation，然后for-each结束之后我们再把control-state恢复到原来的procedure，也就是其他语言里的重置。我们可以自己再写一个迭代器，判断遇到end这个symbol结束，这样就轻松完成了一个语言特性！借助能保存上下文信息的特性，我们可以实现协程的效果！请看接下来的例子。</p>
+<h3 id="生产者-消费者"><a href="#生产者-消费者" class="headerlink" title="生产者 - 消费者"></a>生产者 - 消费者</h3><p>这是我们在学习其他编程语言多线程的时候必然遇到的经典问题，那么来看看Scheme利用continuation的实现，关键点是让对方都持有自己的上下文信息。</p>
+<pre><code class="scheme">(define dish &#39;())
+(define (put! fruit) (set! dish (list fruit)))
+(define (get!) (let ([fruit (car dish)]) (set! dish &#39;()) fruit))
+
+(define (consumer back)
+  (let loop()
+    (if (pair? dish)
+      (let ((fruit (get!)))
+        (printf &quot;C: get a ~a~%&quot; fruit)
+        (set! back (call/cc back)) ; focus on this line
+        (printf &quot;resume from producer: ~a~%&quot; fruit)
+        (loop)))))
+
+(define (producer back)
+  (for-each (lambda (fruit)
+    (put! fruit)
+    (printf &quot;P: put a ~a~%&quot; fruit)
+    (set! back (call/cc back)) ; focus on this line
+    (yield back)
+    (printf &quot;resume from consumer: ~a~%&quot; fruit))
+  &#39;(&quot;apple&quot; &quot;strawberry&quot; &quot;peach&quot; &quot;grape&quot;)))
+</code></pre>
+<p>调用</p>
+<pre><code class="scheme">&gt; (producer consumer)
+</code></pre>
+<p>输出</p>
+<pre><code class="shell">P: put a apple
+C: get a apple
+resume from consumer: apple
+P: put a strawberry
+resume from producer: apple
+C: get a strawberry
+resume from consumer: strawberry
+P: put a peach
+resume from producer: strawberry
+C: get a peach
+resume from consumer: peach
+P: put a grape
+resume from producer: peach
+C: get a grape
+resume from consumer: grape
+</code></pre>
+<p>关键代码是有注释的两行一样的代码，还记得先前说过的点吗？调用continuation会把参数作为结果，然后回到原来的上下文，搭配call/cc使用会把当前的continuation当作结果返回到原来的上下文中了，这样就实现了在生产者和消费者之间相互传递continuation，实现了两者的交替执行。</p>
+<h3 id="其他有意思的例子"><a href="#其他有意思的例子" class="headerlink" title="其他有意思的例子"></a>其他有意思的例子</h3><h4 id="1"><a href="#1" class="headerlink" title="1"></a>1</h4><pre><code class="scheme">(define (get-cc)
+  (call/cc (lambda (k) k)))
+</code></pre>
+<pre><code class="shell">&gt; (define x (get-cc))
+&gt; (x 10)
+&gt; x
+&gt; 10
+&gt; number? x
+&gt; #t
+</code></pre>
+<p>x到底经历什么？x先是一个continuation，代表者给x赋值的define运算，然后执行(x 10)的时候，因为x是continuation，所以10作为结果，返回到了原来的上下文中，也就是返回之后要执行的运算是(define x 10)，这时候x变成了10。</p>
+<h4 id="2"><a href="#2" class="headerlink" title="2"></a>2</h4><pre><code class="scheme">(let ([x (get-cc)]) (x (lambda (unused) &quot;woc&quot;)))
+</code></pre>
+<p>乍一看可能有点糊涂，我们先去掉let语法糖转换成lambda</p>
+<pre><code class="scheme">((lambda (x) (x (lambda (unused) &quot;woc&quot;))) (get-cc))
+</code></pre>
+<p>然后一步一步展开执行。x作为一个continuation被调用，参数是<code>(lambda (unused) &quot;woc&quot;)</code>，回到原来的控制流中。</p>
+<pre><code class="scheme">((lambda (x) (x (lambda (unused) &quot;woc&quot;))) (lambda (unused) &quot;woc&quot;))
+</code></pre>
+<p>然后用<code>(lambda (unused) &quot;woc&quot;)</code>替换x</p>
+<pre><code class="scheme">((lambda (unused) &quot;woc&quot;) (lambda (unused) &quot;woc&quot;))
+</code></pre>
+<p>最后的结果是</p>
+<pre><code class="shell">&gt; &quot;woc&quot;
+</code></pre>
+<p>x参数先是作为一个continuation，在lambda函数里调用，<code>(lambda (unused) &quot;woc&quot;)</code>作为参数，返回到原来的控制流。所以参数名才叫unused哈哈哈。</p>
+<h2 id="总结"><a href="#总结" class="headerlink" title="总结"></a>总结</h2><p>continuation的“原始”让我们看到了计算机/PL的各种概念，保存上下文进入其他执行流我们可以想到中断、线程切换、异步，非本地退出我们可以想到return。虽然continuation特性很强大，然而代码不容易看懂，这是因为代码来回跳转还带上下文信息。所以看continuation代码的时候重要的是找到下一个运算是什么，调用continuation会回到这个运算，结果作为这个运算的参数，这样我们才不会在控制流的跳转中迷失自我。</p>
 
         
                 <blockquote style="margin: 2em 0 0;padding: 0.5em 1em;border-left: 3px solid #F44336;background-color: #F5F5F5;list-style: none;">
@@ -462,7 +672,7 @@
                             This blog is under a <a href="https://creativecommons.org/licenses/by-nc-sa/4.0/deed.zh" target="_blank">CC BY-NC-SA 4.0 Unported License</a>
                         </strong>
                         <br>
-                        <strong>Link to this article: </strong><a href="https://blog.nokky.net/contact/index.html">https://blog.nokky.net/contact/index.html</a>
+                        <strong>Link to this article: </strong><a href="https://blog.nokky.net/2019/12/22/scheme-continuation/">https://blog.nokky.net/2019/12/22/scheme-continuation/</a>
                     </p>
                 </blockquote>
         
@@ -476,6 +686,8 @@
 
                 <!-- Post Comments -->
                 
+                    
+                
             </div>
 
             <!-- Post Prev & Next Nav -->
@@ -487,6 +699,14 @@
     <div class="section-spacer"></div>
 
     <!-- Next Nav -->
+    
+        <a href="/2019/09/13/goasync/" id="post_nav-older" class="next-content">
+            Older
+            &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+            <button class="mdl-button mdl-js-button mdl-js-ripple-effect mdl-button--icon mdl-color--white mdl-color-text--grey-900" role="presentation">
+                <i class="material-icons">arrow_forward</i>
+            </button>
+        </a>
     
 </nav>
 
@@ -706,6 +926,14 @@ It will not impact the appearance and can give developers a lot of support :)
 </aside>
 
                     
+
+                    
+                        <!-- Footer Top Button -->
+                        <div id="back-to-top" class="toTop-wrap">
+    <a href="#top" class="toTop">
+        <i class="material-icons footer_top-i">expand_less</i>
+    </a>
+</div>
 
                     
 
@@ -951,6 +1179,10 @@ It will not impact the appearance and can give developers a lot of support :)
 <!-- Import prettify js  -->
 
     
+        
+            <script>lsloader.load("prettify_js","/js/prettify.min.js?WN07fivHQSMKWy7BmHBB6w==", true)</script>
+        
+    
 
 
 
@@ -963,6 +1195,11 @@ It will not impact the appearance and can give developers a lot of support :)
     });
 
     
+        
+            $(function() {
+                $('pre').addClass('prettyprint linenums').attr('style', 'overflow:auto;');
+                prettyPrint();
+                })
         
     
     

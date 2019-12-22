@@ -4,6 +4,31 @@
   
     
     <entry>
+      <title>Scheme之continuation</title>
+      <link href="/2019/12/22/scheme-continuation/"/>
+      <url>/2019/12/22/scheme-continuation/</url>
+      
+        <content type="html"><![CDATA[<p>在Scheme中，continuation是一个非常强大的特性，利用它可以操纵控制流，它可以实现异步、返回、生成器等。</p><h2 id="概念"><a href="#概念" class="headerlink" title="概念"></a>概念</h2><p>先来了解一下continuation是什么。这个概念其实覆盖了任何一种编程语言，只是我们在学习其他语言的时候并不会遇到这个概念。continuation就是<strong>下一个运算</strong>，然后<strong>运算必然会产生一个结果</strong>。先拿熟悉的代码举例，假设有这么一段简单的代码</p><pre><code class="java">public static void main(String[] args) {    int a = 1;    int b = 2;    int c = a + b;     // 加运算（结果是3）的continuation是赋值运算，    // 赋值运算（结果是c的值变成了3）的continuation是println（结果是在stdout输出3）    system.out.println(c);}</code></pre><p>continuation捕获了上下文信息，说到上下文是不是很容易想到线程/异步？这样在概念上理解是十分容易的，我们来看看例子。</p><h2 id="基本使用"><a href="#基本使用" class="headerlink" title="基本使用"></a>基本使用</h2><p>call/cc，这个函数会捕获当前位置的continuation，然后作为参数传给一个过程，也就是说，call/cc需要一个接受一个参数的过程。我们可以这样玩</p><pre><code class="scheme">&gt; (call/cc (lambda (k) (k &#39;())))</code></pre><p>这里的k就是continuation，<strong>对一个continuation进行调用就会回到原来的上下文，并把参数作为结果</strong>，所以这行代码的结果就是一个空列表。我们也可以对一个continuation调用call/cc，那么当前的continuation就会作为结果，然后控制流回到原来的上下文，这个会在后边看到例子。</p><h2 id="例子"><a href="#例子" class="headerlink" title="例子"></a>例子</h2><h3 id="非本地退出（Non-local-exit）"><a href="#非本地退出（Non-local-exit）" class="headerlink" title="非本地退出（Non-local exit）"></a>非本地退出（Non-local exit）</h3><p>利用continuation的特性，我们可以实现其他语言的return，提前结束执行流程。</p><pre><code class="scheme">(define (search-zero ls)  (call/cc (lambda (return)     (for-each (lambda (ele)       (if (zero? ele)        (return &#39;found-zero)        (begin           (display ele)          (display &quot; &quot;))))    ls))))</code></pre><p>这个遍历会在第一次遇到0的时候结束。</p><pre><code class="scheme">&gt; (search-zero &#39;(1 2 3 0 2 1))&gt; 1 2 3 found-zero</code></pre><h3 id="生成器"><a href="#生成器" class="headerlink" title="生成器"></a>生成器</h3><p>在例如Python、JS、C#这些语言中，都有生成器，语法都大同小异，yield关键字总是不会缺席。本质都是遍历集合每一个元素的时候就切换到原来的上下文中，然后下次再次调用获取元素的时候，再跳转回到遍历的控制流中，所以说遍历要脱离上下文的时候，我们要保护好现场，以便回来的时候和之前一致，保证遍历正常。</p><pre><code class="scheme">; 生成器(define (generate-one-element-at-a-time ls)  (define (control-state return)    (for-each (lambda (ele)      (call/cc (lambda (resume-here)         (set! control-state resume-here)        (return ele))))      ; control-state变成了continuation，然后下次再从这里继续，也就是for-each的下一个元素迭代    ls)  (set! control-state control-endpoint) ; 重置  (return &#39;end))  (define control-endpoint control-state) ; 保存原始的入点  ; return the generator  (lambda () (call/cc control-state)))</code></pre><p>调用过程</p><pre><code class="scheme">&gt; (define gen (generate-one-element-at-a-time &#39;(1 2 3)))&gt; (gen)&gt; 1&gt; (gen)&gt; 2&gt; (gen)&gt; 3&gt; (gen)&gt; end</code></pre><p>返回的迭代器每次都会调用control-state这个过程，我们在for-each里调用call/cc，捕获到上下文，然后利用set!做破坏性的修改，control-state就由原来开始的一个普通procedure变成了一个continuation，然后for-each结束之后我们再把control-state恢复到原来的procedure，也就是其他语言里的重置。我们可以自己再写一个迭代器，判断遇到end这个symbol结束，这样就轻松完成了一个语言特性！借助能保存上下文信息的特性，我们可以实现协程的效果！请看接下来的例子。</p><h3 id="生产者-消费者"><a href="#生产者-消费者" class="headerlink" title="生产者 - 消费者"></a>生产者 - 消费者</h3><p>这是我们在学习其他编程语言多线程的时候必然遇到的经典问题，那么来看看Scheme利用continuation的实现，关键点是让对方都持有自己的上下文信息。</p><pre><code class="scheme">(define dish &#39;())(define (put! fruit) (set! dish (list fruit)))(define (get!) (let ([fruit (car dish)]) (set! dish &#39;()) fruit))(define (consumer back)  (let loop()    (if (pair? dish)      (let ((fruit (get!)))        (printf &quot;C: get a ~a~%&quot; fruit)        (set! back (call/cc back)) ; focus on this line        (printf &quot;resume from producer: ~a~%&quot; fruit)        (loop)))))(define (producer back)  (for-each (lambda (fruit)    (put! fruit)    (printf &quot;P: put a ~a~%&quot; fruit)    (set! back (call/cc back)) ; focus on this line    (yield back)    (printf &quot;resume from consumer: ~a~%&quot; fruit))  &#39;(&quot;apple&quot; &quot;strawberry&quot; &quot;peach&quot; &quot;grape&quot;)))</code></pre><p>调用</p><pre><code class="scheme">&gt; (producer consumer)</code></pre><p>输出</p><pre><code class="shell">P: put a appleC: get a appleresume from consumer: appleP: put a strawberryresume from producer: appleC: get a strawberryresume from consumer: strawberryP: put a peachresume from producer: strawberryC: get a peachresume from consumer: peachP: put a graperesume from producer: peachC: get a graperesume from consumer: grape</code></pre><p>关键代码是有注释的两行一样的代码，还记得先前说过的点吗？调用continuation会把参数作为结果，然后回到原来的上下文，搭配call/cc使用会把当前的continuation当作结果返回到原来的上下文中了，这样就实现了在生产者和消费者之间相互传递continuation，实现了两者的交替执行。</p><h3 id="其他有意思的例子"><a href="#其他有意思的例子" class="headerlink" title="其他有意思的例子"></a>其他有意思的例子</h3><h4 id="1"><a href="#1" class="headerlink" title="1"></a>1</h4><pre><code class="scheme">(define (get-cc)  (call/cc (lambda (k) k)))</code></pre><pre><code class="shell">&gt; (define x (get-cc))&gt; (x 10)&gt; x&gt; 10&gt; number? x&gt; #t</code></pre><p>x到底经历什么？x先是一个continuation，代表者给x赋值的define运算，然后执行(x 10)的时候，因为x是continuation，所以10作为结果，返回到了原来的上下文中，也就是返回之后要执行的运算是(define x 10)，这时候x变成了10。</p><h4 id="2"><a href="#2" class="headerlink" title="2"></a>2</h4><pre><code class="scheme">(let ([x (get-cc)]) (x (lambda (unused) &quot;woc&quot;)))</code></pre><p>乍一看可能有点糊涂，我们先去掉let语法糖转换成lambda</p><pre><code class="scheme">((lambda (x) (x (lambda (unused) &quot;woc&quot;))) (get-cc))</code></pre><p>然后一步一步展开执行。x作为一个continuation被调用，参数是<code>(lambda (unused) &quot;woc&quot;)</code>，回到原来的控制流中。</p><pre><code class="scheme">((lambda (x) (x (lambda (unused) &quot;woc&quot;))) (lambda (unused) &quot;woc&quot;))</code></pre><p>然后用<code>(lambda (unused) &quot;woc&quot;)</code>替换x</p><pre><code class="scheme">((lambda (unused) &quot;woc&quot;) (lambda (unused) &quot;woc&quot;))</code></pre><p>最后的结果是</p><pre><code class="shell">&gt; &quot;woc&quot;</code></pre><p>x参数先是作为一个continuation，在lambda函数里调用，<code>(lambda (unused) &quot;woc&quot;)</code>作为参数，返回到原来的控制流。所以参数名才叫unused哈哈哈。</p><h2 id="总结"><a href="#总结" class="headerlink" title="总结"></a>总结</h2><p>continuation的“原始”让我们看到了计算机/PL的各种概念，保存上下文进入其他执行流我们可以想到中断、线程切换、异步，非本地退出我们可以想到return。虽然continuation特性很强大，然而代码不容易看懂，这是因为代码来回跳转还带上下文信息。所以看continuation代码的时候重要的是找到下一个运算是什么，调用continuation会回到这个运算，结果作为这个运算的参数，这样我们才不会在控制流的跳转中迷失自我。</p>]]></content>
+      
+      
+      <categories>
+          
+          <category> PL </category>
+          
+      </categories>
+      
+      
+        <tags>
+            
+            <tag> Scheme </tag>
+            
+        </tags>
+      
+    </entry>
+    
+    
+    
+    <entry>
       <title>GoAsync</title>
       <link href="/2019/09/13/goasync/"/>
       <url>/2019/09/13/goasync/</url>
@@ -75,9 +100,9 @@
       
         <tags>
             
-            <tag> Kotlin </tag>
-            
             <tag> C# </tag>
+            
+            <tag> Kotlin </tag>
             
             <tag> Generics </tag>
             
@@ -289,9 +314,9 @@
       
         <tags>
             
-            <tag> Linux </tag>
-            
             <tag> ArchLinux </tag>
+            
+            <tag> Linux </tag>
             
         </tags>
       
@@ -316,9 +341,9 @@
       
         <tags>
             
-            <tag> .NET </tag>
-            
             <tag> C# </tag>
+            
+            <tag> .NET </tag>
             
             <tag> 爬虫 </tag>
             
@@ -345,9 +370,9 @@
       
         <tags>
             
-            <tag> .NET </tag>
-            
             <tag> C# </tag>
+            
+            <tag> .NET </tag>
             
             <tag> JSON </tag>
             
@@ -476,9 +501,9 @@
       
         <tags>
             
-            <tag> VPS </tag>
-            
             <tag> Linux </tag>
+            
+            <tag> VPS </tag>
             
         </tags>
       
@@ -503,9 +528,9 @@
       
         <tags>
             
-            <tag> VPS </tag>
-            
             <tag> Linux </tag>
+            
+            <tag> VPS </tag>
             
         </tags>
       
@@ -685,31 +710,9 @@
     
     
     <entry>
-      <title>Tags</title>
-      <link href="/tags/index.html"/>
-      <url>/tags/index.html</url>
-      
-        <content type="html"><![CDATA[]]></content>
-      
-    </entry>
-    
-    
-    
-    <entry>
       <title>Photograph</title>
       <link href="/photograph/index.html"/>
       <url>/photograph/index.html</url>
-      
-        <content type="html"><![CDATA[]]></content>
-      
-    </entry>
-    
-    
-    
-    <entry>
-      <title>Timeline</title>
-      <link href="/timeline/index.html"/>
-      <url>/timeline/index.html</url>
       
         <content type="html"><![CDATA[]]></content>
       
@@ -723,6 +726,28 @@
       <url>/feeback/index.html</url>
       
         <content type="html"><![CDATA[<p>Contact me with<br><strong><a href="mailto:Myers.Chan@outlook.com?subject=FeebackFromBlog" target="_blank" rel="noopener">E-mail</a></strong>.<br><strong><a href="http://weibo.com/Nomyfan" target="_blank" rel="noopener">Weibo</a></strong><br><strong><a href="https://twitter.com/Myers__Chan" target="_blank" rel="noopener">Twitter</a></strong><br><strong><a href="https://facebook.com/myers.n.chan" target="_blank" rel="noopener">Facebook</a></strong></p>]]></content>
+      
+    </entry>
+    
+    
+    
+    <entry>
+      <title>Tags</title>
+      <link href="/tags/index.html"/>
+      <url>/tags/index.html</url>
+      
+        <content type="html"><![CDATA[]]></content>
+      
+    </entry>
+    
+    
+    
+    <entry>
+      <title>Timeline</title>
+      <link href="/timeline/index.html"/>
+      <url>/timeline/index.html</url>
+      
+        <content type="html"><![CDATA[]]></content>
       
     </entry>
     
